@@ -5,16 +5,20 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { DisbursementsService } from './disbursements.service';
 import { CreateDisbursementDto, UpdateDisbursementDto } from './dto';
+import { RolesGuard } from '../../common/guards';
+import { Roles } from '../../common/decorators';
+import { ROLES } from '../../config/constants';
 
 @ApiTags('Desembolsos')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('disbursements')
 export class DisbursementsController {
   constructor(private readonly disbursementsService: DisbursementsService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Crear desembolso' })
+  @Roles(ROLES.FUNCTIONAL_ADMIN)
+  @ApiOperation({ summary: 'Crear desembolso (solo Admin. Funcional)' })
   create(@Body() dto: CreateDisbursementDto) {
     return this.disbursementsService.create(dto);
   }
@@ -32,13 +36,15 @@ export class DisbursementsController {
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Actualizar desembolso' })
+  @Roles(ROLES.FUNCTIONAL_ADMIN)
+  @ApiOperation({ summary: 'Actualizar desembolso (solo Admin. Funcional)' })
   update(@Param('id') id: string, @Body() dto: UpdateDisbursementDto) {
     return this.disbursementsService.update(id, dto);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Inactivar desembolso (eliminación lógica)' })
+  @Roles(ROLES.FUNCTIONAL_ADMIN)
+  @ApiOperation({ summary: 'Inactivar desembolso (solo Admin. Funcional)' })
   remove(@Param('id') id: string) {
     return this.disbursementsService.remove(id);
   }

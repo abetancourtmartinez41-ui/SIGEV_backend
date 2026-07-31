@@ -39,7 +39,9 @@ model Event {
   code                 String       @unique @db.VarChar(50)
   name                 String       @db.VarChar(200)
   description          String?      @db.Text
-  status               String       @default("Abierto") @db.VarChar(20)
+  status               String       @default("Postulado") @db.VarChar(20)
+  observation          String?      @db.Text
+  authorizeException   Boolean      @default(false)
   startDate            DateTime?    @db.Date
   endDate              DateTime?    @db.Date
   divipolaCode         String?      @db.VarChar(10)

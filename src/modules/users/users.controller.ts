@@ -8,6 +8,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { RolesGuard } from '../../common/guards';
 import { Roles } from '../../common/decorators';
+import { ROLES } from '../../config/constants';
 
 @ApiTags('Usuarios')
 @ApiBearerAuth()
@@ -17,36 +18,36 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  @Roles('admin')
-  @ApiOperation({ summary: 'Crear usuario (solo admin)' })
+  @Roles(ROLES.TECHNICAL_ADMIN)
+  @ApiOperation({ summary: 'Crear usuario (solo Admin. Técnico)' })
   create(@Body() dto: CreateUserDto) {
     return this.usersService.create(dto);
   }
 
   @Get()
-  @Roles('admin', 'operator')
+  @Roles(ROLES.TECHNICAL_ADMIN)
   @ApiOperation({ summary: 'Listar todos los usuarios' })
   findAll() {
     return this.usersService.findAll();
   }
 
   @Get(':id')
-  @Roles('admin', 'operator')
+  @Roles(ROLES.TECHNICAL_ADMIN)
   @ApiOperation({ summary: 'Obtener usuario por ID' })
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
   @Patch(':id')
-  @Roles('admin')
-  @ApiOperation({ summary: 'Actualizar usuario (solo admin)' })
+  @Roles(ROLES.TECHNICAL_ADMIN)
+  @ApiOperation({ summary: 'Actualizar usuario (solo Admin. Técnico)' })
   update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     return this.usersService.update(id, dto);
   }
 
   @Delete(':id')
-  @Roles('admin')
-  @ApiOperation({ summary: 'Inactivar usuario (solo admin)' })
+  @Roles(ROLES.TECHNICAL_ADMIN)
+  @ApiOperation({ summary: 'Inactivar usuario (solo Admin. Técnico)' })
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }

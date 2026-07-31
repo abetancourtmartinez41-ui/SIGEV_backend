@@ -110,6 +110,8 @@ export const EventScalarFieldEnum = {
   name: 'name',
   description: 'description',
   status: 'status',
+  observation: 'observation',
+  authorizeException: 'authorizeException',
   startDate: 'startDate',
   endDate: 'endDate',
   divipolaCode: 'divipolaCode',

@@ -14,6 +14,7 @@ import { DisbursementsModule } from './modules/disbursements/disbursements.modul
 import { AuditModule } from './modules/audit/audit.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { MapModule } from './modules/map/map.module';
+import { ParametersModule } from './modules/parameters/parameters.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { MapModule } from './modules/map/map.module';
     ReportsModule,
     SeedModule,
     MapModule,
+    ParametersModule,
   ],
 })
 export class AppModule {}
