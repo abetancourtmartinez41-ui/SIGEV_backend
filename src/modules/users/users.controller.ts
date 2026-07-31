@@ -1,5 +1,5 @@
 import {
-  Controller, Get, Post, Body, Patch, Param, Delete,
+  Controller, Get, Post, Body, Patch, Param,
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
@@ -43,12 +43,5 @@ export class UsersController {
   @ApiOperation({ summary: 'Actualizar usuario (solo Admin. Técnico)' })
   update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     return this.usersService.update(id, dto);
-  }
-
-  @Delete(':id')
-  @Roles(ROLES.TECHNICAL_ADMIN)
-  @ApiOperation({ summary: 'Inactivar usuario (solo Admin. Técnico)' })
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
   }
 }

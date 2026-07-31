@@ -68,6 +68,7 @@ export class UsersService {
     if (dto.fullName) data.fullName = dto.fullName;
     if (dto.email) data.email = dto.email;
     if (dto.password) data.password = await bcrypt.hash(dto.password, 10);
+    if (typeof dto.isActive === 'boolean') data.isActive = dto.isActive;
     if (dto.roles?.length) {
       const roles = await this.prisma.role.findMany({
         where: { name: { in: dto.roles } },
@@ -79,14 +80,6 @@ export class UsersService {
       where: { id },
       data,
       include: userInclude,
-    });
-  }
-
-  async remove(id: string): Promise<void> {
-    await this.findOne(id);
-    await this.prisma.user.update({
-      where: { id },
-      data: { isActive: false },
     });
   }
 }
