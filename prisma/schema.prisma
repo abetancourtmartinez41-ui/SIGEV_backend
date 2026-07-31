@@ -1,0 +1,182 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                   String       @id @default(uuid()) @db.Uuid
+  document             String       @unique @db.VarChar(20)
+  fullName             String       @db.VarChar(50)
+  email                String       @unique @db.VarChar(100)
+  password             String       @db.VarChar(255)
+  isActive             Boolean      @default(true)
+  roles                Role[]
+  createdEvents        Event[]      @relation("EventCreatedBy")
+  uploadedAttachments  Attachment[] @relation("AttachmentUploadedBy")
+  createdAt            DateTime     @default(now()) @db.Timestamptz
+  updatedAt            DateTime     @updatedAt @db.Timestamptz
+
+  @@map("users")
+}
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique @db.VarChar(50)
+  description String?  @db.Text
+  users       User[]
+  createdAt   DateTime @default(now()) @db.Timestamptz
+
+  @@map("roles")
+}
+
+model Event {
+  id                   String       @id @default(uuid()) @db.Uuid
+  code                 String       @unique @db.VarChar(50)
+  name                 String       @db.VarChar(200)
+  description          String?      @db.Text
+  status               String       @default("Abierto") @db.VarChar(20)
+  startDate            DateTime?    @db.Date
+  endDate              DateTime?    @db.Date
+  divipolaCode         String?      @db.VarChar(10)
+  municipalityName     String?      @db.VarChar(100)
+  municipalityCategory String?      @db.VarChar(50)
+  generalAllyId        String?      @db.Uuid
+  createdById          String       @db.Uuid
+  createdBy            User         @relation("EventCreatedBy", fields: [createdById], references: [id])
+  items                Item[]
+  attachments          Attachment[]
+  createdAt            DateTime     @default(now()) @db.Timestamptz
+  updatedAt            DateTime     @updatedAt @db.Timestamptz
+
+  @@map("events")
+}
+
+model Item {
+  id                  String   @id @default(uuid()) @db.Uuid
+  name                String   @db.VarChar(100)
+  description         String?  @db.Text
+  quantity            Int
+  unitPrice           Decimal  @db.Decimal(15, 2)
+  baseValue           Decimal  @db.Decimal(15, 2)
+  ivaRate             Decimal  @default(0) @db.Decimal(15, 2)
+  ivaValue            Decimal  @default(0) @db.Decimal(15, 2)
+  consumptionTaxRate  Decimal  @default(0) @db.Decimal(15, 2)
+  consumptionTaxValue Decimal  @default(0) @db.Decimal(15, 2)
+  feeRate             Decimal  @default(0) @db.Decimal(15, 2)
+  feeValue            Decimal  @default(0) @db.Decimal(15, 2)
+  feeIvaRate          Decimal  @default(0) @db.Decimal(15, 2)
+  feeIvaValue         Decimal  @default(0) @db.Decimal(15, 2)
+  totalValue          Decimal  @default(0) @db.Decimal(15, 2)
+  allyId              String?  @db.Uuid
+  tariffId            String?  @db.Uuid
+  eventId             String   @db.Uuid
+  event               Event    @relation(fields: [eventId], references: [id])
+  isActive            Boolean  @default(true)
+  createdAt           DateTime @default(now()) @db.Timestamptz
+  updatedAt           DateTime @updatedAt @db.Timestamptz
+
+  @@map("items")
+}
+
+model Attachment {
+  id           String   @id @default(uuid()) @db.Uuid
+  originalName String   @db.VarChar(255)
+  storedPath   String   @db.VarChar(255)
+  mimeType     String   @db.VarChar(50)
+  fileSize     Int
+  category     String?  @db.VarChar(100)
+  eventId      String   @db.Uuid
+  event        Event    @relation(fields: [eventId], references: [id])
+  uploadedById String   @db.Uuid
+  uploadedBy   User     @relation("AttachmentUploadedBy", fields: [uploadedById], references: [id])
+  createdAt    DateTime @default(now()) @db.Timestamptz
+
+  @@map("attachments")
+}
+
+model Parameter {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         String   @unique @db.VarChar(100)
+  value       String   @db.Text
+  description String?  @db.VarChar(255)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now()) @db.Timestamptz
+  updatedAt   DateTime @updatedAt @db.Timestamptz
+
+  @@map("parameters")
+}
+
+model Ally {
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String   @unique @db.VarChar(100)
+  color        String?  @db.VarChar(7)
+  document     String?  @db.VarChar(20)
+  contactName  String?  @db.VarChar(100)
+  contactEmail String?  @db.VarChar(100)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now()) @db.Timestamptz
+  updatedAt    DateTime @updatedAt @db.Timestamptz
+
+  @@map("allies")
+}
+
+model Disbursement {
+  id               String    @id @default(uuid()) @db.Uuid
+  name             String    @db.VarChar(100)
+  amount           Decimal   @db.Decimal(15, 2)
+  year             Int
+  disbursementDate DateTime? @db.Date
+  status           String?   @db.VarChar(50)
+  isActive         Boolean   @default(true)
+  createdAt        DateTime  @default(now()) @db.Timestamptz
+  updatedAt        DateTime  @updatedAt @db.Timestamptz
+
+  @@map("disbursements")
+}
+
+model Tariff {
+  id                   String   @id @default(uuid()) @db.Uuid
+  name                 String   @db.VarChar(100)
+  code                 String?  @db.VarChar(50)
+  price                Decimal  @db.Decimal(15, 2)
+  municipalityCategory String   @db.VarChar(50)
+  isActive             Boolean  @default(true)
+  createdAt            DateTime @default(now()) @db.Timestamptz
+  updatedAt            DateTime @updatedAt @db.Timestamptz
+
+  @@map("tariffs")
+}
+
+model AuditLog {
+  id            String   @id @default(uuid()) @db.Uuid
+  entityType    String   @db.VarChar(100)
+  entityId      String   @db.VarChar(50)
+  action        String   @db.VarChar(50)
+  previousValue Json?    @db.JsonB
+  newValue      Json?    @db.JsonB
+  userId        String   @db.Uuid
+  userEmail     String?  @db.VarChar(100)
+  ipAddress     String?  @db.Inet
+  createdAt     DateTime @default(now()) @db.Timestamptz
+
+  @@map("audit_logs")
+}
+
+model Municipality {
+  id           String   @id @default(uuid()) @db.Uuid
+  divipolaCode String   @unique @db.VarChar(10)
+  name         String   @db.VarChar(100)
+  department   String   @db.VarChar(100)
+  category     String   @db.VarChar(50)
+  latitude     Decimal? @db.Decimal(10, 7)
+  longitude    Decimal? @db.Decimal(10, 7)
+  createdAt    DateTime @default(now()) @db.Timestamptz
+  updatedAt    DateTime @updatedAt @db.Timestamptz
+
+  @@map("municipalities")
+}
