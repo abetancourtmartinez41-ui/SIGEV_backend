@@ -1,5 +1,5 @@
 import {
-  Controller, Get, Post, Body, Patch, Param, Delete, UseGuards,
+  Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -24,9 +24,9 @@ export class DisbursementsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar desembolsos activos' })
-  findAll() {
-    return this.disbursementsService.findAll();
+  @ApiOperation({ summary: 'Listar desembolsos (activos por defecto; use active=all para todos)' })
+  findAll(@Query('active') active?: string) {
+    return this.disbursementsService.findAll(active);
   }
 
   @Get(':id')

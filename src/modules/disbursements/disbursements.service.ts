@@ -13,9 +13,9 @@ export class DisbursementsService {
     return this.prisma.disbursement.create({ data: dto });
   }
 
-  async findAll(): Promise<Disbursement[]> {
+  async findAll(active?: string): Promise<Disbursement[]> {
     return this.prisma.disbursement.findMany({
-      where: { isActive: true },
+      where: active === 'all' ? {} : { isActive: true },
       orderBy: { year: 'desc' },
     });
   }
