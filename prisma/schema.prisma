@@ -48,6 +48,8 @@ model Event {
   municipalityName     String?      @db.VarChar(100)
   municipalityCategory String?      @db.VarChar(50)
   generalAllyId        String?      @db.Uuid
+  disbursementId       String?      @db.Uuid
+  disbursement         Disbursement? @relation("DisbursementEvents", fields: [disbursementId], references: [id])
   createdById          String       @db.Uuid
   createdBy            User         @relation("EventCreatedBy", fields: [createdById], references: [id])
   items                Item[]
@@ -130,15 +132,18 @@ model Ally {
 }
 
 model Disbursement {
-  id               String    @id @default(uuid()) @db.Uuid
-  name             String    @db.VarChar(100)
-  amount           Decimal   @db.Decimal(15, 2)
-  year             Int
-  disbursementDate DateTime? @db.Date
-  status           String?   @db.VarChar(50)
-  isActive         Boolean   @default(true)
-  createdAt        DateTime  @default(now()) @db.Timestamptz
-  updatedAt        DateTime  @updatedAt @db.Timestamptz
+  id                      String    @id @default(uuid()) @db.Uuid
+  code                    String?   @db.VarChar(50)
+  name                    String    @db.VarChar(100)
+  amount                  Decimal   @db.Decimal(15, 2)
+  year                    Int
+  percentageParticipation Decimal?  @db.Decimal(5, 2)
+  disbursementDate        DateTime? @db.Date
+  status                  String?   @db.VarChar(50)
+  isActive                Boolean   @default(true)
+  events                  Event[] @relation("DisbursementEvents")
+  createdAt               DateTime  @default(now()) @db.Timestamptz
+  updatedAt               DateTime  @updatedAt @db.Timestamptz
 
   @@map("disbursements")
 }

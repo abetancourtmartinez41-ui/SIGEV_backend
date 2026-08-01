@@ -29,18 +29,22 @@ export type AggregateDisbursement = {
 export type DisbursementAvgAggregateOutputType = {
   amount: runtime.Decimal | null
   year: number | null
+  percentageParticipation: runtime.Decimal | null
 }
 
 export type DisbursementSumAggregateOutputType = {
   amount: runtime.Decimal | null
   year: number | null
+  percentageParticipation: runtime.Decimal | null
 }
 
 export type DisbursementMinAggregateOutputType = {
   id: string | null
+  code: string | null
   name: string | null
   amount: runtime.Decimal | null
   year: number | null
+  percentageParticipation: runtime.Decimal | null
   disbursementDate: Date | null
   status: string | null
   isActive: boolean | null
@@ -50,9 +54,11 @@ export type DisbursementMinAggregateOutputType = {
 
 export type DisbursementMaxAggregateOutputType = {
   id: string | null
+  code: string | null
   name: string | null
   amount: runtime.Decimal | null
   year: number | null
+  percentageParticipation: runtime.Decimal | null
   disbursementDate: Date | null
   status: string | null
   isActive: boolean | null
@@ -62,9 +68,11 @@ export type DisbursementMaxAggregateOutputType = {
 
 export type DisbursementCountAggregateOutputType = {
   id: number
+  code: number
   name: number
   amount: number
   year: number
+  percentageParticipation: number
   disbursementDate: number
   status: number
   isActive: number
@@ -77,18 +85,22 @@ export type DisbursementCountAggregateOutputType = {
 export type DisbursementAvgAggregateInputType = {
   amount?: true
   year?: true
+  percentageParticipation?: true
 }
 
 export type DisbursementSumAggregateInputType = {
   amount?: true
   year?: true
+  percentageParticipation?: true
 }
 
 export type DisbursementMinAggregateInputType = {
   id?: true
+  code?: true
   name?: true
   amount?: true
   year?: true
+  percentageParticipation?: true
   disbursementDate?: true
   status?: true
   isActive?: true
@@ -98,9 +110,11 @@ export type DisbursementMinAggregateInputType = {
 
 export type DisbursementMaxAggregateInputType = {
   id?: true
+  code?: true
   name?: true
   amount?: true
   year?: true
+  percentageParticipation?: true
   disbursementDate?: true
   status?: true
   isActive?: true
@@ -110,9 +124,11 @@ export type DisbursementMaxAggregateInputType = {
 
 export type DisbursementCountAggregateInputType = {
   id?: true
+  code?: true
   name?: true
   amount?: true
   year?: true
+  percentageParticipation?: true
   disbursementDate?: true
   status?: true
   isActive?: true
@@ -209,9 +225,11 @@ export type DisbursementGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 
 export type DisbursementGroupByOutputType = {
   id: string
+  code: string | null
   name: string
   amount: runtime.Decimal
   year: number
+  percentageParticipation: runtime.Decimal | null
   disbursementDate: Date | null
   status: string | null
   isActive: boolean
@@ -244,26 +262,32 @@ export type DisbursementWhereInput = {
   OR?: Prisma.DisbursementWhereInput[]
   NOT?: Prisma.DisbursementWhereInput | Prisma.DisbursementWhereInput[]
   id?: Prisma.UuidFilter<"Disbursement"> | string
+  code?: Prisma.StringNullableFilter<"Disbursement"> | string | null
   name?: Prisma.StringFilter<"Disbursement"> | string
   amount?: Prisma.DecimalFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   year?: Prisma.IntFilter<"Disbursement"> | number
+  percentageParticipation?: Prisma.DecimalNullableFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
   status?: Prisma.StringNullableFilter<"Disbursement"> | string | null
   isActive?: Prisma.BoolFilter<"Disbursement"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
+  events?: Prisma.EventListRelationFilter
 }
 
 export type DisbursementOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  percentageParticipation?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementDate?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  events?: Prisma.EventOrderByRelationAggregateInput
 }
 
 export type DisbursementWhereUniqueInput = Prisma.AtLeast<{
@@ -271,21 +295,26 @@ export type DisbursementWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.DisbursementWhereInput | Prisma.DisbursementWhereInput[]
   OR?: Prisma.DisbursementWhereInput[]
   NOT?: Prisma.DisbursementWhereInput | Prisma.DisbursementWhereInput[]
+  code?: Prisma.StringNullableFilter<"Disbursement"> | string | null
   name?: Prisma.StringFilter<"Disbursement"> | string
   amount?: Prisma.DecimalFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   year?: Prisma.IntFilter<"Disbursement"> | number
+  percentageParticipation?: Prisma.DecimalNullableFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
   status?: Prisma.StringNullableFilter<"Disbursement"> | string | null
   isActive?: Prisma.BoolFilter<"Disbursement"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
+  events?: Prisma.EventListRelationFilter
 }, "id">
 
 export type DisbursementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  percentageParticipation?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementDate?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -303,9 +332,11 @@ export type DisbursementScalarWhereWithAggregatesInput = {
   OR?: Prisma.DisbursementScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DisbursementScalarWhereWithAggregatesInput | Prisma.DisbursementScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Disbursement"> | string
+  code?: Prisma.StringNullableWithAggregatesFilter<"Disbursement"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"Disbursement"> | string
   amount?: Prisma.DecimalWithAggregatesFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   year?: Prisma.IntWithAggregatesFilter<"Disbursement"> | number
+  percentageParticipation?: Prisma.DecimalNullableWithAggregatesFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Disbursement"> | Date | string | null
   status?: Prisma.StringNullableWithAggregatesFilter<"Disbursement"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Disbursement"> | boolean
@@ -315,57 +346,71 @@ export type DisbursementScalarWhereWithAggregatesInput = {
 
 export type DisbursementCreateInput = {
   id?: string
+  code?: string | null
   name: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   year: number
+  percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
   status?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  events?: Prisma.EventCreateNestedManyWithoutDisbursementInput
 }
 
 export type DisbursementUncheckedCreateInput = {
   id?: string
+  code?: string | null
   name: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   year: number
+  percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
   status?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutDisbursementInput
 }
 
 export type DisbursementUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  events?: Prisma.EventUpdateManyWithoutDisbursementNestedInput
 }
 
 export type DisbursementUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  events?: Prisma.EventUncheckedUpdateManyWithoutDisbursementNestedInput
 }
 
 export type DisbursementCreateManyInput = {
   id?: string
+  code?: string | null
   name: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   year: number
+  percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
   status?: string | null
   isActive?: boolean
@@ -375,9 +420,11 @@ export type DisbursementCreateManyInput = {
 
 export type DisbursementUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -387,9 +434,11 @@ export type DisbursementUpdateManyMutationInput = {
 
 export type DisbursementUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -397,11 +446,18 @@ export type DisbursementUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type DisbursementNullableScalarRelationFilter = {
+  is?: Prisma.DisbursementWhereInput | null
+  isNot?: Prisma.DisbursementWhereInput | null
+}
+
 export type DisbursementCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  percentageParticipation?: Prisma.SortOrder
   disbursementDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -412,13 +468,16 @@ export type DisbursementCountOrderByAggregateInput = {
 export type DisbursementAvgOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  percentageParticipation?: Prisma.SortOrder
 }
 
 export type DisbursementMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  percentageParticipation?: Prisma.SortOrder
   disbursementDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -428,9 +487,11 @@ export type DisbursementMaxOrderByAggregateInput = {
 
 export type DisbursementMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  percentageParticipation?: Prisma.SortOrder
   disbursementDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -441,27 +502,159 @@ export type DisbursementMinOrderByAggregateInput = {
 export type DisbursementSumOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  percentageParticipation?: Prisma.SortOrder
 }
 
+export type DisbursementCreateNestedOneWithoutEventsInput = {
+  create?: Prisma.XOR<Prisma.DisbursementCreateWithoutEventsInput, Prisma.DisbursementUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.DisbursementCreateOrConnectWithoutEventsInput
+  connect?: Prisma.DisbursementWhereUniqueInput
+}
+
+export type DisbursementUpdateOneWithoutEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.DisbursementCreateWithoutEventsInput, Prisma.DisbursementUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.DisbursementCreateOrConnectWithoutEventsInput
+  upsert?: Prisma.DisbursementUpsertWithoutEventsInput
+  disconnect?: Prisma.DisbursementWhereInput | boolean
+  delete?: Prisma.DisbursementWhereInput | boolean
+  connect?: Prisma.DisbursementWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DisbursementUpdateToOneWithWhereWithoutEventsInput, Prisma.DisbursementUpdateWithoutEventsInput>, Prisma.DisbursementUncheckedUpdateWithoutEventsInput>
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type DisbursementCreateWithoutEventsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  year: number
+  percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Date | string | null
+  status?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type DisbursementUncheckedCreateWithoutEventsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  year: number
+  percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Date | string | null
+  status?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type DisbursementCreateOrConnectWithoutEventsInput = {
+  where: Prisma.DisbursementWhereUniqueInput
+  create: Prisma.XOR<Prisma.DisbursementCreateWithoutEventsInput, Prisma.DisbursementUncheckedCreateWithoutEventsInput>
+}
+
+export type DisbursementUpsertWithoutEventsInput = {
+  update: Prisma.XOR<Prisma.DisbursementUpdateWithoutEventsInput, Prisma.DisbursementUncheckedUpdateWithoutEventsInput>
+  create: Prisma.XOR<Prisma.DisbursementCreateWithoutEventsInput, Prisma.DisbursementUncheckedCreateWithoutEventsInput>
+  where?: Prisma.DisbursementWhereInput
+}
+
+export type DisbursementUpdateToOneWithWhereWithoutEventsInput = {
+  where?: Prisma.DisbursementWhereInput
+  data: Prisma.XOR<Prisma.DisbursementUpdateWithoutEventsInput, Prisma.DisbursementUncheckedUpdateWithoutEventsInput>
+}
+
+export type DisbursementUpdateWithoutEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type DisbursementUncheckedUpdateWithoutEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type DisbursementCountOutputType
+ */
+
+export type DisbursementCountOutputType = {
+  events: number
+}
+
+export type DisbursementCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  events?: boolean | DisbursementCountOutputTypeCountEventsArgs
+}
+
+/**
+ * DisbursementCountOutputType without action
+ */
+export type DisbursementCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DisbursementCountOutputType
+   */
+  select?: Prisma.DisbursementCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * DisbursementCountOutputType without action
+ */
+export type DisbursementCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventWhereInput
+}
 
 
 export type DisbursementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  code?: boolean
   name?: boolean
   amount?: boolean
   year?: boolean
+  percentageParticipation?: boolean
   disbursementDate?: boolean
   status?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  events?: boolean | Prisma.Disbursement$eventsArgs<ExtArgs>
+  _count?: boolean | Prisma.DisbursementCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["disbursement"]>
 
 export type DisbursementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  code?: boolean
   name?: boolean
   amount?: boolean
   year?: boolean
+  percentageParticipation?: boolean
   disbursementDate?: boolean
   status?: boolean
   isActive?: boolean
@@ -471,9 +664,11 @@ export type DisbursementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 
 export type DisbursementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  code?: boolean
   name?: boolean
   amount?: boolean
   year?: boolean
+  percentageParticipation?: boolean
   disbursementDate?: boolean
   status?: boolean
   isActive?: boolean
@@ -483,9 +678,11 @@ export type DisbursementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 
 export type DisbursementSelectScalar = {
   id?: boolean
+  code?: boolean
   name?: boolean
   amount?: boolean
   year?: boolean
+  percentageParticipation?: boolean
   disbursementDate?: boolean
   status?: boolean
   isActive?: boolean
@@ -493,16 +690,26 @@ export type DisbursementSelectScalar = {
   updatedAt?: boolean
 }
 
-export type DisbursementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "amount" | "year" | "disbursementDate" | "status" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["disbursement"]>
+export type DisbursementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "amount" | "year" | "percentageParticipation" | "disbursementDate" | "status" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["disbursement"]>
+export type DisbursementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  events?: boolean | Prisma.Disbursement$eventsArgs<ExtArgs>
+  _count?: boolean | Prisma.DisbursementCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type DisbursementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type DisbursementIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $DisbursementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Disbursement"
-  objects: {}
+  objects: {
+    events: Prisma.$EventPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    code: string | null
     name: string
     amount: runtime.Decimal
     year: number
+    percentageParticipation: runtime.Decimal | null
     disbursementDate: Date | null
     status: string | null
     isActive: boolean
@@ -902,6 +1109,7 @@ readonly fields: DisbursementFieldRefs;
  */
 export interface Prisma__DisbursementClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  events<T extends Prisma.Disbursement$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Disbursement$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -932,9 +1140,11 @@ export interface Prisma__DisbursementClient<T, Null = never, ExtArgs extends run
  */
 export interface DisbursementFieldRefs {
   readonly id: Prisma.FieldRef<"Disbursement", 'String'>
+  readonly code: Prisma.FieldRef<"Disbursement", 'String'>
   readonly name: Prisma.FieldRef<"Disbursement", 'String'>
   readonly amount: Prisma.FieldRef<"Disbursement", 'Decimal'>
   readonly year: Prisma.FieldRef<"Disbursement", 'Int'>
+  readonly percentageParticipation: Prisma.FieldRef<"Disbursement", 'Decimal'>
   readonly disbursementDate: Prisma.FieldRef<"Disbursement", 'DateTime'>
   readonly status: Prisma.FieldRef<"Disbursement", 'String'>
   readonly isActive: Prisma.FieldRef<"Disbursement", 'Boolean'>
@@ -957,6 +1167,10 @@ export type DisbursementFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
+  /**
    * Filter, which Disbursement to fetch.
    */
   where: Prisma.DisbursementWhereUniqueInput
@@ -975,6 +1189,10 @@ export type DisbursementFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
+  /**
    * Filter, which Disbursement to fetch.
    */
   where: Prisma.DisbursementWhereUniqueInput
@@ -992,6 +1210,10 @@ export type DisbursementFindFirstArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the Disbursement
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
   /**
    * Filter, which Disbursement to fetch.
    */
@@ -1041,6 +1263,10 @@ export type DisbursementFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
+  /**
    * Filter, which Disbursement to fetch.
    */
   where?: Prisma.DisbursementWhereInput
@@ -1088,6 +1314,10 @@ export type DisbursementFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the Disbursement
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
   /**
    * Filter, which Disbursements to fetch.
    */
@@ -1137,6 +1367,10 @@ export type DisbursementCreateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
+  /**
    * The data needed to create a Disbursement.
    */
   data: Prisma.XOR<Prisma.DisbursementCreateInput, Prisma.DisbursementUncheckedCreateInput>
@@ -1184,6 +1418,10 @@ export type DisbursementUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Disbursement
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
   /**
    * The data needed to update a Disbursement.
    */
@@ -1251,6 +1489,10 @@ export type DisbursementUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
+  /**
    * The filter to search for the Disbursement to update in case it exists.
    */
   where: Prisma.DisbursementWhereUniqueInput
@@ -1277,6 +1519,10 @@ export type DisbursementDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
+  /**
    * Filter which Disbursement to delete.
    */
   where: Prisma.DisbursementWhereUniqueInput
@@ -1297,6 +1543,30 @@ export type DisbursementDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * Disbursement.events
+ */
+export type Disbursement$eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Event
+   */
+  select?: Prisma.EventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Event
+   */
+  omit?: Prisma.EventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventInclude<ExtArgs> | null
+  where?: Prisma.EventWhereInput
+  orderBy?: Prisma.EventOrderByWithRelationInput | Prisma.EventOrderByWithRelationInput[]
+  cursor?: Prisma.EventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventScalarFieldEnum | Prisma.EventScalarFieldEnum[]
+}
+
+/**
  * Disbursement without action
  */
 export type DisbursementDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1308,4 +1578,8 @@ export type DisbursementDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the Disbursement
    */
   omit?: Prisma.DisbursementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DisbursementInclude<ExtArgs> | null
 }

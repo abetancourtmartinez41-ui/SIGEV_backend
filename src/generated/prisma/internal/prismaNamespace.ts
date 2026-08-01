@@ -1318,6 +1318,7 @@ export const EventScalarFieldEnum = {
   municipalityName: 'municipalityName',
   municipalityCategory: 'municipalityCategory',
   generalAllyId: 'generalAllyId',
+  disbursementId: 'disbursementId',
   createdById: 'createdById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1399,9 +1400,11 @@ export type AllyScalarFieldEnum = (typeof AllyScalarFieldEnum)[keyof typeof Ally
 
 export const DisbursementScalarFieldEnum = {
   id: 'id',
+  code: 'code',
   name: 'name',
   amount: 'amount',
   year: 'year',
+  percentageParticipation: 'percentageParticipation',
   disbursementDate: 'disbursementDate',
   status: 'status',
   isActive: 'isActive',

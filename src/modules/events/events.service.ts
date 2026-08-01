@@ -9,7 +9,7 @@ import { EventStateMachine } from './state-machine';
 import { ItemsService } from '../items/items.service';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
 
-const eventInclude = { items: true, attachments: true, createdBy: true } as const;
+const eventInclude = { items: true, attachments: true, createdBy: true, disbursement: true } as const;
 
 @Injectable()
 export class EventsService {
@@ -46,6 +46,20 @@ export class EventsService {
     };
   }
 
+  private async assertDisbursementActive(disbursementId?: string): Promise<void> {
+    if (!disbursementId) return;
+    const disbursement = await this.prisma.disbursement.findUnique({
+      where: { id: disbursementId },
+      select: { isActive: true },
+    });
+    if (!disbursement) {
+      throw new BadRequestException('El desembolso asignado no existe');
+    }
+    if (!disbursement.isActive) {
+      throw new BadRequestException('El desembolso asignado está inactivo');
+    }
+  }
+
   async create(
     dto: CreateEventDto,
     user: { id: string; roles: { name: string }[] },
@@ -71,6 +85,7 @@ export class EventsService {
       : EVENT_STATUS.EN_PREPARACION;
 
     const municipality = await this.resolveMunicipality(dto);
+    await this.assertDisbursementActive(dto.disbursementId);
 
     return this.prisma.$transaction(async (tx) => {
       const savedEvent = await tx.event.create({
@@ -82,6 +97,7 @@ export class EventsService {
           municipalityName: municipality.municipalityName,
           municipalityCategory: municipality.municipalityCategory,
           generalAllyId: dto.generalAllyId || null,
+          disbursementId: dto.disbursementId || null,
           createdById: user.id,
           status: initialStatus,
         },
@@ -162,9 +178,16 @@ export class EventsService {
     const { items, ...data } = dto as UpdateEventDto & { items?: CreateEventDto['items'] };
 
     const municipality = await this.resolveMunicipality(data);
+    await this.assertDisbursementActive(dto.disbursementId);
 
     return this.prisma.$transaction(async (tx) => {
-      await tx.event.update({ where: { id }, data: municipality });
+      await tx.event.update({
+        where: { id },
+        data: {
+          ...municipality,
+          disbursementId: dto.disbursementId ?? event.disbursementId,
+        },
+      });
 
       if (items && (isEditor || isAnalista)) {
         await tx.item.deleteMany({ where: { eventId: id } });
@@ -201,6 +224,13 @@ export class EventsService {
       quotationsCount,
       authorizeException: dto.authorizeException,
     });
+
+    if (dto.status === EVENT_STATUS.EN_EJECUCION && !event.disbursementId) {
+      throw new BadRequestException(
+        'El evento debe tener un desembolso asignado antes de aprobar la oferta',
+      );
+    }
+    await this.assertDisbursementActive(event.disbursementId ?? undefined);
 
     const data: { status: string; observation?: string; authorizeException?: boolean } = {
       status: dto.status,

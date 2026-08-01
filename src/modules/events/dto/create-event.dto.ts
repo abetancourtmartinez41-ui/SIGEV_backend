@@ -1,5 +1,5 @@
 import {
-  IsString, IsOptional, IsArray, ValidateNested, MinLength,
+  IsString, IsOptional, IsArray, ValidateNested, MinLength, IsUUID,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -40,6 +40,12 @@ export class CreateEventDto {
   @IsOptional()
   @IsString()
   generalAllyId?: string;
+
+  @ApiPropertyOptional({ description: 'Desembolso asignado al evento' })
+  @IsOptional()
+  @IsString()
+  @IsUUID()
+  disbursementId?: string;
 
   @ApiPropertyOptional({ type: [CreateItemDto] })
   @IsOptional()

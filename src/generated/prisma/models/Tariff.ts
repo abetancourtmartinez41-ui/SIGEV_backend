@@ -637,14 +637,6 @@ export type TariffUpdateOneWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TariffUpdateToOneWithWhereWithoutItemsInput, Prisma.TariffUpdateWithoutItemsInput>, Prisma.TariffUncheckedUpdateWithoutItemsInput>
 }
 
-export type NullableDecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
 export type TariffCreateWithoutItemsInput = {
   id?: string
   code?: string | null
