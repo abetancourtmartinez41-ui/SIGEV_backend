@@ -44,6 +44,10 @@ model Event {
   authorizeException   Boolean      @default(false)
   startDate            DateTime?    @db.Date
   endDate              DateTime?    @db.Date
+  dependency           String?      @db.VarChar(100)
+  hamlet               String?      @db.VarChar(200)
+  attendees            Int?         @default(0)
+  days                 Int?         @default(0)
   divipolaCode         String?      @db.VarChar(10)
   municipalityName     String?      @db.VarChar(100)
   municipalityCategory String?      @db.VarChar(50)

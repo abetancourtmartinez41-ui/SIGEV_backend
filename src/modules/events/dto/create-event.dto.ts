@@ -1,5 +1,5 @@
 import {
-  IsString, IsOptional, IsArray, ValidateNested, MinLength, IsUUID,
+  IsString, IsOptional, IsArray, ValidateNested, MinLength, IsUUID, IsInt, Min,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -46,6 +46,33 @@ export class CreateEventDto {
   @IsString()
   @IsUUID()
   disbursementId?: string;
+
+  @ApiPropertyOptional({ description: 'Fecha del evento. Formato ISO o YYYY-MM-DD' })
+  @IsOptional()
+  @IsString()
+  startDate?: string;
+
+  @ApiPropertyOptional({ description: 'Dependencia del responsable' })
+  @IsOptional()
+  @IsString()
+  dependency?: string;
+
+  @ApiPropertyOptional({ description: 'Vereda del evento' })
+  @IsOptional()
+  @IsString()
+  hamlet?: string;
+
+  @ApiPropertyOptional({ description: 'Cantidad de asistentes' })
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  attendees?: number;
+
+  @ApiPropertyOptional({ description: 'Duración del evento en días' })
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  days?: number;
 
   @ApiPropertyOptional({ type: [CreateItemDto] })
   @IsOptional()

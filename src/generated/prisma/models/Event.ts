@@ -20,8 +20,20 @@ export type EventModel = runtime.Types.Result.DefaultSelection<Prisma.$EventPayl
 
 export type AggregateEvent = {
   _count: EventCountAggregateOutputType | null
+  _avg: EventAvgAggregateOutputType | null
+  _sum: EventSumAggregateOutputType | null
   _min: EventMinAggregateOutputType | null
   _max: EventMaxAggregateOutputType | null
+}
+
+export type EventAvgAggregateOutputType = {
+  attendees: number | null
+  days: number | null
+}
+
+export type EventSumAggregateOutputType = {
+  attendees: number | null
+  days: number | null
 }
 
 export type EventMinAggregateOutputType = {
@@ -34,6 +46,10 @@ export type EventMinAggregateOutputType = {
   authorizeException: boolean | null
   startDate: Date | null
   endDate: Date | null
+  dependency: string | null
+  hamlet: string | null
+  attendees: number | null
+  days: number | null
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
@@ -54,6 +70,10 @@ export type EventMaxAggregateOutputType = {
   authorizeException: boolean | null
   startDate: Date | null
   endDate: Date | null
+  dependency: string | null
+  hamlet: string | null
+  attendees: number | null
+  days: number | null
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
@@ -74,6 +94,10 @@ export type EventCountAggregateOutputType = {
   authorizeException: number
   startDate: number
   endDate: number
+  dependency: number
+  hamlet: number
+  attendees: number
+  days: number
   divipolaCode: number
   municipalityName: number
   municipalityCategory: number
@@ -86,6 +110,16 @@ export type EventCountAggregateOutputType = {
 }
 
 
+export type EventAvgAggregateInputType = {
+  attendees?: true
+  days?: true
+}
+
+export type EventSumAggregateInputType = {
+  attendees?: true
+  days?: true
+}
+
 export type EventMinAggregateInputType = {
   id?: true
   code?: true
@@ -96,6 +130,10 @@ export type EventMinAggregateInputType = {
   authorizeException?: true
   startDate?: true
   endDate?: true
+  dependency?: true
+  hamlet?: true
+  attendees?: true
+  days?: true
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
@@ -116,6 +154,10 @@ export type EventMaxAggregateInputType = {
   authorizeException?: true
   startDate?: true
   endDate?: true
+  dependency?: true
+  hamlet?: true
+  attendees?: true
+  days?: true
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
@@ -136,6 +178,10 @@ export type EventCountAggregateInputType = {
   authorizeException?: true
   startDate?: true
   endDate?: true
+  dependency?: true
+  hamlet?: true
+  attendees?: true
+  days?: true
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
@@ -185,6 +231,18 @@ export type EventAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: EventAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: EventSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: EventMinAggregateInputType
@@ -215,6 +273,8 @@ export type EventGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: EventCountAggregateInputType | true
+  _avg?: EventAvgAggregateInputType
+  _sum?: EventSumAggregateInputType
   _min?: EventMinAggregateInputType
   _max?: EventMaxAggregateInputType
 }
@@ -229,6 +289,10 @@ export type EventGroupByOutputType = {
   authorizeException: boolean
   startDate: Date | null
   endDate: Date | null
+  dependency: string | null
+  hamlet: string | null
+  attendees: number | null
+  days: number | null
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
@@ -238,6 +302,8 @@ export type EventGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   _count: EventCountAggregateOutputType | null
+  _avg: EventAvgAggregateOutputType | null
+  _sum: EventSumAggregateOutputType | null
   _min: EventMinAggregateOutputType | null
   _max: EventMaxAggregateOutputType | null
 }
@@ -270,6 +336,10 @@ export type EventWhereInput = {
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  dependency?: Prisma.StringNullableFilter<"Event"> | string | null
+  hamlet?: Prisma.StringNullableFilter<"Event"> | string | null
+  attendees?: Prisma.IntNullableFilter<"Event"> | number | null
+  days?: Prisma.IntNullableFilter<"Event"> | number | null
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -294,6 +364,10 @@ export type EventOrderByWithRelationInput = {
   authorizeException?: Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  dependency?: Prisma.SortOrderInput | Prisma.SortOrder
+  hamlet?: Prisma.SortOrderInput | Prisma.SortOrder
+  attendees?: Prisma.SortOrderInput | Prisma.SortOrder
+  days?: Prisma.SortOrderInput | Prisma.SortOrder
   divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityName?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -321,6 +395,10 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  dependency?: Prisma.StringNullableFilter<"Event"> | string | null
+  hamlet?: Prisma.StringNullableFilter<"Event"> | string | null
+  attendees?: Prisma.IntNullableFilter<"Event"> | number | null
+  days?: Prisma.IntNullableFilter<"Event"> | number | null
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -345,6 +423,10 @@ export type EventOrderByWithAggregationInput = {
   authorizeException?: Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  dependency?: Prisma.SortOrderInput | Prisma.SortOrder
+  hamlet?: Prisma.SortOrderInput | Prisma.SortOrder
+  attendees?: Prisma.SortOrderInput | Prisma.SortOrder
+  days?: Prisma.SortOrderInput | Prisma.SortOrder
   divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityName?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -354,8 +436,10 @@ export type EventOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.EventCountOrderByAggregateInput
+  _avg?: Prisma.EventAvgOrderByAggregateInput
   _max?: Prisma.EventMaxOrderByAggregateInput
   _min?: Prisma.EventMinOrderByAggregateInput
+  _sum?: Prisma.EventSumOrderByAggregateInput
 }
 
 export type EventScalarWhereWithAggregatesInput = {
@@ -371,6 +455,10 @@ export type EventScalarWhereWithAggregatesInput = {
   authorizeException?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
+  dependency?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  hamlet?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  attendees?: Prisma.IntNullableWithAggregatesFilter<"Event"> | number | null
+  days?: Prisma.IntNullableWithAggregatesFilter<"Event"> | number | null
   divipolaCode?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
@@ -391,6 +479,10 @@ export type EventCreateInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -413,6 +505,10 @@ export type EventUncheckedCreateInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -435,6 +531,10 @@ export type EventUpdateInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -457,6 +557,10 @@ export type EventUncheckedUpdateInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -479,6 +583,10 @@ export type EventCreateManyInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -499,6 +607,10 @@ export type EventUpdateManyMutationInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -517,6 +629,10 @@ export type EventUncheckedUpdateManyInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -547,6 +663,10 @@ export type EventCountOrderByAggregateInput = {
   authorizeException?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  dependency?: Prisma.SortOrder
+  hamlet?: Prisma.SortOrder
+  attendees?: Prisma.SortOrder
+  days?: Prisma.SortOrder
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
@@ -555,6 +675,11 @@ export type EventCountOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type EventAvgOrderByAggregateInput = {
+  attendees?: Prisma.SortOrder
+  days?: Prisma.SortOrder
 }
 
 export type EventMaxOrderByAggregateInput = {
@@ -567,6 +692,10 @@ export type EventMaxOrderByAggregateInput = {
   authorizeException?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  dependency?: Prisma.SortOrder
+  hamlet?: Prisma.SortOrder
+  attendees?: Prisma.SortOrder
+  days?: Prisma.SortOrder
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
@@ -587,6 +716,10 @@ export type EventMinOrderByAggregateInput = {
   authorizeException?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  dependency?: Prisma.SortOrder
+  hamlet?: Prisma.SortOrder
+  attendees?: Prisma.SortOrder
+  days?: Prisma.SortOrder
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
@@ -595,6 +728,11 @@ export type EventMinOrderByAggregateInput = {
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type EventSumOrderByAggregateInput = {
+  attendees?: Prisma.SortOrder
+  days?: Prisma.SortOrder
 }
 
 export type EventScalarRelationFilter = {
@@ -646,6 +784,14 @@ export type EventUncheckedUpdateManyWithoutCreatedByNestedInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type EventCreateNestedOneWithoutItemsInput = {
@@ -728,6 +874,10 @@ export type EventCreateWithoutCreatedByInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -749,6 +899,10 @@ export type EventUncheckedCreateWithoutCreatedByInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -799,6 +953,10 @@ export type EventScalarWhereInput = {
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  dependency?: Prisma.StringNullableFilter<"Event"> | string | null
+  hamlet?: Prisma.StringNullableFilter<"Event"> | string | null
+  attendees?: Prisma.IntNullableFilter<"Event"> | number | null
+  days?: Prisma.IntNullableFilter<"Event"> | number | null
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -819,6 +977,10 @@ export type EventCreateWithoutItemsInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -840,6 +1002,10 @@ export type EventUncheckedCreateWithoutItemsInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -877,6 +1043,10 @@ export type EventUpdateWithoutItemsInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -898,6 +1068,10 @@ export type EventUncheckedUpdateWithoutItemsInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -919,6 +1093,10 @@ export type EventCreateWithoutAttachmentsInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -940,6 +1118,10 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -977,6 +1159,10 @@ export type EventUpdateWithoutAttachmentsInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -998,6 +1184,10 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1019,6 +1209,10 @@ export type EventCreateWithoutDisbursementInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1040,6 +1234,10 @@ export type EventUncheckedCreateWithoutDisbursementInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1087,6 +1285,10 @@ export type EventCreateManyCreatedByInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1106,6 +1308,10 @@ export type EventUpdateWithoutCreatedByInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1127,6 +1333,10 @@ export type EventUncheckedUpdateWithoutCreatedByInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1148,6 +1358,10 @@ export type EventUncheckedUpdateManyWithoutCreatedByInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1167,6 +1381,10 @@ export type EventCreateManyDisbursementInput = {
   authorizeException?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1186,6 +1404,10 @@ export type EventUpdateWithoutDisbursementInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1207,6 +1429,10 @@ export type EventUncheckedUpdateWithoutDisbursementInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1228,6 +1454,10 @@ export type EventUncheckedUpdateManyWithoutDisbursementInput = {
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1287,6 +1517,10 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   authorizeException?: boolean
   startDate?: boolean
   endDate?: boolean
+  dependency?: boolean
+  hamlet?: boolean
+  attendees?: boolean
+  days?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1312,6 +1546,10 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   authorizeException?: boolean
   startDate?: boolean
   endDate?: boolean
+  dependency?: boolean
+  hamlet?: boolean
+  attendees?: boolean
+  days?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1334,6 +1572,10 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   authorizeException?: boolean
   startDate?: boolean
   endDate?: boolean
+  dependency?: boolean
+  hamlet?: boolean
+  attendees?: boolean
+  days?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1356,6 +1598,10 @@ export type EventSelectScalar = {
   authorizeException?: boolean
   startDate?: boolean
   endDate?: boolean
+  dependency?: boolean
+  hamlet?: boolean
+  attendees?: boolean
+  days?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1366,7 +1612,7 @@ export type EventSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "status" | "observation" | "authorizeException" | "startDate" | "endDate" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "status" | "observation" | "authorizeException" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1401,6 +1647,10 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     authorizeException: boolean
     startDate: Date | null
     endDate: Date | null
+    dependency: string | null
+    hamlet: string | null
+    attendees: number | null
+    days: number | null
     divipolaCode: string | null
     municipalityName: string | null
     municipalityCategory: string | null
@@ -1845,6 +2095,10 @@ export interface EventFieldRefs {
   readonly authorizeException: Prisma.FieldRef<"Event", 'Boolean'>
   readonly startDate: Prisma.FieldRef<"Event", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Event", 'DateTime'>
+  readonly dependency: Prisma.FieldRef<"Event", 'String'>
+  readonly hamlet: Prisma.FieldRef<"Event", 'String'>
+  readonly attendees: Prisma.FieldRef<"Event", 'Int'>
+  readonly days: Prisma.FieldRef<"Event", 'Int'>
   readonly divipolaCode: Prisma.FieldRef<"Event", 'String'>
   readonly municipalityName: Prisma.FieldRef<"Event", 'String'>
   readonly municipalityCategory: Prisma.FieldRef<"Event", 'String'>

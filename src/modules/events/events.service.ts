@@ -93,6 +93,11 @@ export class EventsService {
           code: dto.code,
           name: dto.name,
           description: dto.description,
+          startDate: dto.startDate ? new Date(dto.startDate) : null,
+          dependency: dto.dependency ?? null,
+          hamlet: dto.hamlet ?? null,
+          attendees: dto.attendees ?? 0,
+          days: dto.days ?? 0,
           divipolaCode: municipality.divipolaCode,
           municipalityName: municipality.municipalityName,
           municipalityCategory: municipality.municipalityCategory,
@@ -186,6 +191,14 @@ export class EventsService {
         data: {
           ...municipality,
           disbursementId: dto.disbursementId ?? event.disbursementId,
+          startDate:
+            dto.startDate !== undefined
+              ? (dto.startDate ? new Date(dto.startDate) : null)
+              : undefined,
+          dependency: dto.dependency !== undefined ? (dto.dependency || null) : undefined,
+          hamlet: dto.hamlet !== undefined ? (dto.hamlet || null) : undefined,
+          attendees: dto.attendees,
+          days: dto.days,
         },
       });
 
