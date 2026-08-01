@@ -11,6 +11,11 @@ export class CreateEventDto {
   @MinLength(3)
   code: string;
 
+  @ApiPropertyOptional({ description: 'Sufijo de la orden (Ej: A, B, C)' })
+  @IsOptional()
+  @IsString()
+  suffix?: string;
+
   @ApiProperty({ example: 'Evento de prueba' })
   @IsString()
   @MinLength(3)

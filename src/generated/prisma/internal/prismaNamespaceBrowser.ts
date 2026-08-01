@@ -107,6 +107,7 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 export const EventScalarFieldEnum = {
   id: 'id',
   code: 'code',
+  suffix: 'suffix',
   name: 'name',
   description: 'description',
   status: 'status',

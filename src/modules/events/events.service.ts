@@ -91,6 +91,7 @@ export class EventsService {
       const savedEvent = await tx.event.create({
         data: {
           code: dto.code,
+          suffix: dto.suffix ?? null,
           name: dto.name,
           description: dto.description,
           startDate: dto.startDate ? new Date(dto.startDate) : null,
@@ -191,6 +192,7 @@ export class EventsService {
         data: {
           ...municipality,
           disbursementId: dto.disbursementId ?? event.disbursementId,
+          suffix: dto.suffix !== undefined ? (dto.suffix || null) : undefined,
           startDate:
             dto.startDate !== undefined
               ? (dto.startDate ? new Date(dto.startDate) : null)
