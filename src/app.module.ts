@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { configuration } from './config';
 import { PrismaModule } from './database/prisma.module';
 import { SeedModule } from './database/seed.module';
+import { AuditInterceptor } from './common/interceptors/audit.interceptor';
 
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
@@ -37,6 +39,12 @@ import { TariffsModule } from './modules/tariffs/tariffs.module';
     MapModule,
     ParametersModule,
     TariffsModule,
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: AuditInterceptor,
+    },
   ],
 })
 export class AppModule {}

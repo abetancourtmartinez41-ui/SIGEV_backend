@@ -108,6 +108,7 @@ export const EventScalarFieldEnum = {
   id: 'id',
   code: 'code',
   suffix: 'suffix',
+  schemaType: 'schemaType',
   name: 'name',
   description: 'description',
   status: 'status',

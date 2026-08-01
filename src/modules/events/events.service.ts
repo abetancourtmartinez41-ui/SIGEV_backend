@@ -22,6 +22,30 @@ export class EventsService {
     return roles.map((role) => role.name);
   }
 
+  private normalizeSuffix(suffix?: string): string {
+    return (suffix ?? '').trim().toUpperCase();
+  }
+
+  private async assertUniqueCodeSuffix(
+    code: string,
+    suffix: string,
+    excludeId?: string,
+  ): Promise<void> {
+    const existing = await this.prisma.event.findFirst({
+      where: {
+        code,
+        suffix,
+        ...(excludeId ? { id: { not: excludeId } } : {}),
+      },
+      select: { id: true },
+    });
+    if (existing) {
+      throw new BadRequestException(
+        'El número de evento con ese sufijo ya existe',
+      );
+    }
+  }
+
   private async resolveMunicipality(dto: {
     divipolaCode?: string;
     municipalityName?: string;
@@ -64,12 +88,8 @@ export class EventsService {
     dto: CreateEventDto,
     user: { id: string; roles: { name: string }[] },
   ): Promise<EventWithRelations> {
-    const existing = await this.prisma.event.findUnique({
-      where: { code: dto.code },
-    });
-    if (existing) {
-      throw new BadRequestException('El código del evento ya existe');
-    }
+    const suffix = this.normalizeSuffix(dto.suffix);
+    await this.assertUniqueCodeSuffix(dto.code, suffix);
 
     const roles = this.roleNames(user.roles);
     const isSolicitante = roles.includes(ROLES.SOLICITANTE);
@@ -91,7 +111,8 @@ export class EventsService {
       const savedEvent = await tx.event.create({
         data: {
           code: dto.code,
-          suffix: dto.suffix ?? null,
+          suffix,
+          schemaType: dto.schemaType ?? 'cotizacion',
           name: dto.name,
           description: dto.description,
           startDate: dto.startDate ? new Date(dto.startDate) : null,
@@ -188,13 +209,18 @@ export class EventsService {
     const municipality = await this.resolveMunicipality(data);
     await this.assertDisbursementActive(dto.disbursementId);
 
+    const nextSuffix = dto.suffix !== undefined ? this.normalizeSuffix(dto.suffix) : event.suffix ?? '';
+    const nextCode = dto.code ?? event.code;
+    await this.assertUniqueCodeSuffix(nextCode, nextSuffix, id);
+
     return this.prisma.$transaction(async (tx) => {
       await tx.event.update({
         where: { id },
         data: {
           ...municipality,
+          schemaType: dto.schemaType !== undefined ? dto.schemaType : undefined,
+          suffix: nextSuffix,
           disbursementId: dto.disbursementId ?? event.disbursementId,
-          suffix: dto.suffix !== undefined ? (dto.suffix || null) : undefined,
           startDate:
             dto.startDate !== undefined
               ? (dto.startDate ? new Date(dto.startDate) : null)

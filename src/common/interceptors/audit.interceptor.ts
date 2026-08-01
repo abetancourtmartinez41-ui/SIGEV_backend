@@ -16,18 +16,18 @@ export class AuditInterceptor implements NestInterceptor {
       return next.handle().pipe(
         tap((responseBody: any) => {
           const entityType = this.extractEntityType(url);
-          if (entityType) {
-            this.auditService.log({
-              entityType,
-              entityId: responseBody?.id || request.params.id,
-              action: `${method} ${url}`,
-              previousValue: request.body?._previous || null,
-              newValue: responseBody || request.body,
-              userId: user?.id,
-              userEmail: user?.email,
-              ipAddress: request.ip,
-            });
-          }
+          const entityId = responseBody?.id || request.params.id;
+          if (!entityType || !entityId) return;
+          this.auditService.log({
+            entityType,
+            entityId,
+            action: `${method} ${url}`.slice(0, 50),
+            previousValue: request.body?._previous || null,
+            newValue: responseBody || request.body,
+            userId: user?.id,
+            userEmail: user?.email,
+            ipAddress: request.ip,
+          });
         }),
       );
     }
@@ -37,6 +37,9 @@ export class AuditInterceptor implements NestInterceptor {
 
   private extractEntityType(url: string): string | null {
     const parts = url.split('/').filter(Boolean);
-    return parts.length > 0 ? parts[0] : null;
+    const relative = parts.filter(
+      (part) => part !== 'api' && !/^v\d+$/i.test(part),
+    );
+    return relative.length > 0 ? relative[0] : null;
   }
 }

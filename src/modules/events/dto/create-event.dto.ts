@@ -1,5 +1,5 @@
 import {
-  IsString, IsOptional, IsArray, ValidateNested, MinLength, IsUUID, IsInt, Min, IsNumber,
+  IsString, IsOptional, IsArray, ValidateNested, MinLength, IsUUID, IsInt, Min, IsNumber, IsIn,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -15,6 +15,11 @@ export class CreateEventDto {
   @IsOptional()
   @IsString()
   suffix?: string;
+
+  @ApiPropertyOptional({ description: 'Esquema de presentación (cotizacion | detalle)', enum: ['cotizacion', 'detalle'] })
+  @IsOptional()
+  @IsIn(['cotizacion', 'detalle'])
+  schemaType?: 'cotizacion' | 'detalle';
 
   @ApiProperty({ example: 'Evento de prueba' })
   @IsString()
