@@ -76,6 +76,8 @@ model Item {
   totalValue          Decimal  @default(0) @db.Decimal(15, 2)
   allyId              String?  @db.Uuid
   tariffId            String?  @db.Uuid
+  tariff              Tariff?  @relation(fields: [tariffId], references: [id])
+  isTariffed          Boolean  @default(true)
   eventId             String   @db.Uuid
   event               Event    @relation(fields: [eventId], references: [id])
   isActive            Boolean  @default(true)
@@ -143,11 +145,20 @@ model Disbursement {
 
 model Tariff {
   id                   String   @id @default(uuid()) @db.Uuid
-  name                 String   @db.VarChar(100)
   code                 String?  @db.VarChar(50)
-  price                Decimal  @db.Decimal(15, 2)
-  municipalityCategory String   @db.VarChar(50)
+  name                 String   @db.VarChar(200)
+  description          String?  @db.Text
+  unitMeasure          String?  @db.VarChar(50)
+  timeUnit             String?  @db.VarChar(50)
+  observations         String?  @db.Text
+  sheet                String?  @db.VarChar(100)
+  priceEspecialPrimera Decimal? @db.Decimal(15, 2)
+  priceSegundaCuarta   Decimal? @db.Decimal(15, 2)
+  priceQuintaSexta     Decimal? @db.Decimal(15, 2)
+  tariffType           String   @default("TARIFADO") @db.VarChar(20)
+  vigencyYear          Int      @default(2026)
   isActive             Boolean  @default(true)
+  items                Item[]
   createdAt            DateTime @default(now()) @db.Timestamptz
   updatedAt            DateTime @updatedAt @db.Timestamptz
 

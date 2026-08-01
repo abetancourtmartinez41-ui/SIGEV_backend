@@ -1,21 +1,98 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '../../generated/prisma/client';
 import { CreateItemDto, UpdateItemDto } from './dto';
 import { CalculationsService } from '../calculations/calculations.service';
+import { TariffsService } from '../tariffs/tariffs.service';
+
+type EventContext = { id: string; municipalityCategory: string | null };
 
 @Injectable()
 export class ItemsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly calculationsService: CalculationsService,
+    private readonly tariffsService: TariffsService,
   ) {}
 
-  async create(dto: CreateItemDto): Promise<Prisma.ItemGetPayload<{}>> {
-    const itemData = this.calculationsService.calculateItem(dto);
-    return this.prisma.item.create({
-      data: itemData as Prisma.ItemUncheckedCreateInput,
+  private async resolveItemValues(
+    dto: {
+      name?: string;
+      description?: string;
+      unitPrice?: number;
+      tariffId?: string;
+      isTariffed?: boolean;
+    },
+    event: EventContext,
+  ): Promise<{
+    name: string;
+    description?: string;
+    unitPrice: number;
+    isTariffed: boolean;
+    tariffId?: string;
+  }> {
+    let name = dto.name;
+    let description = dto.description;
+    let unitPrice = dto.unitPrice ?? 0;
+    let isTariffed = dto.isTariffed ?? false;
+    let tariffId = dto.tariffId;
+
+    if (dto.tariffId) {
+      const resolved = await this.tariffsService.resolveTariffItem(
+        dto.tariffId,
+        event.municipalityCategory,
+      );
+      unitPrice = Number(resolved.unitPrice);
+      name = resolved.name;
+      if (!description) {
+        description = resolved.description ?? undefined;
+      }
+      isTariffed = true;
+    } else if (dto.unitPrice === undefined) {
+      throw new BadRequestException(
+        'Los servicios NO_TARIFADO requieren un valor unitario manual',
+      );
+    }
+
+    if (!name) {
+      throw new BadRequestException('El ítem requiere un nombre o un servicio del tarifario');
+    }
+
+    return { name, description, unitPrice, isTariffed, tariffId };
+  }
+
+  async buildItemData(
+    dto: CreateItemDto,
+    event: EventContext,
+  ): Promise<Prisma.ItemUncheckedCreateInput> {
+    const resolved = await this.resolveItemValues(dto, event);
+    const calculated = this.calculationsService.calculateItem({
+      name: resolved.name,
+      description: resolved.description,
+      quantity: dto.quantity,
+      unitPrice: resolved.unitPrice,
+      ivaRate: dto.ivaRate,
+      consumptionTaxRate: dto.consumptionTaxRate,
+      feeRate: dto.feeRate,
+      feeIvaRate: dto.feeIvaRate,
+      allyId: dto.allyId,
+      tariffId: resolved.tariffId,
     });
+    return {
+      ...calculated,
+      isTariffed: resolved.isTariffed,
+      eventId: event.id,
+    } as Prisma.ItemUncheckedCreateInput;
+  }
+
+  async create(dto: CreateItemDto): Promise<Prisma.ItemGetPayload<{}>> {
+    if (!dto.eventId) {
+      throw new BadRequestException('Debe especificar el evento al que pertenece el ítem');
+    }
+    const event = await this.prisma.event.findUnique({ where: { id: dto.eventId } });
+    if (!event) throw new NotFoundException('Evento no encontrado');
+    const itemData = await this.buildItemData(dto, event);
+    return this.prisma.item.create({ data: itemData });
   }
 
   async findAll(): Promise<Prisma.ItemGetPayload<{}>[]> {
@@ -30,13 +107,31 @@ export class ItemsService {
 
   async update(id: string, dto: UpdateItemDto): Promise<Prisma.ItemGetPayload<{}>> {
     const item = await this.findOne(id);
-    const itemData = this.calculationsService.calculateItem({
+    const event = await this.prisma.event.findUnique({ where: { id: item.eventId } });
+    if (!event) throw new NotFoundException('Evento no encontrado');
+
+    const merged: CreateItemDto = {
       ...item,
       ...dto,
-    } as CreateItemDto);
+      unitPrice: dto.unitPrice ?? Number(item.unitPrice),
+    } as unknown as CreateItemDto;
+
+    const resolved = await this.resolveItemValues(merged, event);
+    const calculated = this.calculationsService.calculateItem({
+      name: resolved.name,
+      description: resolved.description,
+      quantity: merged.quantity,
+      unitPrice: resolved.unitPrice,
+      ivaRate: merged.ivaRate,
+      consumptionTaxRate: merged.consumptionTaxRate,
+      feeRate: merged.feeRate,
+      feeIvaRate: merged.feeIvaRate,
+      allyId: merged.allyId,
+      tariffId: resolved.tariffId,
+    });
     return this.prisma.item.update({
       where: { id },
-      data: itemData,
+      data: { ...calculated, isTariffed: resolved.isTariffed },
     });
   }
 

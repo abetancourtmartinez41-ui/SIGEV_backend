@@ -1,13 +1,23 @@
 import {
-  IsString, IsNumber, IsOptional, Min, MinLength,
+  IsString, IsNumber, IsOptional, IsBoolean, Min, MinLength,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateItemDto {
-  @ApiProperty({ example: 'Servicio de consultoría' })
+  @ApiPropertyOptional({
+    description: 'ID del evento. Se asigna automáticamente cuando el ítem se crea dentro del evento',
+  })
+  @IsOptional()
+  @IsString()
+  eventId?: string;
+
+  @ApiPropertyOptional({
+    description: 'Se completa automáticamente desde el tarifario si se envía tariffId',
+  })
+  @IsOptional()
   @IsString()
   @MinLength(3)
-  name: string;
+  name?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -19,10 +29,22 @@ export class CreateItemDto {
   @Min(1)
   quantity: number;
 
-  @ApiProperty({ example: 250000 })
+  @ApiPropertyOptional({
+    example: 12000,
+    description: 'Valor unitario manual (solo para servicios NO_TARIFADO; se bloquea si hay tariffId)',
+  })
+  @IsOptional()
   @IsNumber()
   @Min(0)
-  unitPrice: number;
+  unitPrice?: number;
+
+  @ApiPropertyOptional({
+    example: false,
+    description: 'Marca el ítem como NO_TARIFADO para que el Aprobador lo revise',
+  })
+  @IsOptional()
+  @IsBoolean()
+  isTariffed?: boolean;
 
   @ApiPropertyOptional({ example: 0.19 })
   @IsOptional()
@@ -53,7 +75,7 @@ export class CreateItemDto {
   @IsString()
   allyId?: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ description: 'Servicio del tarifario (bloquea unitPrice con el precio oficial)' })
   @IsOptional()
   @IsString()
   tariffId?: string;

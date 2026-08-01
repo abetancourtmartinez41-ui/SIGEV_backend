@@ -15,6 +15,9 @@ export default () => ({
     rate: parseFloat(process.env.FEE_RATE || '0.0825'),
     applyOn: (process.env.FEE_APPLY_ON || 'base') as 'base' | 'total_with_taxes',
   },
+  vigency: {
+    year: parseInt(process.env.VIGENCY_YEAR || '2026', 10),
+  },
   upload: {
     dest: process.env.UPLOAD_DEST || './uploads',
     maxFileSize: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10),

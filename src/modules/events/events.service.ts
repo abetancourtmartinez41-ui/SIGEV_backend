@@ -2,10 +2,11 @@ import {
   Injectable, NotFoundException, BadRequestException, ForbiddenException,
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import { Prisma } from '../../generated/prisma/client';
 import { EventWithRelations } from '../../database/types';
 import { CreateEventDto, UpdateEventDto, ChangeStatusDto } from './dto';
 import { EventStateMachine } from './state-machine';
-import { CalculationsService } from '../calculations/calculations.service';
+import { ItemsService } from '../items/items.service';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
 
 const eventInclude = { items: true, attachments: true, createdBy: true } as const;
@@ -14,11 +15,35 @@ const eventInclude = { items: true, attachments: true, createdBy: true } as cons
 export class EventsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly calculationsService: CalculationsService,
+    private readonly itemsService: ItemsService,
   ) {}
 
   private roleNames(roles: { name: string }[]): string[] {
     return roles.map((role) => role.name);
+  }
+
+  private async resolveMunicipality(dto: {
+    divipolaCode?: string;
+    municipalityName?: string;
+    municipalityCategory?: string;
+  }): Promise<{ divipolaCode?: string; municipalityName?: string; municipalityCategory?: string }> {
+    if (dto.divipolaCode && !dto.municipalityCategory) {
+      const municipality = await this.prisma.municipality.findUnique({
+        where: { divipolaCode: dto.divipolaCode },
+      });
+      if (municipality) {
+        return {
+          divipolaCode: municipality.divipolaCode,
+          municipalityName: dto.municipalityName ?? municipality.name,
+          municipalityCategory: municipality.category,
+        };
+      }
+    }
+    return {
+      divipolaCode: dto.divipolaCode,
+      municipalityName: dto.municipalityName,
+      municipalityCategory: dto.municipalityCategory,
+    };
   }
 
   async create(
@@ -45,15 +70,17 @@ export class EventsService {
       ? EVENT_STATUS.POSTULADO
       : EVENT_STATUS.EN_PREPARACION;
 
+    const municipality = await this.resolveMunicipality(dto);
+
     return this.prisma.$transaction(async (tx) => {
       const savedEvent = await tx.event.create({
         data: {
           code: dto.code,
           name: dto.name,
           description: dto.description,
-          divipolaCode: dto.divipolaCode,
-          municipalityName: dto.municipalityName,
-          municipalityCategory: dto.municipalityCategory,
+          divipolaCode: municipality.divipolaCode,
+          municipalityName: municipality.municipalityName,
+          municipalityCategory: municipality.municipalityCategory,
           generalAllyId: dto.generalAllyId || null,
           createdById: user.id,
           status: initialStatus,
@@ -61,13 +88,14 @@ export class EventsService {
       });
 
       if (dto.items?.length) {
-        const items = dto.items.map((itemDto) => {
-          const calculated = this.calculationsService.calculateItem(itemDto);
-          return {
-            ...calculated,
-            eventId: savedEvent.id,
-          };
-        });
+        const event = {
+          id: savedEvent.id,
+          municipalityCategory: savedEvent.municipalityCategory,
+        };
+        const items: Prisma.ItemUncheckedCreateInput[] = [];
+        for (const itemDto of dto.items) {
+          items.push(await this.itemsService.buildItemData(itemDto, event));
+        }
         await tx.item.createMany({ data: items });
       }
 
@@ -133,16 +161,22 @@ export class EventsService {
 
     const { items, ...data } = dto as UpdateEventDto & { items?: CreateEventDto['items'] };
 
+    const municipality = await this.resolveMunicipality(data);
+
     return this.prisma.$transaction(async (tx) => {
-      await tx.event.update({ where: { id }, data });
+      await tx.event.update({ where: { id }, data: municipality });
 
       if (items && (isEditor || isAnalista)) {
         await tx.item.deleteMany({ where: { eventId: id } });
         if (items.length) {
-          const itemData = items.map((itemDto) => ({
-            ...this.calculationsService.calculateItem(itemDto),
-            eventId: id,
-          }));
+          const eventContext = {
+            id,
+            municipalityCategory: municipality.municipalityCategory ?? event.municipalityCategory,
+          };
+          const itemData: Prisma.ItemUncheckedCreateInput[] = [];
+          for (const itemDto of items) {
+            itemData.push(await this.itemsService.buildItemData(itemDto, eventContext));
+          }
           await tx.item.createMany({ data: itemData });
         }
       }

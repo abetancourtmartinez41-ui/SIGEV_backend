@@ -27,19 +27,33 @@ export type AggregateTariff = {
 }
 
 export type TariffAvgAggregateOutputType = {
-  price: runtime.Decimal | null
+  priceEspecialPrimera: runtime.Decimal | null
+  priceSegundaCuarta: runtime.Decimal | null
+  priceQuintaSexta: runtime.Decimal | null
+  vigencyYear: number | null
 }
 
 export type TariffSumAggregateOutputType = {
-  price: runtime.Decimal | null
+  priceEspecialPrimera: runtime.Decimal | null
+  priceSegundaCuarta: runtime.Decimal | null
+  priceQuintaSexta: runtime.Decimal | null
+  vigencyYear: number | null
 }
 
 export type TariffMinAggregateOutputType = {
   id: string | null
-  name: string | null
   code: string | null
-  price: runtime.Decimal | null
-  municipalityCategory: string | null
+  name: string | null
+  description: string | null
+  unitMeasure: string | null
+  timeUnit: string | null
+  observations: string | null
+  sheet: string | null
+  priceEspecialPrimera: runtime.Decimal | null
+  priceSegundaCuarta: runtime.Decimal | null
+  priceQuintaSexta: runtime.Decimal | null
+  tariffType: string | null
+  vigencyYear: number | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -47,10 +61,18 @@ export type TariffMinAggregateOutputType = {
 
 export type TariffMaxAggregateOutputType = {
   id: string | null
-  name: string | null
   code: string | null
-  price: runtime.Decimal | null
-  municipalityCategory: string | null
+  name: string | null
+  description: string | null
+  unitMeasure: string | null
+  timeUnit: string | null
+  observations: string | null
+  sheet: string | null
+  priceEspecialPrimera: runtime.Decimal | null
+  priceSegundaCuarta: runtime.Decimal | null
+  priceQuintaSexta: runtime.Decimal | null
+  tariffType: string | null
+  vigencyYear: number | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -58,10 +80,18 @@ export type TariffMaxAggregateOutputType = {
 
 export type TariffCountAggregateOutputType = {
   id: number
-  name: number
   code: number
-  price: number
-  municipalityCategory: number
+  name: number
+  description: number
+  unitMeasure: number
+  timeUnit: number
+  observations: number
+  sheet: number
+  priceEspecialPrimera: number
+  priceSegundaCuarta: number
+  priceQuintaSexta: number
+  tariffType: number
+  vigencyYear: number
   isActive: number
   createdAt: number
   updatedAt: number
@@ -70,19 +100,33 @@ export type TariffCountAggregateOutputType = {
 
 
 export type TariffAvgAggregateInputType = {
-  price?: true
+  priceEspecialPrimera?: true
+  priceSegundaCuarta?: true
+  priceQuintaSexta?: true
+  vigencyYear?: true
 }
 
 export type TariffSumAggregateInputType = {
-  price?: true
+  priceEspecialPrimera?: true
+  priceSegundaCuarta?: true
+  priceQuintaSexta?: true
+  vigencyYear?: true
 }
 
 export type TariffMinAggregateInputType = {
   id?: true
-  name?: true
   code?: true
-  price?: true
-  municipalityCategory?: true
+  name?: true
+  description?: true
+  unitMeasure?: true
+  timeUnit?: true
+  observations?: true
+  sheet?: true
+  priceEspecialPrimera?: true
+  priceSegundaCuarta?: true
+  priceQuintaSexta?: true
+  tariffType?: true
+  vigencyYear?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -90,10 +134,18 @@ export type TariffMinAggregateInputType = {
 
 export type TariffMaxAggregateInputType = {
   id?: true
-  name?: true
   code?: true
-  price?: true
-  municipalityCategory?: true
+  name?: true
+  description?: true
+  unitMeasure?: true
+  timeUnit?: true
+  observations?: true
+  sheet?: true
+  priceEspecialPrimera?: true
+  priceSegundaCuarta?: true
+  priceQuintaSexta?: true
+  tariffType?: true
+  vigencyYear?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -101,10 +153,18 @@ export type TariffMaxAggregateInputType = {
 
 export type TariffCountAggregateInputType = {
   id?: true
-  name?: true
   code?: true
-  price?: true
-  municipalityCategory?: true
+  name?: true
+  description?: true
+  unitMeasure?: true
+  timeUnit?: true
+  observations?: true
+  sheet?: true
+  priceEspecialPrimera?: true
+  priceSegundaCuarta?: true
+  priceQuintaSexta?: true
+  tariffType?: true
+  vigencyYear?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -199,10 +259,18 @@ export type TariffGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type TariffGroupByOutputType = {
   id: string
-  name: string
   code: string | null
-  price: runtime.Decimal
-  municipalityCategory: string
+  name: string
+  description: string | null
+  unitMeasure: string | null
+  timeUnit: string | null
+  observations: string | null
+  sheet: string | null
+  priceEspecialPrimera: runtime.Decimal | null
+  priceSegundaCuarta: runtime.Decimal | null
+  priceQuintaSexta: runtime.Decimal | null
+  tariffType: string
+  vigencyYear: number
   isActive: boolean
   createdAt: Date
   updatedAt: Date
@@ -233,24 +301,42 @@ export type TariffWhereInput = {
   OR?: Prisma.TariffWhereInput[]
   NOT?: Prisma.TariffWhereInput | Prisma.TariffWhereInput[]
   id?: Prisma.UuidFilter<"Tariff"> | string
-  name?: Prisma.StringFilter<"Tariff"> | string
   code?: Prisma.StringNullableFilter<"Tariff"> | string | null
-  price?: Prisma.DecimalFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory?: Prisma.StringFilter<"Tariff"> | string
+  name?: Prisma.StringFilter<"Tariff"> | string
+  description?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  unitMeasure?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  timeUnit?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  observations?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  sheet?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  priceEspecialPrimera?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFilter<"Tariff"> | string
+  vigencyYear?: Prisma.IntFilter<"Tariff"> | number
   isActive?: Prisma.BoolFilter<"Tariff"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
+  items?: Prisma.ItemListRelationFilter
 }
 
 export type TariffOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrderInput | Prisma.SortOrder
-  price?: Prisma.SortOrder
-  municipalityCategory?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitMeasure?: Prisma.SortOrderInput | Prisma.SortOrder
+  timeUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  observations?: Prisma.SortOrderInput | Prisma.SortOrder
+  sheet?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceEspecialPrimera?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceSegundaCuarta?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceQuintaSexta?: Prisma.SortOrderInput | Prisma.SortOrder
+  tariffType?: Prisma.SortOrder
+  vigencyYear?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  items?: Prisma.ItemOrderByRelationAggregateInput
 }
 
 export type TariffWhereUniqueInput = Prisma.AtLeast<{
@@ -258,21 +344,38 @@ export type TariffWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TariffWhereInput | Prisma.TariffWhereInput[]
   OR?: Prisma.TariffWhereInput[]
   NOT?: Prisma.TariffWhereInput | Prisma.TariffWhereInput[]
-  name?: Prisma.StringFilter<"Tariff"> | string
   code?: Prisma.StringNullableFilter<"Tariff"> | string | null
-  price?: Prisma.DecimalFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory?: Prisma.StringFilter<"Tariff"> | string
+  name?: Prisma.StringFilter<"Tariff"> | string
+  description?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  unitMeasure?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  timeUnit?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  observations?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  sheet?: Prisma.StringNullableFilter<"Tariff"> | string | null
+  priceEspecialPrimera?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFilter<"Tariff"> | string
+  vigencyYear?: Prisma.IntFilter<"Tariff"> | number
   isActive?: Prisma.BoolFilter<"Tariff"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
+  items?: Prisma.ItemListRelationFilter
 }, "id">
 
 export type TariffOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrderInput | Prisma.SortOrder
-  price?: Prisma.SortOrder
-  municipalityCategory?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitMeasure?: Prisma.SortOrderInput | Prisma.SortOrder
+  timeUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  observations?: Prisma.SortOrderInput | Prisma.SortOrder
+  sheet?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceEspecialPrimera?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceSegundaCuarta?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceQuintaSexta?: Prisma.SortOrderInput | Prisma.SortOrder
+  tariffType?: Prisma.SortOrder
+  vigencyYear?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -288,10 +391,18 @@ export type TariffScalarWhereWithAggregatesInput = {
   OR?: Prisma.TariffScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TariffScalarWhereWithAggregatesInput | Prisma.TariffScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Tariff"> | string
-  name?: Prisma.StringWithAggregatesFilter<"Tariff"> | string
   code?: Prisma.StringNullableWithAggregatesFilter<"Tariff"> | string | null
-  price?: Prisma.DecimalWithAggregatesFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory?: Prisma.StringWithAggregatesFilter<"Tariff"> | string
+  name?: Prisma.StringWithAggregatesFilter<"Tariff"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Tariff"> | string | null
+  unitMeasure?: Prisma.StringNullableWithAggregatesFilter<"Tariff"> | string | null
+  timeUnit?: Prisma.StringNullableWithAggregatesFilter<"Tariff"> | string | null
+  observations?: Prisma.StringNullableWithAggregatesFilter<"Tariff"> | string | null
+  sheet?: Prisma.StringNullableWithAggregatesFilter<"Tariff"> | string | null
+  priceEspecialPrimera?: Prisma.DecimalNullableWithAggregatesFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.DecimalNullableWithAggregatesFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.DecimalNullableWithAggregatesFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringWithAggregatesFilter<"Tariff"> | string
+  vigencyYear?: Prisma.IntWithAggregatesFilter<"Tariff"> | number
   isActive?: Prisma.BoolWithAggregatesFilter<"Tariff"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tariff"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tariff"> | Date | string
@@ -299,54 +410,98 @@ export type TariffScalarWhereWithAggregatesInput = {
 
 export type TariffCreateInput = {
   id?: string
-  name: string
   code?: string | null
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory: string
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  timeUnit?: string | null
+  observations?: string | null
+  sheet?: string | null
+  priceEspecialPrimera?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: string
+  vigencyYear?: number
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  items?: Prisma.ItemCreateNestedManyWithoutTariffInput
 }
 
 export type TariffUncheckedCreateInput = {
   id?: string
-  name: string
   code?: string | null
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory: string
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  timeUnit?: string | null
+  observations?: string | null
+  sheet?: string | null
+  priceEspecialPrimera?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: string
+  vigencyYear?: number
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutTariffInput
 }
 
 export type TariffUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.ItemUpdateManyWithoutTariffNestedInput
 }
 
 export type TariffUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.ItemUncheckedUpdateManyWithoutTariffNestedInput
 }
 
 export type TariffCreateManyInput = {
   id?: string
-  name: string
   code?: string | null
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory: string
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  timeUnit?: string | null
+  observations?: string | null
+  sheet?: string | null
+  priceEspecialPrimera?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: string
+  vigencyYear?: number
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -354,10 +509,18 @@ export type TariffCreateManyInput = {
 
 export type TariffUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -365,36 +528,68 @@ export type TariffUpdateManyMutationInput = {
 
 export type TariffUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  municipalityCategory?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type TariffNullableScalarRelationFilter = {
+  is?: Prisma.TariffWhereInput | null
+  isNot?: Prisma.TariffWhereInput | null
+}
+
 export type TariffCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  municipalityCategory?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  unitMeasure?: Prisma.SortOrder
+  timeUnit?: Prisma.SortOrder
+  observations?: Prisma.SortOrder
+  sheet?: Prisma.SortOrder
+  priceEspecialPrimera?: Prisma.SortOrder
+  priceSegundaCuarta?: Prisma.SortOrder
+  priceQuintaSexta?: Prisma.SortOrder
+  tariffType?: Prisma.SortOrder
+  vigencyYear?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type TariffAvgOrderByAggregateInput = {
-  price?: Prisma.SortOrder
+  priceEspecialPrimera?: Prisma.SortOrder
+  priceSegundaCuarta?: Prisma.SortOrder
+  priceQuintaSexta?: Prisma.SortOrder
+  vigencyYear?: Prisma.SortOrder
 }
 
 export type TariffMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  municipalityCategory?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  unitMeasure?: Prisma.SortOrder
+  timeUnit?: Prisma.SortOrder
+  observations?: Prisma.SortOrder
+  sheet?: Prisma.SortOrder
+  priceEspecialPrimera?: Prisma.SortOrder
+  priceSegundaCuarta?: Prisma.SortOrder
+  priceQuintaSexta?: Prisma.SortOrder
+  tariffType?: Prisma.SortOrder
+  vigencyYear?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -402,38 +597,212 @@ export type TariffMaxOrderByAggregateInput = {
 
 export type TariffMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  municipalityCategory?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  unitMeasure?: Prisma.SortOrder
+  timeUnit?: Prisma.SortOrder
+  observations?: Prisma.SortOrder
+  sheet?: Prisma.SortOrder
+  priceEspecialPrimera?: Prisma.SortOrder
+  priceSegundaCuarta?: Prisma.SortOrder
+  priceQuintaSexta?: Prisma.SortOrder
+  tariffType?: Prisma.SortOrder
+  vigencyYear?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type TariffSumOrderByAggregateInput = {
-  price?: Prisma.SortOrder
+  priceEspecialPrimera?: Prisma.SortOrder
+  priceSegundaCuarta?: Prisma.SortOrder
+  priceQuintaSexta?: Prisma.SortOrder
+  vigencyYear?: Prisma.SortOrder
 }
 
+export type TariffCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.TariffCreateWithoutItemsInput, Prisma.TariffUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.TariffCreateOrConnectWithoutItemsInput
+  connect?: Prisma.TariffWhereUniqueInput
+}
+
+export type TariffUpdateOneWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.TariffCreateWithoutItemsInput, Prisma.TariffUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.TariffCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.TariffUpsertWithoutItemsInput
+  disconnect?: Prisma.TariffWhereInput | boolean
+  delete?: Prisma.TariffWhereInput | boolean
+  connect?: Prisma.TariffWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TariffUpdateToOneWithWhereWithoutItemsInput, Prisma.TariffUpdateWithoutItemsInput>, Prisma.TariffUncheckedUpdateWithoutItemsInput>
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type TariffCreateWithoutItemsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  timeUnit?: string | null
+  observations?: string | null
+  sheet?: string | null
+  priceEspecialPrimera?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: string
+  vigencyYear?: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TariffUncheckedCreateWithoutItemsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  timeUnit?: string | null
+  observations?: string | null
+  sheet?: string | null
+  priceEspecialPrimera?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: string
+  vigencyYear?: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TariffCreateOrConnectWithoutItemsInput = {
+  where: Prisma.TariffWhereUniqueInput
+  create: Prisma.XOR<Prisma.TariffCreateWithoutItemsInput, Prisma.TariffUncheckedCreateWithoutItemsInput>
+}
+
+export type TariffUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.TariffUpdateWithoutItemsInput, Prisma.TariffUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.TariffCreateWithoutItemsInput, Prisma.TariffUncheckedCreateWithoutItemsInput>
+  where?: Prisma.TariffWhereInput
+}
+
+export type TariffUpdateToOneWithWhereWithoutItemsInput = {
+  where?: Prisma.TariffWhereInput
+  data: Prisma.XOR<Prisma.TariffUpdateWithoutItemsInput, Prisma.TariffUncheckedUpdateWithoutItemsInput>
+}
+
+export type TariffUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TariffUncheckedUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type TariffCountOutputType
+ */
+
+export type TariffCountOutputType = {
+  items: number
+}
+
+export type TariffCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  items?: boolean | TariffCountOutputTypeCountItemsArgs
+}
+
+/**
+ * TariffCountOutputType without action
+ */
+export type TariffCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TariffCountOutputType
+   */
+  select?: Prisma.TariffCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TariffCountOutputType without action
+ */
+export type TariffCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ItemWhereInput
+}
 
 
 export type TariffSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   code?: boolean
-  price?: boolean
-  municipalityCategory?: boolean
+  name?: boolean
+  description?: boolean
+  unitMeasure?: boolean
+  timeUnit?: boolean
+  observations?: boolean
+  sheet?: boolean
+  priceEspecialPrimera?: boolean
+  priceSegundaCuarta?: boolean
+  priceQuintaSexta?: boolean
+  tariffType?: boolean
+  vigencyYear?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  items?: boolean | Prisma.Tariff$itemsArgs<ExtArgs>
+  _count?: boolean | Prisma.TariffCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tariff"]>
 
 export type TariffSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   code?: boolean
-  price?: boolean
-  municipalityCategory?: boolean
+  name?: boolean
+  description?: boolean
+  unitMeasure?: boolean
+  timeUnit?: boolean
+  observations?: boolean
+  sheet?: boolean
+  priceEspecialPrimera?: boolean
+  priceSegundaCuarta?: boolean
+  priceQuintaSexta?: boolean
+  tariffType?: boolean
+  vigencyYear?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -441,10 +810,18 @@ export type TariffSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 
 export type TariffSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   code?: boolean
-  price?: boolean
-  municipalityCategory?: boolean
+  name?: boolean
+  description?: boolean
+  unitMeasure?: boolean
+  timeUnit?: boolean
+  observations?: boolean
+  sheet?: boolean
+  priceEspecialPrimera?: boolean
+  priceSegundaCuarta?: boolean
+  priceQuintaSexta?: boolean
+  tariffType?: boolean
+  vigencyYear?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -452,26 +829,50 @@ export type TariffSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 
 export type TariffSelectScalar = {
   id?: boolean
-  name?: boolean
   code?: boolean
-  price?: boolean
-  municipalityCategory?: boolean
+  name?: boolean
+  description?: boolean
+  unitMeasure?: boolean
+  timeUnit?: boolean
+  observations?: boolean
+  sheet?: boolean
+  priceEspecialPrimera?: boolean
+  priceSegundaCuarta?: boolean
+  priceQuintaSexta?: boolean
+  tariffType?: boolean
+  vigencyYear?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TariffOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "price" | "municipalityCategory" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["tariff"]>
+export type TariffOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "unitMeasure" | "timeUnit" | "observations" | "sheet" | "priceEspecialPrimera" | "priceSegundaCuarta" | "priceQuintaSexta" | "tariffType" | "vigencyYear" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["tariff"]>
+export type TariffInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  items?: boolean | Prisma.Tariff$itemsArgs<ExtArgs>
+  _count?: boolean | Prisma.TariffCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type TariffIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type TariffIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $TariffPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tariff"
-  objects: {}
+  objects: {
+    items: Prisma.$ItemPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    name: string
     code: string | null
-    price: runtime.Decimal
-    municipalityCategory: string
+    name: string
+    description: string | null
+    unitMeasure: string | null
+    timeUnit: string | null
+    observations: string | null
+    sheet: string | null
+    priceEspecialPrimera: runtime.Decimal | null
+    priceSegundaCuarta: runtime.Decimal | null
+    priceQuintaSexta: runtime.Decimal | null
+    tariffType: string
+    vigencyYear: number
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -869,6 +1270,7 @@ readonly fields: TariffFieldRefs;
  */
 export interface Prisma__TariffClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  items<T extends Prisma.Tariff$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tariff$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -899,10 +1301,18 @@ export interface Prisma__TariffClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface TariffFieldRefs {
   readonly id: Prisma.FieldRef<"Tariff", 'String'>
-  readonly name: Prisma.FieldRef<"Tariff", 'String'>
   readonly code: Prisma.FieldRef<"Tariff", 'String'>
-  readonly price: Prisma.FieldRef<"Tariff", 'Decimal'>
-  readonly municipalityCategory: Prisma.FieldRef<"Tariff", 'String'>
+  readonly name: Prisma.FieldRef<"Tariff", 'String'>
+  readonly description: Prisma.FieldRef<"Tariff", 'String'>
+  readonly unitMeasure: Prisma.FieldRef<"Tariff", 'String'>
+  readonly timeUnit: Prisma.FieldRef<"Tariff", 'String'>
+  readonly observations: Prisma.FieldRef<"Tariff", 'String'>
+  readonly sheet: Prisma.FieldRef<"Tariff", 'String'>
+  readonly priceEspecialPrimera: Prisma.FieldRef<"Tariff", 'Decimal'>
+  readonly priceSegundaCuarta: Prisma.FieldRef<"Tariff", 'Decimal'>
+  readonly priceQuintaSexta: Prisma.FieldRef<"Tariff", 'Decimal'>
+  readonly tariffType: Prisma.FieldRef<"Tariff", 'String'>
+  readonly vigencyYear: Prisma.FieldRef<"Tariff", 'Int'>
   readonly isActive: Prisma.FieldRef<"Tariff", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Tariff", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tariff", 'DateTime'>
@@ -923,6 +1333,10 @@ export type TariffFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
+  /**
    * Filter, which Tariff to fetch.
    */
   where: Prisma.TariffWhereUniqueInput
@@ -941,6 +1355,10 @@ export type TariffFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
+  /**
    * Filter, which Tariff to fetch.
    */
   where: Prisma.TariffWhereUniqueInput
@@ -958,6 +1376,10 @@ export type TariffFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Tariff
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
   /**
    * Filter, which Tariff to fetch.
    */
@@ -1007,6 +1429,10 @@ export type TariffFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
+  /**
    * Filter, which Tariff to fetch.
    */
   where?: Prisma.TariffWhereInput
@@ -1054,6 +1480,10 @@ export type TariffFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Tariff
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
   /**
    * Filter, which Tariffs to fetch.
    */
@@ -1103,6 +1533,10 @@ export type TariffCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
+  /**
    * The data needed to create a Tariff.
    */
   data: Prisma.XOR<Prisma.TariffCreateInput, Prisma.TariffUncheckedCreateInput>
@@ -1150,6 +1584,10 @@ export type TariffUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Tariff
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
   /**
    * The data needed to update a Tariff.
    */
@@ -1217,6 +1655,10 @@ export type TariffUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
+  /**
    * The filter to search for the Tariff to update in case it exists.
    */
   where: Prisma.TariffWhereUniqueInput
@@ -1243,6 +1685,10 @@ export type TariffDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
+  /**
    * Filter which Tariff to delete.
    */
   where: Prisma.TariffWhereUniqueInput
@@ -1263,6 +1709,30 @@ export type TariffDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Tariff.items
+ */
+export type Tariff$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Item
+   */
+  select?: Prisma.ItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Item
+   */
+  omit?: Prisma.ItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItemInclude<ExtArgs> | null
+  where?: Prisma.ItemWhereInput
+  orderBy?: Prisma.ItemOrderByWithRelationInput | Prisma.ItemOrderByWithRelationInput[]
+  cursor?: Prisma.ItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ItemScalarFieldEnum | Prisma.ItemScalarFieldEnum[]
+}
+
+/**
  * Tariff without action
  */
 export type TariffDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1274,4 +1744,8 @@ export type TariffDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Tariff
    */
   omit?: Prisma.TariffOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TariffInclude<ExtArgs> | null
 }

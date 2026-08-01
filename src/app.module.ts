@@ -15,6 +15,7 @@ import { AuditModule } from './modules/audit/audit.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { MapModule } from './modules/map/map.module';
 import { ParametersModule } from './modules/parameters/parameters.module';
+import { TariffsModule } from './modules/tariffs/tariffs.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { ParametersModule } from './modules/parameters/parameters.module';
     SeedModule,
     MapModule,
     ParametersModule,
+    TariffsModule,
   ],
 })
 export class AppModule {}
