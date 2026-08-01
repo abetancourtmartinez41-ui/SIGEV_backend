@@ -1,5 +1,5 @@
 import {
-  IsString, IsOptional, IsArray, ValidateNested, MinLength, IsUUID, IsInt, Min,
+  IsString, IsOptional, IsArray, ValidateNested, MinLength, IsUUID, IsInt, Min, IsNumber,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -78,6 +78,16 @@ export class CreateEventDto {
   @IsInt()
   @Min(0)
   days?: number;
+
+  @ApiPropertyOptional({ description: 'Latitud de las coordenadas del evento' })
+  @IsOptional()
+  @IsNumber()
+  latitude?: number;
+
+  @ApiPropertyOptional({ description: 'Longitud de las coordenadas del evento' })
+  @IsOptional()
+  @IsNumber()
+  longitude?: number;
 
   @ApiPropertyOptional({ type: [CreateItemDto] })
   @IsOptional()

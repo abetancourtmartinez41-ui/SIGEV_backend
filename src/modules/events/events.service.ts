@@ -99,6 +99,8 @@ export class EventsService {
           hamlet: dto.hamlet ?? null,
           attendees: dto.attendees ?? 0,
           days: dto.days ?? 0,
+          latitude: dto.latitude ?? null,
+          longitude: dto.longitude ?? null,
           divipolaCode: municipality.divipolaCode,
           municipalityName: municipality.municipalityName,
           municipalityCategory: municipality.municipalityCategory,
@@ -201,6 +203,8 @@ export class EventsService {
           hamlet: dto.hamlet !== undefined ? (dto.hamlet || null) : undefined,
           attendees: dto.attendees,
           days: dto.days,
+          latitude: dto.latitude !== undefined ? dto.latitude : undefined,
+          longitude: dto.longitude !== undefined ? dto.longitude : undefined,
         },
       });
 

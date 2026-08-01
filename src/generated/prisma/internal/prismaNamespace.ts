@@ -1319,6 +1319,8 @@ export const EventScalarFieldEnum = {
   hamlet: 'hamlet',
   attendees: 'attendees',
   days: 'days',
+  latitude: 'latitude',
+  longitude: 'longitude',
   divipolaCode: 'divipolaCode',
   municipalityName: 'municipalityName',
   municipalityCategory: 'municipalityCategory',

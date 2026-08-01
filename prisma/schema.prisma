@@ -49,6 +49,8 @@ model Event {
   hamlet               String?      @db.VarChar(200)
   attendees            Int?         @default(0)
   days                 Int?         @default(0)
+  latitude             Decimal?     @db.Decimal(10, 7)
+  longitude            Decimal?     @db.Decimal(10, 7)
   divipolaCode         String?      @db.VarChar(10)
   municipalityName     String?      @db.VarChar(100)
   municipalityCategory String?      @db.VarChar(50)

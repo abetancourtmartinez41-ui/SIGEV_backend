@@ -29,11 +29,15 @@ export type AggregateEvent = {
 export type EventAvgAggregateOutputType = {
   attendees: number | null
   days: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
 }
 
 export type EventSumAggregateOutputType = {
   attendees: number | null
   days: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
 }
 
 export type EventMinAggregateOutputType = {
@@ -51,6 +55,8 @@ export type EventMinAggregateOutputType = {
   hamlet: string | null
   attendees: number | null
   days: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
@@ -76,6 +82,8 @@ export type EventMaxAggregateOutputType = {
   hamlet: string | null
   attendees: number | null
   days: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
@@ -101,6 +109,8 @@ export type EventCountAggregateOutputType = {
   hamlet: number
   attendees: number
   days: number
+  latitude: number
+  longitude: number
   divipolaCode: number
   municipalityName: number
   municipalityCategory: number
@@ -116,11 +126,15 @@ export type EventCountAggregateOutputType = {
 export type EventAvgAggregateInputType = {
   attendees?: true
   days?: true
+  latitude?: true
+  longitude?: true
 }
 
 export type EventSumAggregateInputType = {
   attendees?: true
   days?: true
+  latitude?: true
+  longitude?: true
 }
 
 export type EventMinAggregateInputType = {
@@ -138,6 +152,8 @@ export type EventMinAggregateInputType = {
   hamlet?: true
   attendees?: true
   days?: true
+  latitude?: true
+  longitude?: true
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
@@ -163,6 +179,8 @@ export type EventMaxAggregateInputType = {
   hamlet?: true
   attendees?: true
   days?: true
+  latitude?: true
+  longitude?: true
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
@@ -188,6 +206,8 @@ export type EventCountAggregateInputType = {
   hamlet?: true
   attendees?: true
   days?: true
+  latitude?: true
+  longitude?: true
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
@@ -300,6 +320,8 @@ export type EventGroupByOutputType = {
   hamlet: string | null
   attendees: number | null
   days: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
@@ -348,6 +370,8 @@ export type EventWhereInput = {
   hamlet?: Prisma.StringNullableFilter<"Event"> | string | null
   attendees?: Prisma.IntNullableFilter<"Event"> | number | null
   days?: Prisma.IntNullableFilter<"Event"> | number | null
+  latitude?: Prisma.DecimalNullableFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -377,6 +401,8 @@ export type EventOrderByWithRelationInput = {
   hamlet?: Prisma.SortOrderInput | Prisma.SortOrder
   attendees?: Prisma.SortOrderInput | Prisma.SortOrder
   days?: Prisma.SortOrderInput | Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityName?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -409,6 +435,8 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   hamlet?: Prisma.StringNullableFilter<"Event"> | string | null
   attendees?: Prisma.IntNullableFilter<"Event"> | number | null
   days?: Prisma.IntNullableFilter<"Event"> | number | null
+  latitude?: Prisma.DecimalNullableFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -438,6 +466,8 @@ export type EventOrderByWithAggregationInput = {
   hamlet?: Prisma.SortOrderInput | Prisma.SortOrder
   attendees?: Prisma.SortOrderInput | Prisma.SortOrder
   days?: Prisma.SortOrderInput | Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityName?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -471,6 +501,8 @@ export type EventScalarWhereWithAggregatesInput = {
   hamlet?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   attendees?: Prisma.IntNullableWithAggregatesFilter<"Event"> | number | null
   days?: Prisma.IntNullableWithAggregatesFilter<"Event"> | number | null
+  latitude?: Prisma.DecimalNullableWithAggregatesFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableWithAggregatesFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
@@ -496,6 +528,8 @@ export type EventCreateInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -523,6 +557,8 @@ export type EventUncheckedCreateInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -550,6 +586,8 @@ export type EventUpdateInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -577,6 +615,8 @@ export type EventUncheckedUpdateInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -604,6 +644,8 @@ export type EventCreateManyInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -629,6 +671,8 @@ export type EventUpdateManyMutationInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -652,6 +696,8 @@ export type EventUncheckedUpdateManyInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -687,6 +733,8 @@ export type EventCountOrderByAggregateInput = {
   hamlet?: Prisma.SortOrder
   attendees?: Prisma.SortOrder
   days?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
@@ -700,6 +748,8 @@ export type EventCountOrderByAggregateInput = {
 export type EventAvgOrderByAggregateInput = {
   attendees?: Prisma.SortOrder
   days?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
 }
 
 export type EventMaxOrderByAggregateInput = {
@@ -717,6 +767,8 @@ export type EventMaxOrderByAggregateInput = {
   hamlet?: Prisma.SortOrder
   attendees?: Prisma.SortOrder
   days?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
@@ -742,6 +794,8 @@ export type EventMinOrderByAggregateInput = {
   hamlet?: Prisma.SortOrder
   attendees?: Prisma.SortOrder
   days?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
@@ -755,6 +809,8 @@ export type EventMinOrderByAggregateInput = {
 export type EventSumOrderByAggregateInput = {
   attendees?: Prisma.SortOrder
   days?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
 }
 
 export type EventScalarRelationFilter = {
@@ -814,6 +870,14 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type EventCreateNestedOneWithoutItemsInput = {
@@ -901,6 +965,8 @@ export type EventCreateWithoutCreatedByInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -927,6 +993,8 @@ export type EventUncheckedCreateWithoutCreatedByInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -982,6 +1050,8 @@ export type EventScalarWhereInput = {
   hamlet?: Prisma.StringNullableFilter<"Event"> | string | null
   attendees?: Prisma.IntNullableFilter<"Event"> | number | null
   days?: Prisma.IntNullableFilter<"Event"> | number | null
+  latitude?: Prisma.DecimalNullableFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -1007,6 +1077,8 @@ export type EventCreateWithoutItemsInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1033,6 +1105,8 @@ export type EventUncheckedCreateWithoutItemsInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1075,6 +1149,8 @@ export type EventUpdateWithoutItemsInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1101,6 +1177,8 @@ export type EventUncheckedUpdateWithoutItemsInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1127,6 +1205,8 @@ export type EventCreateWithoutAttachmentsInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1153,6 +1233,8 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1195,6 +1277,8 @@ export type EventUpdateWithoutAttachmentsInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1221,6 +1305,8 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1247,6 +1333,8 @@ export type EventCreateWithoutDisbursementInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1273,6 +1361,8 @@ export type EventUncheckedCreateWithoutDisbursementInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1325,6 +1415,8 @@ export type EventCreateManyCreatedByInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1349,6 +1441,8 @@ export type EventUpdateWithoutCreatedByInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1375,6 +1469,8 @@ export type EventUncheckedUpdateWithoutCreatedByInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1401,6 +1497,8 @@ export type EventUncheckedUpdateManyWithoutCreatedByInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1425,6 +1523,8 @@ export type EventCreateManyDisbursementInput = {
   hamlet?: string | null
   attendees?: number | null
   days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
@@ -1449,6 +1549,8 @@ export type EventUpdateWithoutDisbursementInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1475,6 +1577,8 @@ export type EventUncheckedUpdateWithoutDisbursementInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1501,6 +1605,8 @@ export type EventUncheckedUpdateManyWithoutDisbursementInput = {
   hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1565,6 +1671,8 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   hamlet?: boolean
   attendees?: boolean
   days?: boolean
+  latitude?: boolean
+  longitude?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1595,6 +1703,8 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   hamlet?: boolean
   attendees?: boolean
   days?: boolean
+  latitude?: boolean
+  longitude?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1622,6 +1732,8 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   hamlet?: boolean
   attendees?: boolean
   days?: boolean
+  latitude?: boolean
+  longitude?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1649,6 +1761,8 @@ export type EventSelectScalar = {
   hamlet?: boolean
   attendees?: boolean
   days?: boolean
+  latitude?: boolean
+  longitude?: boolean
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
@@ -1659,7 +1773,7 @@ export type EventSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "name" | "description" | "status" | "observation" | "authorizeException" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "name" | "description" | "status" | "observation" | "authorizeException" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "latitude" | "longitude" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1699,6 +1813,8 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     hamlet: string | null
     attendees: number | null
     days: number | null
+    latitude: runtime.Decimal | null
+    longitude: runtime.Decimal | null
     divipolaCode: string | null
     municipalityName: string | null
     municipalityCategory: string | null
@@ -2148,6 +2264,8 @@ export interface EventFieldRefs {
   readonly hamlet: Prisma.FieldRef<"Event", 'String'>
   readonly attendees: Prisma.FieldRef<"Event", 'Int'>
   readonly days: Prisma.FieldRef<"Event", 'Int'>
+  readonly latitude: Prisma.FieldRef<"Event", 'Decimal'>
+  readonly longitude: Prisma.FieldRef<"Event", 'Decimal'>
   readonly divipolaCode: Prisma.FieldRef<"Event", 'String'>
   readonly municipalityName: Prisma.FieldRef<"Event", 'String'>
   readonly municipalityCategory: Prisma.FieldRef<"Event", 'String'>
