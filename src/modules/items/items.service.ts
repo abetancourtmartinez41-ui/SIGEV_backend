@@ -5,7 +5,7 @@ import { CreateItemDto, UpdateItemDto } from './dto';
 import { CalculationsService } from '../calculations/calculations.service';
 import { TariffsService } from '../tariffs/tariffs.service';
 
-type EventContext = { id: string; municipalityCategory: string | null };
+type EventContext = { id: string; municipalityCategory: string | null; startDate?: Date | null };
 
 @Injectable()
 export class ItemsService {
@@ -41,6 +41,8 @@ export class ItemsService {
       const resolved = await this.tariffsService.resolveTariffItem(
         dto.tariffId,
         event.municipalityCategory,
+        undefined,
+        event.startDate ?? null,
       );
       unitPrice = Number(resolved.unitPrice);
       name = resolved.name;
@@ -66,15 +68,17 @@ export class ItemsService {
     event: EventContext,
   ): Promise<Prisma.ItemUncheckedCreateInput> {
     const resolved = await this.resolveItemValues(dto, event);
+    const rates = await this.calculationsService.getActiveRates();
     const calculated = this.calculationsService.calculateItem({
       name: resolved.name,
       description: resolved.description,
       quantity: dto.quantity,
       unitPrice: resolved.unitPrice,
-      ivaRate: dto.ivaRate,
-      consumptionTaxRate: dto.consumptionTaxRate,
-      feeRate: dto.feeRate,
-      feeIvaRate: dto.feeIvaRate,
+      ivaRate: dto.ivaRate ?? rates.ivaRate,
+      consumptionTaxRate: dto.consumptionTaxRate ?? rates.consumptionTaxRate,
+      feeRate: dto.feeRate ?? rates.feeRate,
+      feeIvaRate: dto.feeIvaRate ?? rates.feeIvaRate,
+      feeApplyOn: rates.feeApplyOn,
       allyId: dto.allyId,
       tariffId: resolved.tariffId,
     });
@@ -117,15 +121,17 @@ export class ItemsService {
     } as unknown as CreateItemDto;
 
     const resolved = await this.resolveItemValues(merged, event);
+    const rates = await this.calculationsService.getActiveRates();
     const calculated = this.calculationsService.calculateItem({
       name: resolved.name,
       description: resolved.description,
       quantity: merged.quantity,
       unitPrice: resolved.unitPrice,
-      ivaRate: merged.ivaRate,
-      consumptionTaxRate: merged.consumptionTaxRate,
-      feeRate: merged.feeRate,
-      feeIvaRate: merged.feeIvaRate,
+      ivaRate: merged.ivaRate ?? rates.ivaRate,
+      consumptionTaxRate: merged.consumptionTaxRate ?? rates.consumptionTaxRate,
+      feeRate: merged.feeRate ?? rates.feeRate,
+      feeIvaRate: merged.feeIvaRate ?? rates.feeIvaRate,
+      feeApplyOn: rates.feeApplyOn,
       allyId: merged.allyId,
       tariffId: resolved.tariffId,
     });

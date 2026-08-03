@@ -10,39 +10,36 @@ interface Transition {
   to: Status;
   roles: string[];
   requiresQuotations?: boolean;
+  requiresItems?: boolean;
 }
 
 const validTransitions: Record<Status, Transition[]> = {
-  [EVENT_STATUS.POSTULADO]: [
-    { to: EVENT_STATUS.EN_PREPARACION, roles: ['operator', 'functional_admin'] },
+  [EVENT_STATUS.ABIERTO]: [
+    { to: EVENT_STATUS.EN_EJECUCION, roles: ['operator', 'functional_admin'] },
     { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
     { to: EVENT_STATUS.RECHAZADO, roles: ['approver'] },
   ],
-  [EVENT_STATUS.EN_PREPARACION]: [
-    { to: EVENT_STATUS.EN_REVISION, roles: ['operator', 'functional_admin'] },
+  [EVENT_STATUS.EN_EJECUCION]: [
+    { to: EVENT_STATUS.EJECUTADO, roles: ['operator', 'functional_admin'], requiresItems: true },
     { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
   ],
-  [EVENT_STATUS.EN_REVISION]: [
+  [EVENT_STATUS.EJECUTADO]: [
     {
-      to: EVENT_STATUS.EN_EJECUCION,
+      to: EVENT_STATUS.CERRADO,
       roles: ['approver'],
       requiresQuotations: true,
     },
     { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
-    { to: EVENT_STATUS.RECHAZADO, roles: ['approver'] },
   ],
   [EVENT_STATUS.DEVUELTO]: [
-    { to: EVENT_STATUS.EN_PREPARACION, roles: ['operator', 'analista', 'functional_admin'] },
-    { to: EVENT_STATUS.EN_REVISION, roles: ['operator', 'functional_admin'] },
-  ],
-  [EVENT_STATUS.EN_EJECUCION]: [
-    { to: EVENT_STATUS.CERRADO, roles: ['approver'] },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['supervisor'] },
+    { to: EVENT_STATUS.EN_EJECUCION, roles: ['operator', 'analista', 'functional_admin'] },
   ],
   [EVENT_STATUS.CERRADO]: [
     { to: EVENT_STATUS.LEGALIZADO, roles: ['approver'] },
   ],
-  [EVENT_STATUS.LEGALIZADO]: [],
+  [EVENT_STATUS.LEGALIZADO]: [
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
+  ],
   [EVENT_STATUS.RECHAZADO]: [],
 };
 
@@ -51,7 +48,7 @@ export class EventStateMachine {
     currentStatus: string,
     newStatus: string,
     userRoles: string[],
-    options?: { quotationsCount?: number; authorizeException?: boolean },
+    options?: { quotationsCount?: number; itemsCount?: number; authorizeException?: boolean },
   ): boolean {
     const current = currentStatus as Status;
     const next = newStatus as Status;
@@ -68,6 +65,15 @@ export class EventStateMachine {
     if (!authorized) {
       throw new ForbiddenException(
         `Su perfil no está autorizado para la transición a "${newStatus}"`,
+      );
+    }
+
+    if (
+      transition.requiresItems &&
+      (options?.itemsCount ?? 0) < 1
+    ) {
+      throw new BadRequestException(
+        'Debe registrar al menos un ítem antes de continuar',
       );
     }
 

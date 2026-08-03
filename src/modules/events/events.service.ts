@@ -1,5 +1,5 @@
 import {
-  Injectable, NotFoundException, BadRequestException, ForbiddenException,
+  Injectable, NotFoundException, BadRequestException, ForbiddenException, ConflictException,
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '../../generated/prisma/client';
@@ -9,7 +9,14 @@ import { EventStateMachine } from './state-machine';
 import { ItemsService } from '../items/items.service';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
 
-const eventInclude = { items: true, attachments: true, createdBy: true, disbursement: true } as const;
+const eventInclude = {
+  items: true,
+  attachments: true,
+  createdBy: true,
+  disbursement: true,
+  selectedQuotation: { include: { ally: true } },
+  quotations: { where: { isActive: true }, include: { ally: true }, orderBy: { createdAt: 'asc' as const } },
+} as const;
 
 @Injectable()
 export class EventsService {
@@ -40,7 +47,7 @@ export class EventsService {
       select: { id: true },
     });
     if (existing) {
-      throw new BadRequestException(
+      throw new ConflictException(
         'El número de evento con ese sufijo ya existe',
       );
     }
@@ -100,9 +107,7 @@ export class EventsService {
       );
     }
 
-    const initialStatus = isSolicitante
-      ? EVENT_STATUS.POSTULADO
-      : EVENT_STATUS.EN_PREPARACION;
+    const initialStatus = EVENT_STATUS.ABIERTO;
 
     const municipality = await this.resolveMunicipality(dto);
     await this.assertDisbursementActive(dto.disbursementId);
@@ -136,6 +141,7 @@ export class EventsService {
         const event = {
           id: savedEvent.id,
           municipalityCategory: savedEvent.municipalityCategory,
+          startDate: savedEvent.startDate,
         };
         const items: Prisma.ItemUncheckedCreateInput[] = [];
         for (const itemDto of dto.items) {
@@ -153,14 +159,15 @@ export class EventsService {
 
   async findAll(): Promise<EventWithRelations[]> {
     return this.prisma.event.findMany({
+      where: { deletedAt: null },
       include: eventInclude,
       orderBy: { createdAt: 'desc' },
     });
   }
 
   async findOne(id: string): Promise<EventWithRelations> {
-    const event = await this.prisma.event.findUnique({
-      where: { id },
+    const event = await this.prisma.event.findFirst({
+      where: { id, deletedAt: null },
       include: eventInclude,
     });
     if (!event) throw new NotFoundException('Evento no encontrado');
@@ -240,6 +247,10 @@ export class EventsService {
           const eventContext = {
             id,
             municipalityCategory: municipality.municipalityCategory ?? event.municipalityCategory,
+            startDate:
+              dto.startDate !== undefined
+                ? (dto.startDate ? new Date(dto.startDate) : null)
+                : event.startDate,
           };
           const itemData: Prisma.ItemUncheckedCreateInput[] = [];
           for (const itemDto of items) {
@@ -265,20 +276,31 @@ export class EventsService {
     const roles = this.roleNames(user.roles);
 
     const quotationsCount = event.attachments?.length || 0;
+    const itemsCount = event.items?.length || 0;
     EventStateMachine.canTransition(event.status, dto.status, roles, {
       quotationsCount,
+      itemsCount,
       authorizeException: dto.authorizeException,
     });
 
-    if (dto.status === EVENT_STATUS.EN_EJECUCION && !event.disbursementId) {
+    if (dto.status === EVENT_STATUS.CERRADO && !event.disbursementId) {
       throw new BadRequestException(
-        'El evento debe tener un desembolso asignado antes de aprobar la oferta',
+        'El evento debe tener un desembolso asignado antes de cerrar',
       );
     }
     await this.assertDisbursementActive(event.disbursementId ?? undefined);
 
-    const data: { status: string; observation?: string; authorizeException?: boolean } = {
+    const data: {
+      status: string;
+      observation?: string;
+      authorizeException?: boolean;
+      devolucionLegalizacion?: boolean;
+    } = {
       status: dto.status,
+      devolucionLegalizacion:
+        dto.status === EVENT_STATUS.DEVUELTO
+          ? event.status === EVENT_STATUS.LEGALIZADO
+          : false,
     };
     if (dto.observation) data.observation = dto.observation;
     if (dto.authorizeException) data.authorizeException = true;
@@ -292,6 +314,9 @@ export class EventsService {
 
   async remove(id: string): Promise<void> {
     await this.findOne(id);
-    await this.prisma.event.delete({ where: { id } });
+    await this.prisma.event.update({
+      where: { id },
+      data: { deletedAt: new Date(), isActive: false },
+    });
   }
 }
