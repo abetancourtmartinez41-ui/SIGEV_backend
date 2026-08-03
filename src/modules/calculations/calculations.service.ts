@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ParametersService } from '../parameters/parameters.service';
 import { CalculatedItem } from './dto';
 
 interface CalculationInput {
@@ -11,8 +12,17 @@ interface CalculationInput {
   consumptionTaxRate?: number;
   feeRate?: number;
   feeIvaRate?: number;
+  feeApplyOn?: 'base' | 'total_with_taxes';
   allyId?: string;
   tariffId?: string;
+}
+
+export interface EffectiveRates {
+  ivaRate: number;
+  consumptionTaxRate: number;
+  feeRate: number;
+  feeIvaRate: number;
+  feeApplyOn: 'base' | 'total_with_taxes';
 }
 
 @Injectable()
@@ -21,10 +31,33 @@ export class CalculationsService {
   private readonly defaultFeeIvaRate: number;
   private readonly feeApplyOn: 'base' | 'total_with_taxes';
 
-  constructor(private readonly configService: ConfigService) {
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly parametersService: ParametersService,
+  ) {
     this.defaultFeeRate = this.configService.get<number>('fee.rate', 0.0825);
     this.defaultFeeIvaRate = 0.19;
     this.feeApplyOn = this.configService.get<'base' | 'total_with_taxes'>('fee.applyOn', 'base');
+  }
+
+  async getActiveRates(): Promise<EffectiveRates> {
+    const active = await this.parametersService.getActiveVersion();
+    if (!active) {
+      return {
+        ivaRate: 0,
+        consumptionTaxRate: 0,
+        feeRate: this.defaultFeeRate,
+        feeIvaRate: this.defaultFeeIvaRate,
+        feeApplyOn: this.feeApplyOn,
+      };
+    }
+    return {
+      ivaRate: active.ivaRate,
+      consumptionTaxRate: active.impuestoConsumoRate,
+      feeRate: active.feeTarifadoRate,
+      feeIvaRate: active.ivaFeeRate,
+      feeApplyOn: active.applyFeeOnBase ? 'base' : 'total_with_taxes',
+    };
   }
 
   calculateItem(input: CalculationInput): CalculatedItem {
@@ -38,7 +71,8 @@ export class CalculationsService {
     const feeRate = input.feeRate ?? this.defaultFeeRate;
     const feeIvaRate = input.feeIvaRate ?? this.defaultFeeIvaRate;
 
-    const feeBase = this.feeApplyOn === 'total_with_taxes'
+    const feeApplyOn = input.feeApplyOn ?? this.feeApplyOn;
+    const feeBase = feeApplyOn === 'total_with_taxes'
       ? baseValue + ivaValue + consumptionTaxValue
       : baseValue;
 

@@ -27,13 +27,12 @@ export const ROLE_LABELS: Record<string, string> = {
 };
 
 export const EVENT_STATUS = {
-  POSTULADO: 'Postulado',
-  EN_PREPARACION: 'En preparación',
-  EN_REVISION: 'En revisión',
-  DEVUELTO: 'Devuelto',
+  ABIERTO: 'Abierto',
   EN_EJECUCION: 'En ejecución',
+  EJECUTADO: 'Ejecutado',
   CERRADO: 'Cerrado',
   LEGALIZADO: 'Legalizado',
+  DEVUELTO: 'Devuelto',
   RECHAZADO: 'Rechazado',
 } as const;
 
