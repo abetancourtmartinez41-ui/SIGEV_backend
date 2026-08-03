@@ -4,7 +4,7 @@ import {
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { MapService } from './map.service';
-import { SearchMunicipalityDto } from './dto';
+import { SearchMunicipalityDto, MunicipalityStatsDto } from './dto';
 
 @ApiTags('Georreferenciación')
 @ApiBearerAuth()
@@ -12,6 +12,12 @@ import { SearchMunicipalityDto } from './dto';
 @Controller('map')
 export class MapController {
   constructor(private readonly mapService: MapService) {}
+
+  @Get('municipality-stats')
+  @ApiOperation({ summary: 'Agregación de eventos por municipio (contador y total económico)' })
+  municipalityStats(@Query() dto: MunicipalityStatsDto) {
+    return this.mapService.municipalityStats(dto);
+  }
 
   @Get('municipalities')
   @ApiOperation({ summary: 'Buscar municipios por código DIVIPOLA, nombre o departamento' })
