@@ -18,6 +18,9 @@ import { ReportsModule } from './modules/reports/reports.module';
 import { MapModule } from './modules/map/map.module';
 import { ParametersModule } from './modules/parameters/parameters.module';
 import { TariffsModule } from './modules/tariffs/tariffs.module';
+import { QuotationsModule } from './modules/quotations/quotations.module';
+import { AttachmentsModule } from './modules/attachments/attachments.module';
+import { BackupModule } from './modules/backup/backup.module';
 
 @Module({
   imports: [
@@ -39,6 +42,9 @@ import { TariffsModule } from './modules/tariffs/tariffs.module';
     MapModule,
     ParametersModule,
     TariffsModule,
+    QuotationsModule,
+    AttachmentsModule,
+    BackupModule,
   ],
   providers: [
     {

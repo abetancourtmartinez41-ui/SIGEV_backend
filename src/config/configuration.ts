@@ -22,4 +22,8 @@ export default () => ({
     dest: process.env.UPLOAD_DEST || './uploads',
     maxFileSize: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10),
   },
+  backup: {
+    dir: process.env.BACKUP_DIR || './backups',
+    pgDumpPath: process.env.PG_DUMP_PATH || 'C:\\Program Files\\PostgreSQL\\14\\bin\\pg_dump.exe',
+  },
 });
