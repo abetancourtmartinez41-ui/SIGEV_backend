@@ -1,0 +1,33 @@
+export const ATTACHMENT_CATEGORIES = [
+  'Formato de requerimiento',
+  'Cotizaciones presentadas',
+  'Comunicado de aprobación',
+  'Presupuesto final',
+  'Facturas normalizadas',
+  'Registro fotográfico',
+  'Listado de asistencia',
+] as const;
+
+export const STATIC_FOLDERS = [
+  'Formato de requerimiento',
+  'Cotizaciones presentadas',
+  'Comunicado de aprobación',
+  'Presupuesto final',
+] as const;
+
+export const MODIFIABLE_FOLDERS = [
+  'Facturas normalizadas',
+  'Registro fotográfico',
+  'Listado de asistencia',
+] as const;
+
+export const ALLOWED_EXTENSIONS = [
+  '.pdf',
+  '.jpg',
+  '.jpeg',
+  '.png',
+  '.xlsx',
+  '.xls',
+  '.doc',
+  '.docx',
+] as const;
