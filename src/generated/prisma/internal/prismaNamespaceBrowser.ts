@@ -57,7 +57,10 @@ export const ModelName = {
   Item: 'Item',
   Attachment: 'Attachment',
   Parameter: 'Parameter',
+  ParameterVersion: 'ParameterVersion',
   Ally: 'Ally',
+  Quotation: 'Quotation',
+  QuotationItem: 'QuotationItem',
   Disbursement: 'Disbursement',
   Tariff: 'Tariff',
   AuditLog: 'AuditLog',
@@ -114,6 +117,7 @@ export const EventScalarFieldEnum = {
   status: 'status',
   observation: 'observation',
   authorizeException: 'authorizeException',
+  devolucionLegalizacion: 'devolucionLegalizacion',
   startDate: 'startDate',
   endDate: 'endDate',
   dependency: 'dependency',
@@ -128,6 +132,9 @@ export const EventScalarFieldEnum = {
   generalAllyId: 'generalAllyId',
   disbursementId: 'disbursementId',
   createdById: 'createdById',
+  cotizacionSeleccionadaId: 'cotizacionSeleccionadaId',
+  deletedAt: 'deletedAt',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -191,8 +198,29 @@ export const ParameterScalarFieldEnum = {
 export type ParameterScalarFieldEnum = (typeof ParameterScalarFieldEnum)[keyof typeof ParameterScalarFieldEnum]
 
 
+export const ParameterVersionScalarFieldEnum = {
+  id: 'id',
+  version: 'version',
+  ivaRate: 'ivaRate',
+  impuestoConsumoRate: 'impuestoConsumoRate',
+  feeTarifadoRate: 'feeTarifadoRate',
+  feeTercerosRate: 'feeTercerosRate',
+  ivaFeeRate: 'ivaFeeRate',
+  applyFeeOnBase: 'applyFeeOnBase',
+  aprobadoPor: 'aprobadoPor',
+  fechaInicio: 'fechaInicio',
+  fechaFin: 'fechaFin',
+  isActive: 'isActive',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type ParameterVersionScalarFieldEnum = (typeof ParameterVersionScalarFieldEnum)[keyof typeof ParameterVersionScalarFieldEnum]
+
+
 export const AllyScalarFieldEnum = {
   id: 'id',
+  code: 'code',
   name: 'name',
   color: 'color',
   document: 'document',
@@ -206,6 +234,56 @@ export const AllyScalarFieldEnum = {
 export type AllyScalarFieldEnum = (typeof AllyScalarFieldEnum)[keyof typeof AllyScalarFieldEnum]
 
 
+export const QuotationScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  cliente: 'cliente',
+  eventId: 'eventId',
+  allyId: 'allyId',
+  amount: 'amount',
+  currency: 'currency',
+  quotationDate: 'quotationDate',
+  validityDays: 'validityDays',
+  status: 'status',
+  isDefinitive: 'isDefinitive',
+  observations: 'observations',
+  createdById: 'createdById',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
+
+
+export const QuotationItemScalarFieldEnum = {
+  id: 'id',
+  quotationId: 'quotationId',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  ivaRate: 'ivaRate',
+  ivaValue: 'ivaValue',
+  consumptionTaxRate: 'consumptionTaxRate',
+  consumptionTaxValue: 'consumptionTaxValue',
+  feeRate: 'feeRate',
+  feeValue: 'feeValue',
+  feeIvaRate: 'feeIvaRate',
+  feeIvaValue: 'feeIvaValue',
+  totalValue: 'totalValue',
+  allyId: 'allyId',
+  tariffId: 'tariffId',
+  isTariffed: 'isTariffed',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
 export const DisbursementScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -214,6 +292,8 @@ export const DisbursementScalarFieldEnum = {
   year: 'year',
   percentageParticipation: 'percentageParticipation',
   disbursementDate: 'disbursementDate',
+  fechaInicio: 'fechaInicio',
+  fechaFin: 'fechaFin',
   status: 'status',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -237,6 +317,8 @@ export const TariffScalarFieldEnum = {
   priceQuintaSexta: 'priceQuintaSexta',
   tariffType: 'tariffType',
   vigencyYear: 'vigencyYear',
+  fechaInicio: 'fechaInicio',
+  fechaFin: 'fechaFin',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

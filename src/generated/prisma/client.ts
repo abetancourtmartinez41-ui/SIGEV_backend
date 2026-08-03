@@ -70,10 +70,25 @@ export type Attachment = Prisma.AttachmentModel
  */
 export type Parameter = Prisma.ParameterModel
 /**
+ * Model ParameterVersion
+ * 
+ */
+export type ParameterVersion = Prisma.ParameterVersionModel
+/**
  * Model Ally
  * 
  */
 export type Ally = Prisma.AllyModel
+/**
+ * Model Quotation
+ * 
+ */
+export type Quotation = Prisma.QuotationModel
+/**
+ * Model QuotationItem
+ * 
+ */
+export type QuotationItem = Prisma.QuotationItemModel
 /**
  * Model Disbursement
  * 

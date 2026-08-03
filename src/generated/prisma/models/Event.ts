@@ -50,6 +50,7 @@ export type EventMinAggregateOutputType = {
   status: string | null
   observation: string | null
   authorizeException: boolean | null
+  devolucionLegalizacion: boolean | null
   startDate: Date | null
   endDate: Date | null
   dependency: string | null
@@ -64,6 +65,9 @@ export type EventMinAggregateOutputType = {
   generalAllyId: string | null
   disbursementId: string | null
   createdById: string | null
+  cotizacionSeleccionadaId: string | null
+  deletedAt: Date | null
+  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -78,6 +82,7 @@ export type EventMaxAggregateOutputType = {
   status: string | null
   observation: string | null
   authorizeException: boolean | null
+  devolucionLegalizacion: boolean | null
   startDate: Date | null
   endDate: Date | null
   dependency: string | null
@@ -92,6 +97,9 @@ export type EventMaxAggregateOutputType = {
   generalAllyId: string | null
   disbursementId: string | null
   createdById: string | null
+  cotizacionSeleccionadaId: string | null
+  deletedAt: Date | null
+  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -106,6 +114,7 @@ export type EventCountAggregateOutputType = {
   status: number
   observation: number
   authorizeException: number
+  devolucionLegalizacion: number
   startDate: number
   endDate: number
   dependency: number
@@ -120,6 +129,9 @@ export type EventCountAggregateOutputType = {
   generalAllyId: number
   disbursementId: number
   createdById: number
+  cotizacionSeleccionadaId: number
+  deletedAt: number
+  isActive: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -150,6 +162,7 @@ export type EventMinAggregateInputType = {
   status?: true
   observation?: true
   authorizeException?: true
+  devolucionLegalizacion?: true
   startDate?: true
   endDate?: true
   dependency?: true
@@ -164,6 +177,9 @@ export type EventMinAggregateInputType = {
   generalAllyId?: true
   disbursementId?: true
   createdById?: true
+  cotizacionSeleccionadaId?: true
+  deletedAt?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -178,6 +194,7 @@ export type EventMaxAggregateInputType = {
   status?: true
   observation?: true
   authorizeException?: true
+  devolucionLegalizacion?: true
   startDate?: true
   endDate?: true
   dependency?: true
@@ -192,6 +209,9 @@ export type EventMaxAggregateInputType = {
   generalAllyId?: true
   disbursementId?: true
   createdById?: true
+  cotizacionSeleccionadaId?: true
+  deletedAt?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -206,6 +226,7 @@ export type EventCountAggregateInputType = {
   status?: true
   observation?: true
   authorizeException?: true
+  devolucionLegalizacion?: true
   startDate?: true
   endDate?: true
   dependency?: true
@@ -220,6 +241,9 @@ export type EventCountAggregateInputType = {
   generalAllyId?: true
   disbursementId?: true
   createdById?: true
+  cotizacionSeleccionadaId?: true
+  deletedAt?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -321,6 +345,7 @@ export type EventGroupByOutputType = {
   status: string
   observation: string | null
   authorizeException: boolean
+  devolucionLegalizacion: boolean
   startDate: Date | null
   endDate: Date | null
   dependency: string | null
@@ -335,6 +360,9 @@ export type EventGroupByOutputType = {
   generalAllyId: string | null
   disbursementId: string | null
   createdById: string
+  cotizacionSeleccionadaId: string | null
+  deletedAt: Date | null
+  isActive: boolean
   createdAt: Date
   updatedAt: Date
   _count: EventCountAggregateOutputType | null
@@ -372,6 +400,7 @@ export type EventWhereInput = {
   status?: Prisma.StringFilter<"Event"> | string
   observation?: Prisma.StringNullableFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
+  devolucionLegalizacion?: Prisma.BoolFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -386,12 +415,17 @@ export type EventWhereInput = {
   generalAllyId?: Prisma.UuidNullableFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableFilter<"Event"> | string | null
   createdById?: Prisma.UuidFilter<"Event"> | string
+  cotizacionSeleccionadaId?: Prisma.UuidNullableFilter<"Event"> | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  isActive?: Prisma.BoolFilter<"Event"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   disbursement?: Prisma.XOR<Prisma.DisbursementNullableScalarRelationFilter, Prisma.DisbursementWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   items?: Prisma.ItemListRelationFilter
   attachments?: Prisma.AttachmentListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
+  selectedQuotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
 }
 
 export type EventOrderByWithRelationInput = {
@@ -404,6 +438,7 @@ export type EventOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   observation?: Prisma.SortOrderInput | Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
+  devolucionLegalizacion?: Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dependency?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -418,16 +453,22 @@ export type EventOrderByWithRelationInput = {
   generalAllyId?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  cotizacionSeleccionadaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   disbursement?: Prisma.DisbursementOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.ItemOrderByRelationAggregateInput
   attachments?: Prisma.AttachmentOrderByRelationAggregateInput
+  quotations?: Prisma.QuotationOrderByRelationAggregateInput
+  selectedQuotation?: Prisma.QuotationOrderByWithRelationInput
 }
 
 export type EventWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  cotizacionSeleccionadaId?: string
   code_suffix?: Prisma.EventCodeSuffixCompoundUniqueInput
   AND?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
   OR?: Prisma.EventWhereInput[]
@@ -440,6 +481,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringFilter<"Event"> | string
   observation?: Prisma.StringNullableFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
+  devolucionLegalizacion?: Prisma.BoolFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -454,13 +496,17 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   generalAllyId?: Prisma.UuidNullableFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableFilter<"Event"> | string | null
   createdById?: Prisma.UuidFilter<"Event"> | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  isActive?: Prisma.BoolFilter<"Event"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   disbursement?: Prisma.XOR<Prisma.DisbursementNullableScalarRelationFilter, Prisma.DisbursementWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   items?: Prisma.ItemListRelationFilter
   attachments?: Prisma.AttachmentListRelationFilter
-}, "id" | "code_suffix">
+  quotations?: Prisma.QuotationListRelationFilter
+  selectedQuotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
+}, "id" | "cotizacionSeleccionadaId" | "code_suffix">
 
 export type EventOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -472,6 +518,7 @@ export type EventOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   observation?: Prisma.SortOrderInput | Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
+  devolucionLegalizacion?: Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dependency?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -486,6 +533,9 @@ export type EventOrderByWithAggregationInput = {
   generalAllyId?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  cotizacionSeleccionadaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.EventCountOrderByAggregateInput
@@ -508,6 +558,7 @@ export type EventScalarWhereWithAggregatesInput = {
   status?: Prisma.StringWithAggregatesFilter<"Event"> | string
   observation?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
+  devolucionLegalizacion?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
@@ -522,6 +573,9 @@ export type EventScalarWhereWithAggregatesInput = {
   generalAllyId?: Prisma.UuidNullableWithAggregatesFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableWithAggregatesFilter<"Event"> | string | null
   createdById?: Prisma.UuidWithAggregatesFilter<"Event"> | string
+  cotizacionSeleccionadaId?: Prisma.UuidNullableWithAggregatesFilter<"Event"> | string | null
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
+  isActive?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
 }
@@ -536,6 +590,7 @@ export type EventCreateInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -548,12 +603,16 @@ export type EventCreateInput = {
   municipalityName?: string | null
   municipalityCategory?: string | null
   generalAllyId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   disbursement?: Prisma.DisbursementCreateNestedOneWithoutEventsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
   items?: Prisma.ItemCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEventInput
+  selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForEventInput
 }
 
 export type EventUncheckedCreateInput = {
@@ -566,6 +625,7 @@ export type EventUncheckedCreateInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -580,10 +640,14 @@ export type EventUncheckedCreateInput = {
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventUpdateInput = {
@@ -596,6 +660,7 @@ export type EventUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -608,12 +673,16 @@ export type EventUpdateInput = {
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   disbursement?: Prisma.DisbursementUpdateOneWithoutEventsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEventsNestedInput
   items?: Prisma.ItemUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEventNestedInput
+  selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForEventNestedInput
 }
 
 export type EventUncheckedUpdateInput = {
@@ -626,6 +695,7 @@ export type EventUncheckedUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -640,10 +710,14 @@ export type EventUncheckedUpdateInput = {
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUncheckedUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyInput = {
@@ -656,6 +730,7 @@ export type EventCreateManyInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -670,6 +745,9 @@ export type EventCreateManyInput = {
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -684,6 +762,7 @@ export type EventUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -696,6 +775,8 @@ export type EventUpdateManyMutationInput = {
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -710,6 +791,7 @@ export type EventUncheckedUpdateManyInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -724,6 +806,9 @@ export type EventUncheckedUpdateManyInput = {
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -753,6 +838,7 @@ export type EventCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   observation?: Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
+  devolucionLegalizacion?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   dependency?: Prisma.SortOrder
@@ -767,6 +853,9 @@ export type EventCountOrderByAggregateInput = {
   generalAllyId?: Prisma.SortOrder
   disbursementId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  cotizacionSeleccionadaId?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -788,6 +877,7 @@ export type EventMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   observation?: Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
+  devolucionLegalizacion?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   dependency?: Prisma.SortOrder
@@ -802,6 +892,9 @@ export type EventMaxOrderByAggregateInput = {
   generalAllyId?: Prisma.SortOrder
   disbursementId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  cotizacionSeleccionadaId?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -816,6 +909,7 @@ export type EventMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   observation?: Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
+  devolucionLegalizacion?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   dependency?: Prisma.SortOrder
@@ -830,6 +924,9 @@ export type EventMinOrderByAggregateInput = {
   generalAllyId?: Prisma.SortOrder
   disbursementId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  cotizacionSeleccionadaId?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -844,6 +941,11 @@ export type EventSumOrderByAggregateInput = {
 export type EventScalarRelationFilter = {
   is?: Prisma.EventWhereInput
   isNot?: Prisma.EventWhereInput
+}
+
+export type EventNullableScalarRelationFilter = {
+  is?: Prisma.EventWhereInput | null
+  isNot?: Prisma.EventWhereInput | null
 }
 
 export type EventCreateNestedManyWithoutCreatedByInput = {
@@ -936,6 +1038,52 @@ export type EventUpdateOneRequiredWithoutAttachmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutAttachmentsInput, Prisma.EventUpdateWithoutAttachmentsInput>, Prisma.EventUncheckedUpdateWithoutAttachmentsInput>
 }
 
+export type EventCreateNestedOneWithoutQuotationsInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutQuotationsInput, Prisma.EventUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutQuotationsInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventCreateNestedOneWithoutSelectedQuotationInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutSelectedQuotationInput, Prisma.EventUncheckedCreateWithoutSelectedQuotationInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutSelectedQuotationInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUncheckedCreateNestedOneWithoutSelectedQuotationInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutSelectedQuotationInput, Prisma.EventUncheckedCreateWithoutSelectedQuotationInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutSelectedQuotationInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneRequiredWithoutQuotationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutQuotationsInput, Prisma.EventUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutQuotationsInput
+  upsert?: Prisma.EventUpsertWithoutQuotationsInput
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutQuotationsInput, Prisma.EventUpdateWithoutQuotationsInput>, Prisma.EventUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type EventUpdateOneWithoutSelectedQuotationNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutSelectedQuotationInput, Prisma.EventUncheckedCreateWithoutSelectedQuotationInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutSelectedQuotationInput
+  upsert?: Prisma.EventUpsertWithoutSelectedQuotationInput
+  disconnect?: Prisma.EventWhereInput | boolean
+  delete?: Prisma.EventWhereInput | boolean
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutSelectedQuotationInput, Prisma.EventUpdateWithoutSelectedQuotationInput>, Prisma.EventUncheckedUpdateWithoutSelectedQuotationInput>
+}
+
+export type EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutSelectedQuotationInput, Prisma.EventUncheckedCreateWithoutSelectedQuotationInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutSelectedQuotationInput
+  upsert?: Prisma.EventUpsertWithoutSelectedQuotationInput
+  disconnect?: Prisma.EventWhereInput | boolean
+  delete?: Prisma.EventWhereInput | boolean
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutSelectedQuotationInput, Prisma.EventUpdateWithoutSelectedQuotationInput>, Prisma.EventUncheckedUpdateWithoutSelectedQuotationInput>
+}
+
 export type EventCreateNestedManyWithoutDisbursementInput = {
   create?: Prisma.XOR<Prisma.EventCreateWithoutDisbursementInput, Prisma.EventUncheckedCreateWithoutDisbursementInput> | Prisma.EventCreateWithoutDisbursementInput[] | Prisma.EventUncheckedCreateWithoutDisbursementInput[]
   connectOrCreate?: Prisma.EventCreateOrConnectWithoutDisbursementInput | Prisma.EventCreateOrConnectWithoutDisbursementInput[]
@@ -988,6 +1136,7 @@ export type EventCreateWithoutCreatedByInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1000,11 +1149,15 @@ export type EventCreateWithoutCreatedByInput = {
   municipalityName?: string | null
   municipalityCategory?: string | null
   generalAllyId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   disbursement?: Prisma.DisbursementCreateNestedOneWithoutEventsInput
   items?: Prisma.ItemCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEventInput
+  selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForEventInput
 }
 
 export type EventUncheckedCreateWithoutCreatedByInput = {
@@ -1017,6 +1170,7 @@ export type EventUncheckedCreateWithoutCreatedByInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1030,10 +1184,14 @@ export type EventUncheckedCreateWithoutCreatedByInput = {
   municipalityCategory?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutCreatedByInput = {
@@ -1075,6 +1233,7 @@ export type EventScalarWhereInput = {
   status?: Prisma.StringFilter<"Event"> | string
   observation?: Prisma.StringNullableFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
+  devolucionLegalizacion?: Prisma.BoolFilter<"Event"> | boolean
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -1089,6 +1248,9 @@ export type EventScalarWhereInput = {
   generalAllyId?: Prisma.UuidNullableFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableFilter<"Event"> | string | null
   createdById?: Prisma.UuidFilter<"Event"> | string
+  cotizacionSeleccionadaId?: Prisma.UuidNullableFilter<"Event"> | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  isActive?: Prisma.BoolFilter<"Event"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
 }
@@ -1103,6 +1265,7 @@ export type EventCreateWithoutItemsInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1115,11 +1278,15 @@ export type EventCreateWithoutItemsInput = {
   municipalityName?: string | null
   municipalityCategory?: string | null
   generalAllyId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   disbursement?: Prisma.DisbursementCreateNestedOneWithoutEventsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEventInput
+  selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForEventInput
 }
 
 export type EventUncheckedCreateWithoutItemsInput = {
@@ -1132,6 +1299,7 @@ export type EventUncheckedCreateWithoutItemsInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1146,9 +1314,13 @@ export type EventUncheckedCreateWithoutItemsInput = {
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutItemsInput = {
@@ -1177,6 +1349,7 @@ export type EventUpdateWithoutItemsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1189,11 +1362,15 @@ export type EventUpdateWithoutItemsInput = {
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   disbursement?: Prisma.DisbursementUpdateOneWithoutEventsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEventsNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEventNestedInput
+  selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutItemsInput = {
@@ -1206,6 +1383,7 @@ export type EventUncheckedUpdateWithoutItemsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1220,9 +1398,13 @@ export type EventUncheckedUpdateWithoutItemsInput = {
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutAttachmentsInput = {
@@ -1235,6 +1417,7 @@ export type EventCreateWithoutAttachmentsInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1247,11 +1430,15 @@ export type EventCreateWithoutAttachmentsInput = {
   municipalityName?: string | null
   municipalityCategory?: string | null
   generalAllyId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   disbursement?: Prisma.DisbursementCreateNestedOneWithoutEventsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
   items?: Prisma.ItemCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEventInput
+  selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForEventInput
 }
 
 export type EventUncheckedCreateWithoutAttachmentsInput = {
@@ -1264,6 +1451,7 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1278,9 +1466,13 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutAttachmentsInput = {
@@ -1309,6 +1501,7 @@ export type EventUpdateWithoutAttachmentsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1321,11 +1514,15 @@ export type EventUpdateWithoutAttachmentsInput = {
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   disbursement?: Prisma.DisbursementUpdateOneWithoutEventsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEventsNestedInput
   items?: Prisma.ItemUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEventNestedInput
+  selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutAttachmentsInput = {
@@ -1338,6 +1535,7 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1352,12 +1550,16 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUncheckedUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEventNestedInput
 }
 
-export type EventCreateWithoutDisbursementInput = {
+export type EventCreateWithoutQuotationsInput = {
   id?: string
   code: string
   suffix?: string
@@ -1367,6 +1569,7 @@ export type EventCreateWithoutDisbursementInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1379,11 +1582,319 @@ export type EventCreateWithoutDisbursementInput = {
   municipalityName?: string | null
   municipalityCategory?: string | null
   generalAllyId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  disbursement?: Prisma.DisbursementCreateNestedOneWithoutEventsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
+  items?: Prisma.ItemCreateNestedManyWithoutEventInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForEventInput
+}
+
+export type EventUncheckedCreateWithoutQuotationsInput = {
+  id?: string
+  code: string
+  suffix?: string
+  schemaType?: string
+  name: string
+  description?: string | null
+  status?: string
+  observation?: string | null
+  authorizeException?: boolean
+  devolucionLegalizacion?: boolean
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: string | null
+  municipalityName?: string | null
+  municipalityCategory?: string | null
+  generalAllyId?: string | null
+  disbursementId?: string | null
+  createdById: string
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutEventInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutQuotationsInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutQuotationsInput, Prisma.EventUncheckedCreateWithoutQuotationsInput>
+}
+
+export type EventCreateWithoutSelectedQuotationInput = {
+  id?: string
+  code: string
+  suffix?: string
+  schemaType?: string
+  name: string
+  description?: string | null
+  status?: string
+  observation?: string | null
+  authorizeException?: boolean
+  devolucionLegalizacion?: boolean
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: string | null
+  municipalityName?: string | null
+  municipalityCategory?: string | null
+  generalAllyId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  disbursement?: Prisma.DisbursementCreateNestedOneWithoutEventsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
+  items?: Prisma.ItemCreateNestedManyWithoutEventInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEventInput
+}
+
+export type EventUncheckedCreateWithoutSelectedQuotationInput = {
+  id?: string
+  code: string
+  suffix?: string
+  schemaType?: string
+  name: string
+  description?: string | null
+  status?: string
+  observation?: string | null
+  authorizeException?: boolean
+  devolucionLegalizacion?: boolean
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: string | null
+  municipalityName?: string | null
+  municipalityCategory?: string | null
+  generalAllyId?: string | null
+  disbursementId?: string | null
+  createdById: string
+  deletedAt?: Date | string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutEventInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutSelectedQuotationInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutSelectedQuotationInput, Prisma.EventUncheckedCreateWithoutSelectedQuotationInput>
+}
+
+export type EventUpsertWithoutQuotationsInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutQuotationsInput, Prisma.EventUncheckedUpdateWithoutQuotationsInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutQuotationsInput, Prisma.EventUncheckedCreateWithoutQuotationsInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutQuotationsInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutQuotationsInput, Prisma.EventUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type EventUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  suffix?: Prisma.StringFieldUpdateOperationsInput | string
+  schemaType?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disbursement?: Prisma.DisbursementUpdateOneWithoutEventsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEventsNestedInput
+  items?: Prisma.ItemUpdateManyWithoutEventNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForEventNestedInput
+}
+
+export type EventUncheckedUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  suffix?: Prisma.StringFieldUpdateOperationsInput | string
+  schemaType?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.ItemUncheckedUpdateManyWithoutEventNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+}
+
+export type EventUpsertWithoutSelectedQuotationInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutSelectedQuotationInput, Prisma.EventUncheckedUpdateWithoutSelectedQuotationInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutSelectedQuotationInput, Prisma.EventUncheckedCreateWithoutSelectedQuotationInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutSelectedQuotationInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutSelectedQuotationInput, Prisma.EventUncheckedUpdateWithoutSelectedQuotationInput>
+}
+
+export type EventUpdateWithoutSelectedQuotationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  suffix?: Prisma.StringFieldUpdateOperationsInput | string
+  schemaType?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disbursement?: Prisma.DisbursementUpdateOneWithoutEventsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEventsNestedInput
+  items?: Prisma.ItemUpdateManyWithoutEventNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEventNestedInput
+}
+
+export type EventUncheckedUpdateWithoutSelectedQuotationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  suffix?: Prisma.StringFieldUpdateOperationsInput | string
+  schemaType?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hamlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.ItemUncheckedUpdateManyWithoutEventNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEventNestedInput
+}
+
+export type EventCreateWithoutDisbursementInput = {
+  id?: string
+  code: string
+  suffix?: string
+  schemaType?: string
+  name: string
+  description?: string | null
+  status?: string
+  observation?: string | null
+  authorizeException?: boolean
+  devolucionLegalizacion?: boolean
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  dependency?: string | null
+  hamlet?: string | null
+  attendees?: number | null
+  days?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  divipolaCode?: string | null
+  municipalityName?: string | null
+  municipalityCategory?: string | null
+  generalAllyId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
   items?: Prisma.ItemCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEventInput
+  selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForEventInput
 }
 
 export type EventUncheckedCreateWithoutDisbursementInput = {
@@ -1396,6 +1907,7 @@ export type EventUncheckedCreateWithoutDisbursementInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1409,10 +1921,14 @@ export type EventUncheckedCreateWithoutDisbursementInput = {
   municipalityCategory?: string | null
   generalAllyId?: string | null
   createdById: string
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutDisbursementInput = {
@@ -1451,6 +1967,7 @@ export type EventCreateManyCreatedByInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1464,6 +1981,9 @@ export type EventCreateManyCreatedByInput = {
   municipalityCategory?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1478,6 +1998,7 @@ export type EventUpdateWithoutCreatedByInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1490,11 +2011,15 @@ export type EventUpdateWithoutCreatedByInput = {
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   disbursement?: Prisma.DisbursementUpdateOneWithoutEventsNestedInput
   items?: Prisma.ItemUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEventNestedInput
+  selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutCreatedByInput = {
@@ -1507,6 +2032,7 @@ export type EventUncheckedUpdateWithoutCreatedByInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1520,10 +2046,14 @@ export type EventUncheckedUpdateWithoutCreatedByInput = {
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUncheckedUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1536,6 +2066,7 @@ export type EventUncheckedUpdateManyWithoutCreatedByInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1549,6 +2080,9 @@ export type EventUncheckedUpdateManyWithoutCreatedByInput = {
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1563,6 +2097,7 @@ export type EventCreateManyDisbursementInput = {
   status?: string
   observation?: string | null
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1576,6 +2111,9 @@ export type EventCreateManyDisbursementInput = {
   municipalityCategory?: string | null
   generalAllyId?: string | null
   createdById: string
+  cotizacionSeleccionadaId?: string | null
+  deletedAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1590,6 +2128,7 @@ export type EventUpdateWithoutDisbursementInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1602,11 +2141,15 @@ export type EventUpdateWithoutDisbursementInput = {
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEventsNestedInput
   items?: Prisma.ItemUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEventNestedInput
+  selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutDisbursementInput = {
@@ -1619,6 +2162,7 @@ export type EventUncheckedUpdateWithoutDisbursementInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1632,10 +2176,14 @@ export type EventUncheckedUpdateWithoutDisbursementInput = {
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUncheckedUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutDisbursementInput = {
@@ -1648,6 +2196,7 @@ export type EventUncheckedUpdateManyWithoutDisbursementInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1661,6 +2210,9 @@ export type EventUncheckedUpdateManyWithoutDisbursementInput = {
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1673,11 +2225,13 @@ export type EventUncheckedUpdateManyWithoutDisbursementInput = {
 export type EventCountOutputType = {
   items: number
   attachments: number
+  quotations: number
 }
 
 export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | EventCountOutputTypeCountItemsArgs
   attachments?: boolean | EventCountOutputTypeCountAttachmentsArgs
+  quotations?: boolean | EventCountOutputTypeCountQuotationsArgs
 }
 
 /**
@@ -1704,6 +2258,13 @@ export type EventCountOutputTypeCountAttachmentsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.AttachmentWhereInput
 }
 
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountQuotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationWhereInput
+}
+
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1715,6 +2276,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   status?: boolean
   observation?: boolean
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -1729,12 +2291,17 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
+  cotizacionSeleccionadaId?: boolean
+  deletedAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Event$itemsArgs<ExtArgs>
   attachments?: boolean | Prisma.Event$attachmentsArgs<ExtArgs>
+  quotations?: boolean | Prisma.Event$quotationsArgs<ExtArgs>
+  selectedQuotation?: boolean | Prisma.Event$selectedQuotationArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -1748,6 +2315,7 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   status?: boolean
   observation?: boolean
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -1762,10 +2330,14 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
+  cotizacionSeleccionadaId?: boolean
+  deletedAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  selectedQuotation?: boolean | Prisma.Event$selectedQuotationArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
 export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1778,6 +2350,7 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   status?: boolean
   observation?: boolean
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -1792,10 +2365,14 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
+  cotizacionSeleccionadaId?: boolean
+  deletedAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  selectedQuotation?: boolean | Prisma.Event$selectedQuotationArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
 export type EventSelectScalar = {
@@ -1808,6 +2385,7 @@ export type EventSelectScalar = {
   status?: boolean
   observation?: boolean
   authorizeException?: boolean
+  devolucionLegalizacion?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -1822,25 +2400,32 @@ export type EventSelectScalar = {
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
+  cotizacionSeleccionadaId?: boolean
+  deletedAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "schemaType" | "name" | "description" | "status" | "observation" | "authorizeException" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "latitude" | "longitude" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "schemaType" | "name" | "description" | "status" | "observation" | "authorizeException" | "devolucionLegalizacion" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "latitude" | "longitude" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "cotizacionSeleccionadaId" | "deletedAt" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Event$itemsArgs<ExtArgs>
   attachments?: boolean | Prisma.Event$attachmentsArgs<ExtArgs>
+  quotations?: boolean | Prisma.Event$quotationsArgs<ExtArgs>
+  selectedQuotation?: boolean | Prisma.Event$selectedQuotationArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  selectedQuotation?: boolean | Prisma.Event$selectedQuotationArgs<ExtArgs>
 }
 export type EventIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  selectedQuotation?: boolean | Prisma.Event$selectedQuotationArgs<ExtArgs>
 }
 
 export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1850,6 +2435,8 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     createdBy: Prisma.$UserPayload<ExtArgs>
     items: Prisma.$ItemPayload<ExtArgs>[]
     attachments: Prisma.$AttachmentPayload<ExtArgs>[]
+    quotations: Prisma.$QuotationPayload<ExtArgs>[]
+    selectedQuotation: Prisma.$QuotationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1861,6 +2448,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     status: string
     observation: string | null
     authorizeException: boolean
+    devolucionLegalizacion: boolean
     startDate: Date | null
     endDate: Date | null
     dependency: string | null
@@ -1875,6 +2463,9 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     generalAllyId: string | null
     disbursementId: string | null
     createdById: string
+    cotizacionSeleccionadaId: string | null
+    deletedAt: Date | null
+    isActive: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["event"]>
@@ -2275,6 +2866,8 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Event$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attachments<T extends Prisma.Event$attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotations<T extends Prisma.Event$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  selectedQuotation<T extends Prisma.Event$selectedQuotationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$selectedQuotationArgs<ExtArgs>>): Prisma.Prisma__QuotationClient<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2313,6 +2906,7 @@ export interface EventFieldRefs {
   readonly status: Prisma.FieldRef<"Event", 'String'>
   readonly observation: Prisma.FieldRef<"Event", 'String'>
   readonly authorizeException: Prisma.FieldRef<"Event", 'Boolean'>
+  readonly devolucionLegalizacion: Prisma.FieldRef<"Event", 'Boolean'>
   readonly startDate: Prisma.FieldRef<"Event", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Event", 'DateTime'>
   readonly dependency: Prisma.FieldRef<"Event", 'String'>
@@ -2327,6 +2921,9 @@ export interface EventFieldRefs {
   readonly generalAllyId: Prisma.FieldRef<"Event", 'String'>
   readonly disbursementId: Prisma.FieldRef<"Event", 'String'>
   readonly createdById: Prisma.FieldRef<"Event", 'String'>
+  readonly cotizacionSeleccionadaId: Prisma.FieldRef<"Event", 'String'>
+  readonly deletedAt: Prisma.FieldRef<"Event", 'DateTime'>
+  readonly isActive: Prisma.FieldRef<"Event", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Event", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Event", 'DateTime'>
 }
@@ -2794,6 +3391,49 @@ export type Event$attachmentsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.AttachmentScalarFieldEnum | Prisma.AttachmentScalarFieldEnum[]
+}
+
+/**
+ * Event.quotations
+ */
+export type Event$quotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
+  orderBy?: Prisma.QuotationOrderByWithRelationInput | Prisma.QuotationOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationScalarFieldEnum | Prisma.QuotationScalarFieldEnum[]
+}
+
+/**
+ * Event.selectedQuotation
+ */
+export type Event$selectedQuotationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
 }
 
 /**

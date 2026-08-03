@@ -209,6 +209,8 @@ export type UserWhereInput = {
   roles?: Prisma.RoleListRelationFilter
   createdEvents?: Prisma.EventListRelationFilter
   uploadedAttachments?: Prisma.AttachmentListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
+  parameterVersions?: Prisma.ParameterVersionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -223,6 +225,8 @@ export type UserOrderByWithRelationInput = {
   roles?: Prisma.RoleOrderByRelationAggregateInput
   createdEvents?: Prisma.EventOrderByRelationAggregateInput
   uploadedAttachments?: Prisma.AttachmentOrderByRelationAggregateInput
+  quotations?: Prisma.QuotationOrderByRelationAggregateInput
+  parameterVersions?: Prisma.ParameterVersionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -240,6 +244,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   roles?: Prisma.RoleListRelationFilter
   createdEvents?: Prisma.EventListRelationFilter
   uploadedAttachments?: Prisma.AttachmentListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
+  parameterVersions?: Prisma.ParameterVersionListRelationFilter
 }, "id" | "document" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -282,6 +288,8 @@ export type UserCreateInput = {
   roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -296,6 +304,8 @@ export type UserUncheckedCreateInput = {
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -310,6 +320,8 @@ export type UserUpdateInput = {
   roles?: Prisma.RoleUpdateManyWithoutUsersNestedInput
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -324,6 +336,8 @@ export type UserUncheckedUpdateInput = {
   roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -485,6 +499,34 @@ export type UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUploadedAttachmentsInput, Prisma.UserUpdateWithoutUploadedAttachmentsInput>, Prisma.UserUncheckedUpdateWithoutUploadedAttachmentsInput>
 }
 
+export type UserCreateNestedOneWithoutParameterVersionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutParameterVersionsInput, Prisma.UserUncheckedCreateWithoutParameterVersionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutParameterVersionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutParameterVersionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutParameterVersionsInput, Prisma.UserUncheckedCreateWithoutParameterVersionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutParameterVersionsInput
+  upsert?: Prisma.UserUpsertWithoutParameterVersionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutParameterVersionsInput, Prisma.UserUpdateWithoutParameterVersionsInput>, Prisma.UserUncheckedUpdateWithoutParameterVersionsInput>
+}
+
+export type UserCreateNestedOneWithoutQuotationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQuotationsInput, Prisma.UserUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQuotationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutQuotationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQuotationsInput, Prisma.UserUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQuotationsInput
+  upsert?: Prisma.UserUpsertWithoutQuotationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQuotationsInput, Prisma.UserUpdateWithoutQuotationsInput>, Prisma.UserUncheckedUpdateWithoutQuotationsInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   document: string
@@ -496,6 +538,8 @@ export type UserCreateWithoutRolesInput = {
   updatedAt?: Date | string
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -509,6 +553,8 @@ export type UserUncheckedCreateWithoutRolesInput = {
   updatedAt?: Date | string
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -557,6 +603,8 @@ export type UserCreateWithoutCreatedEventsInput = {
   updatedAt?: Date | string
   roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEventsInput = {
@@ -570,6 +618,8 @@ export type UserUncheckedCreateWithoutCreatedEventsInput = {
   updatedAt?: Date | string
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEventsInput = {
@@ -599,6 +649,8 @@ export type UserUpdateWithoutCreatedEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roles?: Prisma.RoleUpdateManyWithoutUsersNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEventsInput = {
@@ -612,6 +664,8 @@ export type UserUncheckedUpdateWithoutCreatedEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutUploadedAttachmentsInput = {
@@ -625,6 +679,8 @@ export type UserCreateWithoutUploadedAttachmentsInput = {
   updatedAt?: Date | string
   roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutUploadedAttachmentsInput = {
@@ -638,6 +694,8 @@ export type UserUncheckedCreateWithoutUploadedAttachmentsInput = {
   updatedAt?: Date | string
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutUploadedAttachmentsInput = {
@@ -667,6 +725,8 @@ export type UserUpdateWithoutUploadedAttachmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roles?: Prisma.RoleUpdateManyWithoutUsersNestedInput
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedAttachmentsInput = {
@@ -680,6 +740,160 @@ export type UserUncheckedUpdateWithoutUploadedAttachmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutParameterVersionsInput = {
+  id?: string
+  document: string
+  fullName: string
+  email: string
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutParameterVersionsInput = {
+  id?: string
+  document: string
+  fullName: string
+  email: string
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutParameterVersionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutParameterVersionsInput, Prisma.UserUncheckedCreateWithoutParameterVersionsInput>
+}
+
+export type UserUpsertWithoutParameterVersionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutParameterVersionsInput, Prisma.UserUncheckedUpdateWithoutParameterVersionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutParameterVersionsInput, Prisma.UserUncheckedCreateWithoutParameterVersionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutParameterVersionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutParameterVersionsInput, Prisma.UserUncheckedUpdateWithoutParameterVersionsInput>
+}
+
+export type UserUpdateWithoutParameterVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  document?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutParameterVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  document?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutQuotationsInput = {
+  id?: string
+  document: string
+  fullName: string
+  email: string
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
+  parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutQuotationsInput = {
+  id?: string
+  document: string
+  fullName: string
+  email: string
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutQuotationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQuotationsInput, Prisma.UserUncheckedCreateWithoutQuotationsInput>
+}
+
+export type UserUpsertWithoutQuotationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQuotationsInput, Prisma.UserUncheckedUpdateWithoutQuotationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQuotationsInput, Prisma.UserUncheckedCreateWithoutQuotationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQuotationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQuotationsInput, Prisma.UserUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type UserUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  document?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  document?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpdateWithoutRolesInput = {
@@ -693,6 +907,8 @@ export type UserUpdateWithoutRolesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -706,6 +922,8 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRolesInput = {
@@ -728,12 +946,16 @@ export type UserCountOutputType = {
   roles: number
   createdEvents: number
   uploadedAttachments: number
+  quotations: number
+  parameterVersions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   roles?: boolean | UserCountOutputTypeCountRolesArgs
   createdEvents?: boolean | UserCountOutputTypeCountCreatedEventsArgs
   uploadedAttachments?: boolean | UserCountOutputTypeCountUploadedAttachmentsArgs
+  quotations?: boolean | UserCountOutputTypeCountQuotationsArgs
+  parameterVersions?: boolean | UserCountOutputTypeCountParameterVersionsArgs
 }
 
 /**
@@ -767,6 +989,20 @@ export type UserCountOutputTypeCountUploadedAttachmentsArgs<ExtArgs extends runt
   where?: Prisma.AttachmentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQuotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountParameterVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ParameterVersionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -780,6 +1016,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   roles?: boolean | Prisma.User$rolesArgs<ExtArgs>
   createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
   uploadedAttachments?: boolean | Prisma.User$uploadedAttachmentsArgs<ExtArgs>
+  quotations?: boolean | Prisma.User$quotationsArgs<ExtArgs>
+  parameterVersions?: boolean | Prisma.User$parameterVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -821,6 +1059,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   roles?: boolean | Prisma.User$rolesArgs<ExtArgs>
   createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
   uploadedAttachments?: boolean | Prisma.User$uploadedAttachmentsArgs<ExtArgs>
+  quotations?: boolean | Prisma.User$quotationsArgs<ExtArgs>
+  parameterVersions?: boolean | Prisma.User$parameterVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -832,6 +1072,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     roles: Prisma.$RolePayload<ExtArgs>[]
     createdEvents: Prisma.$EventPayload<ExtArgs>[]
     uploadedAttachments: Prisma.$AttachmentPayload<ExtArgs>[]
+    quotations: Prisma.$QuotationPayload<ExtArgs>[]
+    parameterVersions: Prisma.$ParameterVersionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1239,6 +1481,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   roles<T extends Prisma.User$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdEvents<T extends Prisma.User$createdEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   uploadedAttachments<T extends Prisma.User$uploadedAttachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$uploadedAttachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotations<T extends Prisma.User$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  parameterVersions<T extends Prisma.User$parameterVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$parameterVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParameterVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1738,6 +1982,54 @@ export type User$uploadedAttachmentsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.AttachmentScalarFieldEnum | Prisma.AttachmentScalarFieldEnum[]
+}
+
+/**
+ * User.quotations
+ */
+export type User$quotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
+  orderBy?: Prisma.QuotationOrderByWithRelationInput | Prisma.QuotationOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationScalarFieldEnum | Prisma.QuotationScalarFieldEnum[]
+}
+
+/**
+ * User.parameterVersions
+ */
+export type User$parameterVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ParameterVersion
+   */
+  select?: Prisma.ParameterVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ParameterVersion
+   */
+  omit?: Prisma.ParameterVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ParameterVersionInclude<ExtArgs> | null
+  where?: Prisma.ParameterVersionWhereInput
+  orderBy?: Prisma.ParameterVersionOrderByWithRelationInput | Prisma.ParameterVersionOrderByWithRelationInput[]
+  cursor?: Prisma.ParameterVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ParameterVersionScalarFieldEnum | Prisma.ParameterVersionScalarFieldEnum[]
 }
 
 /**

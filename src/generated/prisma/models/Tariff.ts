@@ -54,6 +54,8 @@ export type TariffMinAggregateOutputType = {
   priceQuintaSexta: runtime.Decimal | null
   tariffType: string | null
   vigencyYear: number | null
+  fechaInicio: Date | null
+  fechaFin: Date | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -73,6 +75,8 @@ export type TariffMaxAggregateOutputType = {
   priceQuintaSexta: runtime.Decimal | null
   tariffType: string | null
   vigencyYear: number | null
+  fechaInicio: Date | null
+  fechaFin: Date | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -92,6 +96,8 @@ export type TariffCountAggregateOutputType = {
   priceQuintaSexta: number
   tariffType: number
   vigencyYear: number
+  fechaInicio: number
+  fechaFin: number
   isActive: number
   createdAt: number
   updatedAt: number
@@ -127,6 +133,8 @@ export type TariffMinAggregateInputType = {
   priceQuintaSexta?: true
   tariffType?: true
   vigencyYear?: true
+  fechaInicio?: true
+  fechaFin?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -146,6 +154,8 @@ export type TariffMaxAggregateInputType = {
   priceQuintaSexta?: true
   tariffType?: true
   vigencyYear?: true
+  fechaInicio?: true
+  fechaFin?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -165,6 +175,8 @@ export type TariffCountAggregateInputType = {
   priceQuintaSexta?: true
   tariffType?: true
   vigencyYear?: true
+  fechaInicio?: true
+  fechaFin?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -271,6 +283,8 @@ export type TariffGroupByOutputType = {
   priceQuintaSexta: runtime.Decimal | null
   tariffType: string
   vigencyYear: number
+  fechaInicio: Date | null
+  fechaFin: Date | null
   isActive: boolean
   createdAt: Date
   updatedAt: Date
@@ -313,10 +327,13 @@ export type TariffWhereInput = {
   priceQuintaSexta?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFilter<"Tariff"> | string
   vigencyYear?: Prisma.IntFilter<"Tariff"> | number
+  fechaInicio?: Prisma.DateTimeNullableFilter<"Tariff"> | Date | string | null
+  fechaFin?: Prisma.DateTimeNullableFilter<"Tariff"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Tariff"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
   items?: Prisma.ItemListRelationFilter
+  quotationItems?: Prisma.QuotationItemListRelationFilter
 }
 
 export type TariffOrderByWithRelationInput = {
@@ -333,10 +350,13 @@ export type TariffOrderByWithRelationInput = {
   priceQuintaSexta?: Prisma.SortOrderInput | Prisma.SortOrder
   tariffType?: Prisma.SortOrder
   vigencyYear?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   items?: Prisma.ItemOrderByRelationAggregateInput
+  quotationItems?: Prisma.QuotationItemOrderByRelationAggregateInput
 }
 
 export type TariffWhereUniqueInput = Prisma.AtLeast<{
@@ -356,10 +376,13 @@ export type TariffWhereUniqueInput = Prisma.AtLeast<{
   priceQuintaSexta?: Prisma.DecimalNullableFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFilter<"Tariff"> | string
   vigencyYear?: Prisma.IntFilter<"Tariff"> | number
+  fechaInicio?: Prisma.DateTimeNullableFilter<"Tariff"> | Date | string | null
+  fechaFin?: Prisma.DateTimeNullableFilter<"Tariff"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Tariff"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tariff"> | Date | string
   items?: Prisma.ItemListRelationFilter
+  quotationItems?: Prisma.QuotationItemListRelationFilter
 }, "id">
 
 export type TariffOrderByWithAggregationInput = {
@@ -376,6 +399,8 @@ export type TariffOrderByWithAggregationInput = {
   priceQuintaSexta?: Prisma.SortOrderInput | Prisma.SortOrder
   tariffType?: Prisma.SortOrder
   vigencyYear?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -403,6 +428,8 @@ export type TariffScalarWhereWithAggregatesInput = {
   priceQuintaSexta?: Prisma.DecimalNullableWithAggregatesFilter<"Tariff"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringWithAggregatesFilter<"Tariff"> | string
   vigencyYear?: Prisma.IntWithAggregatesFilter<"Tariff"> | number
+  fechaInicio?: Prisma.DateTimeNullableWithAggregatesFilter<"Tariff"> | Date | string | null
+  fechaFin?: Prisma.DateTimeNullableWithAggregatesFilter<"Tariff"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Tariff"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tariff"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tariff"> | Date | string
@@ -422,10 +449,13 @@ export type TariffCreateInput = {
   priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: string
   vigencyYear?: number
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.ItemCreateNestedManyWithoutTariffInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutTariffInput
 }
 
 export type TariffUncheckedCreateInput = {
@@ -442,10 +472,13 @@ export type TariffUncheckedCreateInput = {
   priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: string
   vigencyYear?: number
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutTariffInput
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutTariffInput
 }
 
 export type TariffUpdateInput = {
@@ -462,10 +495,13 @@ export type TariffUpdateInput = {
   priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFieldUpdateOperationsInput | string
   vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUpdateManyWithoutTariffNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutTariffNestedInput
 }
 
 export type TariffUncheckedUpdateInput = {
@@ -482,10 +518,13 @@ export type TariffUncheckedUpdateInput = {
   priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFieldUpdateOperationsInput | string
   vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUncheckedUpdateManyWithoutTariffNestedInput
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutTariffNestedInput
 }
 
 export type TariffCreateManyInput = {
@@ -502,6 +541,8 @@ export type TariffCreateManyInput = {
   priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: string
   vigencyYear?: number
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -521,6 +562,8 @@ export type TariffUpdateManyMutationInput = {
   priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFieldUpdateOperationsInput | string
   vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -540,6 +583,8 @@ export type TariffUncheckedUpdateManyInput = {
   priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFieldUpdateOperationsInput | string
   vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -564,6 +609,8 @@ export type TariffCountOrderByAggregateInput = {
   priceQuintaSexta?: Prisma.SortOrder
   tariffType?: Prisma.SortOrder
   vigencyYear?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrder
+  fechaFin?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -590,6 +637,8 @@ export type TariffMaxOrderByAggregateInput = {
   priceQuintaSexta?: Prisma.SortOrder
   tariffType?: Prisma.SortOrder
   vigencyYear?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrder
+  fechaFin?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -609,6 +658,8 @@ export type TariffMinOrderByAggregateInput = {
   priceQuintaSexta?: Prisma.SortOrder
   tariffType?: Prisma.SortOrder
   vigencyYear?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrder
+  fechaFin?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -637,6 +688,22 @@ export type TariffUpdateOneWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TariffUpdateToOneWithWhereWithoutItemsInput, Prisma.TariffUpdateWithoutItemsInput>, Prisma.TariffUncheckedUpdateWithoutItemsInput>
 }
 
+export type TariffCreateNestedOneWithoutQuotationItemsInput = {
+  create?: Prisma.XOR<Prisma.TariffCreateWithoutQuotationItemsInput, Prisma.TariffUncheckedCreateWithoutQuotationItemsInput>
+  connectOrCreate?: Prisma.TariffCreateOrConnectWithoutQuotationItemsInput
+  connect?: Prisma.TariffWhereUniqueInput
+}
+
+export type TariffUpdateOneWithoutQuotationItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.TariffCreateWithoutQuotationItemsInput, Prisma.TariffUncheckedCreateWithoutQuotationItemsInput>
+  connectOrCreate?: Prisma.TariffCreateOrConnectWithoutQuotationItemsInput
+  upsert?: Prisma.TariffUpsertWithoutQuotationItemsInput
+  disconnect?: Prisma.TariffWhereInput | boolean
+  delete?: Prisma.TariffWhereInput | boolean
+  connect?: Prisma.TariffWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TariffUpdateToOneWithWhereWithoutQuotationItemsInput, Prisma.TariffUpdateWithoutQuotationItemsInput>, Prisma.TariffUncheckedUpdateWithoutQuotationItemsInput>
+}
+
 export type TariffCreateWithoutItemsInput = {
   id?: string
   code?: string | null
@@ -651,9 +718,12 @@ export type TariffCreateWithoutItemsInput = {
   priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: string
   vigencyYear?: number
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutTariffInput
 }
 
 export type TariffUncheckedCreateWithoutItemsInput = {
@@ -670,9 +740,12 @@ export type TariffUncheckedCreateWithoutItemsInput = {
   priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: string
   vigencyYear?: number
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutTariffInput
 }
 
 export type TariffCreateOrConnectWithoutItemsInput = {
@@ -705,9 +778,12 @@ export type TariffUpdateWithoutItemsInput = {
   priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFieldUpdateOperationsInput | string
   vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutTariffNestedInput
 }
 
 export type TariffUncheckedUpdateWithoutItemsInput = {
@@ -724,9 +800,116 @@ export type TariffUncheckedUpdateWithoutItemsInput = {
   priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tariffType?: Prisma.StringFieldUpdateOperationsInput | string
   vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutTariffNestedInput
+}
+
+export type TariffCreateWithoutQuotationItemsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  timeUnit?: string | null
+  observations?: string | null
+  sheet?: string | null
+  priceEspecialPrimera?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: string
+  vigencyYear?: number
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.ItemCreateNestedManyWithoutTariffInput
+}
+
+export type TariffUncheckedCreateWithoutQuotationItemsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  timeUnit?: string | null
+  observations?: string | null
+  sheet?: string | null
+  priceEspecialPrimera?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: string
+  vigencyYear?: number
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutTariffInput
+}
+
+export type TariffCreateOrConnectWithoutQuotationItemsInput = {
+  where: Prisma.TariffWhereUniqueInput
+  create: Prisma.XOR<Prisma.TariffCreateWithoutQuotationItemsInput, Prisma.TariffUncheckedCreateWithoutQuotationItemsInput>
+}
+
+export type TariffUpsertWithoutQuotationItemsInput = {
+  update: Prisma.XOR<Prisma.TariffUpdateWithoutQuotationItemsInput, Prisma.TariffUncheckedUpdateWithoutQuotationItemsInput>
+  create: Prisma.XOR<Prisma.TariffCreateWithoutQuotationItemsInput, Prisma.TariffUncheckedCreateWithoutQuotationItemsInput>
+  where?: Prisma.TariffWhereInput
+}
+
+export type TariffUpdateToOneWithWhereWithoutQuotationItemsInput = {
+  where?: Prisma.TariffWhereInput
+  data: Prisma.XOR<Prisma.TariffUpdateWithoutQuotationItemsInput, Prisma.TariffUncheckedUpdateWithoutQuotationItemsInput>
+}
+
+export type TariffUpdateWithoutQuotationItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.ItemUpdateManyWithoutTariffNestedInput
+}
+
+export type TariffUncheckedUpdateWithoutQuotationItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timeUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sheet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceEspecialPrimera?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceSegundaCuarta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceQuintaSexta?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tariffType?: Prisma.StringFieldUpdateOperationsInput | string
+  vigencyYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.ItemUncheckedUpdateManyWithoutTariffNestedInput
 }
 
 
@@ -736,10 +919,12 @@ export type TariffUncheckedUpdateWithoutItemsInput = {
 
 export type TariffCountOutputType = {
   items: number
+  quotationItems: number
 }
 
 export type TariffCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | TariffCountOutputTypeCountItemsArgs
+  quotationItems?: boolean | TariffCountOutputTypeCountQuotationItemsArgs
 }
 
 /**
@@ -759,6 +944,13 @@ export type TariffCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.ItemWhereInput
 }
 
+/**
+ * TariffCountOutputType without action
+ */
+export type TariffCountOutputTypeCountQuotationItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationItemWhereInput
+}
+
 
 export type TariffSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -774,10 +966,13 @@ export type TariffSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   priceQuintaSexta?: boolean
   tariffType?: boolean
   vigencyYear?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   items?: boolean | Prisma.Tariff$itemsArgs<ExtArgs>
+  quotationItems?: boolean | Prisma.Tariff$quotationItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TariffCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tariff"]>
 
@@ -795,6 +990,8 @@ export type TariffSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   priceQuintaSexta?: boolean
   tariffType?: boolean
   vigencyYear?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -814,6 +1011,8 @@ export type TariffSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   priceQuintaSexta?: boolean
   tariffType?: boolean
   vigencyYear?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -833,14 +1032,17 @@ export type TariffSelectScalar = {
   priceQuintaSexta?: boolean
   tariffType?: boolean
   vigencyYear?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TariffOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "unitMeasure" | "timeUnit" | "observations" | "sheet" | "priceEspecialPrimera" | "priceSegundaCuarta" | "priceQuintaSexta" | "tariffType" | "vigencyYear" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["tariff"]>
+export type TariffOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "unitMeasure" | "timeUnit" | "observations" | "sheet" | "priceEspecialPrimera" | "priceSegundaCuarta" | "priceQuintaSexta" | "tariffType" | "vigencyYear" | "fechaInicio" | "fechaFin" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["tariff"]>
 export type TariffInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | Prisma.Tariff$itemsArgs<ExtArgs>
+  quotationItems?: boolean | Prisma.Tariff$quotationItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TariffCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TariffIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -850,6 +1052,7 @@ export type $TariffPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Tariff"
   objects: {
     items: Prisma.$ItemPayload<ExtArgs>[]
+    quotationItems: Prisma.$QuotationItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -865,6 +1068,8 @@ export type $TariffPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     priceQuintaSexta: runtime.Decimal | null
     tariffType: string
     vigencyYear: number
+    fechaInicio: Date | null
+    fechaFin: Date | null
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -1263,6 +1468,7 @@ readonly fields: TariffFieldRefs;
 export interface Prisma__TariffClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   items<T extends Prisma.Tariff$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tariff$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotationItems<T extends Prisma.Tariff$quotationItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tariff$quotationItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1305,6 +1511,8 @@ export interface TariffFieldRefs {
   readonly priceQuintaSexta: Prisma.FieldRef<"Tariff", 'Decimal'>
   readonly tariffType: Prisma.FieldRef<"Tariff", 'String'>
   readonly vigencyYear: Prisma.FieldRef<"Tariff", 'Int'>
+  readonly fechaInicio: Prisma.FieldRef<"Tariff", 'DateTime'>
+  readonly fechaFin: Prisma.FieldRef<"Tariff", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"Tariff", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Tariff", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tariff", 'DateTime'>
@@ -1722,6 +1930,30 @@ export type Tariff$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.ItemScalarFieldEnum | Prisma.ItemScalarFieldEnum[]
+}
+
+/**
+ * Tariff.quotationItems
+ */
+export type Tariff$quotationItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuotationItem
+   */
+  select?: Prisma.QuotationItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QuotationItem
+   */
+  omit?: Prisma.QuotationItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationItemInclude<ExtArgs> | null
+  where?: Prisma.QuotationItemWhereInput
+  orderBy?: Prisma.QuotationItemOrderByWithRelationInput | Prisma.QuotationItemOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationItemScalarFieldEnum | Prisma.QuotationItemScalarFieldEnum[]
 }
 
 /**

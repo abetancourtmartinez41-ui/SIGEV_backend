@@ -46,6 +46,8 @@ export type DisbursementMinAggregateOutputType = {
   year: number | null
   percentageParticipation: runtime.Decimal | null
   disbursementDate: Date | null
+  fechaInicio: Date | null
+  fechaFin: Date | null
   status: string | null
   isActive: boolean | null
   createdAt: Date | null
@@ -60,6 +62,8 @@ export type DisbursementMaxAggregateOutputType = {
   year: number | null
   percentageParticipation: runtime.Decimal | null
   disbursementDate: Date | null
+  fechaInicio: Date | null
+  fechaFin: Date | null
   status: string | null
   isActive: boolean | null
   createdAt: Date | null
@@ -74,6 +78,8 @@ export type DisbursementCountAggregateOutputType = {
   year: number
   percentageParticipation: number
   disbursementDate: number
+  fechaInicio: number
+  fechaFin: number
   status: number
   isActive: number
   createdAt: number
@@ -102,6 +108,8 @@ export type DisbursementMinAggregateInputType = {
   year?: true
   percentageParticipation?: true
   disbursementDate?: true
+  fechaInicio?: true
+  fechaFin?: true
   status?: true
   isActive?: true
   createdAt?: true
@@ -116,6 +124,8 @@ export type DisbursementMaxAggregateInputType = {
   year?: true
   percentageParticipation?: true
   disbursementDate?: true
+  fechaInicio?: true
+  fechaFin?: true
   status?: true
   isActive?: true
   createdAt?: true
@@ -130,6 +140,8 @@ export type DisbursementCountAggregateInputType = {
   year?: true
   percentageParticipation?: true
   disbursementDate?: true
+  fechaInicio?: true
+  fechaFin?: true
   status?: true
   isActive?: true
   createdAt?: true
@@ -231,6 +243,8 @@ export type DisbursementGroupByOutputType = {
   year: number
   percentageParticipation: runtime.Decimal | null
   disbursementDate: Date | null
+  fechaInicio: Date | null
+  fechaFin: Date | null
   status: string | null
   isActive: boolean
   createdAt: Date
@@ -268,6 +282,8 @@ export type DisbursementWhereInput = {
   year?: Prisma.IntFilter<"Disbursement"> | number
   percentageParticipation?: Prisma.DecimalNullableFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
+  fechaInicio?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
+  fechaFin?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
   status?: Prisma.StringNullableFilter<"Disbursement"> | string | null
   isActive?: Prisma.BoolFilter<"Disbursement"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
@@ -283,6 +299,8 @@ export type DisbursementOrderByWithRelationInput = {
   year?: Prisma.SortOrder
   percentageParticipation?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -301,6 +319,8 @@ export type DisbursementWhereUniqueInput = Prisma.AtLeast<{
   year?: Prisma.IntFilter<"Disbursement"> | number
   percentageParticipation?: Prisma.DecimalNullableFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
+  fechaInicio?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
+  fechaFin?: Prisma.DateTimeNullableFilter<"Disbursement"> | Date | string | null
   status?: Prisma.StringNullableFilter<"Disbursement"> | string | null
   isActive?: Prisma.BoolFilter<"Disbursement"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
@@ -316,6 +336,8 @@ export type DisbursementOrderByWithAggregationInput = {
   year?: Prisma.SortOrder
   percentageParticipation?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -338,6 +360,8 @@ export type DisbursementScalarWhereWithAggregatesInput = {
   year?: Prisma.IntWithAggregatesFilter<"Disbursement"> | number
   percentageParticipation?: Prisma.DecimalNullableWithAggregatesFilter<"Disbursement"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Disbursement"> | Date | string | null
+  fechaInicio?: Prisma.DateTimeNullableWithAggregatesFilter<"Disbursement"> | Date | string | null
+  fechaFin?: Prisma.DateTimeNullableWithAggregatesFilter<"Disbursement"> | Date | string | null
   status?: Prisma.StringNullableWithAggregatesFilter<"Disbursement"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Disbursement"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Disbursement"> | Date | string
@@ -352,6 +376,8 @@ export type DisbursementCreateInput = {
   year: number
   percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   status?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -367,6 +393,8 @@ export type DisbursementUncheckedCreateInput = {
   year: number
   percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   status?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -382,6 +410,8 @@ export type DisbursementUpdateInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -397,6 +427,8 @@ export type DisbursementUncheckedUpdateInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -412,6 +444,8 @@ export type DisbursementCreateManyInput = {
   year: number
   percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   status?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -426,6 +460,8 @@ export type DisbursementUpdateManyMutationInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -440,6 +476,8 @@ export type DisbursementUncheckedUpdateManyInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -459,6 +497,8 @@ export type DisbursementCountOrderByAggregateInput = {
   year?: Prisma.SortOrder
   percentageParticipation?: Prisma.SortOrder
   disbursementDate?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrder
+  fechaFin?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -479,6 +519,8 @@ export type DisbursementMaxOrderByAggregateInput = {
   year?: Prisma.SortOrder
   percentageParticipation?: Prisma.SortOrder
   disbursementDate?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrder
+  fechaFin?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -493,6 +535,8 @@ export type DisbursementMinOrderByAggregateInput = {
   year?: Prisma.SortOrder
   percentageParticipation?: Prisma.SortOrder
   disbursementDate?: Prisma.SortOrder
+  fechaInicio?: Prisma.SortOrder
+  fechaFin?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -529,6 +573,8 @@ export type DisbursementCreateWithoutEventsInput = {
   year: number
   percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   status?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -543,6 +589,8 @@ export type DisbursementUncheckedCreateWithoutEventsInput = {
   year: number
   percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Date | string | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
   status?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -573,6 +621,8 @@ export type DisbursementUpdateWithoutEventsInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -587,6 +637,8 @@ export type DisbursementUncheckedUpdateWithoutEventsInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -632,6 +684,8 @@ export type DisbursementSelect<ExtArgs extends runtime.Types.Extensions.Internal
   year?: boolean
   percentageParticipation?: boolean
   disbursementDate?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   status?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -648,6 +702,8 @@ export type DisbursementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   year?: boolean
   percentageParticipation?: boolean
   disbursementDate?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   status?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -662,6 +718,8 @@ export type DisbursementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   year?: boolean
   percentageParticipation?: boolean
   disbursementDate?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   status?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -676,13 +734,15 @@ export type DisbursementSelectScalar = {
   year?: boolean
   percentageParticipation?: boolean
   disbursementDate?: boolean
+  fechaInicio?: boolean
+  fechaFin?: boolean
   status?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type DisbursementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "amount" | "year" | "percentageParticipation" | "disbursementDate" | "status" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["disbursement"]>
+export type DisbursementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "amount" | "year" | "percentageParticipation" | "disbursementDate" | "fechaInicio" | "fechaFin" | "status" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["disbursement"]>
 export type DisbursementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | Prisma.Disbursement$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.DisbursementCountOutputTypeDefaultArgs<ExtArgs>
@@ -703,6 +763,8 @@ export type $DisbursementPayload<ExtArgs extends runtime.Types.Extensions.Intern
     year: number
     percentageParticipation: runtime.Decimal | null
     disbursementDate: Date | null
+    fechaInicio: Date | null
+    fechaFin: Date | null
     status: string | null
     isActive: boolean
     createdAt: Date
@@ -1138,6 +1200,8 @@ export interface DisbursementFieldRefs {
   readonly year: Prisma.FieldRef<"Disbursement", 'Int'>
   readonly percentageParticipation: Prisma.FieldRef<"Disbursement", 'Decimal'>
   readonly disbursementDate: Prisma.FieldRef<"Disbursement", 'DateTime'>
+  readonly fechaInicio: Prisma.FieldRef<"Disbursement", 'DateTime'>
+  readonly fechaFin: Prisma.FieldRef<"Disbursement", 'DateTime'>
   readonly status: Prisma.FieldRef<"Disbursement", 'String'>
   readonly isActive: Prisma.FieldRef<"Disbursement", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Disbursement", 'DateTime'>

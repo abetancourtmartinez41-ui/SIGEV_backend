@@ -403,7 +403,10 @@ export const ModelName = {
   Item: 'Item',
   Attachment: 'Attachment',
   Parameter: 'Parameter',
+  ParameterVersion: 'ParameterVersion',
   Ally: 'Ally',
+  Quotation: 'Quotation',
+  QuotationItem: 'QuotationItem',
   Disbursement: 'Disbursement',
   Tariff: 'Tariff',
   AuditLog: 'AuditLog',
@@ -423,7 +426,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "event" | "item" | "attachment" | "parameter" | "ally" | "disbursement" | "tariff" | "auditLog" | "municipality"
+    modelProps: "user" | "role" | "event" | "item" | "attachment" | "parameter" | "parameterVersion" | "ally" | "quotation" | "quotationItem" | "disbursement" | "tariff" | "auditLog" | "municipality"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -871,6 +874,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ParameterVersion: {
+      payload: Prisma.$ParameterVersionPayload<ExtArgs>
+      fields: Prisma.ParameterVersionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ParameterVersionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ParameterVersionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>
+        }
+        findFirst: {
+          args: Prisma.ParameterVersionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ParameterVersionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>
+        }
+        findMany: {
+          args: Prisma.ParameterVersionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>[]
+        }
+        create: {
+          args: Prisma.ParameterVersionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>
+        }
+        createMany: {
+          args: Prisma.ParameterVersionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ParameterVersionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>[]
+        }
+        delete: {
+          args: Prisma.ParameterVersionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>
+        }
+        update: {
+          args: Prisma.ParameterVersionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ParameterVersionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ParameterVersionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ParameterVersionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ParameterVersionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParameterVersionPayload>
+        }
+        aggregate: {
+          args: Prisma.ParameterVersionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateParameterVersion>
+        }
+        groupBy: {
+          args: Prisma.ParameterVersionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ParameterVersionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ParameterVersionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ParameterVersionCountAggregateOutputType> | number
+        }
+      }
+    }
     Ally: {
       payload: Prisma.$AllyPayload<ExtArgs>
       fields: Prisma.AllyFieldRefs
@@ -942,6 +1019,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AllyCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AllyCountAggregateOutputType> | number
+        }
+      }
+    }
+    Quotation: {
+      payload: Prisma.$QuotationPayload<ExtArgs>
+      fields: Prisma.QuotationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QuotationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QuotationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        findFirst: {
+          args: Prisma.QuotationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QuotationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        findMany: {
+          args: Prisma.QuotationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        create: {
+          args: Prisma.QuotationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        createMany: {
+          args: Prisma.QuotationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QuotationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        delete: {
+          args: Prisma.QuotationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        update: {
+          args: Prisma.QuotationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        deleteMany: {
+          args: Prisma.QuotationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QuotationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QuotationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        upsert: {
+          args: Prisma.QuotationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        aggregate: {
+          args: Prisma.QuotationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuotation>
+        }
+        groupBy: {
+          args: Prisma.QuotationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QuotationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationCountAggregateOutputType> | number
+        }
+      }
+    }
+    QuotationItem: {
+      payload: Prisma.$QuotationItemPayload<ExtArgs>
+      fields: Prisma.QuotationItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QuotationItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QuotationItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        findFirst: {
+          args: Prisma.QuotationItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QuotationItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        findMany: {
+          args: Prisma.QuotationItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+        }
+        create: {
+          args: Prisma.QuotationItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        createMany: {
+          args: Prisma.QuotationItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QuotationItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+        }
+        delete: {
+          args: Prisma.QuotationItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        update: {
+          args: Prisma.QuotationItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.QuotationItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QuotationItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QuotationItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.QuotationItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+        }
+        aggregate: {
+          args: Prisma.QuotationItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuotationItem>
+        }
+        groupBy: {
+          args: Prisma.QuotationItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QuotationItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationItemCountAggregateOutputType> | number
         }
       }
     }
@@ -1314,6 +1539,7 @@ export const EventScalarFieldEnum = {
   status: 'status',
   observation: 'observation',
   authorizeException: 'authorizeException',
+  devolucionLegalizacion: 'devolucionLegalizacion',
   startDate: 'startDate',
   endDate: 'endDate',
   dependency: 'dependency',
@@ -1328,6 +1554,9 @@ export const EventScalarFieldEnum = {
   generalAllyId: 'generalAllyId',
   disbursementId: 'disbursementId',
   createdById: 'createdById',
+  cotizacionSeleccionadaId: 'cotizacionSeleccionadaId',
+  deletedAt: 'deletedAt',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1391,8 +1620,29 @@ export const ParameterScalarFieldEnum = {
 export type ParameterScalarFieldEnum = (typeof ParameterScalarFieldEnum)[keyof typeof ParameterScalarFieldEnum]
 
 
+export const ParameterVersionScalarFieldEnum = {
+  id: 'id',
+  version: 'version',
+  ivaRate: 'ivaRate',
+  impuestoConsumoRate: 'impuestoConsumoRate',
+  feeTarifadoRate: 'feeTarifadoRate',
+  feeTercerosRate: 'feeTercerosRate',
+  ivaFeeRate: 'ivaFeeRate',
+  applyFeeOnBase: 'applyFeeOnBase',
+  aprobadoPor: 'aprobadoPor',
+  fechaInicio: 'fechaInicio',
+  fechaFin: 'fechaFin',
+  isActive: 'isActive',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type ParameterVersionScalarFieldEnum = (typeof ParameterVersionScalarFieldEnum)[keyof typeof ParameterVersionScalarFieldEnum]
+
+
 export const AllyScalarFieldEnum = {
   id: 'id',
+  code: 'code',
   name: 'name',
   color: 'color',
   document: 'document',
@@ -1406,6 +1656,56 @@ export const AllyScalarFieldEnum = {
 export type AllyScalarFieldEnum = (typeof AllyScalarFieldEnum)[keyof typeof AllyScalarFieldEnum]
 
 
+export const QuotationScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  cliente: 'cliente',
+  eventId: 'eventId',
+  allyId: 'allyId',
+  amount: 'amount',
+  currency: 'currency',
+  quotationDate: 'quotationDate',
+  validityDays: 'validityDays',
+  status: 'status',
+  isDefinitive: 'isDefinitive',
+  observations: 'observations',
+  createdById: 'createdById',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
+
+
+export const QuotationItemScalarFieldEnum = {
+  id: 'id',
+  quotationId: 'quotationId',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  ivaRate: 'ivaRate',
+  ivaValue: 'ivaValue',
+  consumptionTaxRate: 'consumptionTaxRate',
+  consumptionTaxValue: 'consumptionTaxValue',
+  feeRate: 'feeRate',
+  feeValue: 'feeValue',
+  feeIvaRate: 'feeIvaRate',
+  feeIvaValue: 'feeIvaValue',
+  totalValue: 'totalValue',
+  allyId: 'allyId',
+  tariffId: 'tariffId',
+  isTariffed: 'isTariffed',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
 export const DisbursementScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -1414,6 +1714,8 @@ export const DisbursementScalarFieldEnum = {
   year: 'year',
   percentageParticipation: 'percentageParticipation',
   disbursementDate: 'disbursementDate',
+  fechaInicio: 'fechaInicio',
+  fechaFin: 'fechaFin',
   status: 'status',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -1437,6 +1739,8 @@ export const TariffScalarFieldEnum = {
   priceQuintaSexta: 'priceQuintaSexta',
   tariffType: 'tariffType',
   vigencyYear: 'vigencyYear',
+  fechaInicio: 'fechaInicio',
+  fechaFin: 'fechaFin',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1770,7 +2074,10 @@ export type GlobalOmitConfig = {
   item?: Prisma.ItemOmit
   attachment?: Prisma.AttachmentOmit
   parameter?: Prisma.ParameterOmit
+  parameterVersion?: Prisma.ParameterVersionOmit
   ally?: Prisma.AllyOmit
+  quotation?: Prisma.QuotationOmit
+  quotationItem?: Prisma.QuotationItemOmit
   disbursement?: Prisma.DisbursementOmit
   tariff?: Prisma.TariffOmit
   auditLog?: Prisma.AuditLogOmit

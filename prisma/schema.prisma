@@ -9,17 +9,19 @@ datasource db {
 }
 
 model User {
-  id                   String       @id @default(uuid()) @db.Uuid
-  document             String       @unique @db.VarChar(20)
-  fullName             String       @db.VarChar(50)
-  email                String       @unique @db.VarChar(100)
-  password             String       @db.VarChar(255)
-  isActive             Boolean      @default(true)
+  id                   String            @id @default(uuid()) @db.Uuid
+  document             String            @unique @db.VarChar(20)
+  fullName             String            @db.VarChar(50)
+  email                String            @unique @db.VarChar(100)
+  password             String            @db.VarChar(255)
+  isActive             Boolean           @default(true)
   roles                Role[]
-  createdEvents        Event[]      @relation("EventCreatedBy")
-  uploadedAttachments  Attachment[] @relation("AttachmentUploadedBy")
-  createdAt            DateTime     @default(now()) @db.Timestamptz
-  updatedAt            DateTime     @updatedAt @db.Timestamptz
+  createdEvents        Event[]           @relation("EventCreatedBy")
+  uploadedAttachments  Attachment[]      @relation("AttachmentUploadedBy")
+  quotations           Quotation[]       @relation("QuotationCreatedBy")
+  parameterVersions    ParameterVersion[] @relation("ParameterVersionCreatedBy")
+  createdAt            DateTime          @default(now()) @db.Timestamptz
+  updatedAt            DateTime          @updatedAt @db.Timestamptz
 
   @@map("users")
 }
@@ -41,9 +43,10 @@ model Event {
   schemaType           String       @default("cotizacion") @db.VarChar(20)
   name                 String       @db.VarChar(200)
   description          String?      @db.Text
-  status               String       @default("Postulado") @db.VarChar(20)
+  status               String       @default("Abierto") @db.VarChar(20)
   observation          String?      @db.Text
   authorizeException   Boolean      @default(false)
+  devolucionLegalizacion Boolean  @default(false)
   startDate            DateTime?    @db.Date
   endDate              DateTime?    @db.Date
   dependency           String?      @db.VarChar(100)
@@ -62,6 +65,11 @@ model Event {
   createdBy            User         @relation("EventCreatedBy", fields: [createdById], references: [id])
   items                Item[]
   attachments          Attachment[]
+  quotations           Quotation[]
+  cotizacionSeleccionadaId String?  @unique @db.Uuid
+  selectedQuotation    Quotation?   @relation("EventSelectedQuotation", fields: [cotizacionSeleccionadaId], references: [id])
+  deletedAt            DateTime?    @db.Timestamptz
+  isActive             Boolean      @default(true)
   createdAt            DateTime     @default(now()) @db.Timestamptz
   updatedAt            DateTime     @updatedAt @db.Timestamptz
 
@@ -126,18 +134,99 @@ model Parameter {
   @@map("parameters")
 }
 
+model ParameterVersion {
+  id                  String    @id @default(uuid()) @db.Uuid
+  version             Int
+  ivaRate             Decimal   @db.Decimal(15, 4)
+  impuestoConsumoRate Decimal   @db.Decimal(15, 4)
+  feeTarifadoRate     Decimal   @db.Decimal(15, 4)
+  feeTercerosRate     Decimal   @db.Decimal(15, 4)
+  ivaFeeRate          Decimal   @db.Decimal(15, 4)
+  applyFeeOnBase      Boolean   @default(true)
+  aprobadoPor         String    @db.VarChar(100)
+  fechaInicio         DateTime? @db.Date
+  fechaFin            DateTime? @db.Date
+  isActive            Boolean   @default(false)
+  createdById         String    @db.Uuid
+  createdBy           User      @relation("ParameterVersionCreatedBy", fields: [createdById], references: [id])
+  createdAt           DateTime  @default(now()) @db.Timestamptz
+
+  @@map("parameter_versions")
+}
+
 model Ally {
   id           String   @id @default(uuid()) @db.Uuid
+  code         String   @unique @db.VarChar(50)
   name         String   @unique @db.VarChar(100)
   color        String?  @db.VarChar(7)
   document     String?  @db.VarChar(20)
   contactName  String?  @db.VarChar(100)
   contactEmail String?  @db.VarChar(100)
   isActive     Boolean  @default(true)
+  quotations   Quotation[]
+  quotationItems QuotationItem[]
   createdAt    DateTime @default(now()) @db.Timestamptz
   updatedAt    DateTime @updatedAt @db.Timestamptz
 
   @@map("allies")
+}
+
+model Quotation {
+  id            String          @id @default(uuid()) @db.Uuid
+  code          String          @db.VarChar(50)
+  name          String          @db.VarChar(200)
+  description   String?         @db.Text
+  cliente       String?         @db.VarChar(200)
+  eventId       String          @db.Uuid
+  allyId        String?         @db.Uuid
+  amount        Decimal         @db.Decimal(15, 2)
+  currency      String          @default("COP") @db.VarChar(3)
+  quotationDate DateTime?       @db.Date
+  validityDays  Int?
+  status        String          @default("Borrador") @db.VarChar(20)
+  isDefinitive  Boolean         @default(false)
+  observations  String?         @db.Text
+  createdById   String          @db.Uuid
+  isActive      Boolean         @default(true)
+  items         QuotationItem[]
+  createdAt     DateTime        @default(now()) @db.Timestamptz
+  updatedAt     DateTime        @updatedAt @db.Timestamptz
+
+  event            Event  @relation(fields: [eventId], references: [id])
+  ally             Ally?  @relation(fields: [allyId], references: [id])
+  createdBy        User   @relation("QuotationCreatedBy", fields: [createdById], references: [id])
+  selectedForEvent Event? @relation("EventSelectedQuotation")
+
+  @@map("quotations")
+}
+
+model QuotationItem {
+  id                  String    @id @default(uuid()) @db.Uuid
+  quotationId         String    @db.Uuid
+  description         String    @db.Text
+  quantity            Int
+  unitPrice           Decimal   @db.Decimal(15, 2)
+  ivaRate             Decimal   @default(0) @db.Decimal(15, 2)
+  ivaValue            Decimal   @default(0) @db.Decimal(15, 2)
+  consumptionTaxRate  Decimal   @default(0) @db.Decimal(15, 2)
+  consumptionTaxValue Decimal   @default(0) @db.Decimal(15, 2)
+  feeRate             Decimal   @default(0) @db.Decimal(15, 2)
+  feeValue            Decimal   @default(0) @db.Decimal(15, 2)
+  feeIvaRate          Decimal   @default(0) @db.Decimal(15, 2)
+  feeIvaValue         Decimal   @default(0) @db.Decimal(15, 2)
+  totalValue          Decimal   @default(0) @db.Decimal(15, 2)
+  allyId              String?   @db.Uuid
+  tariffId            String?   @db.Uuid
+  isTariffed          Boolean   @default(true)
+  quotation           Quotation @relation(fields: [quotationId], references: [id])
+  ally                Ally?     @relation(fields: [allyId], references: [id])
+  tariff              Tariff?   @relation(fields: [tariffId], references: [id])
+  isActive            Boolean   @default(true)
+  createdAt           DateTime  @default(now()) @db.Timestamptz
+  updatedAt           DateTime  @updatedAt @db.Timestamptz
+
+  @@map("quotation_items")
+  @@index([quotationId])
 }
 
 model Disbursement {
@@ -148,6 +237,8 @@ model Disbursement {
   year                    Int
   percentageParticipation Decimal?  @db.Decimal(5, 2)
   disbursementDate        DateTime? @db.Date
+  fechaInicio             DateTime? @db.Date
+  fechaFin                DateTime? @db.Date
   status                  String?   @db.VarChar(50)
   isActive                Boolean   @default(true)
   events                  Event[] @relation("DisbursementEvents")
@@ -171,8 +262,11 @@ model Tariff {
   priceQuintaSexta     Decimal? @db.Decimal(15, 2)
   tariffType           String   @default("TARIFADO") @db.VarChar(20)
   vigencyYear          Int      @default(2026)
+  fechaInicio          DateTime? @db.Date
+  fechaFin             DateTime? @db.Date
   isActive             Boolean  @default(true)
   items                Item[]
+  quotationItems       QuotationItem[]
   createdAt            DateTime @default(now()) @db.Timestamptz
   updatedAt            DateTime @updatedAt @db.Timestamptz
 
