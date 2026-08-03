@@ -2,6 +2,11 @@ import { IsString, IsOptional, MinLength } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateAllyDto {
+  @ApiProperty({ example: 'ALY-001' })
+  @IsString()
+  @MinLength(2)
+  code: string;
+
   @ApiProperty({ example: 'Aliado Ejemplo SAS' })
   @IsString()
   @MinLength(3)

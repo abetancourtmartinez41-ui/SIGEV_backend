@@ -1,8 +1,15 @@
 import {
-  IsString, IsNumber, IsOptional, IsIn, IsInt, Min, MinLength, Max,
+  IsString, IsNumber, IsOptional, IsIn, IsInt, IsDate, Min, MinLength, Max,
 } from 'class-validator';
+import { Transform } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { DEFAULT_VIGENCY_YEAR, TARIFF_TYPES } from '../../../config/constants';
+
+const toOptionalDate = ({ value }: { value: unknown }): unknown => {
+  if (value === '' || value === null || value === undefined) return undefined;
+  const date = new Date(value as string);
+  return Number.isNaN(date.getTime()) ? undefined : date;
+};
 
 export class CreateTariffDto {
   @ApiPropertyOptional({ example: 'ALM-D-001' })
@@ -69,4 +76,16 @@ export class CreateTariffDto {
   @Min(2000)
   @Max(2100)
   vigencyYear?: number;
+
+  @ApiPropertyOptional({ type: String, format: 'date', example: '2026-01-01' })
+  @IsOptional()
+  @IsDate()
+  @Transform(toOptionalDate)
+  fechaInicio?: Date;
+
+  @ApiPropertyOptional({ type: String, format: 'date', example: '2026-12-31' })
+  @IsOptional()
+  @IsDate()
+  @Transform(toOptionalDate)
+  fechaFin?: Date;
 }

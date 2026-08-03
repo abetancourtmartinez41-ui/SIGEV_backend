@@ -74,6 +74,7 @@ export class TariffsService {
   }
 
   async create(dto: CreateTariffDto): Promise<Tariff> {
+    const year = dto.vigencyYear ?? this.defaultVigencyYear;
     const data = {
       code: dto.code,
       name: dto.name,
@@ -86,7 +87,9 @@ export class TariffsService {
       priceSegundaCuarta: dto.priceSegundaCuarta,
       priceQuintaSexta: dto.priceQuintaSexta,
       tariffType: dto.tariffType ?? TARIFF_TYPES.TARIFADO,
-      vigencyYear: dto.vigencyYear ?? this.defaultVigencyYear,
+      vigencyYear: year,
+      fechaInicio: dto.fechaInicio ?? new Date(year, 0, 1),
+      fechaFin: dto.fechaFin ?? new Date(year, 11, 31),
     };
 
     return this.prisma.tariff.create({ data });
@@ -106,6 +109,7 @@ export class TariffsService {
     tariffId: string,
     municipalityCategory: string | null | undefined,
     vigencyYear?: number,
+    referenceDate?: Date | null,
   ): Promise<Decimal | null> {
     const tariff = await this.prisma.tariff.findUnique({ where: { id: tariffId } });
     if (!tariff) throw new NotFoundException('Servicio del tarifario no encontrado');
@@ -125,6 +129,8 @@ export class TariffsService {
       );
     }
 
+    this.assertValidForDate(tariff, referenceDate);
+
     const column = this.getPriceColumnForCategory(municipalityCategory);
     if (!column) {
       throw new BadRequestException('No se puede determinar el precio para la categoría del municipio');
@@ -143,17 +149,44 @@ export class TariffsService {
     tariffId: string,
     municipalityCategory: string | null | undefined,
     vigencyYear?: number,
+    referenceDate?: Date | null,
   ): Promise<{ name: string; description: string | null; unitMeasure: string | null; unitPrice: Decimal }> {
     const tariff = await this.prisma.tariff.findUnique({ where: { id: tariffId } });
     if (!tariff) throw new NotFoundException('Servicio del tarifario no encontrado');
 
-    const unitPrice = await this.resolveUnitPrice(tariffId, municipalityCategory, vigencyYear);
+    const unitPrice = await this.resolveUnitPrice(
+      tariffId,
+      municipalityCategory,
+      vigencyYear,
+      referenceDate,
+    );
     return {
       name: tariff.name,
       description: tariff.description,
       unitMeasure: tariff.unitMeasure,
       unitPrice: unitPrice as Decimal,
     };
+  }
+
+  private assertValidForDate(
+    tariff: Tariff,
+    referenceDate?: Date | null,
+  ): void {
+    if (!referenceDate || !tariff.fechaInicio || !tariff.fechaFin) return;
+    const toDay = (value: Date): number => Date.UTC(
+      value.getUTCFullYear(),
+      value.getUTCMonth(),
+      value.getUTCDate(),
+    );
+    const reference = toDay(referenceDate);
+    const start = toDay(tariff.fechaInicio);
+    const end = toDay(tariff.fechaFin);
+    if (reference < start || reference > end) {
+      const fmt = (value: number): string => new Date(value).toISOString().slice(0, 10);
+      throw new BadRequestException(
+        `El servicio no está vigente para la fecha indicada (vigencia ${fmt(start)} a ${fmt(end)})`,
+      );
+    }
   }
 
   async adjustByIpc(dto: AdjustTariffDto): Promise<{ updated: number }> {
@@ -267,6 +300,8 @@ export class TariffsService {
           priceEspecialPrimera,
           priceSegundaCuarta,
           priceQuintaSexta,
+          fechaInicio: new Date(vigencyYear, 0, 1),
+          fechaFin: new Date(vigencyYear, 11, 31),
         };
 
         const existing = code

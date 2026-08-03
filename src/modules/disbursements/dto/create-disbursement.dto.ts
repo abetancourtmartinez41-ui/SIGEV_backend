@@ -44,6 +44,18 @@ export class CreateDisbursementDto {
   @Transform(toOptionalDate)
   disbursementDate?: Date;
 
+  @ApiPropertyOptional({ type: String, format: 'date', example: '2026-01-01' })
+  @IsOptional()
+  @IsDate()
+  @Transform(toOptionalDate)
+  fechaInicio?: Date;
+
+  @ApiPropertyOptional({ type: String, format: 'date', example: '2026-12-31' })
+  @IsOptional()
+  @IsDate()
+  @Transform(toOptionalDate)
+  fechaFin?: Date;
+
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
