@@ -36,6 +36,12 @@ CREATE TABLE "parameter_versions" (
   CONSTRAINT "parameter_versions_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+-- Usuario sistema para atribuir la versión inicial de parámetros
+-- (en una base nueva aún no existen usuarios cuando se ejecuta esta migración)
+INSERT INTO "users" ("id","document","fullName","email","password","isActive","createdAt","updatedAt")
+VALUES ('00000000-0000-0000-0000-000000000001','Sistema','Sistema SIGEV','sistema@sigev.com','',true,NOW(),NOW())
+ON CONFLICT ("id") DO NOTHING;
+
 INSERT INTO "parameter_versions" ("id","version","ivaRate","impuestoConsumoRate","feeTarifadoRate","feeTercerosRate","ivaFeeRate","applyFeeOnBase","aprobadoPor","fechaInicio","fechaFin","isActive","createdById","createdAt")
 SELECT
   gen_random_uuid(), 1,
@@ -45,5 +51,5 @@ SELECT
   COALESCE((SELECT "value"::DECIMAL FROM "parameters" WHERE "key" = 'FEE_RATE'), 0.0825),
   COALESCE((SELECT "value"::DECIMAL FROM "parameters" WHERE "key" = 'FEE_IVA_RATE'), 0.19),
   true, 'Sistema', NULL, NULL, true,
-  (SELECT "id" FROM "users" ORDER BY "createdAt" LIMIT 1),
+  '00000000-0000-0000-0000-000000000001',
   NOW();
