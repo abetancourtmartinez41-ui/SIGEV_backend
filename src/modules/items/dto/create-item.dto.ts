@@ -24,6 +24,14 @@ export class CreateItemDto {
   @IsString()
   description?: string;
 
+  @ApiPropertyOptional({
+    example: 'Unidad',
+    description: 'Unidad de medida del servicio (Unidad, día, trayecto, etc.)',
+  })
+  @IsOptional()
+  @IsString()
+  unitMeasure?: string;
+
   @ApiProperty({ example: 10 })
   @IsNumber()
   @Min(1)

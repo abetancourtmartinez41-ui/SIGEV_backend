@@ -275,7 +275,7 @@ export class EventsService {
     const event = await this.findOne(id);
     const roles = this.roleNames(user.roles);
 
-    const quotationsCount = event.attachments?.length || 0;
+    const quotationsCount = event.quotations?.length || 0;
     const itemsCount = event.items?.length || 0;
     EventStateMachine.canTransition(event.status, dto.status, roles, {
       quotationsCount,

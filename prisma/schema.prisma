@@ -81,6 +81,7 @@ model Item {
   id                  String   @id @default(uuid()) @db.Uuid
   name                String   @db.VarChar(100)
   description         String?  @db.Text
+  unitMeasure         String?  @db.VarChar(50)
   quantity            Int
   unitPrice           Decimal  @db.Decimal(15, 2)
   baseValue           Decimal  @db.Decimal(15, 2)

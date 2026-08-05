@@ -27,12 +27,14 @@ export class ItemsService {
   ): Promise<{
     name: string;
     description?: string;
+    unitMeasure?: string;
     unitPrice: number;
     isTariffed: boolean;
     tariffId?: string;
   }> {
     let name = dto.name;
     let description = dto.description;
+    let unitMeasure: string | undefined;
     let unitPrice = dto.unitPrice ?? 0;
     let isTariffed = dto.isTariffed ?? false;
     let tariffId = dto.tariffId;
@@ -49,18 +51,15 @@ export class ItemsService {
       if (!description) {
         description = resolved.description ?? undefined;
       }
+      unitMeasure = resolved.unitMeasure ?? undefined;
       isTariffed = true;
-    } else if (dto.unitPrice === undefined) {
-      throw new BadRequestException(
-        'Los servicios NO_TARIFADO requieren un valor unitario manual',
-      );
     }
 
     if (!name) {
       throw new BadRequestException('El ítem requiere un nombre o un servicio del tarifario');
     }
 
-    return { name, description, unitPrice, isTariffed, tariffId };
+    return { name, description, unitMeasure, unitPrice, isTariffed, tariffId };
   }
 
   async buildItemData(
@@ -84,6 +83,7 @@ export class ItemsService {
     });
     return {
       ...calculated,
+      unitMeasure: dto.unitMeasure ?? resolved.unitMeasure,
       isTariffed: resolved.isTariffed,
       eventId: event.id,
     } as Prisma.ItemUncheckedCreateInput;
