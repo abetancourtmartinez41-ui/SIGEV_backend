@@ -88,6 +88,8 @@ export class MapService {
           responsable: string;
           estado: string;
           total: number;
+          lat?: number;
+          lng?: number;
         }>;
       }
     > = {};
@@ -122,6 +124,14 @@ export class MapService {
         responsable: event.name,
         estado: event.status,
         total: eventTotal,
+        lat:
+          event.latitude !== null && event.longitude !== null
+            ? Number(event.latitude)
+            : undefined,
+        lng:
+          event.latitude !== null && event.longitude !== null
+            ? Number(event.longitude)
+            : undefined,
       });
       grouped[code].totalEventos += 1;
       grouped[code].totalValor += eventTotal;
