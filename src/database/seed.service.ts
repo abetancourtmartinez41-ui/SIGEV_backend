@@ -111,7 +111,7 @@ export class SeedService implements OnApplicationBootstrap {
       console.log('[Seed] Usuario Administrador ya existe');
     }
 
-    const adminRoles = [ROLES.TECHNICAL_ADMIN, ROLES.FUNCTIONAL_ADMIN];
+    const adminRoles = [ROLES.TECHNICAL_ADMIN];
     const missingRoles = adminRoles.filter(
       (role) => !user.roles.some((assigned) => assigned.name === role),
     );
