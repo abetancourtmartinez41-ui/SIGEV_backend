@@ -79,7 +79,7 @@ model Event {
 
 model Item {
   id                  String   @id @default(uuid()) @db.Uuid
-  name                String   @db.VarChar(100)
+  name                String   @db.VarChar(10000)
   description         String?  @db.Text
   unitMeasure         String?  @db.VarChar(50)
   quantity            Int

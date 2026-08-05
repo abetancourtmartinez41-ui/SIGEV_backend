@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "items" ADD COLUMN     "unitMeasure" VARCHAR(50),
+ALTER COLUMN "name" SET DATA TYPE VARCHAR(200);
