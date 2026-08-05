@@ -23,7 +23,7 @@ export class UsersService {
     if (existing) {
       throw new ConflictException(
         existing.document === dto.document
-          ? 'El documento ya está registrado'
+          ? 'El identificador ya está registrado'
           : 'El email ya está registrado',
       );
     }
