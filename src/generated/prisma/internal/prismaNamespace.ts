@@ -1568,6 +1568,7 @@ export const ItemScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
+  unitMeasure: 'unitMeasure',
   quantity: 'quantity',
   unitPrice: 'unitPrice',
   baseValue: 'baseValue',
