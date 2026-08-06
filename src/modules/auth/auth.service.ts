@@ -14,7 +14,7 @@ export class AuthService {
 
   async login(dto: LoginDto): Promise<{ accessToken: string; user: Partial<UserWithRoles> }> {
     const user = await this.prisma.user.findFirst({
-      where: { document: dto.document, isActive: true },
+      where: { document: { equals: dto.document, mode: 'insensitive' }, isActive: true },
       include: { roles: true, ally: true },
     });
 
