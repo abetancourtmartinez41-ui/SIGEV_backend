@@ -224,6 +224,7 @@ export type AllyWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
   quotations?: Prisma.QuotationListRelationFilter
   quotationItems?: Prisma.QuotationItemListRelationFilter
+  users?: Prisma.UserListRelationFilter
 }
 
 export type AllyOrderByWithRelationInput = {
@@ -239,6 +240,7 @@ export type AllyOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   quotations?: Prisma.QuotationOrderByRelationAggregateInput
   quotationItems?: Prisma.QuotationItemOrderByRelationAggregateInput
+  users?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type AllyWhereUniqueInput = Prisma.AtLeast<{
@@ -257,6 +259,7 @@ export type AllyWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
   quotations?: Prisma.QuotationListRelationFilter
   quotationItems?: Prisma.QuotationItemListRelationFilter
+  users?: Prisma.UserListRelationFilter
 }, "id" | "code" | "name">
 
 export type AllyOrderByWithAggregationInput = {
@@ -304,6 +307,7 @@ export type AllyCreateInput = {
   updatedAt?: Date | string
   quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
   quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserCreateNestedManyWithoutAllyInput
 }
 
 export type AllyUncheckedCreateInput = {
@@ -319,6 +323,7 @@ export type AllyUncheckedCreateInput = {
   updatedAt?: Date | string
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
   quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
 }
 
 export type AllyUpdateInput = {
@@ -334,6 +339,7 @@ export type AllyUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
   quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUpdateManyWithoutAllyNestedInput
 }
 
 export type AllyUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type AllyUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
   quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
 }
 
 export type AllyCreateManyInput = {
@@ -390,6 +397,11 @@ export type AllyUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type AllyNullableScalarRelationFilter = {
+  is?: Prisma.AllyWhereInput | null
+  isNot?: Prisma.AllyWhereInput | null
+}
+
 export type AllyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
@@ -429,9 +441,20 @@ export type AllyMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type AllyNullableScalarRelationFilter = {
-  is?: Prisma.AllyWhereInput | null
-  isNot?: Prisma.AllyWhereInput | null
+export type AllyCreateNestedOneWithoutUsersInput = {
+  create?: Prisma.XOR<Prisma.AllyCreateWithoutUsersInput, Prisma.AllyUncheckedCreateWithoutUsersInput>
+  connectOrCreate?: Prisma.AllyCreateOrConnectWithoutUsersInput
+  connect?: Prisma.AllyWhereUniqueInput
+}
+
+export type AllyUpdateOneWithoutUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.AllyCreateWithoutUsersInput, Prisma.AllyUncheckedCreateWithoutUsersInput>
+  connectOrCreate?: Prisma.AllyCreateOrConnectWithoutUsersInput
+  upsert?: Prisma.AllyUpsertWithoutUsersInput
+  disconnect?: Prisma.AllyWhereInput | boolean
+  delete?: Prisma.AllyWhereInput | boolean
+  connect?: Prisma.AllyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AllyUpdateToOneWithWhereWithoutUsersInput, Prisma.AllyUpdateWithoutUsersInput>, Prisma.AllyUncheckedUpdateWithoutUsersInput>
 }
 
 export type AllyCreateNestedOneWithoutQuotationsInput = {
@@ -466,6 +489,82 @@ export type AllyUpdateOneWithoutQuotationItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AllyUpdateToOneWithWhereWithoutQuotationItemsInput, Prisma.AllyUpdateWithoutQuotationItemsInput>, Prisma.AllyUncheckedUpdateWithoutQuotationItemsInput>
 }
 
+export type AllyCreateWithoutUsersInput = {
+  id?: string
+  code: string
+  name: string
+  color?: string | null
+  document?: string | null
+  contactName?: string | null
+  contactEmail?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+}
+
+export type AllyUncheckedCreateWithoutUsersInput = {
+  id?: string
+  code: string
+  name: string
+  color?: string | null
+  document?: string | null
+  contactName?: string | null
+  contactEmail?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+}
+
+export type AllyCreateOrConnectWithoutUsersInput = {
+  where: Prisma.AllyWhereUniqueInput
+  create: Prisma.XOR<Prisma.AllyCreateWithoutUsersInput, Prisma.AllyUncheckedCreateWithoutUsersInput>
+}
+
+export type AllyUpsertWithoutUsersInput = {
+  update: Prisma.XOR<Prisma.AllyUpdateWithoutUsersInput, Prisma.AllyUncheckedUpdateWithoutUsersInput>
+  create: Prisma.XOR<Prisma.AllyCreateWithoutUsersInput, Prisma.AllyUncheckedCreateWithoutUsersInput>
+  where?: Prisma.AllyWhereInput
+}
+
+export type AllyUpdateToOneWithWhereWithoutUsersInput = {
+  where?: Prisma.AllyWhereInput
+  data: Prisma.XOR<Prisma.AllyUpdateWithoutUsersInput, Prisma.AllyUncheckedUpdateWithoutUsersInput>
+}
+
+export type AllyUpdateWithoutUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+}
+
+export type AllyUncheckedUpdateWithoutUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+}
+
 export type AllyCreateWithoutQuotationsInput = {
   id?: string
   code: string
@@ -478,6 +577,7 @@ export type AllyCreateWithoutQuotationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserCreateNestedManyWithoutAllyInput
 }
 
 export type AllyUncheckedCreateWithoutQuotationsInput = {
@@ -492,6 +592,7 @@ export type AllyUncheckedCreateWithoutQuotationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
 }
 
 export type AllyCreateOrConnectWithoutQuotationsInput = {
@@ -522,6 +623,7 @@ export type AllyUpdateWithoutQuotationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUpdateManyWithoutAllyNestedInput
 }
 
 export type AllyUncheckedUpdateWithoutQuotationsInput = {
@@ -536,6 +638,7 @@ export type AllyUncheckedUpdateWithoutQuotationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
 }
 
 export type AllyCreateWithoutQuotationItemsInput = {
@@ -550,6 +653,7 @@ export type AllyCreateWithoutQuotationItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserCreateNestedManyWithoutAllyInput
 }
 
 export type AllyUncheckedCreateWithoutQuotationItemsInput = {
@@ -564,6 +668,7 @@ export type AllyUncheckedCreateWithoutQuotationItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
 }
 
 export type AllyCreateOrConnectWithoutQuotationItemsInput = {
@@ -594,6 +699,7 @@ export type AllyUpdateWithoutQuotationItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUpdateManyWithoutAllyNestedInput
 }
 
 export type AllyUncheckedUpdateWithoutQuotationItemsInput = {
@@ -608,6 +714,7 @@ export type AllyUncheckedUpdateWithoutQuotationItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
 }
 
 
@@ -618,11 +725,13 @@ export type AllyUncheckedUpdateWithoutQuotationItemsInput = {
 export type AllyCountOutputType = {
   quotations: number
   quotationItems: number
+  users: number
 }
 
 export type AllyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotations?: boolean | AllyCountOutputTypeCountQuotationsArgs
   quotationItems?: boolean | AllyCountOutputTypeCountQuotationItemsArgs
+  users?: boolean | AllyCountOutputTypeCountUsersArgs
 }
 
 /**
@@ -649,6 +758,13 @@ export type AllyCountOutputTypeCountQuotationItemsArgs<ExtArgs extends runtime.T
   where?: Prisma.QuotationItemWhereInput
 }
 
+/**
+ * AllyCountOutputType without action
+ */
+export type AllyCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserWhereInput
+}
+
 
 export type AllySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -663,6 +779,7 @@ export type AllySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   quotations?: boolean | Prisma.Ally$quotationsArgs<ExtArgs>
   quotationItems?: boolean | Prisma.Ally$quotationItemsArgs<ExtArgs>
+  users?: boolean | Prisma.Ally$usersArgs<ExtArgs>
   _count?: boolean | Prisma.AllyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ally"]>
 
@@ -709,6 +826,7 @@ export type AllyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type AllyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotations?: boolean | Prisma.Ally$quotationsArgs<ExtArgs>
   quotationItems?: boolean | Prisma.Ally$quotationItemsArgs<ExtArgs>
+  users?: boolean | Prisma.Ally$usersArgs<ExtArgs>
   _count?: boolean | Prisma.AllyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AllyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -719,6 +837,7 @@ export type $AllyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     quotations: Prisma.$QuotationPayload<ExtArgs>[]
     quotationItems: Prisma.$QuotationItemPayload<ExtArgs>[]
+    users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1127,6 +1246,7 @@ export interface Prisma__AllyClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   quotations<T extends Prisma.Ally$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotationItems<T extends Prisma.Ally$quotationItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$quotationItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  users<T extends Prisma.Ally$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1604,6 +1724,30 @@ export type Ally$quotationItemsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.QuotationItemScalarFieldEnum | Prisma.QuotationItemScalarFieldEnum[]
+}
+
+/**
+ * Ally.users
+ */
+export type Ally$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  cursor?: Prisma.UserWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**

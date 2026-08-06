@@ -100,6 +100,7 @@ export class AttachmentsController {
       buffer: file.buffer,
       uploadedById: user.id,
       uploadedByRoles: user.roles,
+      uploadedByAllyId: user.allyId,
     });
   }
 

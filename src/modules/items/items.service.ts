@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '../../generated/prisma/client';
 import { CreateItemDto, UpdateItemDto } from './dto';
 import { CalculationsService } from '../calculations/calculations.service';
 import { TariffsService } from '../tariffs/tariffs.service';
+import { ROLES } from '../../config/constants';
 
 type EventContext = { id: string; municipalityCategory: string | null; startDate?: Date | null };
 
@@ -14,6 +15,25 @@ export class ItemsService {
     private readonly calculationsService: CalculationsService,
     private readonly tariffsService: TariffsService,
   ) {}
+
+  private roleNames(roles: { name: string }[]): string[] {
+    return roles.map((role) => role.name);
+  }
+
+  private isOperator(user: { roles: { name: string }[] }): boolean {
+    return this.roleNames(user.roles).includes(ROLES.OPERATOR);
+  }
+
+  private assertAllyScope(
+    event: { generalAllyId: string | null },
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): void {
+    if (!this.isOperator(user)) return;
+    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
+    throw new ForbiddenException(
+      'Este evento pertenece a otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
+    );
+  }
 
   private async resolveItemValues(
     dto: {
@@ -89,12 +109,16 @@ export class ItemsService {
     } as Prisma.ItemUncheckedCreateInput;
   }
 
-  async create(dto: CreateItemDto): Promise<Prisma.ItemGetPayload<{}>> {
+  async create(
+    dto: CreateItemDto,
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): Promise<Prisma.ItemGetPayload<{}>> {
     if (!dto.eventId) {
       throw new BadRequestException('Debe especificar el evento al que pertenece el ítem');
     }
     const event = await this.prisma.event.findUnique({ where: { id: dto.eventId } });
     if (!event) throw new NotFoundException('Evento no encontrado');
+    this.assertAllyScope(event, user);
     const itemData = await this.buildItemData(dto, event);
     return this.prisma.item.create({ data: itemData });
   }
@@ -109,10 +133,15 @@ export class ItemsService {
     return item;
   }
 
-  async update(id: string, dto: UpdateItemDto): Promise<Prisma.ItemGetPayload<{}>> {
+  async update(
+    id: string,
+    dto: UpdateItemDto,
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): Promise<Prisma.ItemGetPayload<{}>> {
     const item = await this.findOne(id);
     const event = await this.prisma.event.findUnique({ where: { id: item.eventId } });
     if (!event) throw new NotFoundException('Evento no encontrado');
+    this.assertAllyScope(event, user);
 
     const merged: CreateItemDto = {
       ...item,
@@ -141,8 +170,14 @@ export class ItemsService {
     });
   }
 
-  async remove(id: string): Promise<void> {
-    await this.findOne(id);
+  async remove(
+    id: string,
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): Promise<void> {
+    const item = await this.findOne(id);
+    const event = await this.prisma.event.findUnique({ where: { id: item.eventId } });
+    if (!event) throw new NotFoundException('Evento no encontrado');
+    this.assertAllyScope(event, user);
     await this.prisma.item.update({
       where: { id },
       data: { isActive: false },

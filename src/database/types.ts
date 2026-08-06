@@ -1,6 +1,8 @@
 import { Prisma } from '../generated/prisma/client';
 
-export type UserWithRoles = Prisma.UserGetPayload<{ include: { roles: true } }>;
+export type UserWithRoles = Prisma.UserGetPayload<{
+  include: { roles: true; ally: true };
+}>;
 
 const eventRelationsInclude = {
   items: true,

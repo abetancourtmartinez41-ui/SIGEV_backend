@@ -5,6 +5,8 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { MapService } from './map.service';
 import { SearchMunicipalityDto, MunicipalityStatsDto } from './dto';
+import { CurrentUser } from '../../common/decorators';
+import { UserWithRoles } from '../../database/types';
 
 @ApiTags('Georreferenciación')
 @ApiBearerAuth()
@@ -14,9 +16,9 @@ export class MapController {
   constructor(private readonly mapService: MapService) {}
 
   @Get('municipality-stats')
-  @ApiOperation({ summary: 'Agregación de eventos por municipio (contador y total económico)' })
-  municipalityStats(@Query() dto: MunicipalityStatsDto) {
-    return this.mapService.municipalityStats(dto);
+  @ApiOperation({ summary: 'Agregación de eventos por municipio (el Operador solo ve los de su Aliado)' })
+  municipalityStats(@Query() dto: MunicipalityStatsDto, @CurrentUser() user: UserWithRoles) {
+    return this.mapService.municipalityStats(dto, user);
   }
 
   @Get('municipalities')

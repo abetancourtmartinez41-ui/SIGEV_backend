@@ -25,15 +25,15 @@ export class EventsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar eventos' })
-  findAll() {
-    return this.eventsService.findAll();
+  @ApiOperation({ summary: 'Listar eventos (el Operador solo ve los de su Aliado)' })
+  findAll(@CurrentUser() user: UserWithRoles) {
+    return this.eventsService.findAll(user);
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Obtener evento por ID' })
-  findOne(@Param('id') id: string) {
-    return this.eventsService.findOne(id);
+  findOne(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
+    return this.eventsService.findOne(id, user);
   }
 
   @Patch(':id')
@@ -73,7 +73,7 @@ export class EventsController {
   @Delete(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN)
   @ApiOperation({ summary: 'Eliminar evento (solo Admin. Funcional)' })
-  remove(@Param('id') id: string) {
-    return this.eventsService.remove(id);
+  remove(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
+    return this.eventsService.remove(id, user);
   }
 }

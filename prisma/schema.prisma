@@ -16,6 +16,8 @@ model User {
   password             String            @db.VarChar(255)
   isActive             Boolean           @default(true)
   roles                Role[]
+  allyId               String?           @db.Uuid
+  ally                 Ally?             @relation(fields: [allyId], references: [id])
   createdEvents        Event[]           @relation("EventCreatedBy")
   uploadedAttachments  Attachment[]      @relation("AttachmentUploadedBy")
   quotations           Quotation[]       @relation("QuotationCreatedBy")
@@ -166,6 +168,7 @@ model Ally {
   isActive     Boolean  @default(true)
   quotations   Quotation[]
   quotationItems QuotationItem[]
+  users        User[]
   createdAt    DateTime @default(now()) @db.Timestamptz
   updatedAt    DateTime @updatedAt @db.Timestamptz
 

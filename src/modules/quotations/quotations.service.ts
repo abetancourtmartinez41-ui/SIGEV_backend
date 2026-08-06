@@ -43,6 +43,21 @@ export class QuotationsService {
     return roles.map((role) => role.name);
   }
 
+  private isOperator(user: { roles: { name: string }[] }): boolean {
+    return this.roleNames(user.roles).includes(ROLES.OPERATOR);
+  }
+
+  private assertAllyScope(
+    event: { generalAllyId: string | null },
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): void {
+    if (!this.isOperator(user)) return;
+    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
+    throw new ForbiddenException(
+      'Esta oferta pertenece a un evento de otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
+    );
+  }
+
   private async resolveItemValues(
     dto: {
       description?: string;
@@ -140,6 +155,7 @@ export class QuotationsService {
 
   async create(dto: CreateQuotationDto, user: UserWithRoles): Promise<QuotationWithRelations> {
     const event = await this.resolveEvent(dto.eventId);
+    this.assertAllyScope(event, user);
     const code = dto.code?.trim() || (await this.generateCode(event));
 
     const itemData: Omit<Prisma.QuotationItemUncheckedCreateInput, 'quotationId'>[] = [];
@@ -177,9 +193,17 @@ export class QuotationsService {
     return this.findOne(saved.id);
   }
 
-  async findAll(): Promise<QuotationWithRelations[]> {
+  async findAll(user?: { allyId?: string | null; roles: { name: string }[] }): Promise<QuotationWithRelations[]> {
+    const where: Prisma.QuotationWhereInput = { isActive: true };
+    if (user && this.isOperator(user)) {
+      if (user.allyId) {
+        where.event = { generalAllyId: user.allyId };
+      } else {
+        where.id = { in: [] };
+      }
+    }
     return this.prisma.quotation.findMany({
-      where: { isActive: true },
+      where,
       include: quotationInclude,
       orderBy: { createdAt: 'desc' },
     });
@@ -194,9 +218,14 @@ export class QuotationsService {
     return quotation;
   }
 
-  async update(id: string, dto: UpdateQuotationDto): Promise<QuotationWithRelations> {
+  async update(
+    id: string,
+    dto: UpdateQuotationDto,
+    user: UserWithRoles,
+  ): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
     const event = await this.resolveEvent(dto.eventId ?? quotation.eventId);
+    this.assertAllyScope(event, user);
 
     const { items, ...data } = dto as UpdateQuotationDto & { items?: CreateQuotationItemDto[] };
 
@@ -257,6 +286,7 @@ export class QuotationsService {
   ): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
     const roles = this.roleNames(user.roles);
+    this.assertAllyScope(quotation.event, user);
 
     const allowedRoles = [ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER];
     if (!roles.some((role) => allowedRoles.includes(role as never))) {
@@ -334,8 +364,9 @@ export class QuotationsService {
     return updated;
   }
 
-  async select(id: string): Promise<QuotationWithRelations> {
+  async select(id: string, user: UserWithRoles): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
+    this.assertAllyScope(quotation.event, user);
     if (!quotation.eventId) {
       throw new BadRequestException('La oferta debe estar asociada a un evento');
     }

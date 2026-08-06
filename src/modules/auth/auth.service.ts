@@ -15,7 +15,7 @@ export class AuthService {
   async login(dto: LoginDto): Promise<{ accessToken: string; user: Partial<UserWithRoles> }> {
     const user = await this.prisma.user.findFirst({
       where: { document: dto.document, isActive: true },
-      include: { roles: true },
+      include: { roles: true, ally: true },
     });
 
     if (!user) {
@@ -37,7 +37,7 @@ export class AuthService {
   async validateUser(userId: string): Promise<UserWithRoles> {
     const user = await this.prisma.user.findFirst({
       where: { id: userId, isActive: true },
-      include: { roles: true },
+      include: { roles: true, ally: true },
     });
     if (!user) {
       throw new UnauthorizedException('Usuario no encontrado');

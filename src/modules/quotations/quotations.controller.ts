@@ -25,9 +25,9 @@ export class QuotationsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar ofertas económicas' })
-  findAll() {
-    return this.quotationsService.findAll();
+  @ApiOperation({ summary: 'Listar ofertas económicas (el Operador solo ve las de su Aliado)' })
+  findAll(@CurrentUser() user: UserWithRoles) {
+    return this.quotationsService.findAll(user);
   }
 
   @Get(':id')
@@ -39,8 +39,8 @@ export class QuotationsController {
   @Patch(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
   @ApiOperation({ summary: 'Actualizar oferta (datos e ítems; los ítems se reemplazan)' })
-  update(@Param('id') id: string, @Body() dto: UpdateQuotationDto) {
-    return this.quotationsService.update(id, dto);
+  update(@Param('id') id: string, @Body() dto: UpdateQuotationDto, @CurrentUser() user: UserWithRoles) {
+    return this.quotationsService.update(id, dto, user);
   }
 
   @Patch(':id/status')
@@ -57,8 +57,8 @@ export class QuotationsController {
   @Patch(':id/select')
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER)
   @ApiOperation({ summary: 'Marcar la oferta como definitiva del evento (se persiste en el evento)' })
-  select(@Param('id') id: string) {
-    return this.quotationsService.select(id);
+  select(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
+    return this.quotationsService.select(id, user);
   }
 
   @Delete(':id')

@@ -2,12 +2,30 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '../../generated/prisma/client';
 import { SearchMunicipalityDto, MunicipalityStatsDto } from './dto';
+import { ROLES } from '../../config/constants';
 
 type Municipality = Prisma.MunicipalityGetPayload<{}>;
 
 @Injectable()
 export class MapService {
   constructor(private readonly prisma: PrismaService) {}
+
+  private roleNames(roles: { name: string }[]): string[] {
+    return roles.map((role) => role.name);
+  }
+
+  private applyAllyScope(
+    where: Prisma.EventWhereInput,
+    user?: { allyId?: string | null; roles: { name: string }[] },
+  ): void {
+    if (!user) return;
+    if (!this.roleNames(user.roles).includes(ROLES.OPERATOR)) return;
+    if (user.allyId) {
+      where.generalAllyId = user.allyId;
+    } else {
+      where.id = { in: [] };
+    }
+  }
 
   async search(dto: SearchMunicipalityDto): Promise<Municipality[]> {
     const where: Prisma.MunicipalityWhereInput = {};
@@ -40,8 +58,12 @@ export class MapService {
     });
   }
 
-  async municipalityStats(dto: MunicipalityStatsDto) {
+  async municipalityStats(
+    dto: MunicipalityStatsDto,
+    user?: { allyId?: string | null; roles: { name: string }[] },
+  ) {
     const where: Prisma.EventWhereInput = { deletedAt: null };
+    this.applyAllyScope(where, user);
 
     if (dto.divipolaCode) where.divipolaCode = dto.divipolaCode;
     if (dto.generalAllyId) where.generalAllyId = dto.generalAllyId;

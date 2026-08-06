@@ -338,10 +338,6 @@ export type RoleUncheckedUpdateManyWithoutUsersNestedInput = {
   deleteMany?: Prisma.RoleScalarWhereInput | Prisma.RoleScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type RoleCreateWithoutUsersInput = {
   id?: string
   name: string

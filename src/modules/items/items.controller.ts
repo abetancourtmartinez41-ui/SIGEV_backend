@@ -1,12 +1,11 @@
-import {
-  Controller, Get, Post, Body, Patch, Param, Delete, UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { ItemsService } from './items.service';
 import { CreateItemDto, UpdateItemDto } from './dto';
+import { CurrentUser, Roles } from '../../common/decorators';
 import { RolesGuard } from '../../common/guards';
-import { Roles } from '../../common/decorators';
+import { UserWithRoles } from '../../database/types';
 import { ROLES } from '../../config/constants';
 
 @ApiTags('Ítems')
@@ -19,8 +18,8 @@ export class ItemsController {
   @Post()
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
   @ApiOperation({ summary: 'Crear ítem' })
-  create(@Body() dto: CreateItemDto) {
-    return this.itemsService.create(dto);
+  create(@Body() dto: CreateItemDto, @CurrentUser() user: UserWithRoles) {
+    return this.itemsService.create(dto, user);
   }
 
   @Get()
@@ -38,14 +37,14 @@ export class ItemsController {
   @Patch(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
   @ApiOperation({ summary: 'Actualizar ítem' })
-  update(@Param('id') id: string, @Body() dto: UpdateItemDto) {
-    return this.itemsService.update(id, dto);
+  update(@Param('id') id: string, @Body() dto: UpdateItemDto, @CurrentUser() user: UserWithRoles) {
+    return this.itemsService.update(id, dto, user);
   }
 
   @Delete(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
   @ApiOperation({ summary: 'Inactivar ítem' })
-  remove(@Param('id') id: string) {
-    return this.itemsService.remove(id);
+  remove(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
+    return this.itemsService.remove(id, user);
   }
 }

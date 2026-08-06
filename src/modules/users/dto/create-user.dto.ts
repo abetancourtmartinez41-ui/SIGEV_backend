@@ -1,5 +1,5 @@
 import {
-  IsString, IsEmail, IsOptional, IsArray, MinLength, IsIn,
+  IsString, IsEmail, IsOptional, IsArray, MinLength, IsIn, IsUUID,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { DOCUMENT_TYPES } from '../../../config/constants';
@@ -34,4 +34,9 @@ export class CreateUserDto {
   @IsArray()
   @IsString({ each: true })
   roles?: string[];
+
+  @ApiPropertyOptional({ example: '3f3e8e...', description: 'Aliado asociado (requerido cuando el rol Operador está presente)' })
+  @IsOptional()
+  @IsUUID()
+  allyId?: string | null;
 }

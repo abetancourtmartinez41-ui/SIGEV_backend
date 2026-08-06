@@ -29,6 +29,21 @@ export class EventsService {
     return roles.map((role) => role.name);
   }
 
+  private isOperator(user: { roles: { name: string }[] }): boolean {
+    return this.roleNames(user.roles).includes(ROLES.OPERATOR);
+  }
+
+  private assertAllyScope(
+    event: { generalAllyId: string | null },
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): void {
+    if (!this.isOperator(user)) return;
+    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
+    throw new ForbiddenException(
+      'Este evento pertenece a otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
+    );
+  }
+
   private normalizeSuffix(suffix?: string): string {
     return (suffix ?? '').trim().toUpperCase();
   }
@@ -157,29 +172,43 @@ export class EventsService {
     });
   }
 
-  async findAll(): Promise<EventWithRelations[]> {
+  async findAll(user?: { allyId?: string | null; roles: { name: string }[] }): Promise<EventWithRelations[]> {
+    const where: Prisma.EventWhereInput = { deletedAt: null };
+
+    if (user && this.isOperator(user)) {
+      if (user.allyId) {
+        where.generalAllyId = user.allyId;
+      } else {
+        where.id = { in: [] };
+      }
+    }
+
     return this.prisma.event.findMany({
-      where: { deletedAt: null },
+      where,
       include: eventInclude,
       orderBy: { createdAt: 'desc' },
     });
   }
 
-  async findOne(id: string): Promise<EventWithRelations> {
+  async findOne(
+    id: string,
+    user?: { allyId?: string | null; roles: { name: string }[] },
+  ): Promise<EventWithRelations> {
     const event = await this.prisma.event.findFirst({
       where: { id, deletedAt: null },
       include: eventInclude,
     });
     if (!event) throw new NotFoundException('Evento no encontrado');
+    if (user) this.assertAllyScope(event, user);
     return event;
   }
 
   async update(
     id: string,
     dto: UpdateEventDto,
-    user: { id: string; roles: { name: string }[] },
+    user: { id: string; allyId?: string | null; roles: { name: string }[] },
   ): Promise<EventWithRelations> {
-    const event = await this.findOne(id);
+    const event = await this.findOne(id, user);
     const roles = this.roleNames(user.roles);
 
     const isEditor = roles.some((role) =>
@@ -270,9 +299,9 @@ export class EventsService {
   async changeStatus(
     id: string,
     dto: ChangeStatusDto,
-    user: { id: string; roles: { name: string }[] },
+    user: { id: string; allyId?: string | null; roles: { name: string }[] },
   ): Promise<EventWithRelations> {
-    const event = await this.findOne(id);
+    const event = await this.findOne(id, user);
     const roles = this.roleNames(user.roles);
 
     const quotationsCount = event.quotations?.length || 0;
@@ -312,8 +341,11 @@ export class EventsService {
     });
   }
 
-  async remove(id: string): Promise<void> {
-    await this.findOne(id);
+  async remove(
+    id: string,
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): Promise<void> {
+    await this.findOne(id, user);
     await this.prisma.event.update({
       where: { id },
       data: { deletedAt: new Date(), isActive: false },

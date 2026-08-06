@@ -55,10 +55,10 @@ export class AttachmentsService {
   private async assertEventModifiable(
     eventId: string,
     category: string,
-  ): Promise<{ status: string; devolucionLegalizacion: boolean }> {
+  ): Promise<{ status: string; devolucionLegalizacion: boolean; generalAllyId: string | null }> {
     const event = await this.prisma.event.findUnique({
       where: { id: eventId },
-      select: { id: true, status: true, devolucionLegalizacion: true },
+      select: { id: true, status: true, devolucionLegalizacion: true, generalAllyId: true },
     });
     if (!event) {
       throw new NotFoundException('Evento no encontrado');
@@ -114,6 +114,18 @@ export class AttachmentsService {
     );
   }
 
+  private assertAllyScope(
+    event: { generalAllyId: string | null },
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): void {
+    const roles = user.roles.map((role) => role.name);
+    if (!roles.includes(ROLES.OPERATOR)) return;
+    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
+    throw new ForbiddenException(
+      'Este evento pertenece a otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
+    );
+  }
+
   async uploadFile(params: {
     eventId: string;
     category: string;
@@ -123,12 +135,17 @@ export class AttachmentsService {
     buffer: Buffer;
     uploadedById: string;
     uploadedByRoles: { name: string }[];
+    uploadedByAllyId?: string | null;
   }): Promise<Attachment> {
     const event = await this.assertEventModifiable(
       params.eventId,
       params.category,
     );
     this.assertUserAllowed(event, { roles: params.uploadedByRoles });
+    this.assertAllyScope(event, {
+      allyId: params.uploadedByAllyId,
+      roles: params.uploadedByRoles,
+    });
 
     const relativePath = path.posix.join(
       'attachments',
@@ -164,7 +181,7 @@ export class AttachmentsService {
 
   async remove(
     id: string,
-    user: { roles: { name: string }[] },
+    user: { allyId?: string | null; roles: { name: string }[] },
   ): Promise<{ success: boolean }> {
     const attachment = await this.prisma.attachment.findUnique({
       where: { id },
@@ -181,6 +198,7 @@ export class AttachmentsService {
       attachment.category,
     );
     this.assertUserAllowed(event, user);
+    this.assertAllyScope(event, user);
 
     try {
       await fs.unlink(this.resolvePath(attachment.storedPath));
