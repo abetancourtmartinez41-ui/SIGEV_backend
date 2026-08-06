@@ -1978,6 +1978,8 @@ export const MunicipalityScalarFieldEnum = {
   name: 'name',
   department: 'department',
   category: 'category',
+  normalizedName: 'normalizedName',
+  normalizedDepartment: 'normalizedDepartment',
   latitude: 'latitude',
   longitude: 'longitude',
   createdAt: 'createdAt',

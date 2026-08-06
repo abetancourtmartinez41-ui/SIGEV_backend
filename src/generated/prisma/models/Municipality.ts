@@ -42,6 +42,8 @@ export type MunicipalityMinAggregateOutputType = {
   name: string | null
   department: string | null
   category: string | null
+  normalizedName: string | null
+  normalizedDepartment: string | null
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
   createdAt: Date | null
@@ -54,6 +56,8 @@ export type MunicipalityMaxAggregateOutputType = {
   name: string | null
   department: string | null
   category: string | null
+  normalizedName: string | null
+  normalizedDepartment: string | null
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
   createdAt: Date | null
@@ -66,6 +70,8 @@ export type MunicipalityCountAggregateOutputType = {
   name: number
   department: number
   category: number
+  normalizedName: number
+  normalizedDepartment: number
   latitude: number
   longitude: number
   createdAt: number
@@ -90,6 +96,8 @@ export type MunicipalityMinAggregateInputType = {
   name?: true
   department?: true
   category?: true
+  normalizedName?: true
+  normalizedDepartment?: true
   latitude?: true
   longitude?: true
   createdAt?: true
@@ -102,6 +110,8 @@ export type MunicipalityMaxAggregateInputType = {
   name?: true
   department?: true
   category?: true
+  normalizedName?: true
+  normalizedDepartment?: true
   latitude?: true
   longitude?: true
   createdAt?: true
@@ -114,6 +124,8 @@ export type MunicipalityCountAggregateInputType = {
   name?: true
   department?: true
   category?: true
+  normalizedName?: true
+  normalizedDepartment?: true
   latitude?: true
   longitude?: true
   createdAt?: true
@@ -213,6 +225,8 @@ export type MunicipalityGroupByOutputType = {
   name: string
   department: string
   category: string
+  normalizedName: string
+  normalizedDepartment: string
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
   createdAt: Date
@@ -248,6 +262,8 @@ export type MunicipalityWhereInput = {
   name?: Prisma.StringFilter<"Municipality"> | string
   department?: Prisma.StringFilter<"Municipality"> | string
   category?: Prisma.StringFilter<"Municipality"> | string
+  normalizedName?: Prisma.StringFilter<"Municipality"> | string
+  normalizedDepartment?: Prisma.StringFilter<"Municipality"> | string
   latitude?: Prisma.DecimalNullableFilter<"Municipality"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: Prisma.DecimalNullableFilter<"Municipality"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Municipality"> | Date | string
@@ -260,6 +276,8 @@ export type MunicipalityOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   department?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  normalizedName?: Prisma.SortOrder
+  normalizedDepartment?: Prisma.SortOrder
   latitude?: Prisma.SortOrderInput | Prisma.SortOrder
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -275,6 +293,8 @@ export type MunicipalityWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Municipality"> | string
   department?: Prisma.StringFilter<"Municipality"> | string
   category?: Prisma.StringFilter<"Municipality"> | string
+  normalizedName?: Prisma.StringFilter<"Municipality"> | string
+  normalizedDepartment?: Prisma.StringFilter<"Municipality"> | string
   latitude?: Prisma.DecimalNullableFilter<"Municipality"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: Prisma.DecimalNullableFilter<"Municipality"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Municipality"> | Date | string
@@ -287,6 +307,8 @@ export type MunicipalityOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   department?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  normalizedName?: Prisma.SortOrder
+  normalizedDepartment?: Prisma.SortOrder
   latitude?: Prisma.SortOrderInput | Prisma.SortOrder
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -307,6 +329,8 @@ export type MunicipalityScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Municipality"> | string
   department?: Prisma.StringWithAggregatesFilter<"Municipality"> | string
   category?: Prisma.StringWithAggregatesFilter<"Municipality"> | string
+  normalizedName?: Prisma.StringWithAggregatesFilter<"Municipality"> | string
+  normalizedDepartment?: Prisma.StringWithAggregatesFilter<"Municipality"> | string
   latitude?: Prisma.DecimalNullableWithAggregatesFilter<"Municipality"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: Prisma.DecimalNullableWithAggregatesFilter<"Municipality"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Municipality"> | Date | string
@@ -319,6 +343,8 @@ export type MunicipalityCreateInput = {
   name: string
   department: string
   category: string
+  normalizedName?: string
+  normalizedDepartment?: string
   latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -331,6 +357,8 @@ export type MunicipalityUncheckedCreateInput = {
   name: string
   department: string
   category: string
+  normalizedName?: string
+  normalizedDepartment?: string
   latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -343,6 +371,8 @@ export type MunicipalityUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedDepartment?: Prisma.StringFieldUpdateOperationsInput | string
   latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -355,6 +385,8 @@ export type MunicipalityUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedDepartment?: Prisma.StringFieldUpdateOperationsInput | string
   latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -367,6 +399,8 @@ export type MunicipalityCreateManyInput = {
   name: string
   department: string
   category: string
+  normalizedName?: string
+  normalizedDepartment?: string
   latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -379,6 +413,8 @@ export type MunicipalityUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedDepartment?: Prisma.StringFieldUpdateOperationsInput | string
   latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -391,6 +427,8 @@ export type MunicipalityUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedDepartment?: Prisma.StringFieldUpdateOperationsInput | string
   latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -403,6 +441,8 @@ export type MunicipalityCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   department?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  normalizedName?: Prisma.SortOrder
+  normalizedDepartment?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -420,6 +460,8 @@ export type MunicipalityMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   department?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  normalizedName?: Prisma.SortOrder
+  normalizedDepartment?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -432,6 +474,8 @@ export type MunicipalityMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   department?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  normalizedName?: Prisma.SortOrder
+  normalizedDepartment?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -451,6 +495,8 @@ export type MunicipalitySelect<ExtArgs extends runtime.Types.Extensions.Internal
   name?: boolean
   department?: boolean
   category?: boolean
+  normalizedName?: boolean
+  normalizedDepartment?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
@@ -463,6 +509,8 @@ export type MunicipalitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   name?: boolean
   department?: boolean
   category?: boolean
+  normalizedName?: boolean
+  normalizedDepartment?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
@@ -475,6 +523,8 @@ export type MunicipalitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   name?: boolean
   department?: boolean
   category?: boolean
+  normalizedName?: boolean
+  normalizedDepartment?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
@@ -487,13 +537,15 @@ export type MunicipalitySelectScalar = {
   name?: boolean
   department?: boolean
   category?: boolean
+  normalizedName?: boolean
+  normalizedDepartment?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MunicipalityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "divipolaCode" | "name" | "department" | "category" | "latitude" | "longitude" | "createdAt" | "updatedAt", ExtArgs["result"]["municipality"]>
+export type MunicipalityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "divipolaCode" | "name" | "department" | "category" | "normalizedName" | "normalizedDepartment" | "latitude" | "longitude" | "createdAt" | "updatedAt", ExtArgs["result"]["municipality"]>
 
 export type $MunicipalityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Municipality"
@@ -504,6 +556,8 @@ export type $MunicipalityPayload<ExtArgs extends runtime.Types.Extensions.Intern
     name: string
     department: string
     category: string
+    normalizedName: string
+    normalizedDepartment: string
     latitude: runtime.Decimal | null
     longitude: runtime.Decimal | null
     createdAt: Date
@@ -936,6 +990,8 @@ export interface MunicipalityFieldRefs {
   readonly name: Prisma.FieldRef<"Municipality", 'String'>
   readonly department: Prisma.FieldRef<"Municipality", 'String'>
   readonly category: Prisma.FieldRef<"Municipality", 'String'>
+  readonly normalizedName: Prisma.FieldRef<"Municipality", 'String'>
+  readonly normalizedDepartment: Prisma.FieldRef<"Municipality", 'String'>
   readonly latitude: Prisma.FieldRef<"Municipality", 'Decimal'>
   readonly longitude: Prisma.FieldRef<"Municipality", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"Municipality", 'DateTime'>

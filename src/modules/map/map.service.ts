@@ -27,6 +27,14 @@ export class MapService {
     }
   }
 
+  private normalizeText(value: string): string {
+    return value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
   async search(dto: SearchMunicipalityDto): Promise<Municipality[]> {
     const where: Prisma.MunicipalityWhereInput = {};
 
@@ -34,13 +42,16 @@ export class MapService {
       where.divipolaCode = { contains: dto.divipolaCode };
     }
     if (dto.name) {
-      where.name = { contains: dto.name };
+      where.normalizedName = { contains: this.normalizeText(dto.name) };
     }
     if (dto.department) {
-      where.department = { contains: dto.department };
+      where.normalizedDepartment = { contains: this.normalizeText(dto.department) };
     }
 
-    return this.prisma.municipality.findMany({ where });
+    return this.prisma.municipality.findMany({
+      where,
+      orderBy: { name: 'asc' },
+    });
   }
 
   async findByDivipola(code: string): Promise<Municipality> {

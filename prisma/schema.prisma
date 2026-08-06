@@ -368,15 +368,17 @@ model AuditLog {
 }
 
 model Municipality {
-  id           String   @id @default(uuid()) @db.Uuid
-  divipolaCode String   @unique @db.VarChar(10)
-  name         String   @db.VarChar(100)
-  department   String   @db.VarChar(100)
-  category     String   @db.VarChar(50)
-  latitude     Decimal? @db.Decimal(10, 7)
-  longitude    Decimal? @db.Decimal(10, 7)
-  createdAt    DateTime @default(now()) @db.Timestamptz
-  updatedAt    DateTime @updatedAt @db.Timestamptz
+  id                   String   @id @default(uuid()) @db.Uuid
+  divipolaCode         String   @unique @db.VarChar(10)
+  name                 String   @db.VarChar(100)
+  department           String   @db.VarChar(100)
+  category             String   @db.VarChar(50)
+  normalizedName       String   @default("") @db.VarChar(100)
+  normalizedDepartment String   @default("") @db.VarChar(100)
+  latitude             Decimal? @db.Decimal(10, 7)
+  longitude            Decimal? @db.Decimal(10, 7)
+  createdAt            DateTime @default(now()) @db.Timestamptz
+  updatedAt            DateTime @updatedAt @db.Timestamptz
 
   @@map("municipalities")
 }

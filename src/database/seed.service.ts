@@ -16,16 +16,14 @@ const DEFAULT_PARAMETERS = [
   { key: 'REQUIRED_QUOTATIONS', value: '4', description: 'Número de cotizaciones requeridas' },
 ];
 
-const SAMPLE_MUNICIPALITIES = [
-  { divipolaCode: '11001', name: 'Bogotá D.C.', department: 'Cundinamarca', category: 'Especial' },
-  { divipolaCode: '05001', name: 'Medellín', department: 'Antioquia', category: 'Primera' },
-  { divipolaCode: '08001', name: 'Barranquilla', department: 'Atlántico', category: 'Primera' },
-  { divipolaCode: '50001', name: 'Villavicencio', department: 'Meta', category: 'Segunda' },
-  { divipolaCode: '73001', name: 'Ibagué', department: 'Tolima', category: 'Segunda' },
-  { divipolaCode: '15001', name: 'Tunja', department: 'Boyacá', category: 'Tercera' },
-  { divipolaCode: '44001', name: 'Riohacha', department: 'La Guajira', category: 'Cuarta' },
-  { divipolaCode: '86001', name: 'Mocoa', department: 'Putumayo', category: 'Quinta' },
-  { divipolaCode: '97001', name: 'Mitú', department: 'Vaupés', category: 'Sexta' },
+const DIVIPOLA_FILE_CANDIDATES = [
+  path.resolve(process.cwd(), 'DIVIPOLA.json'),
+  path.resolve(__dirname, '..', '..', 'DIVIPOLA.json'),
+];
+
+const MUNICIPALITY_CATEGORIES_FILE_CANDIDATES = [
+  path.resolve(process.cwd(), 'municipality-categories.json'),
+  path.resolve(__dirname, '..', '..', 'municipality-categories.json'),
 ];
 
 const TARIFARIO_FILE_CANDIDATES = [
@@ -38,6 +36,17 @@ const LEGACY_SAMPLE_TARIFF_CODES = [
   'TRN-URB-001', 'TRN-INT-001', 'TRN-COM-001',
   'HOS-NOC-001', 'SVC-EXT-001',
 ];
+
+interface DivipolaMunicipality {
+  ID_DIVIPOLA: string;
+  Cod_Depto: string;
+  Nombre_Depto: string;
+  Cod_Mun: string;
+  Nombre_Mun: string;
+  Categoria_Ley_617: string | null;
+  Latitud: number;
+  Longitud: number;
+}
 
 interface TarifarioItem {
   id: number;
@@ -140,17 +149,96 @@ export class SeedService implements OnApplicationBootstrap {
   }
 
   private async ensureMunicipalities() {
+    const existingCount = await this.prisma.municipality.count();
+    if (existingCount >= 1000) {
+      console.log(
+        `[Seed] Municipios DIVIPOLA ya cargados (${existingCount}); se omite la importación`,
+      );
+      return;
+    }
+
+    const divipolaPath = this.findFilePath(DIVIPOLA_FILE_CANDIDATES, 'DIVIPOLA.json');
+    const categoriesPath = this.findFilePath(
+      MUNICIPALITY_CATEGORIES_FILE_CANDIDATES,
+      'municipality-categories.json',
+    );
+    if (!divipolaPath || !categoriesPath) {
+      console.warn(
+        '[Seed] No se encontró DIVIPOLA.json o municipality-categories.json; se omite la importación de municipios',
+      );
+      return;
+    }
+
+    const raw: Record<string, DivipolaMunicipality> = JSON.parse(
+      fs.readFileSync(divipolaPath, 'utf8'),
+    );
+    const categories: Record<string, string> = JSON.parse(
+      fs.readFileSync(categoriesPath, 'utf8'),
+    );
+
     let created = 0;
-    for (const municipality of SAMPLE_MUNICIPALITIES) {
-      const exists = await this.prisma.municipality.findUnique({
-        where: { divipolaCode: municipality.divipolaCode },
+    let updated = 0;
+    for (const key of Object.keys(raw)) {
+      const municipality = raw[key];
+      const data = {
+        name: this.titleCase(municipality.Nombre_Mun),
+        department: this.titleCase(municipality.Nombre_Depto),
+        category: categories[municipality.ID_DIVIPOLA] ?? 'Sexta',
+        normalizedName: this.normalizeText(municipality.Nombre_Mun),
+        normalizedDepartment: this.normalizeText(municipality.Nombre_Depto),
+        latitude: municipality.Latitud,
+        longitude: municipality.Longitud,
+      };
+      const existing = await this.prisma.municipality.findUnique({
+        where: { divipolaCode: municipality.ID_DIVIPOLA },
       });
-      if (!exists) {
-        await this.prisma.municipality.create({ data: municipality });
+      if (existing) {
+        await this.prisma.municipality.update({
+          where: { id: existing.id },
+          data,
+        });
+        updated += 1;
+      } else {
+        await this.prisma.municipality.create({
+          data: { divipolaCode: municipality.ID_DIVIPOLA, ...data },
+        });
         created += 1;
       }
     }
-    console.log(`[Seed] Municipios DIVIPOLA de muestra asegurados (${SAMPLE_MUNICIPALITIES.length}, nuevos ${created})`);
+    console.log(
+      `[Seed] Municipios DIVIPOLA importados (${Object.keys(raw).length}, ${created} nuevos, ${updated} actualizados)`,
+    );
+  }
+
+  private findFilePath(candidates: string[], label: string): string | null {
+    for (const candidate of candidates) {
+      if (fs.existsSync(candidate)) return candidate;
+    }
+    return null;
+  }
+
+  private normalizeText(value: string): string {
+    return value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
+  private titleCase(value: string): string {
+    const lowercaseWords = new Set(['de', 'del', 'la', 'las', 'los', 'el', 'y', 'a']);
+    let isFirstWord = true;
+    return value
+      .toLowerCase()
+      .split(/(\s+)/)
+      .map((token) => {
+        if (!token.trim() || /^\s+$/.test(token)) return token;
+        if (/^([a-z]\.){1,3}$/i.test(token)) return token.toUpperCase();
+        if (!isFirstWord && lowercaseWords.has(token)) return token;
+        isFirstWord = false;
+        return token.charAt(0).toUpperCase() + token.slice(1);
+      })
+      .join('');
   }
 
   private async ensureTariffs() {
