@@ -243,6 +243,12 @@ export class EventsService {
 
     const { items, ...data } = dto as UpdateEventDto & { items?: CreateEventDto['items'] };
 
+    if (items && event.cotizacionSeleccionadaId) {
+      throw new BadRequestException(
+        'La cotización del evento ya fue aprobada; no se pueden añadir ni modificar ítems',
+      );
+    }
+
     const municipality = await this.resolveMunicipality(data);
     await this.assertDisbursementActive(dto.disbursementId);
 

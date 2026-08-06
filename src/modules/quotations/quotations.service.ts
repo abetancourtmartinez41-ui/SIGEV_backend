@@ -12,7 +12,7 @@ import { TariffsService } from '../tariffs/tariffs.service';
 import { ReportsService } from '../reports/reports.service';
 import { AttachmentsService } from '../attachments/attachments.service';
 import { OfertaEconomicaService } from '../oferta-economica/oferta-economica.service';
-import { ROLES } from '../../config/constants';
+import { ROLES, EVENT_STATUS } from '../../config/constants';
 
 const quotationInclude = {
   event: { include: { disbursement: true } },
@@ -147,6 +147,11 @@ export class QuotationsService {
   async create(dto: CreateQuotationDto, user: UserWithRoles): Promise<QuotationWithRelations> {
     const event = await this.resolveEvent(dto.eventId);
     this.assertAllyScope(event, user);
+    if (event.cotizacionSeleccionadaId) {
+      throw new BadRequestException(
+        'La cotización de este evento ya fue aprobada; no se pueden crear nuevas cotizaciones',
+      );
+    }
     const code = dto.code?.trim() || (await this.generateCode(event));
 
     const itemData: Omit<Prisma.QuotationItemUncheckedCreateInput, 'quotationId'>[] = [];
@@ -217,6 +222,12 @@ export class QuotationsService {
     const quotation = await this.findOne(id);
     const event = await this.resolveEvent(dto.eventId ?? quotation.eventId);
     this.assertAllyScope(event, user);
+
+    if (quotation.isDefinitive || event.cotizacionSeleccionadaId) {
+      throw new BadRequestException(
+        'La cotización ya fue aprobada; no puede modificarse',
+      );
+    }
 
     const { items, ...data } = dto as UpdateQuotationDto & { items?: CreateQuotationItemDto[] };
 
@@ -294,6 +305,16 @@ export class QuotationsService {
 
     const isApproved = dto.status === QUOTATION_STATUS.APROBADA;
 
+    if (
+      isApproved &&
+      quotation.event.cotizacionSeleccionadaId &&
+      quotation.event.cotizacionSeleccionadaId !== quotation.id
+    ) {
+      throw new BadRequestException(
+        'Ya existe una cotización aprobada para este evento; no se puede aprobar otra',
+      );
+    }
+
     const updated = await this.prisma.$transaction(async (tx) => {
       const quotationUpdate = await tx.quotation.update({
         where: { id },
@@ -308,7 +329,12 @@ export class QuotationsService {
       if (isApproved && quotation.eventId) {
         await tx.event.updateMany({
           where: { id: quotation.eventId },
-          data: { cotizacionSeleccionadaId: quotation.id },
+          data: {
+            cotizacionSeleccionadaId: quotation.id,
+            ...(quotation.event.status === EVENT_STATUS.ABIERTO
+              ? { status: EVENT_STATUS.EN_EJECUCION }
+              : {}),
+          },
         });
       }
 
@@ -363,6 +389,14 @@ export class QuotationsService {
     if (!quotation.eventId) {
       throw new BadRequestException('La cotización debe estar asociada a un evento');
     }
+    if (
+      quotation.event.cotizacionSeleccionadaId &&
+      quotation.event.cotizacionSeleccionadaId !== quotation.id
+    ) {
+      throw new BadRequestException(
+        'Ya existe una cotización aprobada para este evento; no se puede seleccionar otra',
+      );
+    }
     const updated = await this.prisma.$transaction(async (tx) => {
       const updatedQuotation = await tx.quotation.update({
         where: { id },
@@ -371,7 +405,12 @@ export class QuotationsService {
       });
       await tx.event.update({
         where: { id: quotation.eventId },
-        data: { cotizacionSeleccionadaId: quotation.id },
+        data: {
+          cotizacionSeleccionadaId: quotation.id,
+          ...(quotation.event.status === EVENT_STATUS.ABIERTO
+            ? { status: EVENT_STATUS.EN_EJECUCION }
+            : {}),
+        },
       });
       return updatedQuotation;
     });
