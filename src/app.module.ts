@@ -19,6 +19,7 @@ import { MapModule } from './modules/map/map.module';
 import { ParametersModule } from './modules/parameters/parameters.module';
 import { TariffsModule } from './modules/tariffs/tariffs.module';
 import { QuotationsModule } from './modules/quotations/quotations.module';
+import { OfertaEconomicaModule } from './modules/oferta-economica/oferta-economica.module';
 import { AttachmentsModule } from './modules/attachments/attachments.module';
 import { BackupModule } from './modules/backup/backup.module';
 
@@ -43,6 +44,7 @@ import { BackupModule } from './modules/backup/backup.module';
     ParametersModule,
     TariffsModule,
     QuotationsModule,
+    OfertaEconomicaModule,
     AttachmentsModule,
     BackupModule,
   ],

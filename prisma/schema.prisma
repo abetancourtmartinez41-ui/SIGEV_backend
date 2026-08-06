@@ -21,6 +21,7 @@ model User {
   createdEvents        Event[]           @relation("EventCreatedBy")
   uploadedAttachments  Attachment[]      @relation("AttachmentUploadedBy")
   quotations           Quotation[]       @relation("QuotationCreatedBy")
+  ofertaEconomicas     OfertaEconomica[] @relation("OfertaEconomicaCreatedBy")
   parameterVersions    ParameterVersion[] @relation("ParameterVersionCreatedBy")
   createdAt            DateTime          @default(now()) @db.Timestamptz
   updatedAt            DateTime          @updatedAt @db.Timestamptz
@@ -70,6 +71,7 @@ model Event {
   quotations           Quotation[]
   cotizacionSeleccionadaId String?  @unique @db.Uuid
   selectedQuotation    Quotation?   @relation("EventSelectedQuotation", fields: [cotizacionSeleccionadaId], references: [id])
+  ofertaEconomica      OfertaEconomica?
   deletedAt            DateTime?    @db.Timestamptz
   isActive             Boolean      @default(true)
   createdAt            DateTime     @default(now()) @db.Timestamptz
@@ -87,13 +89,13 @@ model Item {
   quantity            Int
   unitPrice           Decimal  @db.Decimal(15, 2)
   baseValue           Decimal  @db.Decimal(15, 2)
-  ivaRate             Decimal  @default(0) @db.Decimal(15, 2)
+  ivaRate             Decimal  @default(0) @db.Decimal(15, 4)
   ivaValue            Decimal  @default(0) @db.Decimal(15, 2)
-  consumptionTaxRate  Decimal  @default(0) @db.Decimal(15, 2)
+  consumptionTaxRate  Decimal  @default(0) @db.Decimal(15, 4)
   consumptionTaxValue Decimal  @default(0) @db.Decimal(15, 2)
-  feeRate             Decimal  @default(0) @db.Decimal(15, 2)
+  feeRate             Decimal  @default(0) @db.Decimal(15, 4)
   feeValue            Decimal  @default(0) @db.Decimal(15, 2)
-  feeIvaRate          Decimal  @default(0) @db.Decimal(15, 2)
+  feeIvaRate          Decimal  @default(0) @db.Decimal(15, 4)
   feeIvaValue         Decimal  @default(0) @db.Decimal(15, 2)
   totalValue          Decimal  @default(0) @db.Decimal(15, 2)
   allyId              String?  @db.Uuid
@@ -118,11 +120,14 @@ model Attachment {
   category     String?  @db.VarChar(100)
   eventId      String   @db.Uuid
   event        Event    @relation(fields: [eventId], references: [id])
+  quotationId  String?  @db.Uuid
+  quotation    Quotation? @relation(fields: [quotationId], references: [id])
   uploadedById String   @db.Uuid
   uploadedBy   User     @relation("AttachmentUploadedBy", fields: [uploadedById], references: [id])
   createdAt    DateTime @default(now()) @db.Timestamptz
 
   @@map("attachments")
+  @@index([quotationId])
 }
 
 model Parameter {
@@ -168,6 +173,8 @@ model Ally {
   isActive     Boolean  @default(true)
   quotations   Quotation[]
   quotationItems QuotationItem[]
+  ofertaEconomicas OfertaEconomica[]
+  ofertaEconomicaItems OfertaEconomicaItem[]
   users        User[]
   createdAt    DateTime @default(now()) @db.Timestamptz
   updatedAt    DateTime @updatedAt @db.Timestamptz
@@ -193,6 +200,7 @@ model Quotation {
   createdById   String          @db.Uuid
   isActive      Boolean         @default(true)
   items         QuotationItem[]
+  attachments   Attachment[]
   createdAt     DateTime        @default(now()) @db.Timestamptz
   updatedAt     DateTime        @updatedAt @db.Timestamptz
 
@@ -200,6 +208,7 @@ model Quotation {
   ally             Ally?  @relation(fields: [allyId], references: [id])
   createdBy        User   @relation("QuotationCreatedBy", fields: [createdById], references: [id])
   selectedForEvent Event? @relation("EventSelectedQuotation")
+  ofertaEconomica  OfertaEconomica?
 
   @@map("quotations")
 }
@@ -210,13 +219,13 @@ model QuotationItem {
   description         String    @db.Text
   quantity            Int
   unitPrice           Decimal   @db.Decimal(15, 2)
-  ivaRate             Decimal   @default(0) @db.Decimal(15, 2)
+  ivaRate             Decimal   @default(0) @db.Decimal(15, 4)
   ivaValue            Decimal   @default(0) @db.Decimal(15, 2)
-  consumptionTaxRate  Decimal   @default(0) @db.Decimal(15, 2)
+  consumptionTaxRate  Decimal   @default(0) @db.Decimal(15, 4)
   consumptionTaxValue Decimal   @default(0) @db.Decimal(15, 2)
-  feeRate             Decimal   @default(0) @db.Decimal(15, 2)
+  feeRate             Decimal   @default(0) @db.Decimal(15, 4)
   feeValue            Decimal   @default(0) @db.Decimal(15, 2)
-  feeIvaRate          Decimal   @default(0) @db.Decimal(15, 2)
+  feeIvaRate          Decimal   @default(0) @db.Decimal(15, 4)
   feeIvaValue         Decimal   @default(0) @db.Decimal(15, 2)
   totalValue          Decimal   @default(0) @db.Decimal(15, 2)
   allyId              String?   @db.Uuid
@@ -225,12 +234,77 @@ model QuotationItem {
   quotation           Quotation @relation(fields: [quotationId], references: [id])
   ally                Ally?     @relation(fields: [allyId], references: [id])
   tariff              Tariff?   @relation(fields: [tariffId], references: [id])
+  ofertaEconomicaItems OfertaEconomicaItem[]
   isActive            Boolean   @default(true)
   createdAt           DateTime  @default(now()) @db.Timestamptz
   updatedAt           DateTime  @updatedAt @db.Timestamptz
 
   @@map("quotation_items")
   @@index([quotationId])
+}
+
+model OfertaEconomica {
+  id                     String   @id @default(uuid()) @db.Uuid
+  code                   String   @db.VarChar(50)
+  name                   String   @db.VarChar(200)
+  eventId                String   @unique @db.Uuid
+  quotationId            String   @unique @db.Uuid
+  allyId                 String?  @db.Uuid
+  baseTotal              Decimal  @db.Decimal(15, 2)
+  ivaTotal               Decimal  @db.Decimal(15, 2)
+  impuestoConsumoTotal   Decimal  @db.Decimal(15, 2)
+  feeTarifadoTotal       Decimal  @db.Decimal(15, 2)
+  feeTercerosTotal       Decimal  @db.Decimal(15, 2)
+  feeTotal               Decimal  @db.Decimal(15, 2)
+  ivaFeeTotal            Decimal  @db.Decimal(15, 2)
+  total                  Decimal  @db.Decimal(15, 2)
+  currency               String   @default("COP") @db.VarChar(3)
+  status                 String   @default("Definitiva") @db.VarChar(20)
+  generatedAt            DateTime @default(now()) @db.Timestamptz
+  createdById            String   @db.Uuid
+  isActive               Boolean  @default(true)
+  createdAt              DateTime @default(now()) @db.Timestamptz
+  updatedAt              DateTime @updatedAt @db.Timestamptz
+
+  event                  Event    @relation(fields: [eventId], references: [id])
+  quotation              Quotation @relation(fields: [quotationId], references: [id])
+  ally                   Ally?    @relation(fields: [allyId], references: [id])
+  createdBy              User     @relation("OfertaEconomicaCreatedBy", fields: [createdById], references: [id])
+  items                  OfertaEconomicaItem[]
+
+  @@map("oferta_economicas")
+}
+
+model OfertaEconomicaItem {
+  id                  String           @id @default(uuid()) @db.Uuid
+  ofertaEconomicaId   String           @db.Uuid
+  quotationItemId     String?          @db.Uuid
+  description         String           @db.Text
+  quantity            Int
+  unitPrice           Decimal          @db.Decimal(15, 2)
+  baseValue           Decimal          @db.Decimal(15, 2)
+  ivaRate             Decimal          @default(0) @db.Decimal(15, 4)
+  ivaValue            Decimal          @default(0) @db.Decimal(15, 2)
+  consumptionTaxRate  Decimal          @default(0) @db.Decimal(15, 4)
+  consumptionTaxValue Decimal          @default(0) @db.Decimal(15, 2)
+  feeRate             Decimal          @default(0) @db.Decimal(15, 4)
+  feeTarifadoValue    Decimal          @default(0) @db.Decimal(15, 2)
+  feeTercerosValue    Decimal          @default(0) @db.Decimal(15, 2)
+  feeIvaRate          Decimal          @default(0) @db.Decimal(15, 4)
+  feeIvaValue         Decimal          @default(0) @db.Decimal(15, 2)
+  totalValue          Decimal          @default(0) @db.Decimal(15, 2)
+  allyId              String?          @db.Uuid
+  tariffId            String?          @db.Uuid
+  isTariffed          Boolean          @default(true)
+  createdAt           DateTime         @default(now()) @db.Timestamptz
+
+  ofertaEconomica     OfertaEconomica  @relation(fields: [ofertaEconomicaId], references: [id])
+  quotationItem       QuotationItem?   @relation(fields: [quotationItemId], references: [id])
+  ally                Ally?            @relation(fields: [allyId], references: [id])
+  tariff              Tariff?          @relation(fields: [tariffId], references: [id])
+
+  @@map("oferta_economica_items")
+  @@index([ofertaEconomicaId])
 }
 
 model Disbursement {
@@ -271,6 +345,7 @@ model Tariff {
   isActive             Boolean  @default(true)
   items                Item[]
   quotationItems       QuotationItem[]
+  ofertaEconomicaItems OfertaEconomicaItem[]
   createdAt            DateTime @default(now()) @db.Timestamptz
   updatedAt            DateTime @updatedAt @db.Timestamptz
 

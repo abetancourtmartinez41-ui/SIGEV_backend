@@ -10,7 +10,7 @@ import { RolesGuard } from '../../common/guards';
 import { UserWithRoles } from '../../database/types';
 import { ROLES } from '../../config/constants';
 
-@ApiTags('Ofertas Económicas')
+@ApiTags('Cotizaciones')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('quotations')
@@ -19,33 +19,33 @@ export class QuotationsController {
 
   @Post()
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
-  @ApiOperation({ summary: 'Crear oferta económica asociada a un evento' })
+  @ApiOperation({ summary: 'Crear cotización asociada a un evento' })
   create(@Body() dto: CreateQuotationDto, @CurrentUser() user: UserWithRoles) {
     return this.quotationsService.create(dto, user);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar ofertas económicas (el Operador solo ve las de su Aliado)' })
+  @ApiOperation({ summary: 'Listar cotizaciones (el Operador solo ve las de su Aliado)' })
   findAll(@CurrentUser() user: UserWithRoles) {
     return this.quotationsService.findAll(user);
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Obtener oferta por ID' })
+  @ApiOperation({ summary: 'Obtener cotización por ID' })
   findOne(@Param('id') id: string) {
     return this.quotationsService.findOne(id);
   }
 
   @Patch(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
-  @ApiOperation({ summary: 'Actualizar oferta (datos e ítems; los ítems se reemplazan)' })
+  @ApiOperation({ summary: 'Actualizar cotización (datos e ítems; los ítems se reemplazan)' })
   update(@Param('id') id: string, @Body() dto: UpdateQuotationDto, @CurrentUser() user: UserWithRoles) {
     return this.quotationsService.update(id, dto, user);
   }
 
   @Patch(':id/status')
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER)
-  @ApiOperation({ summary: 'Cambiar estado de la oferta. Solo el Aprobador puede marcar Aprobada' })
+  @ApiOperation({ summary: 'Cambiar estado de la cotización. Solo el Aprobador puede marcar Aprobada' })
   changeStatus(
     @Param('id') id: string,
     @Body() dto: ChangeQuotationStatusDto,
@@ -56,14 +56,14 @@ export class QuotationsController {
 
   @Patch(':id/select')
   @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER)
-  @ApiOperation({ summary: 'Marcar la oferta como definitiva del evento (se persiste en el evento)' })
+  @ApiOperation({ summary: 'Seleccionar la cotización ganadora del evento: genera la Oferta Económica definitiva y el PDF Presupuesto Final (Carpeta 4)' })
   select(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
     return this.quotationsService.select(id, user);
   }
 
   @Delete(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN)
-  @ApiOperation({ summary: 'Inactivar oferta (solo Admin. Funcional)' })
+  @ApiOperation({ summary: 'Inactivar cotización (solo Admin. Funcional)' })
   remove(@Param('id') id: string) {
     return this.quotationsService.remove(id);
   }

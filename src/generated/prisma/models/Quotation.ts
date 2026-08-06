@@ -325,10 +325,12 @@ export type QuotationWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
   items?: Prisma.QuotationItemListRelationFilter
+  attachments?: Prisma.AttachmentListRelationFilter
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   ally?: Prisma.XOR<Prisma.AllyNullableScalarRelationFilter, Prisma.AllyWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   selectedForEvent?: Prisma.XOR<Prisma.EventNullableScalarRelationFilter, Prisma.EventWhereInput> | null
+  ofertaEconomica?: Prisma.XOR<Prisma.OfertaEconomicaNullableScalarRelationFilter, Prisma.OfertaEconomicaWhereInput> | null
 }
 
 export type QuotationOrderByWithRelationInput = {
@@ -351,10 +353,12 @@ export type QuotationOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   items?: Prisma.QuotationItemOrderByRelationAggregateInput
+  attachments?: Prisma.AttachmentOrderByRelationAggregateInput
   event?: Prisma.EventOrderByWithRelationInput
   ally?: Prisma.AllyOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   selectedForEvent?: Prisma.EventOrderByWithRelationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaOrderByWithRelationInput
 }
 
 export type QuotationWhereUniqueInput = Prisma.AtLeast<{
@@ -380,10 +384,12 @@ export type QuotationWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
   items?: Prisma.QuotationItemListRelationFilter
+  attachments?: Prisma.AttachmentListRelationFilter
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   ally?: Prisma.XOR<Prisma.AllyNullableScalarRelationFilter, Prisma.AllyWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   selectedForEvent?: Prisma.XOR<Prisma.EventNullableScalarRelationFilter, Prisma.EventWhereInput> | null
+  ofertaEconomica?: Prisma.XOR<Prisma.OfertaEconomicaNullableScalarRelationFilter, Prisma.OfertaEconomicaWhereInput> | null
 }, "id">
 
 export type QuotationOrderByWithAggregationInput = {
@@ -453,10 +459,12 @@ export type QuotationCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateInput = {
@@ -479,7 +487,9 @@ export type QuotationUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
   selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationUpdateInput = {
@@ -499,10 +509,12 @@ export type QuotationUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateInput = {
@@ -525,7 +537,9 @@ export type QuotationUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
   selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationCreateManyInput = {
@@ -781,6 +795,22 @@ export type QuotationUncheckedUpdateManyWithoutEventNestedInput = {
   deleteMany?: Prisma.QuotationScalarWhereInput | Prisma.QuotationScalarWhereInput[]
 }
 
+export type QuotationCreateNestedOneWithoutAttachmentsInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutAttachmentsInput, Prisma.QuotationUncheckedCreateWithoutAttachmentsInput>
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutAttachmentsInput
+  connect?: Prisma.QuotationWhereUniqueInput
+}
+
+export type QuotationUpdateOneWithoutAttachmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutAttachmentsInput, Prisma.QuotationUncheckedCreateWithoutAttachmentsInput>
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutAttachmentsInput
+  upsert?: Prisma.QuotationUpsertWithoutAttachmentsInput
+  disconnect?: Prisma.QuotationWhereInput | boolean
+  delete?: Prisma.QuotationWhereInput | boolean
+  connect?: Prisma.QuotationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuotationUpdateToOneWithWhereWithoutAttachmentsInput, Prisma.QuotationUpdateWithoutAttachmentsInput>, Prisma.QuotationUncheckedUpdateWithoutAttachmentsInput>
+}
+
 export type QuotationCreateNestedManyWithoutAllyInput = {
   create?: Prisma.XOR<Prisma.QuotationCreateWithoutAllyInput, Prisma.QuotationUncheckedCreateWithoutAllyInput> | Prisma.QuotationCreateWithoutAllyInput[] | Prisma.QuotationUncheckedCreateWithoutAllyInput[]
   connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutAllyInput | Prisma.QuotationCreateOrConnectWithoutAllyInput[]
@@ -837,6 +867,20 @@ export type QuotationUpdateOneRequiredWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuotationUpdateToOneWithWhereWithoutItemsInput, Prisma.QuotationUpdateWithoutItemsInput>, Prisma.QuotationUncheckedUpdateWithoutItemsInput>
 }
 
+export type QuotationCreateNestedOneWithoutOfertaEconomicaInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutOfertaEconomicaInput, Prisma.QuotationUncheckedCreateWithoutOfertaEconomicaInput>
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutOfertaEconomicaInput
+  connect?: Prisma.QuotationWhereUniqueInput
+}
+
+export type QuotationUpdateOneRequiredWithoutOfertaEconomicaNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutOfertaEconomicaInput, Prisma.QuotationUncheckedCreateWithoutOfertaEconomicaInput>
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutOfertaEconomicaInput
+  upsert?: Prisma.QuotationUpsertWithoutOfertaEconomicaInput
+  connect?: Prisma.QuotationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuotationUpdateToOneWithWhereWithoutOfertaEconomicaInput, Prisma.QuotationUpdateWithoutOfertaEconomicaInput>, Prisma.QuotationUncheckedUpdateWithoutOfertaEconomicaInput>
+}
+
 export type QuotationCreateWithoutCreatedByInput = {
   id?: string
   code: string
@@ -854,9 +898,11 @@ export type QuotationCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateWithoutCreatedByInput = {
@@ -878,7 +924,9 @@ export type QuotationUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
   selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationCreateOrConnectWithoutCreatedByInput = {
@@ -948,9 +996,11 @@ export type QuotationCreateWithoutEventInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateWithoutEventInput = {
@@ -972,7 +1022,9 @@ export type QuotationUncheckedCreateWithoutEventInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
   selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationCreateOrConnectWithoutEventInput = {
@@ -1002,9 +1054,11 @@ export type QuotationCreateWithoutSelectedForEventInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateWithoutSelectedForEventInput = {
@@ -1027,6 +1081,8 @@ export type QuotationUncheckedCreateWithoutSelectedForEventInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationCreateOrConnectWithoutSelectedForEventInput = {
@@ -1078,9 +1134,11 @@ export type QuotationUpdateWithoutSelectedForEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateWithoutSelectedForEventInput = {
@@ -1103,6 +1161,120 @@ export type QuotationUncheckedUpdateWithoutSelectedForEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
+}
+
+export type QuotationCreateWithoutAttachmentsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  observations?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  event: Prisma.EventCreateNestedOneWithoutQuotationsInput
+  ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
+}
+
+export type QuotationUncheckedCreateWithoutAttachmentsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  eventId: string
+  allyId?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  observations?: string | null
+  createdById: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
+}
+
+export type QuotationCreateOrConnectWithoutAttachmentsInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutAttachmentsInput, Prisma.QuotationUncheckedCreateWithoutAttachmentsInput>
+}
+
+export type QuotationUpsertWithoutAttachmentsInput = {
+  update: Prisma.XOR<Prisma.QuotationUpdateWithoutAttachmentsInput, Prisma.QuotationUncheckedUpdateWithoutAttachmentsInput>
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutAttachmentsInput, Prisma.QuotationUncheckedCreateWithoutAttachmentsInput>
+  where?: Prisma.QuotationWhereInput
+}
+
+export type QuotationUpdateToOneWithWhereWithoutAttachmentsInput = {
+  where?: Prisma.QuotationWhereInput
+  data: Prisma.XOR<Prisma.QuotationUpdateWithoutAttachmentsInput, Prisma.QuotationUncheckedUpdateWithoutAttachmentsInput>
+}
+
+export type QuotationUpdateWithoutAttachmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
+  ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
+}
+
+export type QuotationUncheckedUpdateWithoutAttachmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationCreateWithoutAllyInput = {
@@ -1122,9 +1294,11 @@ export type QuotationCreateWithoutAllyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateWithoutAllyInput = {
@@ -1146,7 +1320,9 @@ export type QuotationUncheckedCreateWithoutAllyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
   selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationCreateOrConnectWithoutAllyInput = {
@@ -1191,10 +1367,12 @@ export type QuotationCreateWithoutItemsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateWithoutItemsInput = {
@@ -1216,7 +1394,9 @@ export type QuotationUncheckedCreateWithoutItemsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
   selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
 }
 
 export type QuotationCreateOrConnectWithoutItemsInput = {
@@ -1251,10 +1431,12 @@ export type QuotationUpdateWithoutItemsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateWithoutItemsInput = {
@@ -1276,6 +1458,120 @@ export type QuotationUncheckedUpdateWithoutItemsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
+  selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
+}
+
+export type QuotationCreateWithoutOfertaEconomicaInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  observations?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
+  event: Prisma.EventCreateNestedOneWithoutQuotationsInput
+  ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+}
+
+export type QuotationUncheckedCreateWithoutOfertaEconomicaInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  eventId: string
+  allyId?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  observations?: string | null
+  createdById: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
+  selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+}
+
+export type QuotationCreateOrConnectWithoutOfertaEconomicaInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutOfertaEconomicaInput, Prisma.QuotationUncheckedCreateWithoutOfertaEconomicaInput>
+}
+
+export type QuotationUpsertWithoutOfertaEconomicaInput = {
+  update: Prisma.XOR<Prisma.QuotationUpdateWithoutOfertaEconomicaInput, Prisma.QuotationUncheckedUpdateWithoutOfertaEconomicaInput>
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutOfertaEconomicaInput, Prisma.QuotationUncheckedCreateWithoutOfertaEconomicaInput>
+  where?: Prisma.QuotationWhereInput
+}
+
+export type QuotationUpdateToOneWithWhereWithoutOfertaEconomicaInput = {
+  where?: Prisma.QuotationWhereInput
+  data: Prisma.XOR<Prisma.QuotationUpdateWithoutOfertaEconomicaInput, Prisma.QuotationUncheckedUpdateWithoutOfertaEconomicaInput>
+}
+
+export type QuotationUpdateWithoutOfertaEconomicaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
+  event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
+  ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+}
+
+export type QuotationUncheckedUpdateWithoutOfertaEconomicaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
   selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
 }
 
@@ -1316,9 +1612,11 @@ export type QuotationUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateWithoutCreatedByInput = {
@@ -1340,7 +1638,9 @@ export type QuotationUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
   selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1400,9 +1700,11 @@ export type QuotationUpdateWithoutEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateWithoutEventInput = {
@@ -1424,7 +1726,9 @@ export type QuotationUncheckedUpdateWithoutEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
   selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateManyWithoutEventInput = {
@@ -1484,9 +1788,11 @@ export type QuotationUpdateWithoutAllyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateWithoutAllyInput = {
@@ -1508,7 +1814,9 @@ export type QuotationUncheckedUpdateWithoutAllyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
   selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateManyWithoutAllyInput = {
@@ -1538,10 +1846,12 @@ export type QuotationUncheckedUpdateManyWithoutAllyInput = {
 
 export type QuotationCountOutputType = {
   items: number
+  attachments: number
 }
 
 export type QuotationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | QuotationCountOutputTypeCountItemsArgs
+  attachments?: boolean | QuotationCountOutputTypeCountAttachmentsArgs
 }
 
 /**
@@ -1559,6 +1869,13 @@ export type QuotationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
  */
 export type QuotationCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.QuotationItemWhereInput
+}
+
+/**
+ * QuotationCountOutputType without action
+ */
+export type QuotationCountOutputTypeCountAttachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttachmentWhereInput
 }
 
 
@@ -1582,10 +1899,12 @@ export type QuotationSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   createdAt?: boolean
   updatedAt?: boolean
   items?: boolean | Prisma.Quotation$itemsArgs<ExtArgs>
+  attachments?: boolean | Prisma.Quotation$attachmentsArgs<ExtArgs>
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   selectedForEvent?: boolean | Prisma.Quotation$selectedForEventArgs<ExtArgs>
+  ofertaEconomica?: boolean | Prisma.Quotation$ofertaEconomicaArgs<ExtArgs>
   _count?: boolean | Prisma.QuotationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quotation"]>
 
@@ -1661,10 +1980,12 @@ export type QuotationSelectScalar = {
 export type QuotationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "cliente" | "eventId" | "allyId" | "amount" | "currency" | "quotationDate" | "validityDays" | "status" | "isDefinitive" | "observations" | "createdById" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["quotation"]>
 export type QuotationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | Prisma.Quotation$itemsArgs<ExtArgs>
+  attachments?: boolean | Prisma.Quotation$attachmentsArgs<ExtArgs>
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   selectedForEvent?: boolean | Prisma.Quotation$selectedForEventArgs<ExtArgs>
+  ofertaEconomica?: boolean | Prisma.Quotation$ofertaEconomicaArgs<ExtArgs>
   _count?: boolean | Prisma.QuotationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuotationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1682,10 +2003,12 @@ export type $QuotationPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "Quotation"
   objects: {
     items: Prisma.$QuotationItemPayload<ExtArgs>[]
+    attachments: Prisma.$AttachmentPayload<ExtArgs>[]
     event: Prisma.$EventPayload<ExtArgs>
     ally: Prisma.$AllyPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs>
     selectedForEvent: Prisma.$EventPayload<ExtArgs> | null
+    ofertaEconomica: Prisma.$OfertaEconomicaPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2101,10 +2424,12 @@ readonly fields: QuotationFieldRefs;
 export interface Prisma__QuotationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   items<T extends Prisma.Quotation$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attachments<T extends Prisma.Quotation$attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   event<T extends Prisma.EventDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDefaultArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ally<T extends Prisma.Quotation$allyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$allyArgs<ExtArgs>>): Prisma.Prisma__AllyClient<runtime.Types.Result.GetResult<Prisma.$AllyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   selectedForEvent<T extends Prisma.Quotation$selectedForEventArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$selectedForEventArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  ofertaEconomica<T extends Prisma.Quotation$ofertaEconomicaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$ofertaEconomicaArgs<ExtArgs>>): Prisma.Prisma__OfertaEconomicaClient<runtime.Types.Result.GetResult<Prisma.$OfertaEconomicaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2577,6 +2902,30 @@ export type Quotation$itemsArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Quotation.attachments
+ */
+export type Quotation$attachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Attachment
+   */
+  select?: Prisma.AttachmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Attachment
+   */
+  omit?: Prisma.AttachmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttachmentInclude<ExtArgs> | null
+  where?: Prisma.AttachmentWhereInput
+  orderBy?: Prisma.AttachmentOrderByWithRelationInput | Prisma.AttachmentOrderByWithRelationInput[]
+  cursor?: Prisma.AttachmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttachmentScalarFieldEnum | Prisma.AttachmentScalarFieldEnum[]
+}
+
+/**
  * Quotation.ally
  */
 export type Quotation$allyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2612,6 +2961,25 @@ export type Quotation$selectedForEventArgs<ExtArgs extends runtime.Types.Extensi
    */
   include?: Prisma.EventInclude<ExtArgs> | null
   where?: Prisma.EventWhereInput
+}
+
+/**
+ * Quotation.ofertaEconomica
+ */
+export type Quotation$ofertaEconomicaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OfertaEconomica
+   */
+  select?: Prisma.OfertaEconomicaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OfertaEconomica
+   */
+  omit?: Prisma.OfertaEconomicaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OfertaEconomicaInclude<ExtArgs> | null
+  where?: Prisma.OfertaEconomicaWhereInput
 }
 
 /**

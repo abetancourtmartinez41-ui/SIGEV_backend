@@ -42,6 +42,7 @@ export type AttachmentMinAggregateOutputType = {
   fileSize: number | null
   category: string | null
   eventId: string | null
+  quotationId: string | null
   uploadedById: string | null
   createdAt: Date | null
 }
@@ -54,6 +55,7 @@ export type AttachmentMaxAggregateOutputType = {
   fileSize: number | null
   category: string | null
   eventId: string | null
+  quotationId: string | null
   uploadedById: string | null
   createdAt: Date | null
 }
@@ -66,6 +68,7 @@ export type AttachmentCountAggregateOutputType = {
   fileSize: number
   category: number
   eventId: number
+  quotationId: number
   uploadedById: number
   createdAt: number
   _all: number
@@ -88,6 +91,7 @@ export type AttachmentMinAggregateInputType = {
   fileSize?: true
   category?: true
   eventId?: true
+  quotationId?: true
   uploadedById?: true
   createdAt?: true
 }
@@ -100,6 +104,7 @@ export type AttachmentMaxAggregateInputType = {
   fileSize?: true
   category?: true
   eventId?: true
+  quotationId?: true
   uploadedById?: true
   createdAt?: true
 }
@@ -112,6 +117,7 @@ export type AttachmentCountAggregateInputType = {
   fileSize?: true
   category?: true
   eventId?: true
+  quotationId?: true
   uploadedById?: true
   createdAt?: true
   _all?: true
@@ -211,6 +217,7 @@ export type AttachmentGroupByOutputType = {
   fileSize: number
   category: string | null
   eventId: string
+  quotationId: string | null
   uploadedById: string
   createdAt: Date
   _count: AttachmentCountAggregateOutputType | null
@@ -246,9 +253,11 @@ export type AttachmentWhereInput = {
   fileSize?: Prisma.IntFilter<"Attachment"> | number
   category?: Prisma.StringNullableFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidFilter<"Attachment"> | string
+  quotationId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeFilter<"Attachment"> | Date | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
+  quotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
   uploadedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -260,9 +269,11 @@ export type AttachmentOrderByWithRelationInput = {
   fileSize?: Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   eventId?: Prisma.SortOrder
+  quotationId?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   event?: Prisma.EventOrderByWithRelationInput
+  quotation?: Prisma.QuotationOrderByWithRelationInput
   uploadedBy?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -277,9 +288,11 @@ export type AttachmentWhereUniqueInput = Prisma.AtLeast<{
   fileSize?: Prisma.IntFilter<"Attachment"> | number
   category?: Prisma.StringNullableFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidFilter<"Attachment"> | string
+  quotationId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeFilter<"Attachment"> | Date | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
+  quotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
   uploadedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
@@ -291,6 +304,7 @@ export type AttachmentOrderByWithAggregationInput = {
   fileSize?: Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   eventId?: Prisma.SortOrder
+  quotationId?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AttachmentCountOrderByAggregateInput
@@ -311,6 +325,7 @@ export type AttachmentScalarWhereWithAggregatesInput = {
   fileSize?: Prisma.IntWithAggregatesFilter<"Attachment"> | number
   category?: Prisma.StringNullableWithAggregatesFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidWithAggregatesFilter<"Attachment"> | string
+  quotationId?: Prisma.UuidNullableWithAggregatesFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidWithAggregatesFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Attachment"> | Date | string
 }
@@ -324,6 +339,7 @@ export type AttachmentCreateInput = {
   category?: string | null
   createdAt?: Date | string
   event: Prisma.EventCreateNestedOneWithoutAttachmentsInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutAttachmentsInput
   uploadedBy: Prisma.UserCreateNestedOneWithoutUploadedAttachmentsInput
 }
 
@@ -335,6 +351,7 @@ export type AttachmentUncheckedCreateInput = {
   fileSize: number
   category?: string | null
   eventId: string
+  quotationId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -348,6 +365,7 @@ export type AttachmentUpdateInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   event?: Prisma.EventUpdateOneRequiredWithoutAttachmentsNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutAttachmentsNestedInput
   uploadedBy?: Prisma.UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput
 }
 
@@ -359,6 +377,7 @@ export type AttachmentUncheckedUpdateInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -371,6 +390,7 @@ export type AttachmentCreateManyInput = {
   fileSize: number
   category?: string | null
   eventId: string
+  quotationId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -393,6 +413,7 @@ export type AttachmentUncheckedUpdateManyInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -415,6 +436,7 @@ export type AttachmentCountOrderByAggregateInput = {
   fileSize?: Prisma.SortOrder
   category?: Prisma.SortOrder
   eventId?: Prisma.SortOrder
+  quotationId?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -431,6 +453,7 @@ export type AttachmentMaxOrderByAggregateInput = {
   fileSize?: Prisma.SortOrder
   category?: Prisma.SortOrder
   eventId?: Prisma.SortOrder
+  quotationId?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -443,6 +466,7 @@ export type AttachmentMinOrderByAggregateInput = {
   fileSize?: Prisma.SortOrder
   category?: Prisma.SortOrder
   eventId?: Prisma.SortOrder
+  quotationId?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -535,6 +559,48 @@ export type AttachmentUncheckedUpdateManyWithoutEventNestedInput = {
   deleteMany?: Prisma.AttachmentScalarWhereInput | Prisma.AttachmentScalarWhereInput[]
 }
 
+export type AttachmentCreateNestedManyWithoutQuotationInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutQuotationInput, Prisma.AttachmentUncheckedCreateWithoutQuotationInput> | Prisma.AttachmentCreateWithoutQuotationInput[] | Prisma.AttachmentUncheckedCreateWithoutQuotationInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutQuotationInput | Prisma.AttachmentCreateOrConnectWithoutQuotationInput[]
+  createMany?: Prisma.AttachmentCreateManyQuotationInputEnvelope
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+}
+
+export type AttachmentUncheckedCreateNestedManyWithoutQuotationInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutQuotationInput, Prisma.AttachmentUncheckedCreateWithoutQuotationInput> | Prisma.AttachmentCreateWithoutQuotationInput[] | Prisma.AttachmentUncheckedCreateWithoutQuotationInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutQuotationInput | Prisma.AttachmentCreateOrConnectWithoutQuotationInput[]
+  createMany?: Prisma.AttachmentCreateManyQuotationInputEnvelope
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+}
+
+export type AttachmentUpdateManyWithoutQuotationNestedInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutQuotationInput, Prisma.AttachmentUncheckedCreateWithoutQuotationInput> | Prisma.AttachmentCreateWithoutQuotationInput[] | Prisma.AttachmentUncheckedCreateWithoutQuotationInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutQuotationInput | Prisma.AttachmentCreateOrConnectWithoutQuotationInput[]
+  upsert?: Prisma.AttachmentUpsertWithWhereUniqueWithoutQuotationInput | Prisma.AttachmentUpsertWithWhereUniqueWithoutQuotationInput[]
+  createMany?: Prisma.AttachmentCreateManyQuotationInputEnvelope
+  set?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  disconnect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  delete?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  update?: Prisma.AttachmentUpdateWithWhereUniqueWithoutQuotationInput | Prisma.AttachmentUpdateWithWhereUniqueWithoutQuotationInput[]
+  updateMany?: Prisma.AttachmentUpdateManyWithWhereWithoutQuotationInput | Prisma.AttachmentUpdateManyWithWhereWithoutQuotationInput[]
+  deleteMany?: Prisma.AttachmentScalarWhereInput | Prisma.AttachmentScalarWhereInput[]
+}
+
+export type AttachmentUncheckedUpdateManyWithoutQuotationNestedInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutQuotationInput, Prisma.AttachmentUncheckedCreateWithoutQuotationInput> | Prisma.AttachmentCreateWithoutQuotationInput[] | Prisma.AttachmentUncheckedCreateWithoutQuotationInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutQuotationInput | Prisma.AttachmentCreateOrConnectWithoutQuotationInput[]
+  upsert?: Prisma.AttachmentUpsertWithWhereUniqueWithoutQuotationInput | Prisma.AttachmentUpsertWithWhereUniqueWithoutQuotationInput[]
+  createMany?: Prisma.AttachmentCreateManyQuotationInputEnvelope
+  set?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  disconnect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  delete?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  update?: Prisma.AttachmentUpdateWithWhereUniqueWithoutQuotationInput | Prisma.AttachmentUpdateWithWhereUniqueWithoutQuotationInput[]
+  updateMany?: Prisma.AttachmentUpdateManyWithWhereWithoutQuotationInput | Prisma.AttachmentUpdateManyWithWhereWithoutQuotationInput[]
+  deleteMany?: Prisma.AttachmentScalarWhereInput | Prisma.AttachmentScalarWhereInput[]
+}
+
 export type AttachmentCreateWithoutUploadedByInput = {
   id?: string
   originalName: string
@@ -544,6 +610,7 @@ export type AttachmentCreateWithoutUploadedByInput = {
   category?: string | null
   createdAt?: Date | string
   event: Prisma.EventCreateNestedOneWithoutAttachmentsInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutAttachmentsInput
 }
 
 export type AttachmentUncheckedCreateWithoutUploadedByInput = {
@@ -554,6 +621,7 @@ export type AttachmentUncheckedCreateWithoutUploadedByInput = {
   fileSize: number
   category?: string | null
   eventId: string
+  quotationId?: string | null
   createdAt?: Date | string
 }
 
@@ -594,6 +662,7 @@ export type AttachmentScalarWhereInput = {
   fileSize?: Prisma.IntFilter<"Attachment"> | number
   category?: Prisma.StringNullableFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidFilter<"Attachment"> | string
+  quotationId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeFilter<"Attachment"> | Date | string
 }
@@ -606,6 +675,7 @@ export type AttachmentCreateWithoutEventInput = {
   fileSize: number
   category?: string | null
   createdAt?: Date | string
+  quotation?: Prisma.QuotationCreateNestedOneWithoutAttachmentsInput
   uploadedBy: Prisma.UserCreateNestedOneWithoutUploadedAttachmentsInput
 }
 
@@ -616,6 +686,7 @@ export type AttachmentUncheckedCreateWithoutEventInput = {
   mimeType: string
   fileSize: number
   category?: string | null
+  quotationId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -646,6 +717,56 @@ export type AttachmentUpdateManyWithWhereWithoutEventInput = {
   data: Prisma.XOR<Prisma.AttachmentUpdateManyMutationInput, Prisma.AttachmentUncheckedUpdateManyWithoutEventInput>
 }
 
+export type AttachmentCreateWithoutQuotationInput = {
+  id?: string
+  originalName: string
+  storedPath: string
+  mimeType: string
+  fileSize: number
+  category?: string | null
+  createdAt?: Date | string
+  event: Prisma.EventCreateNestedOneWithoutAttachmentsInput
+  uploadedBy: Prisma.UserCreateNestedOneWithoutUploadedAttachmentsInput
+}
+
+export type AttachmentUncheckedCreateWithoutQuotationInput = {
+  id?: string
+  originalName: string
+  storedPath: string
+  mimeType: string
+  fileSize: number
+  category?: string | null
+  eventId: string
+  uploadedById: string
+  createdAt?: Date | string
+}
+
+export type AttachmentCreateOrConnectWithoutQuotationInput = {
+  where: Prisma.AttachmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttachmentCreateWithoutQuotationInput, Prisma.AttachmentUncheckedCreateWithoutQuotationInput>
+}
+
+export type AttachmentCreateManyQuotationInputEnvelope = {
+  data: Prisma.AttachmentCreateManyQuotationInput | Prisma.AttachmentCreateManyQuotationInput[]
+  skipDuplicates?: boolean
+}
+
+export type AttachmentUpsertWithWhereUniqueWithoutQuotationInput = {
+  where: Prisma.AttachmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.AttachmentUpdateWithoutQuotationInput, Prisma.AttachmentUncheckedUpdateWithoutQuotationInput>
+  create: Prisma.XOR<Prisma.AttachmentCreateWithoutQuotationInput, Prisma.AttachmentUncheckedCreateWithoutQuotationInput>
+}
+
+export type AttachmentUpdateWithWhereUniqueWithoutQuotationInput = {
+  where: Prisma.AttachmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.AttachmentUpdateWithoutQuotationInput, Prisma.AttachmentUncheckedUpdateWithoutQuotationInput>
+}
+
+export type AttachmentUpdateManyWithWhereWithoutQuotationInput = {
+  where: Prisma.AttachmentScalarWhereInput
+  data: Prisma.XOR<Prisma.AttachmentUpdateManyMutationInput, Prisma.AttachmentUncheckedUpdateManyWithoutQuotationInput>
+}
+
 export type AttachmentCreateManyUploadedByInput = {
   id?: string
   originalName: string
@@ -654,6 +775,7 @@ export type AttachmentCreateManyUploadedByInput = {
   fileSize: number
   category?: string | null
   eventId: string
+  quotationId?: string | null
   createdAt?: Date | string
 }
 
@@ -666,6 +788,7 @@ export type AttachmentUpdateWithoutUploadedByInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   event?: Prisma.EventUpdateOneRequiredWithoutAttachmentsNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutAttachmentsNestedInput
 }
 
 export type AttachmentUncheckedUpdateWithoutUploadedByInput = {
@@ -676,6 +799,7 @@ export type AttachmentUncheckedUpdateWithoutUploadedByInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -687,6 +811,7 @@ export type AttachmentUncheckedUpdateManyWithoutUploadedByInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -697,6 +822,7 @@ export type AttachmentCreateManyEventInput = {
   mimeType: string
   fileSize: number
   category?: string | null
+  quotationId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -709,6 +835,7 @@ export type AttachmentUpdateWithoutEventInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneWithoutAttachmentsNestedInput
   uploadedBy?: Prisma.UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput
 }
 
@@ -719,6 +846,7 @@ export type AttachmentUncheckedUpdateWithoutEventInput = {
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -730,6 +858,55 @@ export type AttachmentUncheckedUpdateManyWithoutEventInput = {
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AttachmentCreateManyQuotationInput = {
+  id?: string
+  originalName: string
+  storedPath: string
+  mimeType: string
+  fileSize: number
+  category?: string | null
+  eventId: string
+  uploadedById: string
+  createdAt?: Date | string
+}
+
+export type AttachmentUpdateWithoutQuotationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedPath?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event?: Prisma.EventUpdateOneRequiredWithoutAttachmentsNestedInput
+  uploadedBy?: Prisma.UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput
+}
+
+export type AttachmentUncheckedUpdateWithoutQuotationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedPath?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AttachmentUncheckedUpdateManyWithoutQuotationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedPath?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -744,9 +921,11 @@ export type AttachmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   fileSize?: boolean
   category?: boolean
   eventId?: boolean
+  quotationId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attachment"]>
 
@@ -758,9 +937,11 @@ export type AttachmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   fileSize?: boolean
   category?: boolean
   eventId?: boolean
+  quotationId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attachment"]>
 
@@ -772,9 +953,11 @@ export type AttachmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   fileSize?: boolean
   category?: boolean
   eventId?: boolean
+  quotationId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attachment"]>
 
@@ -786,21 +969,25 @@ export type AttachmentSelectScalar = {
   fileSize?: boolean
   category?: boolean
   eventId?: boolean
+  quotationId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
 }
 
-export type AttachmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "originalName" | "storedPath" | "mimeType" | "fileSize" | "category" | "eventId" | "uploadedById" | "createdAt", ExtArgs["result"]["attachment"]>
+export type AttachmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "originalName" | "storedPath" | "mimeType" | "fileSize" | "category" | "eventId" | "quotationId" | "uploadedById" | "createdAt", ExtArgs["result"]["attachment"]>
 export type AttachmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type AttachmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type AttachmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
@@ -808,6 +995,7 @@ export type $AttachmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "Attachment"
   objects: {
     event: Prisma.$EventPayload<ExtArgs>
+    quotation: Prisma.$QuotationPayload<ExtArgs> | null
     uploadedBy: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -818,6 +1006,7 @@ export type $AttachmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     fileSize: number
     category: string | null
     eventId: string
+    quotationId: string | null
     uploadedById: string
     createdAt: Date
   }, ExtArgs["result"]["attachment"]>
@@ -1215,6 +1404,7 @@ readonly fields: AttachmentFieldRefs;
 export interface Prisma__AttachmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   event<T extends Prisma.EventDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDefaultArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  quotation<T extends Prisma.Attachment$quotationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attachment$quotationArgs<ExtArgs>>): Prisma.Prisma__QuotationClient<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   uploadedBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1252,6 +1442,7 @@ export interface AttachmentFieldRefs {
   readonly fileSize: Prisma.FieldRef<"Attachment", 'Int'>
   readonly category: Prisma.FieldRef<"Attachment", 'String'>
   readonly eventId: Prisma.FieldRef<"Attachment", 'String'>
+  readonly quotationId: Prisma.FieldRef<"Attachment", 'String'>
   readonly uploadedById: Prisma.FieldRef<"Attachment", 'String'>
   readonly createdAt: Prisma.FieldRef<"Attachment", 'DateTime'>
 }
@@ -1652,6 +1843,25 @@ export type AttachmentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Attachments to delete.
    */
   limit?: number
+}
+
+/**
+ * Attachment.quotation
+ */
+export type Attachment$quotationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
 }
 
 /**

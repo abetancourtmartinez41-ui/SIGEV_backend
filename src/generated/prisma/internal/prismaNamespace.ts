@@ -407,6 +407,8 @@ export const ModelName = {
   Ally: 'Ally',
   Quotation: 'Quotation',
   QuotationItem: 'QuotationItem',
+  OfertaEconomica: 'OfertaEconomica',
+  OfertaEconomicaItem: 'OfertaEconomicaItem',
   Disbursement: 'Disbursement',
   Tariff: 'Tariff',
   AuditLog: 'AuditLog',
@@ -426,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "event" | "item" | "attachment" | "parameter" | "parameterVersion" | "ally" | "quotation" | "quotationItem" | "disbursement" | "tariff" | "auditLog" | "municipality"
+    modelProps: "user" | "role" | "event" | "item" | "attachment" | "parameter" | "parameterVersion" | "ally" | "quotation" | "quotationItem" | "ofertaEconomica" | "ofertaEconomicaItem" | "disbursement" | "tariff" | "auditLog" | "municipality"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1170,6 +1172,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    OfertaEconomica: {
+      payload: Prisma.$OfertaEconomicaPayload<ExtArgs>
+      fields: Prisma.OfertaEconomicaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OfertaEconomicaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OfertaEconomicaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>
+        }
+        findFirst: {
+          args: Prisma.OfertaEconomicaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OfertaEconomicaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>
+        }
+        findMany: {
+          args: Prisma.OfertaEconomicaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>[]
+        }
+        create: {
+          args: Prisma.OfertaEconomicaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>
+        }
+        createMany: {
+          args: Prisma.OfertaEconomicaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OfertaEconomicaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>[]
+        }
+        delete: {
+          args: Prisma.OfertaEconomicaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>
+        }
+        update: {
+          args: Prisma.OfertaEconomicaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>
+        }
+        deleteMany: {
+          args: Prisma.OfertaEconomicaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OfertaEconomicaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OfertaEconomicaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>[]
+        }
+        upsert: {
+          args: Prisma.OfertaEconomicaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaPayload>
+        }
+        aggregate: {
+          args: Prisma.OfertaEconomicaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOfertaEconomica>
+        }
+        groupBy: {
+          args: Prisma.OfertaEconomicaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OfertaEconomicaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OfertaEconomicaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OfertaEconomicaCountAggregateOutputType> | number
+        }
+      }
+    }
+    OfertaEconomicaItem: {
+      payload: Prisma.$OfertaEconomicaItemPayload<ExtArgs>
+      fields: Prisma.OfertaEconomicaItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OfertaEconomicaItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OfertaEconomicaItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>
+        }
+        findFirst: {
+          args: Prisma.OfertaEconomicaItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OfertaEconomicaItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>
+        }
+        findMany: {
+          args: Prisma.OfertaEconomicaItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>[]
+        }
+        create: {
+          args: Prisma.OfertaEconomicaItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>
+        }
+        createMany: {
+          args: Prisma.OfertaEconomicaItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OfertaEconomicaItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>[]
+        }
+        delete: {
+          args: Prisma.OfertaEconomicaItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>
+        }
+        update: {
+          args: Prisma.OfertaEconomicaItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.OfertaEconomicaItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OfertaEconomicaItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OfertaEconomicaItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.OfertaEconomicaItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfertaEconomicaItemPayload>
+        }
+        aggregate: {
+          args: Prisma.OfertaEconomicaItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOfertaEconomicaItem>
+        }
+        groupBy: {
+          args: Prisma.OfertaEconomicaItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OfertaEconomicaItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OfertaEconomicaItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OfertaEconomicaItemCountAggregateOutputType> | number
+        }
+      }
+    }
     Disbursement: {
       payload: Prisma.$DisbursementPayload<ExtArgs>
       fields: Prisma.DisbursementFieldRefs
@@ -1602,6 +1752,7 @@ export const AttachmentScalarFieldEnum = {
   fileSize: 'fileSize',
   category: 'category',
   eventId: 'eventId',
+  quotationId: 'quotationId',
   uploadedById: 'uploadedById',
   createdAt: 'createdAt'
 } as const
@@ -1706,6 +1857,60 @@ export const QuotationItemScalarFieldEnum = {
 } as const
 
 export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
+export const OfertaEconomicaScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  eventId: 'eventId',
+  quotationId: 'quotationId',
+  allyId: 'allyId',
+  baseTotal: 'baseTotal',
+  ivaTotal: 'ivaTotal',
+  impuestoConsumoTotal: 'impuestoConsumoTotal',
+  feeTarifadoTotal: 'feeTarifadoTotal',
+  feeTercerosTotal: 'feeTercerosTotal',
+  feeTotal: 'feeTotal',
+  ivaFeeTotal: 'ivaFeeTotal',
+  total: 'total',
+  currency: 'currency',
+  status: 'status',
+  generatedAt: 'generatedAt',
+  createdById: 'createdById',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OfertaEconomicaScalarFieldEnum = (typeof OfertaEconomicaScalarFieldEnum)[keyof typeof OfertaEconomicaScalarFieldEnum]
+
+
+export const OfertaEconomicaItemScalarFieldEnum = {
+  id: 'id',
+  ofertaEconomicaId: 'ofertaEconomicaId',
+  quotationItemId: 'quotationItemId',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  baseValue: 'baseValue',
+  ivaRate: 'ivaRate',
+  ivaValue: 'ivaValue',
+  consumptionTaxRate: 'consumptionTaxRate',
+  consumptionTaxValue: 'consumptionTaxValue',
+  feeRate: 'feeRate',
+  feeTarifadoValue: 'feeTarifadoValue',
+  feeTercerosValue: 'feeTercerosValue',
+  feeIvaRate: 'feeIvaRate',
+  feeIvaValue: 'feeIvaValue',
+  totalValue: 'totalValue',
+  allyId: 'allyId',
+  tariffId: 'tariffId',
+  isTariffed: 'isTariffed',
+  createdAt: 'createdAt'
+} as const
+
+export type OfertaEconomicaItemScalarFieldEnum = (typeof OfertaEconomicaItemScalarFieldEnum)[keyof typeof OfertaEconomicaItemScalarFieldEnum]
 
 
 export const DisbursementScalarFieldEnum = {
@@ -2080,6 +2285,8 @@ export type GlobalOmitConfig = {
   ally?: Prisma.AllyOmit
   quotation?: Prisma.QuotationOmit
   quotationItem?: Prisma.QuotationItemOmit
+  ofertaEconomica?: Prisma.OfertaEconomicaOmit
+  ofertaEconomicaItem?: Prisma.OfertaEconomicaItemOmit
   disbursement?: Prisma.DisbursementOmit
   tariff?: Prisma.TariffOmit
   auditLog?: Prisma.AuditLogOmit

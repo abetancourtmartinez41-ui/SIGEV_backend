@@ -224,6 +224,8 @@ export type AllyWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
   quotations?: Prisma.QuotationListRelationFilter
   quotationItems?: Prisma.QuotationItemListRelationFilter
+  ofertaEconomicas?: Prisma.OfertaEconomicaListRelationFilter
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemListRelationFilter
   users?: Prisma.UserListRelationFilter
 }
 
@@ -240,6 +242,8 @@ export type AllyOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   quotations?: Prisma.QuotationOrderByRelationAggregateInput
   quotationItems?: Prisma.QuotationItemOrderByRelationAggregateInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaOrderByRelationAggregateInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
 }
 
@@ -259,6 +263,8 @@ export type AllyWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
   quotations?: Prisma.QuotationListRelationFilter
   quotationItems?: Prisma.QuotationItemListRelationFilter
+  ofertaEconomicas?: Prisma.OfertaEconomicaListRelationFilter
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemListRelationFilter
   users?: Prisma.UserListRelationFilter
 }, "id" | "code" | "name">
 
@@ -307,6 +313,8 @@ export type AllyCreateInput = {
   updatedAt?: Date | string
   quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
   quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutAllyInput
   users?: Prisma.UserCreateNestedManyWithoutAllyInput
 }
 
@@ -323,6 +331,8 @@ export type AllyUncheckedCreateInput = {
   updatedAt?: Date | string
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
   quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedCreateNestedManyWithoutAllyInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
 }
 
@@ -339,6 +349,8 @@ export type AllyUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
   quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutAllyNestedInput
   users?: Prisma.UserUpdateManyWithoutAllyNestedInput
 }
 
@@ -355,6 +367,8 @@ export type AllyUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
   quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedUpdateManyWithoutAllyNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
 }
 
@@ -489,6 +503,38 @@ export type AllyUpdateOneWithoutQuotationItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AllyUpdateToOneWithWhereWithoutQuotationItemsInput, Prisma.AllyUpdateWithoutQuotationItemsInput>, Prisma.AllyUncheckedUpdateWithoutQuotationItemsInput>
 }
 
+export type AllyCreateNestedOneWithoutOfertaEconomicasInput = {
+  create?: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicasInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicasInput>
+  connectOrCreate?: Prisma.AllyCreateOrConnectWithoutOfertaEconomicasInput
+  connect?: Prisma.AllyWhereUniqueInput
+}
+
+export type AllyUpdateOneWithoutOfertaEconomicasNestedInput = {
+  create?: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicasInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicasInput>
+  connectOrCreate?: Prisma.AllyCreateOrConnectWithoutOfertaEconomicasInput
+  upsert?: Prisma.AllyUpsertWithoutOfertaEconomicasInput
+  disconnect?: Prisma.AllyWhereInput | boolean
+  delete?: Prisma.AllyWhereInput | boolean
+  connect?: Prisma.AllyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AllyUpdateToOneWithWhereWithoutOfertaEconomicasInput, Prisma.AllyUpdateWithoutOfertaEconomicasInput>, Prisma.AllyUncheckedUpdateWithoutOfertaEconomicasInput>
+}
+
+export type AllyCreateNestedOneWithoutOfertaEconomicaItemsInput = {
+  create?: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicaItemsInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicaItemsInput>
+  connectOrCreate?: Prisma.AllyCreateOrConnectWithoutOfertaEconomicaItemsInput
+  connect?: Prisma.AllyWhereUniqueInput
+}
+
+export type AllyUpdateOneWithoutOfertaEconomicaItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicaItemsInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicaItemsInput>
+  connectOrCreate?: Prisma.AllyCreateOrConnectWithoutOfertaEconomicaItemsInput
+  upsert?: Prisma.AllyUpsertWithoutOfertaEconomicaItemsInput
+  disconnect?: Prisma.AllyWhereInput | boolean
+  delete?: Prisma.AllyWhereInput | boolean
+  connect?: Prisma.AllyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AllyUpdateToOneWithWhereWithoutOfertaEconomicaItemsInput, Prisma.AllyUpdateWithoutOfertaEconomicaItemsInput>, Prisma.AllyUncheckedUpdateWithoutOfertaEconomicaItemsInput>
+}
+
 export type AllyCreateWithoutUsersInput = {
   id?: string
   code: string
@@ -502,6 +548,8 @@ export type AllyCreateWithoutUsersInput = {
   updatedAt?: Date | string
   quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
   quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutAllyInput
 }
 
 export type AllyUncheckedCreateWithoutUsersInput = {
@@ -517,6 +565,8 @@ export type AllyUncheckedCreateWithoutUsersInput = {
   updatedAt?: Date | string
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
   quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedCreateNestedManyWithoutAllyInput
 }
 
 export type AllyCreateOrConnectWithoutUsersInput = {
@@ -548,6 +598,8 @@ export type AllyUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
   quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutAllyNestedInput
 }
 
 export type AllyUncheckedUpdateWithoutUsersInput = {
@@ -563,6 +615,8 @@ export type AllyUncheckedUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
   quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedUpdateManyWithoutAllyNestedInput
 }
 
 export type AllyCreateWithoutQuotationsInput = {
@@ -577,6 +631,8 @@ export type AllyCreateWithoutQuotationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutAllyInput
   users?: Prisma.UserCreateNestedManyWithoutAllyInput
 }
 
@@ -592,6 +648,8 @@ export type AllyUncheckedCreateWithoutQuotationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedCreateNestedManyWithoutAllyInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
 }
 
@@ -623,6 +681,8 @@ export type AllyUpdateWithoutQuotationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutAllyNestedInput
   users?: Prisma.UserUpdateManyWithoutAllyNestedInput
 }
 
@@ -638,6 +698,8 @@ export type AllyUncheckedUpdateWithoutQuotationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedUpdateManyWithoutAllyNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
 }
 
@@ -653,6 +715,8 @@ export type AllyCreateWithoutQuotationItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutAllyInput
   users?: Prisma.UserCreateNestedManyWithoutAllyInput
 }
 
@@ -668,6 +732,8 @@ export type AllyUncheckedCreateWithoutQuotationItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedCreateNestedManyWithoutAllyInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
 }
 
@@ -699,6 +765,8 @@ export type AllyUpdateWithoutQuotationItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutAllyNestedInput
   users?: Prisma.UserUpdateManyWithoutAllyNestedInput
 }
 
@@ -714,6 +782,176 @@ export type AllyUncheckedUpdateWithoutQuotationItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
+}
+
+export type AllyCreateWithoutOfertaEconomicasInput = {
+  id?: string
+  code: string
+  name: string
+  color?: string | null
+  document?: string | null
+  contactName?: string | null
+  contactEmail?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserCreateNestedManyWithoutAllyInput
+}
+
+export type AllyUncheckedCreateWithoutOfertaEconomicasInput = {
+  id?: string
+  code: string
+  name: string
+  color?: string | null
+  document?: string | null
+  contactName?: string | null
+  contactEmail?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
+}
+
+export type AllyCreateOrConnectWithoutOfertaEconomicasInput = {
+  where: Prisma.AllyWhereUniqueInput
+  create: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicasInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicasInput>
+}
+
+export type AllyUpsertWithoutOfertaEconomicasInput = {
+  update: Prisma.XOR<Prisma.AllyUpdateWithoutOfertaEconomicasInput, Prisma.AllyUncheckedUpdateWithoutOfertaEconomicasInput>
+  create: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicasInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicasInput>
+  where?: Prisma.AllyWhereInput
+}
+
+export type AllyUpdateToOneWithWhereWithoutOfertaEconomicasInput = {
+  where?: Prisma.AllyWhereInput
+  data: Prisma.XOR<Prisma.AllyUpdateWithoutOfertaEconomicasInput, Prisma.AllyUncheckedUpdateWithoutOfertaEconomicasInput>
+}
+
+export type AllyUpdateWithoutOfertaEconomicasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUpdateManyWithoutAllyNestedInput
+}
+
+export type AllyUncheckedUpdateWithoutOfertaEconomicasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
+}
+
+export type AllyCreateWithoutOfertaEconomicaItemsInput = {
+  id?: string
+  code: string
+  name: string
+  color?: string | null
+  document?: string | null
+  contactName?: string | null
+  contactEmail?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotations?: Prisma.QuotationCreateNestedManyWithoutAllyInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserCreateNestedManyWithoutAllyInput
+}
+
+export type AllyUncheckedCreateWithoutOfertaEconomicaItemsInput = {
+  id?: string
+  code: string
+  name: string
+  color?: string | null
+  document?: string | null
+  contactName?: string | null
+  contactEmail?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutAllyInput
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutAllyInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutAllyInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutAllyInput
+}
+
+export type AllyCreateOrConnectWithoutOfertaEconomicaItemsInput = {
+  where: Prisma.AllyWhereUniqueInput
+  create: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicaItemsInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicaItemsInput>
+}
+
+export type AllyUpsertWithoutOfertaEconomicaItemsInput = {
+  update: Prisma.XOR<Prisma.AllyUpdateWithoutOfertaEconomicaItemsInput, Prisma.AllyUncheckedUpdateWithoutOfertaEconomicaItemsInput>
+  create: Prisma.XOR<Prisma.AllyCreateWithoutOfertaEconomicaItemsInput, Prisma.AllyUncheckedCreateWithoutOfertaEconomicaItemsInput>
+  where?: Prisma.AllyWhereInput
+}
+
+export type AllyUpdateToOneWithWhereWithoutOfertaEconomicaItemsInput = {
+  where?: Prisma.AllyWhereInput
+  data: Prisma.XOR<Prisma.AllyUpdateWithoutOfertaEconomicaItemsInput, Prisma.AllyUncheckedUpdateWithoutOfertaEconomicaItemsInput>
+}
+
+export type AllyUpdateWithoutOfertaEconomicaItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUpdateManyWithoutAllyNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutAllyNestedInput
+  users?: Prisma.UserUpdateManyWithoutAllyNestedInput
+}
+
+export type AllyUncheckedUpdateWithoutOfertaEconomicaItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutAllyNestedInput
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutAllyNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutAllyNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutAllyNestedInput
 }
 
@@ -725,12 +963,16 @@ export type AllyUncheckedUpdateWithoutQuotationItemsInput = {
 export type AllyCountOutputType = {
   quotations: number
   quotationItems: number
+  ofertaEconomicas: number
+  ofertaEconomicaItems: number
   users: number
 }
 
 export type AllyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotations?: boolean | AllyCountOutputTypeCountQuotationsArgs
   quotationItems?: boolean | AllyCountOutputTypeCountQuotationItemsArgs
+  ofertaEconomicas?: boolean | AllyCountOutputTypeCountOfertaEconomicasArgs
+  ofertaEconomicaItems?: boolean | AllyCountOutputTypeCountOfertaEconomicaItemsArgs
   users?: boolean | AllyCountOutputTypeCountUsersArgs
 }
 
@@ -761,6 +1003,20 @@ export type AllyCountOutputTypeCountQuotationItemsArgs<ExtArgs extends runtime.T
 /**
  * AllyCountOutputType without action
  */
+export type AllyCountOutputTypeCountOfertaEconomicasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OfertaEconomicaWhereInput
+}
+
+/**
+ * AllyCountOutputType without action
+ */
+export type AllyCountOutputTypeCountOfertaEconomicaItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OfertaEconomicaItemWhereInput
+}
+
+/**
+ * AllyCountOutputType without action
+ */
 export type AllyCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserWhereInput
 }
@@ -779,6 +1035,8 @@ export type AllySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   quotations?: boolean | Prisma.Ally$quotationsArgs<ExtArgs>
   quotationItems?: boolean | Prisma.Ally$quotationItemsArgs<ExtArgs>
+  ofertaEconomicas?: boolean | Prisma.Ally$ofertaEconomicasArgs<ExtArgs>
+  ofertaEconomicaItems?: boolean | Prisma.Ally$ofertaEconomicaItemsArgs<ExtArgs>
   users?: boolean | Prisma.Ally$usersArgs<ExtArgs>
   _count?: boolean | Prisma.AllyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ally"]>
@@ -826,6 +1084,8 @@ export type AllyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type AllyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotations?: boolean | Prisma.Ally$quotationsArgs<ExtArgs>
   quotationItems?: boolean | Prisma.Ally$quotationItemsArgs<ExtArgs>
+  ofertaEconomicas?: boolean | Prisma.Ally$ofertaEconomicasArgs<ExtArgs>
+  ofertaEconomicaItems?: boolean | Prisma.Ally$ofertaEconomicaItemsArgs<ExtArgs>
   users?: boolean | Prisma.Ally$usersArgs<ExtArgs>
   _count?: boolean | Prisma.AllyCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -837,6 +1097,8 @@ export type $AllyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     quotations: Prisma.$QuotationPayload<ExtArgs>[]
     quotationItems: Prisma.$QuotationItemPayload<ExtArgs>[]
+    ofertaEconomicas: Prisma.$OfertaEconomicaPayload<ExtArgs>[]
+    ofertaEconomicaItems: Prisma.$OfertaEconomicaItemPayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1246,6 +1508,8 @@ export interface Prisma__AllyClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   quotations<T extends Prisma.Ally$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotationItems<T extends Prisma.Ally$quotationItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$quotationItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ofertaEconomicas<T extends Prisma.Ally$ofertaEconomicasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$ofertaEconomicasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfertaEconomicaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ofertaEconomicaItems<T extends Prisma.Ally$ofertaEconomicaItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$ofertaEconomicaItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfertaEconomicaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Ally$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ally$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1724,6 +1988,54 @@ export type Ally$quotationItemsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.QuotationItemScalarFieldEnum | Prisma.QuotationItemScalarFieldEnum[]
+}
+
+/**
+ * Ally.ofertaEconomicas
+ */
+export type Ally$ofertaEconomicasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OfertaEconomica
+   */
+  select?: Prisma.OfertaEconomicaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OfertaEconomica
+   */
+  omit?: Prisma.OfertaEconomicaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OfertaEconomicaInclude<ExtArgs> | null
+  where?: Prisma.OfertaEconomicaWhereInput
+  orderBy?: Prisma.OfertaEconomicaOrderByWithRelationInput | Prisma.OfertaEconomicaOrderByWithRelationInput[]
+  cursor?: Prisma.OfertaEconomicaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OfertaEconomicaScalarFieldEnum | Prisma.OfertaEconomicaScalarFieldEnum[]
+}
+
+/**
+ * Ally.ofertaEconomicaItems
+ */
+export type Ally$ofertaEconomicaItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OfertaEconomicaItem
+   */
+  select?: Prisma.OfertaEconomicaItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OfertaEconomicaItem
+   */
+  omit?: Prisma.OfertaEconomicaItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OfertaEconomicaItemInclude<ExtArgs> | null
+  where?: Prisma.OfertaEconomicaItemWhereInput
+  orderBy?: Prisma.OfertaEconomicaItemOrderByWithRelationInput | Prisma.OfertaEconomicaItemOrderByWithRelationInput[]
+  cursor?: Prisma.OfertaEconomicaItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OfertaEconomicaItemScalarFieldEnum | Prisma.OfertaEconomicaItemScalarFieldEnum[]
 }
 
 /**

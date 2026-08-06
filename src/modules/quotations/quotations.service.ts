@@ -11,6 +11,7 @@ import { CalculationsService } from '../calculations/calculations.service';
 import { TariffsService } from '../tariffs/tariffs.service';
 import { ReportsService } from '../reports/reports.service';
 import { AttachmentsService } from '../attachments/attachments.service';
+import { OfertaEconomicaService } from '../oferta-economica/oferta-economica.service';
 import { ROLES } from '../../config/constants';
 
 const quotationInclude = {
@@ -37,6 +38,7 @@ export class QuotationsService {
     private readonly tariffsService: TariffsService,
     private readonly reportsService: ReportsService,
     private readonly attachmentsService: AttachmentsService,
+    private readonly ofertaEconomicaService: OfertaEconomicaService,
   ) {}
 
   private roleNames(roles: { name: string }[]): string[] {
@@ -54,7 +56,7 @@ export class QuotationsService {
     if (!this.isOperator(user)) return;
     if (event.generalAllyId && event.generalAllyId === user.allyId) return;
     throw new ForbiddenException(
-      'Esta oferta pertenece a un evento de otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
+      'Esta cotización pertenece a un evento de otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
     );
   }
 
@@ -97,7 +99,7 @@ export class QuotationsService {
 
     if (!description) {
       throw new BadRequestException(
-        'El ítem de la oferta requiere una descripción o un servicio del tarifario',
+        'El ítem de la cotización requiere una descripción o un servicio del tarifario',
       );
     }
 
@@ -110,31 +112,20 @@ export class QuotationsService {
   ): Promise<Omit<Prisma.QuotationItemUncheckedCreateInput, 'quotationId'>> {
     const resolved = await this.resolveItemValues(dto, event);
     const rates = await this.calculationsService.getActiveRates();
-    const calculated = this.calculationsService.calculateItem({
-      name: resolved.description,
-      quantity: dto.quantity,
-      unitPrice: resolved.unitPrice,
-      ivaRate: dto.ivaRate ?? rates.ivaRate,
-      consumptionTaxRate: dto.consumptionTaxRate ?? rates.consumptionTaxRate,
-      feeRate: dto.feeRate ?? rates.feeRate,
-      feeIvaRate: dto.feeIvaRate ?? rates.feeIvaRate,
-      feeApplyOn: rates.feeApplyOn,
-      allyId: dto.allyId,
-      tariffId: resolved.tariffId,
-    });
+    const baseValue = dto.quantity * resolved.unitPrice;
     return {
       description: resolved.description,
       quantity: dto.quantity,
-      unitPrice: calculated.unitPrice,
-      ivaRate: calculated.ivaRate,
-      ivaValue: calculated.ivaValue,
-      consumptionTaxRate: calculated.consumptionTaxRate,
-      consumptionTaxValue: calculated.consumptionTaxValue,
-      feeRate: calculated.feeRate,
-      feeValue: calculated.feeValue,
-      feeIvaRate: calculated.feeIvaRate,
-      feeIvaValue: calculated.feeIvaValue,
-      totalValue: calculated.totalValue,
+      unitPrice: resolved.unitPrice,
+      ivaRate: dto.ivaRate ?? rates.ivaRate,
+      ivaValue: 0,
+      consumptionTaxRate: dto.consumptionTaxRate ?? rates.consumptionTaxRate,
+      consumptionTaxValue: 0,
+      feeRate: dto.feeRate ?? rates.feeRate,
+      feeValue: 0,
+      feeIvaRate: dto.feeIvaRate ?? rates.feeIvaRate,
+      feeIvaValue: 0,
+      totalValue: baseValue,
       allyId: dto.allyId,
       tariffId: resolved.tariffId,
       isTariffed: resolved.isTariffed,
@@ -214,7 +205,7 @@ export class QuotationsService {
       where: { id, isActive: true },
       include: quotationInclude,
     });
-    if (!quotation) throw new NotFoundException('Oferta no encontrada');
+    if (!quotation) throw new NotFoundException('Cotización no encontrada');
     return quotation;
   }
 
@@ -290,15 +281,15 @@ export class QuotationsService {
 
     const allowedRoles = [ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER];
     if (!roles.some((role) => allowedRoles.includes(role as never))) {
-      throw new ForbiddenException('Su perfil no puede cambiar el estado de las ofertas');
+      throw new ForbiddenException('Su perfil no puede cambiar el estado de las cotizaciones');
     }
 
     if (!(Object.values(QUOTATION_STATUS) as string[]).includes(dto.status)) {
-      throw new BadRequestException(`Estado de oferta no válido: ${dto.status}`);
+      throw new BadRequestException(`Estado de cotización no válido: ${dto.status}`);
     }
 
     if (dto.status === QUOTATION_STATUS.APROBADA && !roles.includes(ROLES.APPROVER)) {
-      throw new ForbiddenException('Solo el Aprobador puede marcar una oferta como Aprobada');
+      throw new ForbiddenException('Solo el Aprobador puede marcar una cotización como Aprobada');
     }
 
     const isApproved = dto.status === QUOTATION_STATUS.APROBADA;
@@ -359,6 +350,8 @@ export class QuotationsService {
         buffer,
         uploadedById: user.id,
       });
+
+      await this.ofertaEconomicaService.ensureFromQuotation(quotation, user);
     }
 
     return updated;
@@ -368,10 +361,10 @@ export class QuotationsService {
     const quotation = await this.findOne(id);
     this.assertAllyScope(quotation.event, user);
     if (!quotation.eventId) {
-      throw new BadRequestException('La oferta debe estar asociada a un evento');
+      throw new BadRequestException('La cotización debe estar asociada a un evento');
     }
-    return this.prisma.$transaction(async (tx) => {
-      const updated = await tx.quotation.update({
+    const updated = await this.prisma.$transaction(async (tx) => {
+      const updatedQuotation = await tx.quotation.update({
         where: { id },
         data: { isDefinitive: true },
         include: quotationInclude,
@@ -380,8 +373,12 @@ export class QuotationsService {
         where: { id: quotation.eventId },
         data: { cotizacionSeleccionadaId: quotation.id },
       });
-      return updated;
+      return updatedQuotation;
     });
+
+    await this.ofertaEconomicaService.ensureFromQuotation(quotation, user);
+
+    return updated;
   }
 
   async remove(id: string): Promise<void> {

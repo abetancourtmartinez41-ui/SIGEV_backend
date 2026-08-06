@@ -61,6 +61,8 @@ export const ModelName = {
   Ally: 'Ally',
   Quotation: 'Quotation',
   QuotationItem: 'QuotationItem',
+  OfertaEconomica: 'OfertaEconomica',
+  OfertaEconomicaItem: 'OfertaEconomicaItem',
   Disbursement: 'Disbursement',
   Tariff: 'Tariff',
   AuditLog: 'AuditLog',
@@ -180,6 +182,7 @@ export const AttachmentScalarFieldEnum = {
   fileSize: 'fileSize',
   category: 'category',
   eventId: 'eventId',
+  quotationId: 'quotationId',
   uploadedById: 'uploadedById',
   createdAt: 'createdAt'
 } as const
@@ -284,6 +287,60 @@ export const QuotationItemScalarFieldEnum = {
 } as const
 
 export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
+export const OfertaEconomicaScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  eventId: 'eventId',
+  quotationId: 'quotationId',
+  allyId: 'allyId',
+  baseTotal: 'baseTotal',
+  ivaTotal: 'ivaTotal',
+  impuestoConsumoTotal: 'impuestoConsumoTotal',
+  feeTarifadoTotal: 'feeTarifadoTotal',
+  feeTercerosTotal: 'feeTercerosTotal',
+  feeTotal: 'feeTotal',
+  ivaFeeTotal: 'ivaFeeTotal',
+  total: 'total',
+  currency: 'currency',
+  status: 'status',
+  generatedAt: 'generatedAt',
+  createdById: 'createdById',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OfertaEconomicaScalarFieldEnum = (typeof OfertaEconomicaScalarFieldEnum)[keyof typeof OfertaEconomicaScalarFieldEnum]
+
+
+export const OfertaEconomicaItemScalarFieldEnum = {
+  id: 'id',
+  ofertaEconomicaId: 'ofertaEconomicaId',
+  quotationItemId: 'quotationItemId',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  baseValue: 'baseValue',
+  ivaRate: 'ivaRate',
+  ivaValue: 'ivaValue',
+  consumptionTaxRate: 'consumptionTaxRate',
+  consumptionTaxValue: 'consumptionTaxValue',
+  feeRate: 'feeRate',
+  feeTarifadoValue: 'feeTarifadoValue',
+  feeTercerosValue: 'feeTercerosValue',
+  feeIvaRate: 'feeIvaRate',
+  feeIvaValue: 'feeIvaValue',
+  totalValue: 'totalValue',
+  allyId: 'allyId',
+  tariffId: 'tariffId',
+  isTariffed: 'isTariffed',
+  createdAt: 'createdAt'
+} as const
+
+export type OfertaEconomicaItemScalarFieldEnum = (typeof OfertaEconomicaItemScalarFieldEnum)[keyof typeof OfertaEconomicaItemScalarFieldEnum]
 
 
 export const DisbursementScalarFieldEnum = {

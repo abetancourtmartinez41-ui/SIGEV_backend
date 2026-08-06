@@ -90,6 +90,16 @@ export type Quotation = Prisma.QuotationModel
  */
 export type QuotationItem = Prisma.QuotationItemModel
 /**
+ * Model OfertaEconomica
+ * 
+ */
+export type OfertaEconomica = Prisma.OfertaEconomicaModel
+/**
+ * Model OfertaEconomicaItem
+ * 
+ */
+export type OfertaEconomicaItem = Prisma.OfertaEconomicaItemModel
+/**
  * Model Disbursement
  * 
  */

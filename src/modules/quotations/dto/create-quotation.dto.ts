@@ -6,7 +6,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { CreateQuotationItemDto } from './create-quotation-item.dto';
 
 export class CreateQuotationDto {
-  @ApiPropertyOptional({ example: 'COT-2026-001-1', description: 'Código de la oferta. Se autogenera si se omite' })
+  @ApiPropertyOptional({ example: 'COT-2026-001-1', description: 'Código de la cotización. Se autogenera si se omite' })
   @IsOptional()
   @IsString()
   code?: string;

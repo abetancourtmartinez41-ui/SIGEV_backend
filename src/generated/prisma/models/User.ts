@@ -219,6 +219,7 @@ export type UserWhereInput = {
   createdEvents?: Prisma.EventListRelationFilter
   uploadedAttachments?: Prisma.AttachmentListRelationFilter
   quotations?: Prisma.QuotationListRelationFilter
+  ofertaEconomicas?: Prisma.OfertaEconomicaListRelationFilter
   parameterVersions?: Prisma.ParameterVersionListRelationFilter
 }
 
@@ -237,6 +238,7 @@ export type UserOrderByWithRelationInput = {
   createdEvents?: Prisma.EventOrderByRelationAggregateInput
   uploadedAttachments?: Prisma.AttachmentOrderByRelationAggregateInput
   quotations?: Prisma.QuotationOrderByRelationAggregateInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaOrderByRelationAggregateInput
   parameterVersions?: Prisma.ParameterVersionOrderByRelationAggregateInput
 }
 
@@ -258,6 +260,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdEvents?: Prisma.EventListRelationFilter
   uploadedAttachments?: Prisma.AttachmentListRelationFilter
   quotations?: Prisma.QuotationListRelationFilter
+  ofertaEconomicas?: Prisma.OfertaEconomicaListRelationFilter
   parameterVersions?: Prisma.ParameterVersionListRelationFilter
 }, "id" | "document" | "email">
 
@@ -305,6 +308,7 @@ export type UserCreateInput = {
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
@@ -322,6 +326,7 @@ export type UserUncheckedCreateInput = {
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -339,6 +344,7 @@ export type UserUpdateInput = {
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -356,6 +362,7 @@ export type UserUncheckedUpdateInput = {
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -597,6 +604,20 @@ export type UserUpdateOneRequiredWithoutQuotationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQuotationsInput, Prisma.UserUpdateWithoutQuotationsInput>, Prisma.UserUncheckedUpdateWithoutQuotationsInput>
 }
 
+export type UserCreateNestedOneWithoutOfertaEconomicasInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOfertaEconomicasInput, Prisma.UserUncheckedCreateWithoutOfertaEconomicasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOfertaEconomicasInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutOfertaEconomicasNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOfertaEconomicasInput, Prisma.UserUncheckedCreateWithoutOfertaEconomicasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOfertaEconomicasInput
+  upsert?: Prisma.UserUpsertWithoutOfertaEconomicasInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOfertaEconomicasInput, Prisma.UserUpdateWithoutOfertaEconomicasInput>, Prisma.UserUncheckedUpdateWithoutOfertaEconomicasInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   document: string
@@ -610,6 +631,7 @@ export type UserCreateWithoutRolesInput = {
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
@@ -626,6 +648,7 @@ export type UserUncheckedCreateWithoutRolesInput = {
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -678,6 +701,7 @@ export type UserCreateWithoutCreatedEventsInput = {
   ally?: Prisma.AllyCreateNestedOneWithoutUsersInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
@@ -694,6 +718,7 @@ export type UserUncheckedCreateWithoutCreatedEventsInput = {
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -726,6 +751,7 @@ export type UserUpdateWithoutCreatedEventsInput = {
   ally?: Prisma.AllyUpdateOneWithoutUsersNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -742,6 +768,7 @@ export type UserUncheckedUpdateWithoutCreatedEventsInput = {
   roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -758,6 +785,7 @@ export type UserCreateWithoutUploadedAttachmentsInput = {
   ally?: Prisma.AllyCreateNestedOneWithoutUsersInput
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
@@ -774,6 +802,7 @@ export type UserUncheckedCreateWithoutUploadedAttachmentsInput = {
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -806,6 +835,7 @@ export type UserUpdateWithoutUploadedAttachmentsInput = {
   ally?: Prisma.AllyUpdateOneWithoutUsersNestedInput
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -822,6 +852,7 @@ export type UserUncheckedUpdateWithoutUploadedAttachmentsInput = {
   roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -839,6 +870,7 @@ export type UserCreateWithoutParameterVersionsInput = {
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutParameterVersionsInput = {
@@ -855,6 +887,7 @@ export type UserUncheckedCreateWithoutParameterVersionsInput = {
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutParameterVersionsInput = {
@@ -887,6 +920,7 @@ export type UserUpdateWithoutParameterVersionsInput = {
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutParameterVersionsInput = {
@@ -903,6 +937,7 @@ export type UserUncheckedUpdateWithoutParameterVersionsInput = {
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAllyInput = {
@@ -918,6 +953,7 @@ export type UserCreateWithoutAllyInput = {
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
@@ -934,6 +970,7 @@ export type UserUncheckedCreateWithoutAllyInput = {
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -976,6 +1013,7 @@ export type UserCreateWithoutQuotationsInput = {
   ally?: Prisma.AllyCreateNestedOneWithoutUsersInput
   createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
 }
 
@@ -992,6 +1030,7 @@ export type UserUncheckedCreateWithoutQuotationsInput = {
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
   createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
   uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedCreateNestedManyWithoutCreatedByInput
   parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1024,6 +1063,7 @@ export type UserUpdateWithoutQuotationsInput = {
   ally?: Prisma.AllyUpdateOneWithoutUsersNestedInput
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1040,6 +1080,91 @@ export type UserUncheckedUpdateWithoutQuotationsInput = {
   roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutOfertaEconomicasInput = {
+  id?: string
+  document: string
+  fullName: string
+  email: string
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  ally?: Prisma.AllyCreateNestedOneWithoutUsersInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  uploadedAttachments?: Prisma.AttachmentCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutOfertaEconomicasInput = {
+  id?: string
+  document: string
+  fullName: string
+  email: string
+  password: string
+  isActive?: boolean
+  allyId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  uploadedAttachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutUploadedByInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  parameterVersions?: Prisma.ParameterVersionUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutOfertaEconomicasInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOfertaEconomicasInput, Prisma.UserUncheckedCreateWithoutOfertaEconomicasInput>
+}
+
+export type UserUpsertWithoutOfertaEconomicasInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOfertaEconomicasInput, Prisma.UserUncheckedUpdateWithoutOfertaEconomicasInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOfertaEconomicasInput, Prisma.UserUncheckedCreateWithoutOfertaEconomicasInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOfertaEconomicasInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOfertaEconomicasInput, Prisma.UserUncheckedUpdateWithoutOfertaEconomicasInput>
+}
+
+export type UserUpdateWithoutOfertaEconomicasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  document?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  ally?: Prisma.AllyUpdateOneWithoutUsersNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOfertaEconomicasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  document?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1056,6 +1181,7 @@ export type UserUpdateWithoutRolesInput = {
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1072,6 +1198,7 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1111,6 +1238,7 @@ export type UserUpdateWithoutAllyInput = {
   createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1127,6 +1255,7 @@ export type UserUncheckedUpdateWithoutAllyInput = {
   createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
   uploadedAttachments?: Prisma.AttachmentUncheckedUpdateManyWithoutUploadedByNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ofertaEconomicas?: Prisma.OfertaEconomicaUncheckedUpdateManyWithoutCreatedByNestedInput
   parameterVersions?: Prisma.ParameterVersionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1151,6 +1280,7 @@ export type UserCountOutputType = {
   createdEvents: number
   uploadedAttachments: number
   quotations: number
+  ofertaEconomicas: number
   parameterVersions: number
 }
 
@@ -1159,6 +1289,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   createdEvents?: boolean | UserCountOutputTypeCountCreatedEventsArgs
   uploadedAttachments?: boolean | UserCountOutputTypeCountUploadedAttachmentsArgs
   quotations?: boolean | UserCountOutputTypeCountQuotationsArgs
+  ofertaEconomicas?: boolean | UserCountOutputTypeCountOfertaEconomicasArgs
   parameterVersions?: boolean | UserCountOutputTypeCountParameterVersionsArgs
 }
 
@@ -1203,6 +1334,13 @@ export type UserCountOutputTypeCountQuotationsArgs<ExtArgs extends runtime.Types
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountOfertaEconomicasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OfertaEconomicaWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountParameterVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ParameterVersionWhereInput
 }
@@ -1223,6 +1361,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
   uploadedAttachments?: boolean | Prisma.User$uploadedAttachmentsArgs<ExtArgs>
   quotations?: boolean | Prisma.User$quotationsArgs<ExtArgs>
+  ofertaEconomicas?: boolean | Prisma.User$ofertaEconomicasArgs<ExtArgs>
   parameterVersions?: boolean | Prisma.User$parameterVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1272,6 +1411,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
   uploadedAttachments?: boolean | Prisma.User$uploadedAttachmentsArgs<ExtArgs>
   quotations?: boolean | Prisma.User$quotationsArgs<ExtArgs>
+  ofertaEconomicas?: boolean | Prisma.User$ofertaEconomicasArgs<ExtArgs>
   parameterVersions?: boolean | Prisma.User$parameterVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1290,6 +1430,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdEvents: Prisma.$EventPayload<ExtArgs>[]
     uploadedAttachments: Prisma.$AttachmentPayload<ExtArgs>[]
     quotations: Prisma.$QuotationPayload<ExtArgs>[]
+    ofertaEconomicas: Prisma.$OfertaEconomicaPayload<ExtArgs>[]
     parameterVersions: Prisma.$ParameterVersionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1701,6 +1842,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   createdEvents<T extends Prisma.User$createdEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   uploadedAttachments<T extends Prisma.User$uploadedAttachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$uploadedAttachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotations<T extends Prisma.User$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ofertaEconomicas<T extends Prisma.User$ofertaEconomicasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ofertaEconomicasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfertaEconomicaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   parameterVersions<T extends Prisma.User$parameterVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$parameterVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParameterVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2253,6 +2395,30 @@ export type User$quotationsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.QuotationScalarFieldEnum | Prisma.QuotationScalarFieldEnum[]
+}
+
+/**
+ * User.ofertaEconomicas
+ */
+export type User$ofertaEconomicasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OfertaEconomica
+   */
+  select?: Prisma.OfertaEconomicaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OfertaEconomica
+   */
+  omit?: Prisma.OfertaEconomicaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OfertaEconomicaInclude<ExtArgs> | null
+  where?: Prisma.OfertaEconomicaWhereInput
+  orderBy?: Prisma.OfertaEconomicaOrderByWithRelationInput | Prisma.OfertaEconomicaOrderByWithRelationInput[]
+  cursor?: Prisma.OfertaEconomicaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OfertaEconomicaScalarFieldEnum | Prisma.OfertaEconomicaScalarFieldEnum[]
 }
 
 /**

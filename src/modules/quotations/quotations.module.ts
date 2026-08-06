@@ -5,9 +5,16 @@ import { CalculationsModule } from '../calculations/calculations.module';
 import { TariffsModule } from '../tariffs/tariffs.module';
 import { ReportsModule } from '../reports/reports.module';
 import { AttachmentsModule } from '../attachments/attachments.module';
+import { OfertaEconomicaModule } from '../oferta-economica/oferta-economica.module';
 
 @Module({
-  imports: [CalculationsModule, TariffsModule, ReportsModule, AttachmentsModule],
+  imports: [
+    CalculationsModule,
+    TariffsModule,
+    ReportsModule,
+    AttachmentsModule,
+    OfertaEconomicaModule,
+  ],
   controllers: [QuotationsController],
   providers: [QuotationsService],
   exports: [QuotationsService],
