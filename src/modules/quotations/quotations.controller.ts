@@ -55,8 +55,8 @@ export class QuotationsController {
   }
 
   @Patch(':id/select')
-  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER)
-  @ApiOperation({ summary: 'Seleccionar la cotización ganadora del evento: genera la Oferta Económica definitiva y el PDF Presupuesto Final (Carpeta 4)' })
+  @Roles(ROLES.APPROVER)
+  @ApiOperation({ summary: 'Seleccionar la cotización ganadora del evento (solo Aprobador): genera la Oferta Económica definitiva y el PDF Presupuesto Final (Carpeta 4)' })
   select(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
     return this.quotationsService.select(id, user);
   }
