@@ -11,6 +11,7 @@ const eventRelationsInclude = {
   disbursement: true,
   selectedQuotation: { include: { ally: true } },
   quotations: { where: { isActive: true }, include: { ally: true }, orderBy: { createdAt: 'asc' as const } },
+  ofertaEconomica: true,
 };
 
 export type EventWithRelations = Prisma.EventGetPayload<{ include: typeof eventRelationsInclude }>;
