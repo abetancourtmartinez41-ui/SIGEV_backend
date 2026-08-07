@@ -12,6 +12,7 @@ import { ROLES } from '../../config/constants';
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Roles(
+  ROLES.TECHNICAL_ADMIN,
   ROLES.FUNCTIONAL_ADMIN,
   ROLES.SUPERVISOR,
   ROLES.APPROVER,
