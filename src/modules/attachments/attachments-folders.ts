@@ -21,6 +21,11 @@ export const MODIFIABLE_FOLDERS = [
   'Listado de asistencia',
 ] as const;
 
+export const MULTI_DOCUMENT_FOLDERS = [
+  ...MODIFIABLE_FOLDERS,
+  'Cotizaciones presentadas',
+] as const;
+
 export const ALLOWED_EXTENSIONS = [
   '.pdf',
   '.jpg',

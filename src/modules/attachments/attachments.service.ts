@@ -9,7 +9,7 @@ import { randomUUID } from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
 import { Attachment } from '../../generated/prisma/client';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
-import { STATIC_FOLDERS } from './attachments-folders';
+import { STATIC_FOLDERS, MULTI_DOCUMENT_FOLDERS } from './attachments-folders';
 import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
@@ -246,9 +246,9 @@ export class AttachmentsService {
       contentType: params.mimeType || 'application/octet-stream',
     });
 
-    // La carpeta de cotizaciones acumula varios documentos (una por cotización);
+    // Las carpetas multi-documento acumulan varios documentos (una o más por carga);
     // el resto de carpetas conservan un único adjunto (reemplazo).
-    if (params.category !== 'Cotizaciones presentadas') {
+    if (!(MULTI_DOCUMENT_FOLDERS as readonly string[]).includes(params.category)) {
       await this.removeExistingForCategory(params.eventId, params.category);
     }
 
