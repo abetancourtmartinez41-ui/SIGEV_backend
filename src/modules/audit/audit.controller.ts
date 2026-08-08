@@ -1,9 +1,10 @@
 import {
-  Controller, Get, Param, UseGuards,
+  Controller, Get, Param, Query, UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { AuditService } from './audit.service';
+import { QueryAuditLogDto } from './dto';
 import { RolesGuard } from '../../common/guards';
 import { Roles } from '../../common/decorators';
 import { ROLES } from '../../config/constants';
@@ -23,9 +24,9 @@ export class AuditController {
   constructor(private readonly auditService: AuditService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Consultar trazabilidad (últimos 100 registros)' })
-  findAll() {
-    return this.auditService.findAll();
+  @ApiOperation({ summary: 'Consultar trazabilidad paginada (búsqueda, filtros y orden)' })
+  findAll(@Query() query: QueryAuditLogDto) {
+    return this.auditService.findAll(query);
   }
 
   @Get(':entityType/:entityId')
