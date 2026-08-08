@@ -22,6 +22,7 @@ import { QuotationsModule } from './modules/quotations/quotations.module';
 import { OfertaEconomicaModule } from './modules/oferta-economica/oferta-economica.module';
 import { AttachmentsModule } from './modules/attachments/attachments.module';
 import { BackupModule } from './modules/backup/backup.module';
+import { SupabaseModule } from './modules/supabase/supabase.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { BackupModule } from './modules/backup/backup.module';
       isGlobal: true,
       load: [configuration],
     }),
+    SupabaseModule,
     PrismaModule,
     AuthModule,
     UsersModule,

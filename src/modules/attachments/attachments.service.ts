@@ -3,35 +3,50 @@ import {
   NotFoundException,
   BadRequestException,
   ForbiddenException,
+  ServiceUnavailableException,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { createReadStream, promises as fs } from 'fs';
-import * as path from 'path';
 import { randomUUID } from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
 import { Attachment } from '../../generated/prisma/client';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
 import { STATIC_FOLDERS } from './attachments-folders';
+import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
 export class AttachmentsService {
-  private readonly uploadDest: string;
-
   constructor(
     private readonly prisma: PrismaService,
-    private readonly configService: ConfigService,
-  ) {
-    this.uploadDest = this.configService.get<string>('upload.dest', './uploads');
-  }
-
-  private resolvePath(relativePath: string): string {
-    return path.resolve(process.cwd(), this.uploadDest, relativePath);
-  }
+    private readonly supabaseService: SupabaseService,
+  ) {}
 
   private sanitizeFileName(originalName: string): string {
-    const base = path.posix.basename(originalName);
+    const base = originalName.replace(/\\/g, '/').split('/').pop() || originalName;
     const sanitized = base.replace(/[^a-zA-Z0-9._-]/g, '_');
     return sanitized || 'file';
+  }
+
+  private getObjectPath(eventId: string, fileName: string): string {
+    return `attachments/${eventId}/${fileName}`;
+  }
+
+  private async assertSupabaseConfigured(): Promise<void> {
+    const url = this.supabaseService.storage;
+    if (!url) {
+      throw new ServiceUnavailableException(
+        'Supabase Storage no está configurado',
+      );
+    }
+  }
+
+  private async removeObject(path: string): Promise<void> {
+    await this.assertSupabaseConfigured();
+    const { error } = await this.supabaseService.storage
+      .from(this.supabaseService.bucket)
+      .remove([path]);
+    if (error) {
+      // El objeto puede no existir (archivo ausente): se ignora y se limpia el registro
+      console.warn(`Supabase: no se pudo eliminar ${path}: ${error.message}`);
+    }
   }
 
   private async removeExistingForCategory(
@@ -43,11 +58,7 @@ export class AttachmentsService {
       select: { id: true, storedPath: true },
     });
     for (const attachment of existing) {
-      try {
-        await fs.unlink(this.resolvePath(attachment.storedPath));
-      } catch {
-        // Archivo ausente: se ignora y se limpia el registro
-      }
+      await this.removeObject(attachment.storedPath);
       await this.prisma.attachment.delete({ where: { id: attachment.id } });
     }
   }
@@ -55,16 +66,37 @@ export class AttachmentsService {
   private async assertEventModifiable(
     eventId: string,
     category: string,
-  ): Promise<{ status: string; devolucionLegalizacion: boolean; generalAllyId: string | null }> {
+  ): Promise<{
+    status: string;
+    devolucionLegalizacion: boolean;
+    generalAllyId: string | null;
+    cotizacionSeleccionadaId: string | null;
+  }> {
     const event = await this.prisma.event.findUnique({
       where: { id: eventId },
-      select: { id: true, status: true, devolucionLegalizacion: true, generalAllyId: true },
+      select: {
+        id: true,
+        status: true,
+        devolucionLegalizacion: true,
+        generalAllyId: true,
+        cotizacionSeleccionadaId: true,
+      },
     });
     if (!event) {
       throw new NotFoundException('Evento no encontrado');
     }
 
     const isStatic = (STATIC_FOLDERS as readonly string[]).includes(category);
+
+    const goldenRuleLocked =
+      isStatic &&
+      category === 'Formato de requerimiento' &&
+      event.cotizacionSeleccionadaId !== null;
+    if (goldenRuleLocked) {
+      throw new ForbiddenException(
+        'El Formato de requerimiento es inmutable porque la cotización fue aprobada y se creó el presupuesto final',
+      );
+    }
 
     let allowed: boolean;
     if (isStatic) {
@@ -95,6 +127,7 @@ export class AttachmentsService {
   private assertUserAllowed(
     event: { status: string },
     user: { roles: { name: string }[] },
+    category: string,
   ): void {
     const roles = user.roles.map((role) => role.name);
     const isEditor = roles.some((role) =>
@@ -104,9 +137,30 @@ export class AttachmentsService {
     );
     const isAnalista = roles.includes(ROLES.ANALISTA);
     const isSolicitante = roles.includes(ROLES.SOLICITANTE);
+    const isApprover = roles.includes(ROLES.APPROVER);
 
     if (isEditor) return;
-    if ((isAnalista || isSolicitante) && event.status === EVENT_STATUS.DEVUELTO) {
+    if (
+      (isAnalista || isSolicitante) &&
+      event.status === EVENT_STATUS.DEVUELTO
+    ) {
+      return;
+    }
+    // El Solicitante/Analista sube el Formato de requerimiento al crear la orden
+    if (
+      (isAnalista || isSolicitante) &&
+      category === 'Formato de requerimiento' &&
+      event.status === EVENT_STATUS.ABIERTO
+    ) {
+      return;
+    }
+    // El Aprobador sube el Comunicado de aprobación al seleccionar la cotización definitiva
+    if (
+      isApprover &&
+      category === 'Comunicado de aprobación' &&
+      (event.status === EVENT_STATUS.ABIERTO ||
+        event.status === EVENT_STATUS.EN_EJECUCION)
+    ) {
       return;
     }
     throw new ForbiddenException(
@@ -126,6 +180,31 @@ export class AttachmentsService {
     );
   }
 
+  private async storeBuffer(params: {
+    eventId: string;
+    fileName: string;
+    buffer: Buffer;
+    contentType: string;
+  }): Promise<string> {
+    await this.assertSupabaseConfigured();
+    const objectPath = this.getObjectPath(
+      params.eventId,
+      `${randomUUID()}-${this.sanitizeFileName(params.fileName)}`,
+    );
+    const { error } = await this.supabaseService.storage
+      .from(this.supabaseService.bucket)
+      .upload(objectPath, params.buffer, {
+        contentType: params.contentType,
+        upsert: false,
+      });
+    if (error) {
+      throw new ServiceUnavailableException(
+        `No se pudo guardar el archivo en el almacenamiento: ${error.message}`,
+      );
+    }
+    return objectPath;
+  }
+
   async uploadFile(params: {
     eventId: string;
     category: string;
@@ -136,37 +215,52 @@ export class AttachmentsService {
     uploadedById: string;
     uploadedByRoles: { name: string }[];
     uploadedByAllyId?: string | null;
+    quotationId?: string;
   }): Promise<Attachment> {
     const event = await this.assertEventModifiable(
       params.eventId,
       params.category,
     );
-    this.assertUserAllowed(event, { roles: params.uploadedByRoles });
+    this.assertUserAllowed(event, { roles: params.uploadedByRoles }, params.category);
     this.assertAllyScope(event, {
       allyId: params.uploadedByAllyId,
       roles: params.uploadedByRoles,
     });
 
-    const relativePath = path.posix.join(
-      'attachments',
-      params.eventId,
-      `${randomUUID()}-${this.sanitizeFileName(params.originalName)}`,
-    );
-    const absolutePath = this.resolvePath(relativePath);
+    if (params.quotationId) {
+      const quotation = await this.prisma.quotation.findUnique({
+        where: { id: params.quotationId },
+        select: { eventId: true },
+      });
+      if (!quotation || quotation.eventId !== params.eventId) {
+        throw new BadRequestException(
+          'La cotización indicada no pertenece a este evento',
+        );
+      }
+    }
 
-    await fs.mkdir(path.dirname(absolutePath), { recursive: true });
-    await fs.writeFile(absolutePath, params.buffer);
+    const storedPath = await this.storeBuffer({
+      eventId: params.eventId,
+      fileName: params.originalName,
+      buffer: params.buffer,
+      contentType: params.mimeType || 'application/octet-stream',
+    });
 
-    await this.removeExistingForCategory(params.eventId, params.category);
+    // La carpeta de cotizaciones acumula varios documentos (una por cotización);
+    // el resto de carpetas conservan un único adjunto (reemplazo).
+    if (params.category !== 'Cotizaciones presentadas') {
+      await this.removeExistingForCategory(params.eventId, params.category);
+    }
 
     return this.prisma.attachment.create({
       data: {
         originalName: params.originalName,
-        storedPath: relativePath,
+        storedPath,
         mimeType: params.mimeType.slice(0, 50),
         fileSize: params.fileSize,
         category: params.category,
         eventId: params.eventId,
+        quotationId: params.quotationId ?? null,
         uploadedById: params.uploadedById,
       },
     });
@@ -197,14 +291,10 @@ export class AttachmentsService {
       attachment.eventId,
       attachment.category,
     );
-    this.assertUserAllowed(event, user);
+    this.assertUserAllowed(event, user, attachment.category);
     this.assertAllyScope(event, user);
 
-    try {
-      await fs.unlink(this.resolvePath(attachment.storedPath));
-    } catch {
-      // Archivo ausente: se ignora y se elimina el registro
-    }
+    await this.removeObject(attachment.storedPath);
     await this.prisma.attachment.delete({ where: { id } });
     return { success: true };
   }
@@ -216,22 +306,19 @@ export class AttachmentsService {
     buffer: Buffer;
     uploadedById: string;
   }): Promise<Attachment> {
-    const relativePath = path.posix.join(
-      'attachments',
-      params.eventId,
-      params.fileName,
-    );
-    const absolutePath = this.resolvePath(relativePath);
-
-    await fs.mkdir(path.dirname(absolutePath), { recursive: true });
-    await fs.writeFile(absolutePath, params.buffer);
+    const storedPath = await this.storeBuffer({
+      eventId: params.eventId,
+      fileName: params.fileName,
+      buffer: params.buffer,
+      contentType: 'application/pdf',
+    });
 
     await this.removeExistingForCategory(params.eventId, params.category);
 
     return this.prisma.attachment.create({
       data: {
         originalName: params.fileName,
-        storedPath: relativePath,
+        storedPath,
         mimeType: 'application/pdf',
         fileSize: params.buffer.length,
         category: params.category,
@@ -243,21 +330,22 @@ export class AttachmentsService {
 
   async getForDownload(
     id: string,
-  ): Promise<{ attachment: Attachment; stream: NodeJS.ReadableStream }> {
+  ): Promise<{ attachment: Attachment; buffer: Buffer }> {
+    await this.assertSupabaseConfigured();
     const attachment = await this.prisma.attachment.findUnique({
       where: { id },
     });
     if (!attachment) {
       throw new NotFoundException('Adjunto no encontrado');
     }
-    const absolutePath = this.resolvePath(attachment.storedPath);
-    try {
-      await fs.access(absolutePath);
-    } catch {
+    const { data, error } = await this.supabaseService.storage
+      .from(this.supabaseService.bucket)
+      .download(attachment.storedPath);
+    if (error || !data) {
       throw new NotFoundException(
-        'El archivo del adjunto no existe en el servidor',
+        'El archivo del adjunto no existe en el almacenamiento',
       );
     }
-    return { attachment, stream: createReadStream(absolutePath) };
+    return { attachment, buffer: Buffer.from(await data.arrayBuffer()) };
   }
 }

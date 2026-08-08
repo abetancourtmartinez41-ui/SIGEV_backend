@@ -229,9 +229,12 @@ export class EventsService {
     }
 
     if (isSolicitante) {
-      if (event.status !== EVENT_STATUS.DEVUELTO) {
+      const puedeEditarAbiertoSinCotizacion =
+        event.status === EVENT_STATUS.ABIERTO &&
+        event.cotizacionSeleccionadaId === null;
+      if (!puedeEditarAbiertoSinCotizacion && event.status !== EVENT_STATUS.DEVUELTO) {
         throw new ForbiddenException(
-          'El Solicitante solo puede ajustar soportes de eventos devueltos',
+          'El Solicitante solo puede editar la orden en estado Abierto sin cotización aprobada o cuando está Devuelto',
         );
       }
       if (dto.items?.length) {

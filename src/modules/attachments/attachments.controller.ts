@@ -50,6 +50,7 @@ export class AttachmentsController {
     ROLES.SUPERVISOR,
     ROLES.ANALISTA,
     ROLES.SOLICITANTE,
+    ROLES.APPROVER,
   )
   @UseInterceptors(
     FileInterceptor('file', {
@@ -101,6 +102,7 @@ export class AttachmentsController {
       uploadedById: user.id,
       uploadedByRoles: user.roles,
       uploadedByAllyId: user.allyId,
+      quotationId: dto.quotationId,
     });
   }
 
@@ -120,14 +122,14 @@ export class AttachmentsController {
   @Get(':id')
   @ApiOperation({ summary: 'Descargar un adjunto por ID' })
   async download(@Param('id', ParseUUIDPipe) id: string, @Res() res: Response) {
-    const { attachment, stream } =
+    const { attachment, buffer } =
       await this.attachmentsService.getForDownload(id);
     res.setHeader('Content-Type', attachment.mimeType);
-    res.setHeader('Content-Length', attachment.fileSize);
+    res.setHeader('Content-Length', buffer.length);
     res.setHeader(
       'Content-Disposition',
       `inline; filename="${attachment.originalName}"`,
     );
-    stream.pipe(res);
+    res.end(buffer);
   }
 }

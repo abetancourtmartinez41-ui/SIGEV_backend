@@ -22,6 +22,11 @@ export default () => ({
     dest: process.env.UPLOAD_DEST || './uploads',
     maxFileSize: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10),
   },
+  supabase: {
+    url: process.env.SUPABASE_URL || '',
+    serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+    bucket: process.env.SUPABASE_BUCKET || 'soportes-documentales',
+  },
   backup: {
     dir: process.env.BACKUP_DIR || './backups',
     pgDumpPath: process.env.PG_DUMP_PATH || 'C:\\Program Files\\PostgreSQL\\14\\bin\\pg_dump.exe',
