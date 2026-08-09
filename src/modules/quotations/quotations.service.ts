@@ -290,9 +290,9 @@ export class QuotationsService {
     const roles = this.roleNames(user.roles);
     this.assertAllyScope(quotation.event, user);
 
-    const allowedRoles = [ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER];
+    const allowedRoles = [ROLES.APPROVER];
     if (!roles.some((role) => allowedRoles.includes(role as never))) {
-      throw new ForbiddenException('Su perfil no puede cambiar el estado de las cotizaciones');
+      throw new ForbiddenException('Solo el Aprobador puede aprobar o rechazar cotizaciones');
     }
 
     if (!(Object.values(QUOTATION_STATUS) as string[]).includes(dto.status)) {

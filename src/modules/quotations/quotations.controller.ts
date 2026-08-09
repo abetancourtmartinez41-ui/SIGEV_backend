@@ -44,8 +44,8 @@ export class QuotationsController {
   }
 
   @Patch(':id/status')
-  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.APPROVER)
-  @ApiOperation({ summary: 'Cambiar estado de la cotización. Solo el Aprobador puede marcar Aprobada' })
+  @Roles(ROLES.APPROVER)
+  @ApiOperation({ summary: 'Aprobar o rechazar cotización (solo Aprobador)' })
   changeStatus(
     @Param('id') id: string,
     @Body() dto: ChangeQuotationStatusDto,
