@@ -9,7 +9,7 @@ import { randomUUID } from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
 import { Attachment } from '../../generated/prisma/client';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
-import { STATIC_FOLDERS, MULTI_DOCUMENT_FOLDERS } from './attachments-folders';
+import { STATIC_FOLDERS, MULTI_DOCUMENT_FOLDERS, MODIFIABLE_FOLDERS } from './attachments-folders';
 import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
@@ -139,7 +139,23 @@ export class AttachmentsService {
     const isSolicitante = roles.includes(ROLES.SOLICITANTE);
     const isApprover = roles.includes(ROLES.APPROVER);
 
-    if (isEditor) return;
+    if (isEditor) {
+      // El Operador no puede llenar las carpetas de legalización
+      // (Facturas normalizadas, Registro fotográfico, Listado de asistencia)
+      const isOperatorOnly =
+        roles.includes(ROLES.OPERATOR) &&
+        !roles.includes(ROLES.FUNCTIONAL_ADMIN) &&
+        !roles.includes(ROLES.SUPERVISOR);
+      if (
+        isOperatorOnly &&
+        (MODIFIABLE_FOLDERS as readonly string[]).includes(category)
+      ) {
+        throw new ForbiddenException(
+          'El Operador no puede cargar documentos en las carpetas de legalización',
+        );
+      }
+      return;
+    }
     if (
       (isAnalista || isSolicitante) &&
       event.status === EVENT_STATUS.DEVUELTO
