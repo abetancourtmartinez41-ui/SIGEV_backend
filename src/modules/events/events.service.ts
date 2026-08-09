@@ -110,6 +110,7 @@ export class EventsService {
 
   private assertExecutionSupportDocuments(
     event: { attachments: { category: string | null }[] },
+    targetStatus: string,
   ): void {
     const loadedFolders = new Set(
       (event.attachments ?? [])
@@ -121,7 +122,7 @@ export class EventsService {
     );
     if (missing.length) {
       throw new BadRequestException(
-        `Para pasar el evento a "${EVENT_STATUS.EJECUTADO}" cada una de las carpetas de soportes documentales debe contar con al menos un documento. Faltan documentos en: ${missing.join(', ')}.`,
+        `Para pasar el evento a "${targetStatus}" cada una de las carpetas de soportes documentales debe contar con al menos un documento. Faltan documentos en: ${missing.join(', ')}.`,
       );
     }
   }
@@ -341,10 +342,15 @@ export class EventsService {
 
     const quotationsCount = event.quotations?.length || 0;
     const itemsCount = event.items?.length || 0;
+    const leavingDevuelto = event.status === EVENT_STATUS.DEVUELTO;
+    const originDevuelto =
+      event.devueltoDesde ??
+      (event.devolucionLegalizacion ? EVENT_STATUS.CERRADO : null);
     EventStateMachine.canTransition(event.status, dto.status, roles, {
       quotationsCount,
       itemsCount,
       authorizeException: dto.authorizeException,
+      devueltoDesde: leavingDevuelto ? originDevuelto : undefined,
     });
 
     const hasDefinitiveQuotation =
@@ -367,6 +373,11 @@ export class EventsService {
             'La orden debe contar con al menos una cotización para devolverla a ajustes',
           );
         }
+      } else if (
+        leavingDevuelto &&
+        originDevuelto === EVENT_STATUS.ABIERTO
+      ) {
+        // Regla de oro: retorno de la devolución al estado Abierto, no exige cotización definitiva
       } else if (!hasDefinitiveQuotation) {
         throw new BadRequestException(
           'La orden debe contar con al menos una cotización aprobada de forma definitiva antes de cambiar su estado',
@@ -378,7 +389,15 @@ export class EventsService {
       event.status === EVENT_STATUS.EN_EJECUCION &&
       dto.status === EVENT_STATUS.EJECUTADO
     ) {
-      this.assertExecutionSupportDocuments(event);
+      this.assertExecutionSupportDocuments(event, dto.status);
+    }
+
+    if (
+      leavingDevuelto &&
+      originDevuelto &&
+      originDevuelto !== EVENT_STATUS.ABIERTO
+    ) {
+      this.assertExecutionSupportDocuments(event, dto.status);
     }
 
     if (dto.status === EVENT_STATUS.CERRADO && !event.disbursementId) {
@@ -393,12 +412,15 @@ export class EventsService {
       observation?: string;
       authorizeException?: boolean;
       devolucionLegalizacion?: boolean;
+      devueltoDesde?: string | null;
     } = {
       status: dto.status,
       devolucionLegalizacion:
         dto.status === EVENT_STATUS.DEVUELTO
           ? event.status === EVENT_STATUS.CERRADO
           : false,
+      devueltoDesde:
+        dto.status === EVENT_STATUS.DEVUELTO ? event.status : null,
     };
     if (dto.observation) data.observation = dto.observation;
     if (dto.authorizeException) data.authorizeException = true;

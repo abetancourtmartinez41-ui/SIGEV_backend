@@ -51,6 +51,7 @@ export type EventMinAggregateOutputType = {
   observation: string | null
   authorizeException: boolean | null
   devolucionLegalizacion: boolean | null
+  devueltoDesde: string | null
   startDate: Date | null
   endDate: Date | null
   dependency: string | null
@@ -83,6 +84,7 @@ export type EventMaxAggregateOutputType = {
   observation: string | null
   authorizeException: boolean | null
   devolucionLegalizacion: boolean | null
+  devueltoDesde: string | null
   startDate: Date | null
   endDate: Date | null
   dependency: string | null
@@ -115,6 +117,7 @@ export type EventCountAggregateOutputType = {
   observation: number
   authorizeException: number
   devolucionLegalizacion: number
+  devueltoDesde: number
   startDate: number
   endDate: number
   dependency: number
@@ -163,6 +166,7 @@ export type EventMinAggregateInputType = {
   observation?: true
   authorizeException?: true
   devolucionLegalizacion?: true
+  devueltoDesde?: true
   startDate?: true
   endDate?: true
   dependency?: true
@@ -195,6 +199,7 @@ export type EventMaxAggregateInputType = {
   observation?: true
   authorizeException?: true
   devolucionLegalizacion?: true
+  devueltoDesde?: true
   startDate?: true
   endDate?: true
   dependency?: true
@@ -227,6 +232,7 @@ export type EventCountAggregateInputType = {
   observation?: true
   authorizeException?: true
   devolucionLegalizacion?: true
+  devueltoDesde?: true
   startDate?: true
   endDate?: true
   dependency?: true
@@ -346,6 +352,7 @@ export type EventGroupByOutputType = {
   observation: string | null
   authorizeException: boolean
   devolucionLegalizacion: boolean
+  devueltoDesde: string | null
   startDate: Date | null
   endDate: Date | null
   dependency: string | null
@@ -401,6 +408,7 @@ export type EventWhereInput = {
   observation?: Prisma.StringNullableFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
   devolucionLegalizacion?: Prisma.BoolFilter<"Event"> | boolean
+  devueltoDesde?: Prisma.StringNullableFilter<"Event"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -440,6 +448,7 @@ export type EventOrderByWithRelationInput = {
   observation?: Prisma.SortOrderInput | Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
   devolucionLegalizacion?: Prisma.SortOrder
+  devueltoDesde?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dependency?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -484,6 +493,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   observation?: Prisma.StringNullableFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
   devolucionLegalizacion?: Prisma.BoolFilter<"Event"> | boolean
+  devueltoDesde?: Prisma.StringNullableFilter<"Event"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -522,6 +532,7 @@ export type EventOrderByWithAggregationInput = {
   observation?: Prisma.SortOrderInput | Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
   devolucionLegalizacion?: Prisma.SortOrder
+  devueltoDesde?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dependency?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -562,6 +573,7 @@ export type EventScalarWhereWithAggregatesInput = {
   observation?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
   devolucionLegalizacion?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
+  devueltoDesde?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
@@ -594,6 +606,7 @@ export type EventCreateInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -630,6 +643,7 @@ export type EventUncheckedCreateInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -666,6 +680,7 @@ export type EventUpdateInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -702,6 +717,7 @@ export type EventUncheckedUpdateInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -738,6 +754,7 @@ export type EventCreateManyInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -770,6 +787,7 @@ export type EventUpdateManyMutationInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -799,6 +817,7 @@ export type EventUncheckedUpdateManyInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -846,6 +865,7 @@ export type EventCountOrderByAggregateInput = {
   observation?: Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
   devolucionLegalizacion?: Prisma.SortOrder
+  devueltoDesde?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   dependency?: Prisma.SortOrder
@@ -885,6 +905,7 @@ export type EventMaxOrderByAggregateInput = {
   observation?: Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
   devolucionLegalizacion?: Prisma.SortOrder
+  devueltoDesde?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   dependency?: Prisma.SortOrder
@@ -917,6 +938,7 @@ export type EventMinOrderByAggregateInput = {
   observation?: Prisma.SortOrder
   authorizeException?: Prisma.SortOrder
   devolucionLegalizacion?: Prisma.SortOrder
+  devueltoDesde?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   dependency?: Prisma.SortOrder
@@ -1158,6 +1180,7 @@ export type EventCreateWithoutCreatedByInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1193,6 +1216,7 @@ export type EventUncheckedCreateWithoutCreatedByInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1257,6 +1281,7 @@ export type EventScalarWhereInput = {
   observation?: Prisma.StringNullableFilter<"Event"> | string | null
   authorizeException?: Prisma.BoolFilter<"Event"> | boolean
   devolucionLegalizacion?: Prisma.BoolFilter<"Event"> | boolean
+  devueltoDesde?: Prisma.StringNullableFilter<"Event"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   dependency?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -1289,6 +1314,7 @@ export type EventCreateWithoutItemsInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1324,6 +1350,7 @@ export type EventUncheckedCreateWithoutItemsInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1375,6 +1402,7 @@ export type EventUpdateWithoutItemsInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1410,6 +1438,7 @@ export type EventUncheckedUpdateWithoutItemsInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1445,6 +1474,7 @@ export type EventCreateWithoutAttachmentsInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1480,6 +1510,7 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1531,6 +1562,7 @@ export type EventUpdateWithoutAttachmentsInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1566,6 +1598,7 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1601,6 +1634,7 @@ export type EventCreateWithoutQuotationsInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1636,6 +1670,7 @@ export type EventUncheckedCreateWithoutQuotationsInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1676,6 +1711,7 @@ export type EventCreateWithoutSelectedQuotationInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1711,6 +1747,7 @@ export type EventUncheckedCreateWithoutSelectedQuotationInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1762,6 +1799,7 @@ export type EventUpdateWithoutQuotationsInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1797,6 +1835,7 @@ export type EventUncheckedUpdateWithoutQuotationsInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1843,6 +1882,7 @@ export type EventUpdateWithoutSelectedQuotationInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1878,6 +1918,7 @@ export type EventUncheckedUpdateWithoutSelectedQuotationInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1913,6 +1954,7 @@ export type EventCreateWithoutOfertaEconomicaInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1948,6 +1990,7 @@ export type EventUncheckedCreateWithoutOfertaEconomicaInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -1999,6 +2042,7 @@ export type EventUpdateWithoutOfertaEconomicaInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2034,6 +2078,7 @@ export type EventUncheckedUpdateWithoutOfertaEconomicaInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2069,6 +2114,7 @@ export type EventCreateWithoutDisbursementInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -2104,6 +2150,7 @@ export type EventUncheckedCreateWithoutDisbursementInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -2165,6 +2212,7 @@ export type EventCreateManyCreatedByInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -2196,6 +2244,7 @@ export type EventUpdateWithoutCreatedByInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2231,6 +2280,7 @@ export type EventUncheckedUpdateWithoutCreatedByInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2266,6 +2316,7 @@ export type EventUncheckedUpdateManyWithoutCreatedByInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2297,6 +2348,7 @@ export type EventCreateManyDisbursementInput = {
   observation?: string | null
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   dependency?: string | null
@@ -2328,6 +2380,7 @@ export type EventUpdateWithoutDisbursementInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2363,6 +2416,7 @@ export type EventUncheckedUpdateWithoutDisbursementInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2398,6 +2452,7 @@ export type EventUncheckedUpdateManyWithoutDisbursementInput = {
   observation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeException?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devolucionLegalizacion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  devueltoDesde?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dependency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2478,6 +2533,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   observation?: boolean
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -2518,6 +2574,7 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   observation?: boolean
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -2553,6 +2610,7 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   observation?: boolean
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -2588,6 +2646,7 @@ export type EventSelectScalar = {
   observation?: boolean
   authorizeException?: boolean
   devolucionLegalizacion?: boolean
+  devueltoDesde?: boolean
   startDate?: boolean
   endDate?: boolean
   dependency?: boolean
@@ -2609,7 +2668,7 @@ export type EventSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "schemaType" | "name" | "description" | "status" | "observation" | "authorizeException" | "devolucionLegalizacion" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "latitude" | "longitude" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "cotizacionSeleccionadaId" | "deletedAt" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "schemaType" | "name" | "description" | "status" | "observation" | "authorizeException" | "devolucionLegalizacion" | "devueltoDesde" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "latitude" | "longitude" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "cotizacionSeleccionadaId" | "deletedAt" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -2653,6 +2712,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     observation: string | null
     authorizeException: boolean
     devolucionLegalizacion: boolean
+    devueltoDesde: string | null
     startDate: Date | null
     endDate: Date | null
     dependency: string | null
@@ -3112,6 +3172,7 @@ export interface EventFieldRefs {
   readonly observation: Prisma.FieldRef<"Event", 'String'>
   readonly authorizeException: Prisma.FieldRef<"Event", 'Boolean'>
   readonly devolucionLegalizacion: Prisma.FieldRef<"Event", 'Boolean'>
+  readonly devueltoDesde: Prisma.FieldRef<"Event", 'String'>
   readonly startDate: Prisma.FieldRef<"Event", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Event", 'DateTime'>
   readonly dependency: Prisma.FieldRef<"Event", 'String'>

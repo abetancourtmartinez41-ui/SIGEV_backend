@@ -1691,6 +1691,7 @@ export const EventScalarFieldEnum = {
   observation: 'observation',
   authorizeException: 'authorizeException',
   devolucionLegalizacion: 'devolucionLegalizacion',
+  devueltoDesde: 'devueltoDesde',
   startDate: 'startDate',
   endDate: 'endDate',
   dependency: 'dependency',

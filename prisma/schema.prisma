@@ -50,6 +50,7 @@ model Event {
   observation          String?      @db.Text
   authorizeException   Boolean      @default(false)
   devolucionLegalizacion Boolean  @default(false)
+  devueltoDesde        String?      @db.VarChar(20)
   startDate            DateTime?    @db.Date
   endDate              DateTime?    @db.Date
   dependency           String?      @db.VarChar(100)

@@ -69,6 +69,7 @@ export class AttachmentsService {
   ): Promise<{
     status: string;
     devolucionLegalizacion: boolean;
+    devueltoDesde: string | null;
     generalAllyId: string | null;
     cotizacionSeleccionadaId: string | null;
   }> {
@@ -78,6 +79,7 @@ export class AttachmentsService {
         id: true,
         status: true,
         devolucionLegalizacion: true,
+        devueltoDesde: true,
         generalAllyId: true,
         cotizacionSeleccionadaId: true,
       },
@@ -100,16 +102,24 @@ export class AttachmentsService {
 
     let allowed: boolean;
     if (isStatic) {
+      const devueltoDesdeEstaticos =
+        event.devueltoDesde === EVENT_STATUS.ABIERTO ||
+        event.devueltoDesde === null;
       allowed =
         event.status === EVENT_STATUS.ABIERTO ||
         event.status === EVENT_STATUS.EN_EJECUCION ||
         (event.status === EVENT_STATUS.DEVUELTO &&
-          !event.devolucionLegalizacion);
+          !event.devolucionLegalizacion &&
+          devueltoDesdeEstaticos);
     } else {
+      const devueltoDesdeSoportes =
+        event.devueltoDesde === EVENT_STATUS.EN_EJECUCION ||
+        event.devueltoDesde === EVENT_STATUS.EJECUTADO ||
+        event.devueltoDesde === EVENT_STATUS.CERRADO;
       allowed =
         event.status === EVENT_STATUS.EN_EJECUCION ||
         (event.status === EVENT_STATUS.DEVUELTO &&
-          event.devolucionLegalizacion);
+          (event.devolucionLegalizacion || devueltoDesdeSoportes));
     }
 
     if (!allowed) {
