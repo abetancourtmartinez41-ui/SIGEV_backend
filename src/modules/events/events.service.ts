@@ -338,7 +338,7 @@ export class EventsService {
       status: dto.status,
       devolucionLegalizacion:
         dto.status === EVENT_STATUS.DEVUELTO
-          ? event.status === EVENT_STATUS.LEGALIZADO
+          ? event.status === EVENT_STATUS.CERRADO
           : false,
     };
     if (dto.observation) data.observation = dto.observation;

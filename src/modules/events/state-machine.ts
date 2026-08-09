@@ -15,13 +15,13 @@ interface Transition {
 
 const validTransitions: Record<Status, Transition[]> = {
   [EVENT_STATUS.ABIERTO]: [
-    { to: EVENT_STATUS.EN_EJECUCION, roles: ['operator', 'functional_admin'] },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.EN_EJECUCION, roles: ['approver'] },
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
     { to: EVENT_STATUS.RECHAZADO, roles: ['approver'] },
   ],
   [EVENT_STATUS.EN_EJECUCION]: [
-    { to: EVENT_STATUS.EJECUTADO, roles: ['operator', 'functional_admin'], requiresItems: true },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.EJECUTADO, roles: ['approver'], requiresItems: true },
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
   ],
   [EVENT_STATUS.EJECUTADO]: [
     {
@@ -29,17 +29,17 @@ const validTransitions: Record<Status, Transition[]> = {
       roles: ['approver'],
       requiresQuotations: true,
     },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
   ],
   [EVENT_STATUS.DEVUELTO]: [
-    { to: EVENT_STATUS.EN_EJECUCION, roles: ['operator', 'analista', 'functional_admin'] },
+    { to: EVENT_STATUS.EN_EJECUCION, roles: ['approver'] },
+    { to: EVENT_STATUS.CERRADO, roles: ['approver'] },
   ],
   [EVENT_STATUS.CERRADO]: [
     { to: EVENT_STATUS.LEGALIZADO, roles: ['approver'] },
-  ],
-  [EVENT_STATUS.LEGALIZADO]: [
     { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
   ],
+  [EVENT_STATUS.LEGALIZADO]: [],
   [EVENT_STATUS.RECHAZADO]: [],
 };
 
