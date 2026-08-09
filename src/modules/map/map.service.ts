@@ -83,7 +83,7 @@ export class MapService {
 
     const events = await this.prisma.event.findMany({
       where,
-      include: { items: true },
+      include: { items: true, ofertaEconomica: true },
       orderBy: { createdAt: 'desc' },
     });
 
@@ -133,10 +133,9 @@ export class MapService {
       const mun = munMap.get(code);
       if (!mun) continue;
 
-      const eventTotal = event.items.reduce(
-        (sum, item) => sum + Number(item.totalValue),
-        0,
-      );
+      const eventTotal = event.ofertaEconomica
+        ? Number(event.ofertaEconomica.total)
+        : 0;
 
       if (!grouped[code]) {
         grouped[code] = {

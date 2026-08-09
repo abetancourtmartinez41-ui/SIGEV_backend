@@ -17,7 +17,9 @@ const eventInclude = {
   disbursement: true,
   selectedQuotation: { include: { ally: true } },
   quotations: { where: { isActive: true }, include: { ally: true }, orderBy: { createdAt: 'asc' as const } },
-  ofertaEconomica: true,
+  ofertaEconomica: {
+    include: { items: { orderBy: { createdAt: 'asc' as const } } },
+  },
 } as const;
 
 @Injectable()
