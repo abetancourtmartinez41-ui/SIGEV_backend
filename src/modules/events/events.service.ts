@@ -8,6 +8,7 @@ import { CreateEventDto, UpdateEventDto, ChangeStatusDto } from './dto';
 import { EventStateMachine } from './state-machine';
 import { ItemsService } from '../items/items.service';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
+import { MODIFIABLE_FOLDERS } from '../attachments/attachments-folders';
 
 const eventInclude = {
   items: true,
@@ -104,6 +105,24 @@ export class EventsService {
     }
     if (!disbursement.isActive) {
       throw new BadRequestException('El desembolso asignado está inactivo');
+    }
+  }
+
+  private assertExecutionSupportDocuments(
+    event: { attachments: { category: string | null }[] },
+  ): void {
+    const loadedFolders = new Set(
+      (event.attachments ?? [])
+        .map((att) => att.category)
+        .filter((category): category is string => !!category),
+    );
+    const missing = (MODIFIABLE_FOLDERS as readonly string[]).filter(
+      (folder) => !loadedFolders.has(folder),
+    );
+    if (missing.length) {
+      throw new BadRequestException(
+        `Para pasar el evento a "${EVENT_STATUS.EJECUTADO}" cada una de las carpetas de soportes documentales debe contar con al menos un documento. Faltan documentos en: ${missing.join(', ')}.`,
+      );
     }
   }
 
@@ -329,6 +348,13 @@ export class EventsService {
       throw new BadRequestException(
         'La orden debe contar con al menos una cotización aprobada de forma definitiva antes de cambiar su estado',
       );
+    }
+
+    if (
+      event.status === EVENT_STATUS.EN_EJECUCION &&
+      dto.status === EVENT_STATUS.EJECUTADO
+    ) {
+      this.assertExecutionSupportDocuments(event);
     }
 
     if (dto.status === EVENT_STATUS.CERRADO && !event.disbursementId) {
