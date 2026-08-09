@@ -322,6 +322,15 @@ export class EventsService {
       authorizeException: dto.authorizeException,
     });
 
+    const hasDefinitiveQuotation =
+      (event.quotations?.some((q) => q.isDefinitive) ?? false) ||
+      !!event.cotizacionSeleccionadaId;
+    if (!hasDefinitiveQuotation) {
+      throw new BadRequestException(
+        'La orden debe contar con al menos una cotización aprobada de forma definitiva antes de cambiar su estado',
+      );
+    }
+
     if (dto.status === EVENT_STATUS.CERRADO && !event.disbursementId) {
       throw new BadRequestException(
         'El evento debe tener un desembolso asignado antes de cerrar',
