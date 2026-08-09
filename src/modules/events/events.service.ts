@@ -231,6 +231,12 @@ export class EventsService {
     const event = await this.findOne(id, user);
     const roles = this.roleNames(user.roles);
 
+    if (event.status === EVENT_STATUS.RECHAZADO) {
+      throw new ForbiddenException(
+        'La orden fue rechazada y su proceso está detenido; no se puede modificar',
+      );
+    }
+
     const isEditor = roles.some((role) =>
       [ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.SUPERVISOR].includes(role as never),
     );
@@ -344,7 +350,15 @@ export class EventsService {
     const hasDefinitiveQuotation =
       (event.quotations?.some((q) => q.isDefinitive) ?? false) ||
       !!event.cotizacionSeleccionadaId;
-    if (!hasDefinitiveQuotation) {
+    const isRechazo = dto.status === EVENT_STATUS.RECHAZADO;
+
+    if (isRechazo && !dto.observation?.trim()) {
+      throw new BadRequestException(
+        'Debe indicar el motivo u observación del rechazo de la orden',
+      );
+    }
+
+    if (!isRechazo && !hasDefinitiveQuotation) {
       throw new BadRequestException(
         'La orden debe contar con al menos una cotización aprobada de forma definitiva antes de cambiar su estado',
       );
@@ -390,7 +404,12 @@ export class EventsService {
     id: string,
     user: { allyId?: string | null; roles: { name: string }[] },
   ): Promise<void> {
-    await this.findOne(id, user);
+    const event = await this.findOne(id, user);
+    if (event.status === EVENT_STATUS.RECHAZADO) {
+      throw new ForbiddenException(
+        'La orden fue rechazada y su proceso está detenido; no se puede eliminar',
+      );
+    }
     await this.prisma.event.update({
       where: { id },
       data: { deletedAt: new Date(), isActive: false },

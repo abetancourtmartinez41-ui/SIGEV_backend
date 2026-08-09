@@ -60,6 +60,14 @@ export class QuotationsService {
     );
   }
 
+  private assertEventNotRejected(event: { status: string }): void {
+    if (event.status === EVENT_STATUS.RECHAZADO) {
+      throw new BadRequestException(
+        'La orden fue rechazada y su proceso está detenido; no se pueden modificar sus cotizaciones',
+      );
+    }
+  }
+
   private async resolveItemValues(
     dto: {
       description?: string;
@@ -147,6 +155,7 @@ export class QuotationsService {
   async create(dto: CreateQuotationDto, user: UserWithRoles): Promise<QuotationWithRelations> {
     const event = await this.resolveEvent(dto.eventId);
     this.assertAllyScope(event, user);
+    this.assertEventNotRejected(event);
     if (event.cotizacionSeleccionadaId) {
       throw new BadRequestException(
         'La cotización de este evento ya fue aprobada; no se pueden crear nuevas cotizaciones',
@@ -222,6 +231,7 @@ export class QuotationsService {
     const quotation = await this.findOne(id);
     const event = await this.resolveEvent(dto.eventId ?? quotation.eventId);
     this.assertAllyScope(event, user);
+    this.assertEventNotRejected(event);
 
     if (quotation.isDefinitive || event.cotizacionSeleccionadaId) {
       throw new BadRequestException(
@@ -289,6 +299,7 @@ export class QuotationsService {
     const quotation = await this.findOne(id);
     const roles = this.roleNames(user.roles);
     this.assertAllyScope(quotation.event, user);
+    this.assertEventNotRejected(quotation.event);
 
     const allowedRoles = [ROLES.APPROVER];
     if (!roles.some((role) => allowedRoles.includes(role as never))) {
@@ -386,6 +397,7 @@ export class QuotationsService {
   async select(id: string, user: UserWithRoles): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
     this.assertAllyScope(quotation.event, user);
+    this.assertEventNotRejected(quotation.event);
     if (!quotation.eventId) {
       throw new BadRequestException('La cotización debe estar asociada a un evento');
     }
@@ -433,7 +445,8 @@ export class QuotationsService {
   }
 
   async remove(id: string): Promise<void> {
-    await this.findOne(id);
+    const quotation = await this.findOne(id);
+    this.assertEventNotRejected(quotation.event);
     await this.prisma.quotation.update({
       where: { id },
       data: { isActive: false },

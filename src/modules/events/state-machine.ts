@@ -22,6 +22,7 @@ const validTransitions: Record<Status, Transition[]> = {
   [EVENT_STATUS.EN_EJECUCION]: [
     { to: EVENT_STATUS.EJECUTADO, roles: ['approver'], requiresItems: true },
     { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
+    { to: EVENT_STATUS.RECHAZADO, roles: ['approver'] },
   ],
   [EVENT_STATUS.EJECUTADO]: [
     {
