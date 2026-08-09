@@ -109,8 +109,6 @@ export class AttachmentsService {
       allowed =
         event.status === EVENT_STATUS.ABIERTO ||
         event.status === EVENT_STATUS.EN_EJECUCION ||
-        event.status === EVENT_STATUS.EJECUTADO ||
-        event.status === EVENT_STATUS.CERRADO ||
         event.status === EVENT_STATUS.DEVUELTO;
     }
 
