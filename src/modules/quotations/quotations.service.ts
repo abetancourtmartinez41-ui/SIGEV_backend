@@ -342,7 +342,8 @@ export class QuotationsService {
           where: { id: quotation.eventId },
           data: {
             cotizacionSeleccionadaId: quotation.id,
-            ...(quotation.event.status === EVENT_STATUS.ABIERTO
+            ...(quotation.event.status === EVENT_STATUS.ABIERTO ||
+            quotation.event.status === EVENT_STATUS.DEVUELTO
               ? { status: EVENT_STATUS.EN_EJECUCION }
               : {}),
           },
@@ -431,7 +432,8 @@ export class QuotationsService {
         where: { id: quotation.eventId },
         data: {
           cotizacionSeleccionadaId: quotation.id,
-          ...(quotation.event.status === EVENT_STATUS.ABIERTO
+          ...(quotation.event.status === EVENT_STATUS.ABIERTO ||
+          quotation.event.status === EVENT_STATUS.DEVUELTO
             ? { status: EVENT_STATUS.EN_EJECUCION }
             : {}),
         },

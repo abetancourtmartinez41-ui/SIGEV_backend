@@ -351,6 +351,8 @@ export class EventsService {
       (event.quotations?.some((q) => q.isDefinitive) ?? false) ||
       !!event.cotizacionSeleccionadaId;
     const isRechazo = dto.status === EVENT_STATUS.RECHAZADO;
+    const isDevolucionInicial =
+      dto.status === EVENT_STATUS.DEVUELTO && event.status === EVENT_STATUS.ABIERTO;
 
     if (isRechazo && !dto.observation?.trim()) {
       throw new BadRequestException(
@@ -358,10 +360,18 @@ export class EventsService {
       );
     }
 
-    if (!isRechazo && !hasDefinitiveQuotation) {
-      throw new BadRequestException(
-        'La orden debe contar con al menos una cotización aprobada de forma definitiva antes de cambiar su estado',
-      );
+    if (!isRechazo) {
+      if (isDevolucionInicial) {
+        if (quotationsCount < 1) {
+          throw new BadRequestException(
+            'La orden debe contar con al menos una cotización para devolverla a ajustes',
+          );
+        }
+      } else if (!hasDefinitiveQuotation) {
+        throw new BadRequestException(
+          'La orden debe contar con al menos una cotización aprobada de forma definitiva antes de cambiar su estado',
+        );
+      }
     }
 
     if (

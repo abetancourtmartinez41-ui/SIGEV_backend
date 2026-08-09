@@ -107,9 +107,9 @@ export class AttachmentsService {
           !event.devolucionLegalizacion);
     } else {
       allowed =
-        event.status === EVENT_STATUS.ABIERTO ||
         event.status === EVENT_STATUS.EN_EJECUCION ||
-        event.status === EVENT_STATUS.DEVUELTO;
+        (event.status === EVENT_STATUS.DEVUELTO &&
+          event.devolucionLegalizacion);
     }
 
     if (!allowed) {
@@ -123,7 +123,7 @@ export class AttachmentsService {
   }
 
   private assertUserAllowed(
-    event: { status: string },
+    event: { status: string; devolucionLegalizacion: boolean },
     user: { roles: { name: string }[] },
     category: string,
   ): void {
@@ -157,7 +157,9 @@ export class AttachmentsService {
       isApprover &&
       category === 'Comunicado de aprobación' &&
       (event.status === EVENT_STATUS.ABIERTO ||
-        event.status === EVENT_STATUS.EN_EJECUCION)
+        event.status === EVENT_STATUS.EN_EJECUCION ||
+        (event.status === EVENT_STATUS.DEVUELTO &&
+          !event.devolucionLegalizacion))
     ) {
       return;
     }

@@ -33,6 +33,7 @@ const validTransitions: Record<Status, Transition[]> = {
     { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
   ],
   [EVENT_STATUS.DEVUELTO]: [
+    { to: EVENT_STATUS.EN_EJECUCION, roles: ['approver'] },
     { to: EVENT_STATUS.CERRADO, roles: ['approver'] },
   ],
   [EVENT_STATUS.CERRADO]: [
