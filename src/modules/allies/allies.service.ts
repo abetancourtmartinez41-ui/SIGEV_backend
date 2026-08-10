@@ -22,8 +22,11 @@ export class AlliesService {
     return this.prisma.ally.create({ data: dto });
   }
 
-  async findAll(): Promise<Ally[]> {
-    return this.prisma.ally.findMany({ where: { isActive: true } });
+  async findAll(includeInactive = false): Promise<Ally[]> {
+    return this.prisma.ally.findMany({
+      where: includeInactive ? {} : { isActive: true },
+      orderBy: { name: 'asc' },
+    });
   }
 
   async findOne(id: string): Promise<Ally> {

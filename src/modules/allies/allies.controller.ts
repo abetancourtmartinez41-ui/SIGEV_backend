@@ -1,5 +1,5 @@
 import {
-  Controller, Get, Post, Body, Patch, Param, Delete, UseGuards,
+  Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -24,9 +24,9 @@ export class AlliesController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar aliados activos' })
-  findAll() {
-    return this.alliesService.findAll();
+  @ApiOperation({ summary: 'Listar aliados (por defecto solo activos; usar ?all=true para incluir inactivos)' })
+  findAll(@Query('all') all?: string) {
+    return this.alliesService.findAll(all === 'true');
   }
 
   @Get(':id')
