@@ -120,6 +120,7 @@ export class MapService {
           numeroEvento: string;
           responsable: string;
           estado: string;
+          aliadoId?: string | null;
           total: number;
           lat?: number;
           lng?: number;
@@ -155,6 +156,7 @@ export class MapService {
         numeroEvento: event.code,
         responsable: event.name,
         estado: event.status,
+        aliadoId: event.generalAllyId ?? undefined,
         total: eventTotal,
         lat:
           event.latitude !== null && event.longitude !== null
