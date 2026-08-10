@@ -213,13 +213,27 @@ export class OfertaEconomicaService {
     });
     if (existingAttachment) return;
 
+    const municipality = oferta.event.divipolaCode
+      ? await this.prisma.municipality.findUnique({
+          where: { divipolaCode: oferta.event.divipolaCode },
+        })
+      : null;
+
     const buffer = await this.reportsService.generatePresupuestoFinalPdf({
       event: {
         code: oferta.event.code,
         suffix: oferta.event.suffix ?? '',
         name: oferta.event.name,
-        municipalityName: oferta.event.municipalityName ?? null,
+        status: oferta.event.status,
+        startDate: oferta.event.startDate,
+        dependency: oferta.event.dependency ?? null,
+        hamlet: oferta.event.hamlet ?? null,
+        schemaType: oferta.event.schemaType,
+        attendees: oferta.event.attendees,
+        days: oferta.event.days,
+        municipalityName: municipality?.name ?? oferta.event.municipalityName ?? null,
         municipalityCategory: oferta.event.municipalityCategory ?? null,
+        department: municipality?.department ?? null,
       },
       quotation: {
         code: quotation.code,

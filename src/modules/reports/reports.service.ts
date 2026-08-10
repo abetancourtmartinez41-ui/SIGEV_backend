@@ -100,7 +100,7 @@ export class ReportsService {
     doc.moveDown(0.2);
     doc
       .fontSize(9)
-      .text('SIGEV - Sistema de Información para la Gestión de Eventos', {
+      .text('SIGEV — Sistema Integrado de Gestión de Eventos', {
         align: 'center',
       });
     doc.moveDown(1.5);
@@ -213,8 +213,16 @@ export class ReportsService {
       code: string;
       suffix: string;
       name: string;
+      status: string;
+      startDate: Date | null;
+      dependency: string | null;
+      hamlet: string | null;
+      schemaType: string;
+      attendees: number | null;
+      days: number | null;
       municipalityName: string | null;
       municipalityCategory: string | null;
+      department: string | null;
     };
     quotation: {
       code: string;
@@ -280,6 +288,9 @@ export class ReportsService {
         year: 'numeric',
       });
 
+    const esquemaLabel = (schemaType: string) =>
+      schemaType === 'cotizacion' ? 'Cotización' : schemaType === 'detalle' ? 'Detalle' : schemaType || '—';
+
     const ensureSpace = (needed: number) => {
       if (doc.y + needed > SAFE_Y) {
         doc.addPage();
@@ -337,13 +348,38 @@ export class ReportsService {
       doc.y = cardTop + h + gap;
     };
 
+    const fieldGrid = (rows: [[string, string], [string, string]][]) => {
+      const colGap = 24;
+      const colW = (CW - colGap) / 2;
+      const cellGap = 8;
+      const labelH = 11;
+      rows.forEach(([left, right]) => {
+        const y0 = doc.y;
+        const drawCell = (x: number, w: number, [key, value]: [string, string]) => {
+          doc.fillColor(MUTED).font('Helvetica-Bold').fontSize(7);
+          doc.text(key.toUpperCase(), x, y0, { width: w });
+          doc.fillColor(INK).font('Helvetica').fontSize(8.5);
+          const valueH = doc.heightOfString(value, { width: w });
+          doc.text(value, x, y0 + labelH, { width: w });
+          return labelH + valueH;
+        };
+        const leftH = drawCell(M, colW, left);
+        const rightH = drawCell(M + colW + colGap, colW, right);
+        doc.y = y0 + Math.max(leftH, rightH) + cellGap;
+      });
+    };
+
     const tableHeader = (cols: { w: number; align: 'left' | 'right' | 'center' }[], labels: string[]) => {
       const headerY = doc.y;
       doc.rect(M, headerY, CW, 20).fill(LIGHT);
       doc.fillColor(INK).font('Helvetica-Bold').fontSize(7.5);
       let x = M;
       cols.forEach((col, index) => {
-        doc.text(labels[index], x, headerY + 6, { width: col.w, align: col.align });
+        const isLast = index === cols.length - 1;
+        doc.text(labels[index], x, headerY + 7, {
+          width: isLast ? col.w - 2 : col.w,
+          align: col.align,
+        });
         x += col.w;
       });
       doc.moveTo(M, headerY + 20).lineTo(M + CW, headerY + 20).lineWidth(0.7).stroke(BORDER);
@@ -352,7 +388,7 @@ export class ReportsService {
 
     // ---- Encabezado ----
     doc.fillColor(MUTED).font('Helvetica').fontSize(7.5);
-    doc.text('SIGEV — Sistema de Información para la Gestión de Eventos', 0, 40, {
+    doc.text('SIGEV — Sistema Integrado de Gestión de Eventos', 0, 40, {
       width: PAGE_W,
       align: 'center',
     });
@@ -384,23 +420,44 @@ export class ReportsService {
     // ---- Datos del evento ----
     sectionTitle('Datos del evento');
     const eventCode = params.event.code + (params.event.suffix ? `-${params.event.suffix}` : '');
-    sideBySideCards(
+    const municipioLabel = params.event.municipalityName
+      ? params.event.department
+        ? `${params.event.municipalityName} (${params.event.department})`
+        : params.event.municipalityName
+      : '—';
+    fieldGrid([
       [
         ['Número de evento', eventCode],
-        ['Nombre', params.event.name || '—'],
-        ['Municipio', params.event.municipalityName || 'N/A'],
+        ['Oferta definitiva', params.oferta.code],
+      ],
+      [
+        ['Estado', params.event.status || '—'],
+        ['Cotización de origen', params.quotation.code],
+      ],
+      [
+        ['Fecha de ejecución', params.event.startDate ? dateCO(params.event.startDate) : '—'],
+        ['Aliado estratégico', params.quotation.ally?.name || '—'],
+      ],
+      [
+        ['Cliente (solicitante)', params.event.name || '—'],
+        ['Municipio', municipioLabel],
+      ],
+      [
+        ['Dependencia', params.event.dependency || '—'],
         ['Categoría municipal', params.event.municipalityCategory || '—'],
       ],
       [
-        ['Oferta definitiva', params.oferta.code],
-        ['Cotización de origen', params.quotation.code],
-        ['Cliente', params.quotation.cliente || '—'],
-        ['Aliado estratégico', params.quotation.ally?.name || '—'],
+        ['Vereda', params.event.hamlet || '—'],
+        ['Esquema', esquemaLabel(params.event.schemaType)],
       ],
-    );
+      [
+        ['Asistentes', params.event.attendees != null ? String(params.event.attendees) : '—'],
+        ['Días', params.event.days != null ? String(params.event.days) : '—'],
+      ],
+    ]);
 
     // ---- Detalle de la oferta ----
-    sectionTitle('Detalle de la oferta económica');
+    sectionTitle('Detalles de la oferta económica');
 
     const cols = [
       { w: 18, align: 'center' as const },
@@ -414,7 +471,7 @@ export class ReportsService {
       { w: 46, align: 'right' as const },
       { w: 58, align: 'right' as const },
     ];
-    const labels = ['#', 'Descripción', 'Cant.', 'P/U', 'Base', 'IVA', 'Imp. Consumo', 'Fee', 'IVA Fee', 'Total'];
+    const labels = ['#', 'Descripción', 'Cant.', 'P/U', 'Base', 'IVA', 'Imp. Cons.', 'Fee', 'IVA Fee', 'Total'];
 
     tableHeader(cols, labels);
 
@@ -470,7 +527,11 @@ export class ReportsService {
           x += col.w;
           return;
         }
-        doc.text(cells[index], x, rowTop + 6, { width: col.w, align: col.align });
+        const isLast = index === cols.length - 1;
+        doc.text(cells[index], x, rowTop + 6, {
+          width: isLast ? col.w - 2 : col.w,
+          align: col.align,
+        });
         x += col.w;
       });
       doc.y = rowTop + rowH;
@@ -542,7 +603,7 @@ export class ReportsService {
       ],
       [
         ['Fecha de generación', dateCO(params.generatedAt)],
-        ['Estado', 'Definitiva'],
+        ['', ''],
       ],
       6,
     );
@@ -569,7 +630,7 @@ export class ReportsService {
       doc.switchToPage(i);
       doc.moveTo(M, FOOTER_Y - 6).lineTo(M + CW, FOOTER_Y - 6).lineWidth(0.6).stroke(BORDER);
       doc.fillColor(MUTED).font('Helvetica').fontSize(7);
-      doc.text('SIGEV — Sistema de Información para la Gestión de Eventos', M, FOOTER_Y, {
+      doc.text('SIGEV — Sistema Integrado de Gestión de Eventos', M, FOOTER_Y, {
         width: CW / 2,
       });
       doc.fillColor(MUTED).font('Helvetica').fontSize(7);
