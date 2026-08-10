@@ -9,7 +9,7 @@ import { randomUUID } from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
 import { Attachment } from '../../generated/prisma/client';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
-import { STATIC_FOLDERS, MULTI_DOCUMENT_FOLDERS } from './attachments-folders';
+import { STATIC_FOLDERS, MODIFIABLE_FOLDERS, MULTI_DOCUMENT_FOLDERS } from './attachments-folders';
 import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
@@ -151,6 +151,14 @@ export class AttachmentsService {
     if (
       (isAnalista || isSolicitante) &&
       event.status === EVENT_STATUS.DEVUELTO
+    ) {
+      return;
+    }
+    // El Solicitante actualiza las carpetas de legalización (5-7) durante la ejecución
+    if (
+      isSolicitante &&
+      (MODIFIABLE_FOLDERS as readonly string[]).includes(category) &&
+      event.status === EVENT_STATUS.EN_EJECUCION
     ) {
       return;
     }
