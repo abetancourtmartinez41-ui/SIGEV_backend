@@ -54,8 +54,8 @@ export class EventsController {
   }
 
   @Patch(':id/status')
-  @Roles(ROLES.APPROVER)
-  @ApiOperation({ summary: 'Cambiar estado del evento (solo Aprobador)' })
+  @Roles(ROLES.APPROVER, ROLES.SUPERVISOR)
+  @ApiOperation({ summary: 'Cambiar estado del evento (Aprobador y Supervisor; el Supervisor no puede legalizar)' })
   changeStatus(
     @Param('id') id: string,
     @Body() dto: ChangeStatusDto,

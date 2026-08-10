@@ -15,28 +15,28 @@ interface Transition {
 
 const validTransitions: Record<Status, Transition[]> = {
   [EVENT_STATUS.ABIERTO]: [
-    { to: EVENT_STATUS.EN_EJECUCION, roles: ['approver'] },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
-    { to: EVENT_STATUS.RECHAZADO, roles: ['approver'] },
+    { to: EVENT_STATUS.EN_EJECUCION, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.RECHAZADO, roles: ['approver', 'supervisor'] },
   ],
   [EVENT_STATUS.EN_EJECUCION]: [
-    { to: EVENT_STATUS.EJECUTADO, roles: ['approver'], requiresItems: true },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
-    { to: EVENT_STATUS.RECHAZADO, roles: ['approver'] },
+    { to: EVENT_STATUS.EJECUTADO, roles: ['approver', 'supervisor'], requiresItems: true },
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.RECHAZADO, roles: ['approver', 'supervisor'] },
   ],
   [EVENT_STATUS.EJECUTADO]: [
-    { to: EVENT_STATUS.CERRADO, roles: ['approver'] },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
+    { to: EVENT_STATUS.CERRADO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
   ],
   [EVENT_STATUS.DEVUELTO]: [
-    { to: EVENT_STATUS.ABIERTO, roles: ['approver'] },
-    { to: EVENT_STATUS.EN_EJECUCION, roles: ['approver'] },
-    { to: EVENT_STATUS.EJECUTADO, roles: ['approver'] },
-    { to: EVENT_STATUS.CERRADO, roles: ['approver'] },
+    { to: EVENT_STATUS.ABIERTO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.EN_EJECUCION, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.EJECUTADO, roles: ['approver', 'supervisor'] },
+    { to: EVENT_STATUS.CERRADO, roles: ['approver', 'supervisor'] },
   ],
   [EVENT_STATUS.CERRADO]: [
     { to: EVENT_STATUS.LEGALIZADO, roles: ['approver'] },
-    { to: EVENT_STATUS.DEVUELTO, roles: ['approver'] },
+    { to: EVENT_STATUS.DEVUELTO, roles: ['approver', 'supervisor'] },
   ],
   [EVENT_STATUS.LEGALIZADO]: [],
   [EVENT_STATUS.RECHAZADO]: [],
