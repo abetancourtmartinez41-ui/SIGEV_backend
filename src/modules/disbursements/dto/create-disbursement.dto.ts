@@ -11,7 +11,7 @@ const toOptionalDate = ({ value }: { value: unknown }): unknown => {
 };
 
 export class CreateDisbursementDto {
-  @ApiProperty({ example: 'DES-001' })
+  @ApiProperty({ example: 'R-001' })
   @IsString()
   @MinLength(1)
   code: string;
