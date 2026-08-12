@@ -103,10 +103,10 @@ export class EventsService {
       select: { isActive: true },
     });
     if (!disbursement) {
-      throw new BadRequestException('El desembolso asignado no existe');
+      throw new BadRequestException('El recurso disponible asignado no existe');
     }
     if (!disbursement.isActive) {
-      throw new BadRequestException('El desembolso asignado está inactivo');
+      throw new BadRequestException('El recurso disponible asignado está inactivo');
     }
   }
 
@@ -404,7 +404,7 @@ export class EventsService {
 
     if (dto.status === EVENT_STATUS.CERRADO && !event.disbursementId) {
       throw new BadRequestException(
-        'El evento debe tener un desembolso asignado antes de cerrar',
+        'El evento debe tener un recurso disponible asignado antes de cerrar',
       );
     }
     await this.assertDisbursementActive(event.disbursementId ?? undefined);

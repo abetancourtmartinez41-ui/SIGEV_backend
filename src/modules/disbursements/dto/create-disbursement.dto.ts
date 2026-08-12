@@ -16,7 +16,7 @@ export class CreateDisbursementDto {
   @MinLength(1)
   code: string;
 
-  @ApiProperty({ example: 'Desembolso 2026-01' })
+  @ApiProperty({ example: 'Recurso disponible 2026-01' })
   @IsString()
   @MinLength(3)
   name: string;

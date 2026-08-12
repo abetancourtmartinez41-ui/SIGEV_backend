@@ -22,7 +22,7 @@ export class DisbursementsService {
 
   async findOne(id: string): Promise<Disbursement> {
     const d = await this.prisma.disbursement.findUnique({ where: { id } });
-    if (!d) throw new NotFoundException('Desembolso no encontrado');
+    if (!d) throw new NotFoundException('Recurso disponible no encontrado');
     return d;
   }
 

@@ -9,7 +9,7 @@ import { RolesGuard } from '../../common/guards';
 import { Roles } from '../../common/decorators';
 import { ROLES } from '../../config/constants';
 
-@ApiTags('Desembolsos')
+@ApiTags('Recursos disponibles')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('disbursements')
@@ -18,33 +18,33 @@ export class DisbursementsController {
 
   @Post()
   @Roles(ROLES.FUNCTIONAL_ADMIN)
-  @ApiOperation({ summary: 'Crear desembolso (solo Admin. Funcional)' })
+  @ApiOperation({ summary: 'Crear recurso disponible (solo Admin. Funcional)' })
   create(@Body() dto: CreateDisbursementDto) {
     return this.disbursementsService.create(dto);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar desembolsos (activos por defecto; use active=all para todos)' })
+  @ApiOperation({ summary: 'Listar recursos disponibles (activos por defecto; use active=all para todos)' })
   findAll(@Query('active') active?: string) {
     return this.disbursementsService.findAll(active);
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Obtener desembolso por ID' })
+  @ApiOperation({ summary: 'Obtener recurso disponible por ID' })
   findOne(@Param('id') id: string) {
     return this.disbursementsService.findOne(id);
   }
 
   @Patch(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN)
-  @ApiOperation({ summary: 'Actualizar desembolso (solo Admin. Funcional)' })
+  @ApiOperation({ summary: 'Actualizar recurso disponible (solo Admin. Funcional)' })
   update(@Param('id') id: string, @Body() dto: UpdateDisbursementDto) {
     return this.disbursementsService.update(id, dto);
   }
 
   @Delete(':id')
   @Roles(ROLES.FUNCTIONAL_ADMIN)
-  @ApiOperation({ summary: 'Inactivar desembolso (solo Admin. Funcional)' })
+  @ApiOperation({ summary: 'Inactivar recurso disponible (solo Admin. Funcional)' })
   remove(@Param('id') id: string) {
     return this.disbursementsService.remove(id);
   }

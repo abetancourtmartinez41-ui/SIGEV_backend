@@ -51,7 +51,7 @@ export class CreateEventDto {
   @IsString()
   generalAllyId?: string;
 
-  @ApiPropertyOptional({ description: 'Desembolso asignado al evento' })
+  @ApiPropertyOptional({ description: 'Recurso disponible asignado al evento' })
   @IsOptional()
   @IsString()
   @IsUUID()

@@ -12,7 +12,7 @@ export class MunicipalityStatsDto {
   @IsString()
   generalAllyId?: string;
 
-  @ApiPropertyOptional({ description: 'ID del desembolso' })
+  @ApiPropertyOptional({ description: 'ID del recurso disponible' })
   @IsOptional()
   @IsString()
   disbursementId?: string;
