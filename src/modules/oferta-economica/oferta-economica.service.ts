@@ -82,7 +82,7 @@ export class OfertaEconomicaService {
   /**
    * Crea la Oferta Económica definitiva a partir de la cotización seleccionada
    * (idempotente: si ya existe para el evento, la devuelve). Aplica el Motor de
-   * Cálculo (IVA, Impuesto al consumo, Fee Técnico Administrativo e IVA del Fee)
+   * Cálculo (IVA, Impuesto al consumo, FEE Técnico Administrativo e IVA del FEE)
    * y genera el PDF "Presupuesto Final" en la Carpeta 4 del evento.
    */
   async ensureFromQuotation(

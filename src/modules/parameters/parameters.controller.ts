@@ -52,7 +52,7 @@ export class ParametersController {
 
   @Patch(':key')
   @Roles(ROLES.FUNCTIONAL_ADMIN)
-  @ApiOperation({ summary: 'Actualizar parámetro (Tasas/Fee, solo Admin. Funcional)' })
+  @ApiOperation({ summary: 'Actualizar parámetro (Tasas/FEE, solo Admin. Funcional)' })
   update(@Param('key') key: string, @Body() dto: UpdateParameterDto) {
     return this.parametersService.updateByKey(key, dto);
   }

@@ -7,7 +7,7 @@ export class UpdateParameterDto {
   @IsString()
   value?: string;
 
-  @ApiPropertyOptional({ example: 'Tarifa de fee aplicada al cálculo de ofertas' })
+  @ApiPropertyOptional({ example: 'Tarifa de FEE aplicada al cálculo de ofertas' })
   @IsOptional()
   @IsString()
   @MinLength(3)
