@@ -28,10 +28,14 @@ export type AllyMinAggregateOutputType = {
   id: string | null
   code: string | null
   name: string | null
-  color: string | null
+  documentType: string | null
   document: string | null
-  contactName: string | null
+  phone: string | null
   contactEmail: string | null
+  divipolaCode: string | null
+  divipolaDepartment: string | null
+  contactName: string | null
+  color: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -41,10 +45,14 @@ export type AllyMaxAggregateOutputType = {
   id: string | null
   code: string | null
   name: string | null
-  color: string | null
+  documentType: string | null
   document: string | null
-  contactName: string | null
+  phone: string | null
   contactEmail: string | null
+  divipolaCode: string | null
+  divipolaDepartment: string | null
+  contactName: string | null
+  color: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -54,10 +62,14 @@ export type AllyCountAggregateOutputType = {
   id: number
   code: number
   name: number
-  color: number
+  documentType: number
   document: number
-  contactName: number
+  phone: number
   contactEmail: number
+  divipolaCode: number
+  divipolaDepartment: number
+  contactName: number
+  color: number
   isActive: number
   createdAt: number
   updatedAt: number
@@ -69,10 +81,14 @@ export type AllyMinAggregateInputType = {
   id?: true
   code?: true
   name?: true
-  color?: true
+  documentType?: true
   document?: true
-  contactName?: true
+  phone?: true
   contactEmail?: true
+  divipolaCode?: true
+  divipolaDepartment?: true
+  contactName?: true
+  color?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -82,10 +98,14 @@ export type AllyMaxAggregateInputType = {
   id?: true
   code?: true
   name?: true
-  color?: true
+  documentType?: true
   document?: true
-  contactName?: true
+  phone?: true
   contactEmail?: true
+  divipolaCode?: true
+  divipolaDepartment?: true
+  contactName?: true
+  color?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -95,10 +115,14 @@ export type AllyCountAggregateInputType = {
   id?: true
   code?: true
   name?: true
-  color?: true
+  documentType?: true
   document?: true
-  contactName?: true
+  phone?: true
   contactEmail?: true
+  divipolaCode?: true
+  divipolaDepartment?: true
+  contactName?: true
+  color?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -181,10 +205,14 @@ export type AllyGroupByOutputType = {
   id: string
   code: string
   name: string
-  color: string | null
+  documentType: string | null
   document: string | null
-  contactName: string | null
+  phone: string | null
   contactEmail: string | null
+  divipolaCode: string | null
+  divipolaDepartment: string | null
+  contactName: string | null
+  color: string | null
   isActive: boolean
   createdAt: Date
   updatedAt: Date
@@ -215,10 +243,14 @@ export type AllyWhereInput = {
   id?: Prisma.UuidFilter<"Ally"> | string
   code?: Prisma.StringFilter<"Ally"> | string
   name?: Prisma.StringFilter<"Ally"> | string
-  color?: Prisma.StringNullableFilter<"Ally"> | string | null
+  documentType?: Prisma.StringNullableFilter<"Ally"> | string | null
   document?: Prisma.StringNullableFilter<"Ally"> | string | null
-  contactName?: Prisma.StringNullableFilter<"Ally"> | string | null
+  phone?: Prisma.StringNullableFilter<"Ally"> | string | null
   contactEmail?: Prisma.StringNullableFilter<"Ally"> | string | null
+  divipolaCode?: Prisma.StringNullableFilter<"Ally"> | string | null
+  divipolaDepartment?: Prisma.StringNullableFilter<"Ally"> | string | null
+  contactName?: Prisma.StringNullableFilter<"Ally"> | string | null
+  color?: Prisma.StringNullableFilter<"Ally"> | string | null
   isActive?: Prisma.BoolFilter<"Ally"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
@@ -233,10 +265,14 @@ export type AllyOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
+  documentType?: Prisma.SortOrderInput | Prisma.SortOrder
   document?: Prisma.SortOrderInput | Prisma.SortOrder
-  contactName?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   contactEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  divipolaDepartment?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactName?: Prisma.SortOrderInput | Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -254,10 +290,14 @@ export type AllyWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AllyWhereInput | Prisma.AllyWhereInput[]
   OR?: Prisma.AllyWhereInput[]
   NOT?: Prisma.AllyWhereInput | Prisma.AllyWhereInput[]
-  color?: Prisma.StringNullableFilter<"Ally"> | string | null
+  documentType?: Prisma.StringNullableFilter<"Ally"> | string | null
   document?: Prisma.StringNullableFilter<"Ally"> | string | null
-  contactName?: Prisma.StringNullableFilter<"Ally"> | string | null
+  phone?: Prisma.StringNullableFilter<"Ally"> | string | null
   contactEmail?: Prisma.StringNullableFilter<"Ally"> | string | null
+  divipolaCode?: Prisma.StringNullableFilter<"Ally"> | string | null
+  divipolaDepartment?: Prisma.StringNullableFilter<"Ally"> | string | null
+  contactName?: Prisma.StringNullableFilter<"Ally"> | string | null
+  color?: Prisma.StringNullableFilter<"Ally"> | string | null
   isActive?: Prisma.BoolFilter<"Ally"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ally"> | Date | string
@@ -272,10 +312,14 @@ export type AllyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
+  documentType?: Prisma.SortOrderInput | Prisma.SortOrder
   document?: Prisma.SortOrderInput | Prisma.SortOrder
-  contactName?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   contactEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  divipolaDepartment?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactName?: Prisma.SortOrderInput | Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -291,10 +335,14 @@ export type AllyScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Ally"> | string
   code?: Prisma.StringWithAggregatesFilter<"Ally"> | string
   name?: Prisma.StringWithAggregatesFilter<"Ally"> | string
-  color?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
+  documentType?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
   document?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
-  contactName?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
   contactEmail?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
+  divipolaCode?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
+  divipolaDepartment?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
+  contactName?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
+  color?: Prisma.StringNullableWithAggregatesFilter<"Ally"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Ally"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ally"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ally"> | Date | string
@@ -304,10 +352,14 @@ export type AllyCreateInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -322,10 +374,14 @@ export type AllyUncheckedCreateInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -340,10 +396,14 @@ export type AllyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -358,10 +418,14 @@ export type AllyUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -376,10 +440,14 @@ export type AllyCreateManyInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -389,10 +457,14 @@ export type AllyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -402,10 +474,14 @@ export type AllyUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -420,10 +496,14 @@ export type AllyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  color?: Prisma.SortOrder
+  documentType?: Prisma.SortOrder
   document?: Prisma.SortOrder
-  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   contactEmail?: Prisma.SortOrder
+  divipolaCode?: Prisma.SortOrder
+  divipolaDepartment?: Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  color?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -433,10 +513,14 @@ export type AllyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  color?: Prisma.SortOrder
+  documentType?: Prisma.SortOrder
   document?: Prisma.SortOrder
-  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   contactEmail?: Prisma.SortOrder
+  divipolaCode?: Prisma.SortOrder
+  divipolaDepartment?: Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  color?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -446,10 +530,14 @@ export type AllyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  color?: Prisma.SortOrder
+  documentType?: Prisma.SortOrder
   document?: Prisma.SortOrder
-  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   contactEmail?: Prisma.SortOrder
+  divipolaCode?: Prisma.SortOrder
+  divipolaDepartment?: Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  color?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -539,10 +627,14 @@ export type AllyCreateWithoutUsersInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -556,10 +648,14 @@ export type AllyUncheckedCreateWithoutUsersInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -589,10 +685,14 @@ export type AllyUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -606,10 +706,14 @@ export type AllyUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -623,10 +727,14 @@ export type AllyCreateWithoutQuotationsInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -640,10 +748,14 @@ export type AllyUncheckedCreateWithoutQuotationsInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -673,10 +785,14 @@ export type AllyUpdateWithoutQuotationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -690,10 +806,14 @@ export type AllyUncheckedUpdateWithoutQuotationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -707,10 +827,14 @@ export type AllyCreateWithoutQuotationItemsInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -724,10 +848,14 @@ export type AllyUncheckedCreateWithoutQuotationItemsInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -757,10 +885,14 @@ export type AllyUpdateWithoutQuotationItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -774,10 +906,14 @@ export type AllyUncheckedUpdateWithoutQuotationItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -791,10 +927,14 @@ export type AllyCreateWithoutOfertaEconomicasInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -808,10 +948,14 @@ export type AllyUncheckedCreateWithoutOfertaEconomicasInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -841,10 +985,14 @@ export type AllyUpdateWithoutOfertaEconomicasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -858,10 +1006,14 @@ export type AllyUncheckedUpdateWithoutOfertaEconomicasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -875,10 +1027,14 @@ export type AllyCreateWithoutOfertaEconomicaItemsInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -892,10 +1048,14 @@ export type AllyUncheckedCreateWithoutOfertaEconomicaItemsInput = {
   id?: string
   code: string
   name: string
-  color?: string | null
+  documentType?: string | null
   document?: string | null
-  contactName?: string | null
+  phone?: string | null
   contactEmail?: string | null
+  divipolaCode?: string | null
+  divipolaDepartment?: string | null
+  contactName?: string | null
+  color?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -925,10 +1085,14 @@ export type AllyUpdateWithoutOfertaEconomicaItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -942,10 +1106,14 @@ export type AllyUncheckedUpdateWithoutOfertaEconomicaItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  divipolaDepartment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1026,10 +1194,14 @@ export type AllySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   code?: boolean
   name?: boolean
-  color?: boolean
+  documentType?: boolean
   document?: boolean
-  contactName?: boolean
+  phone?: boolean
   contactEmail?: boolean
+  divipolaCode?: boolean
+  divipolaDepartment?: boolean
+  contactName?: boolean
+  color?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1045,10 +1217,14 @@ export type AllySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   code?: boolean
   name?: boolean
-  color?: boolean
+  documentType?: boolean
   document?: boolean
-  contactName?: boolean
+  phone?: boolean
   contactEmail?: boolean
+  divipolaCode?: boolean
+  divipolaDepartment?: boolean
+  contactName?: boolean
+  color?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1058,10 +1234,14 @@ export type AllySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   code?: boolean
   name?: boolean
-  color?: boolean
+  documentType?: boolean
   document?: boolean
-  contactName?: boolean
+  phone?: boolean
   contactEmail?: boolean
+  divipolaCode?: boolean
+  divipolaDepartment?: boolean
+  contactName?: boolean
+  color?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1071,16 +1251,20 @@ export type AllySelectScalar = {
   id?: boolean
   code?: boolean
   name?: boolean
-  color?: boolean
+  documentType?: boolean
   document?: boolean
-  contactName?: boolean
+  phone?: boolean
   contactEmail?: boolean
+  divipolaCode?: boolean
+  divipolaDepartment?: boolean
+  contactName?: boolean
+  color?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AllyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "color" | "document" | "contactName" | "contactEmail" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["ally"]>
+export type AllyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "documentType" | "document" | "phone" | "contactEmail" | "divipolaCode" | "divipolaDepartment" | "contactName" | "color" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["ally"]>
 export type AllyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotations?: boolean | Prisma.Ally$quotationsArgs<ExtArgs>
   quotationItems?: boolean | Prisma.Ally$quotationItemsArgs<ExtArgs>
@@ -1105,10 +1289,14 @@ export type $AllyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     code: string
     name: string
-    color: string | null
+    documentType: string | null
     document: string | null
-    contactName: string | null
+    phone: string | null
     contactEmail: string | null
+    divipolaCode: string | null
+    divipolaDepartment: string | null
+    contactName: string | null
+    color: string | null
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -1543,10 +1731,14 @@ export interface AllyFieldRefs {
   readonly id: Prisma.FieldRef<"Ally", 'String'>
   readonly code: Prisma.FieldRef<"Ally", 'String'>
   readonly name: Prisma.FieldRef<"Ally", 'String'>
-  readonly color: Prisma.FieldRef<"Ally", 'String'>
+  readonly documentType: Prisma.FieldRef<"Ally", 'String'>
   readonly document: Prisma.FieldRef<"Ally", 'String'>
-  readonly contactName: Prisma.FieldRef<"Ally", 'String'>
+  readonly phone: Prisma.FieldRef<"Ally", 'String'>
   readonly contactEmail: Prisma.FieldRef<"Ally", 'String'>
+  readonly divipolaCode: Prisma.FieldRef<"Ally", 'String'>
+  readonly divipolaDepartment: Prisma.FieldRef<"Ally", 'String'>
+  readonly contactName: Prisma.FieldRef<"Ally", 'String'>
+  readonly color: Prisma.FieldRef<"Ally", 'String'>
   readonly isActive: Prisma.FieldRef<"Ally", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Ally", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Ally", 'DateTime'>

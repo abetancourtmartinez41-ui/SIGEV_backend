@@ -12,14 +12,47 @@ export class AlliesService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(dto: CreateAllyDto): Promise<Ally> {
-    const existing = await this.prisma.ally.findFirst({
-      where: { OR: [{ name: dto.name }, { code: dto.code }] },
-    });
-    if (existing) {
-      const field = existing.code === dto.code ? 'código' : 'nombre';
-      throw new ConflictException(`Ya existe un aliado con ese ${field}`);
+    const code = dto.code?.trim() || (await this.generateCode(dto.divipolaCode));
+    await this.assertNoDuplicate(undefined, [
+      { column: 'code', label: 'código', value: code },
+      { column: 'name', label: 'nombre', value: dto.name },
+      { column: 'document', label: 'número de identificación', value: dto.document },
+      { column: 'contactEmail', label: 'correo electrónico', value: dto.contactEmail },
+    ]);
+    return this.prisma.ally.create({ data: { ...dto, code } });
+  }
+
+  private async assertNoDuplicate(
+    id: string | undefined,
+    checks: { column: 'code' | 'name' | 'document' | 'contactEmail'; label: string; value?: string }[],
+  ): Promise<void> {
+    for (const check of checks) {
+      if (!check.value?.trim()) continue;
+      const existing = await this.prisma.ally.findFirst({
+        where: {
+          id: id ? { not: id } : undefined,
+          [check.column]: { equals: check.value.trim(), mode: 'insensitive' },
+        },
+      });
+      if (existing) {
+        throw new ConflictException(`Ya existe un aliado con ese ${check.label}`);
+      }
     }
-    return this.prisma.ally.create({ data: dto });
+  }
+
+  private async generateCode(divipolaCode?: string): Promise<string> {
+    const dept = divipolaCode ?? '00';
+    const existing = await this.prisma.ally.findMany({
+      where: { divipolaCode: dept },
+      select: { code: true },
+    });
+    const re = new RegExp(`^AL-${dept}-(\\d+)$`);
+    let max = 0;
+    for (const ally of existing) {
+      const match = ally.code.match(re);
+      if (match) max = Math.max(max, parseInt(match[1], 10));
+    }
+    return `AL-${dept}-${String(max + 1).padStart(3, '0')}`;
   }
 
   async findAll(includeInactive = false): Promise<Ally[]> {
@@ -37,21 +70,12 @@ export class AlliesService {
 
   async update(id: string, dto: UpdateAllyDto): Promise<Ally> {
     await this.findOne(id);
-    if (dto.name || dto.code) {
-      const existing = await this.prisma.ally.findFirst({
-        where: {
-          id: { not: id },
-          OR: [
-            ...(dto.name ? [{ name: dto.name }] : []),
-            ...(dto.code ? [{ code: dto.code }] : []),
-          ],
-        },
-      });
-      if (existing) {
-        const field = dto.code && existing.code === dto.code ? 'código' : 'nombre';
-        throw new ConflictException(`Ya existe un aliado con ese ${field}`);
-      }
-    }
+    await this.assertNoDuplicate(id, [
+      { column: 'code', label: 'código', value: dto.code },
+      { column: 'name', label: 'nombre', value: dto.name },
+      { column: 'document', label: 'número de identificación', value: dto.document },
+      { column: 'contactEmail', label: 'correo electrónico', value: dto.contactEmail },
+    ]);
     return this.prisma.ally.update({
       where: { id },
       data: dto,
