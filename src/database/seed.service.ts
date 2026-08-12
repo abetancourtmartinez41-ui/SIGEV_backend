@@ -11,7 +11,7 @@ const DEFAULT_PARAMETERS = [
   { key: 'FEE_RATE', value: '0.0825', description: 'FEE técnico administrativo (8.25%)' },
   { key: 'FEE_IVA_RATE', value: '0.19', description: 'IVA sobre el FEE (19%)' },
   { key: 'IVA_RATE', value: '0.19', description: 'IVA general aplicado a la base (19%)' },
-  { key: 'CONSUMPTION_TAX_RATE', value: '0.08', description: 'Impuesto al consumo (8%)' },
+  { key: 'CONSUMPTION_TAX_RATE', value: '0.08', description: 'Impuesto a consumo (INC) (8%)' },
   { key: 'TARIFF_VIGENCY_YEAR', value: '2026', description: 'Vigencia vigente del tarifario (Año 2026)' },
   { key: 'REQUIRED_QUOTATIONS', value: '4', description: 'Número de cotizaciones requeridas' },
 ];

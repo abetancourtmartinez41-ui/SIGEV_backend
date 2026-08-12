@@ -471,7 +471,7 @@ export class ReportsService {
       { w: 46, align: 'right' as const },
       { w: 58, align: 'right' as const },
     ];
-    const labels = ['#', 'Descripción', 'Cant.', 'P/U', 'Base', 'IVA', 'Imp. Cons.', 'FEE', 'IVA FEE', 'Total'];
+    const labels = ['#', 'Descripción', 'Cant.', 'P/U', 'Base', 'IVA', 'INC', 'FEE', 'IVA FEE', 'Total'];
 
     tableHeader(cols, labels);
 
@@ -564,7 +564,7 @@ export class ReportsService {
     const summaryRows: [string, string][] = [
       ['Subtotal (Base)', moneyCur(params.oferta.baseTotal)],
       ['IVA', moneyCur(params.oferta.ivaTotal)],
-      ['Impuesto al consumo', moneyCur(params.oferta.impuestoConsumoTotal)],
+      ['Impuesto a consumo (INC)', moneyCur(params.oferta.impuestoConsumoTotal)],
       ['FEE Técnico Administrativo', moneyCur(params.oferta.feeTarifadoTotal + params.oferta.feeTercerosTotal)],
       ['IVA del FEE', moneyCur(params.oferta.ivaFeeTotal)],
     ];
@@ -663,7 +663,7 @@ export class ReportsService {
       { header: 'P/U', key: 'unitPrice', width: 15 },
       { header: 'Base', key: 'baseValue', width: 15 },
       { header: 'IVA', key: 'ivaValue', width: 15 },
-      { header: 'Imp. Consumo', key: 'consumptionTaxValue', width: 15 },
+      { header: 'INC', key: 'consumptionTaxValue', width: 15 },
       { header: 'FEE', key: 'feeValue', width: 15 },
       { header: 'IVA FEE', key: 'feeIvaValue', width: 15 },
       { header: 'Total', key: 'totalValue', width: 15 },
