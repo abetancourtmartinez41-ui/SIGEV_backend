@@ -24,15 +24,26 @@ export class ItemsService {
     return this.roleNames(user.roles).includes(ROLES.OPERATOR);
   }
 
+  private isSolicitante(user: { roles: { name: string }[] }): boolean {
+    return this.roleNames(user.roles).includes(ROLES.SOLICITANTE);
+  }
+
   private assertAllyScope(
-    event: { generalAllyId: string | null },
-    user: { allyId?: string | null; roles: { name: string }[] },
+    event: { generalAllyId: string | null; createdById?: string | null },
+    user: { id: string; allyId?: string | null; roles: { name: string }[] },
   ): void {
-    if (!this.isOperator(user)) return;
-    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
-    throw new ForbiddenException(
-      'Este evento pertenece a otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
-    );
+    if (this.isOperator(user)) {
+      if (event.generalAllyId && event.generalAllyId === user.allyId) return;
+      throw new ForbiddenException(
+        'Este evento pertenece a otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
+      );
+    }
+    if (this.isSolicitante(user)) {
+      if (event.createdById && event.createdById === user.id) return;
+      throw new ForbiddenException(
+        'El Solicitante solo puede asociar ítems a las órdenes que creó',
+      );
+    }
   }
 
   private async resolveItemValues(
@@ -111,7 +122,7 @@ export class ItemsService {
 
   async create(
     dto: CreateItemDto,
-    user: { allyId?: string | null; roles: { name: string }[] },
+    user: { id: string; allyId?: string | null; roles: { name: string }[] },
   ): Promise<Prisma.ItemGetPayload<{}>> {
     if (!dto.eventId) {
       throw new BadRequestException('Debe especificar el evento al que pertenece el ítem');
@@ -136,7 +147,7 @@ export class ItemsService {
   async update(
     id: string,
     dto: UpdateItemDto,
-    user: { allyId?: string | null; roles: { name: string }[] },
+    user: { id: string; allyId?: string | null; roles: { name: string }[] },
   ): Promise<Prisma.ItemGetPayload<{}>> {
     const item = await this.findOne(id);
     const event = await this.prisma.event.findUnique({ where: { id: item.eventId } });
@@ -172,7 +183,7 @@ export class ItemsService {
 
   async remove(
     id: string,
-    user: { allyId?: string | null; roles: { name: string }[] },
+    user: { id: string; allyId?: string | null; roles: { name: string }[] },
   ): Promise<void> {
     const item = await this.findOne(id);
     const event = await this.prisma.event.findUnique({ where: { id: item.eventId } });

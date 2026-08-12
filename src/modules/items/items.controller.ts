@@ -16,7 +16,7 @@ export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
   @Post()
-  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
+  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.SOLICITANTE)
   @ApiOperation({ summary: 'Crear ítem' })
   create(@Body() dto: CreateItemDto, @CurrentUser() user: UserWithRoles) {
     return this.itemsService.create(dto, user);
@@ -35,14 +35,14 @@ export class ItemsController {
   }
 
   @Patch(':id')
-  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
+  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.SOLICITANTE)
   @ApiOperation({ summary: 'Actualizar ítem' })
   update(@Param('id') id: string, @Body() dto: UpdateItemDto, @CurrentUser() user: UserWithRoles) {
     return this.itemsService.update(id, dto, user);
   }
 
   @Delete(':id')
-  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
+  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.SOLICITANTE)
   @ApiOperation({ summary: 'Inactivar ítem' })
   remove(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
     return this.itemsService.remove(id, user);

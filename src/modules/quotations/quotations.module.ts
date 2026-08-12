@@ -6,6 +6,7 @@ import { TariffsModule } from '../tariffs/tariffs.module';
 import { ReportsModule } from '../reports/reports.module';
 import { AttachmentsModule } from '../attachments/attachments.module';
 import { OfertaEconomicaModule } from '../oferta-economica/oferta-economica.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { OfertaEconomicaModule } from '../oferta-economica/oferta-economica.modu
     ReportsModule,
     AttachmentsModule,
     OfertaEconomicaModule,
+    NotificationsModule,
   ],
   controllers: [QuotationsController],
   providers: [QuotationsService],

@@ -50,6 +50,10 @@ export type QuotationMinAggregateOutputType = {
   validityDays: number | null
   status: string | null
   isDefinitive: boolean | null
+  validadaPorId: string | null
+  validadaEn: Date | null
+  aprobadaPorId: string | null
+  aprobadaEn: Date | null
   observations: string | null
   createdById: string | null
   isActive: boolean | null
@@ -71,6 +75,10 @@ export type QuotationMaxAggregateOutputType = {
   validityDays: number | null
   status: string | null
   isDefinitive: boolean | null
+  validadaPorId: string | null
+  validadaEn: Date | null
+  aprobadaPorId: string | null
+  aprobadaEn: Date | null
   observations: string | null
   createdById: string | null
   isActive: boolean | null
@@ -92,6 +100,10 @@ export type QuotationCountAggregateOutputType = {
   validityDays: number
   status: number
   isDefinitive: number
+  validadaPorId: number
+  validadaEn: number
+  aprobadaPorId: number
+  aprobadaEn: number
   observations: number
   createdById: number
   isActive: number
@@ -125,6 +137,10 @@ export type QuotationMinAggregateInputType = {
   validityDays?: true
   status?: true
   isDefinitive?: true
+  validadaPorId?: true
+  validadaEn?: true
+  aprobadaPorId?: true
+  aprobadaEn?: true
   observations?: true
   createdById?: true
   isActive?: true
@@ -146,6 +162,10 @@ export type QuotationMaxAggregateInputType = {
   validityDays?: true
   status?: true
   isDefinitive?: true
+  validadaPorId?: true
+  validadaEn?: true
+  aprobadaPorId?: true
+  aprobadaEn?: true
   observations?: true
   createdById?: true
   isActive?: true
@@ -167,6 +187,10 @@ export type QuotationCountAggregateInputType = {
   validityDays?: true
   status?: true
   isDefinitive?: true
+  validadaPorId?: true
+  validadaEn?: true
+  aprobadaPorId?: true
+  aprobadaEn?: true
   observations?: true
   createdById?: true
   isActive?: true
@@ -275,6 +299,10 @@ export type QuotationGroupByOutputType = {
   validityDays: number | null
   status: string
   isDefinitive: boolean
+  validadaPorId: string | null
+  validadaEn: Date | null
+  aprobadaPorId: string | null
+  aprobadaEn: Date | null
   observations: string | null
   createdById: string
   isActive: boolean
@@ -319,6 +347,10 @@ export type QuotationWhereInput = {
   validityDays?: Prisma.IntNullableFilter<"Quotation"> | number | null
   status?: Prisma.StringFilter<"Quotation"> | string
   isDefinitive?: Prisma.BoolFilter<"Quotation"> | boolean
+  validadaPorId?: Prisma.UuidNullableFilter<"Quotation"> | string | null
+  validadaEn?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
+  aprobadaPorId?: Prisma.UuidNullableFilter<"Quotation"> | string | null
+  aprobadaEn?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
   observations?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdById?: Prisma.UuidFilter<"Quotation"> | string
   isActive?: Prisma.BoolFilter<"Quotation"> | boolean
@@ -329,6 +361,8 @@ export type QuotationWhereInput = {
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   ally?: Prisma.XOR<Prisma.AllyNullableScalarRelationFilter, Prisma.AllyWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  validadaPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  aprobadaPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   selectedForEvent?: Prisma.XOR<Prisma.EventNullableScalarRelationFilter, Prisma.EventWhereInput> | null
   ofertaEconomica?: Prisma.XOR<Prisma.OfertaEconomicaNullableScalarRelationFilter, Prisma.OfertaEconomicaWhereInput> | null
 }
@@ -347,6 +381,10 @@ export type QuotationOrderByWithRelationInput = {
   validityDays?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   isDefinitive?: Prisma.SortOrder
+  validadaPorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  validadaEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaPorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaEn?: Prisma.SortOrderInput | Prisma.SortOrder
   observations?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -357,6 +395,8 @@ export type QuotationOrderByWithRelationInput = {
   event?: Prisma.EventOrderByWithRelationInput
   ally?: Prisma.AllyOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  validadaPor?: Prisma.UserOrderByWithRelationInput
+  aprobadaPor?: Prisma.UserOrderByWithRelationInput
   selectedForEvent?: Prisma.EventOrderByWithRelationInput
   ofertaEconomica?: Prisma.OfertaEconomicaOrderByWithRelationInput
 }
@@ -378,6 +418,10 @@ export type QuotationWhereUniqueInput = Prisma.AtLeast<{
   validityDays?: Prisma.IntNullableFilter<"Quotation"> | number | null
   status?: Prisma.StringFilter<"Quotation"> | string
   isDefinitive?: Prisma.BoolFilter<"Quotation"> | boolean
+  validadaPorId?: Prisma.UuidNullableFilter<"Quotation"> | string | null
+  validadaEn?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
+  aprobadaPorId?: Prisma.UuidNullableFilter<"Quotation"> | string | null
+  aprobadaEn?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
   observations?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdById?: Prisma.UuidFilter<"Quotation"> | string
   isActive?: Prisma.BoolFilter<"Quotation"> | boolean
@@ -388,6 +432,8 @@ export type QuotationWhereUniqueInput = Prisma.AtLeast<{
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   ally?: Prisma.XOR<Prisma.AllyNullableScalarRelationFilter, Prisma.AllyWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  validadaPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  aprobadaPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   selectedForEvent?: Prisma.XOR<Prisma.EventNullableScalarRelationFilter, Prisma.EventWhereInput> | null
   ofertaEconomica?: Prisma.XOR<Prisma.OfertaEconomicaNullableScalarRelationFilter, Prisma.OfertaEconomicaWhereInput> | null
 }, "id">
@@ -406,6 +452,10 @@ export type QuotationOrderByWithAggregationInput = {
   validityDays?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   isDefinitive?: Prisma.SortOrder
+  validadaPorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  validadaEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaPorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaEn?: Prisma.SortOrderInput | Prisma.SortOrder
   observations?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -435,6 +485,10 @@ export type QuotationScalarWhereWithAggregatesInput = {
   validityDays?: Prisma.IntNullableWithAggregatesFilter<"Quotation"> | number | null
   status?: Prisma.StringWithAggregatesFilter<"Quotation"> | string
   isDefinitive?: Prisma.BoolWithAggregatesFilter<"Quotation"> | boolean
+  validadaPorId?: Prisma.UuidNullableWithAggregatesFilter<"Quotation"> | string | null
+  validadaEn?: Prisma.DateTimeNullableWithAggregatesFilter<"Quotation"> | Date | string | null
+  aprobadaPorId?: Prisma.UuidNullableWithAggregatesFilter<"Quotation"> | string | null
+  aprobadaEn?: Prisma.DateTimeNullableWithAggregatesFilter<"Quotation"> | Date | string | null
   observations?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
   createdById?: Prisma.UuidWithAggregatesFilter<"Quotation"> | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Quotation"> | boolean
@@ -454,6 +508,8 @@ export type QuotationCreateInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -463,6 +519,8 @@ export type QuotationCreateInput = {
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
   ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
@@ -481,6 +539,10 @@ export type QuotationUncheckedCreateInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -504,6 +566,8 @@ export type QuotationUpdateInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -513,6 +577,8 @@ export type QuotationUpdateInput = {
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
   ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
@@ -531,6 +597,10 @@ export type QuotationUncheckedUpdateInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -556,6 +626,10 @@ export type QuotationCreateManyInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -575,6 +649,8 @@ export type QuotationUpdateManyMutationInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -595,6 +671,10 @@ export type QuotationUncheckedUpdateManyInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -631,6 +711,10 @@ export type QuotationCountOrderByAggregateInput = {
   validityDays?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isDefinitive?: Prisma.SortOrder
+  validadaPorId?: Prisma.SortOrder
+  validadaEn?: Prisma.SortOrder
+  aprobadaPorId?: Prisma.SortOrder
+  aprobadaEn?: Prisma.SortOrder
   observations?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -657,6 +741,10 @@ export type QuotationMaxOrderByAggregateInput = {
   validityDays?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isDefinitive?: Prisma.SortOrder
+  validadaPorId?: Prisma.SortOrder
+  validadaEn?: Prisma.SortOrder
+  aprobadaPorId?: Prisma.SortOrder
+  aprobadaEn?: Prisma.SortOrder
   observations?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -678,6 +766,10 @@ export type QuotationMinOrderByAggregateInput = {
   validityDays?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isDefinitive?: Prisma.SortOrder
+  validadaPorId?: Prisma.SortOrder
+  validadaEn?: Prisma.SortOrder
+  aprobadaPorId?: Prisma.SortOrder
+  aprobadaEn?: Prisma.SortOrder
   observations?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -702,10 +794,38 @@ export type QuotationCreateNestedManyWithoutCreatedByInput = {
   connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
 }
 
+export type QuotationCreateNestedManyWithoutValidadaPorInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutValidadaPorInput, Prisma.QuotationUncheckedCreateWithoutValidadaPorInput> | Prisma.QuotationCreateWithoutValidadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutValidadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutValidadaPorInput | Prisma.QuotationCreateOrConnectWithoutValidadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyValidadaPorInputEnvelope
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+}
+
+export type QuotationCreateNestedManyWithoutAprobadaPorInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutAprobadaPorInput, Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput> | Prisma.QuotationCreateWithoutAprobadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput | Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyAprobadaPorInputEnvelope
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+}
+
 export type QuotationUncheckedCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.QuotationCreateWithoutCreatedByInput, Prisma.QuotationUncheckedCreateWithoutCreatedByInput> | Prisma.QuotationCreateWithoutCreatedByInput[] | Prisma.QuotationUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutCreatedByInput | Prisma.QuotationCreateOrConnectWithoutCreatedByInput[]
   createMany?: Prisma.QuotationCreateManyCreatedByInputEnvelope
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+}
+
+export type QuotationUncheckedCreateNestedManyWithoutValidadaPorInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutValidadaPorInput, Prisma.QuotationUncheckedCreateWithoutValidadaPorInput> | Prisma.QuotationCreateWithoutValidadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutValidadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutValidadaPorInput | Prisma.QuotationCreateOrConnectWithoutValidadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyValidadaPorInputEnvelope
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+}
+
+export type QuotationUncheckedCreateNestedManyWithoutAprobadaPorInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutAprobadaPorInput, Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput> | Prisma.QuotationCreateWithoutAprobadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput | Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyAprobadaPorInputEnvelope
   connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
 }
 
@@ -723,6 +843,34 @@ export type QuotationUpdateManyWithoutCreatedByNestedInput = {
   deleteMany?: Prisma.QuotationScalarWhereInput | Prisma.QuotationScalarWhereInput[]
 }
 
+export type QuotationUpdateManyWithoutValidadaPorNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutValidadaPorInput, Prisma.QuotationUncheckedCreateWithoutValidadaPorInput> | Prisma.QuotationCreateWithoutValidadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutValidadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutValidadaPorInput | Prisma.QuotationCreateOrConnectWithoutValidadaPorInput[]
+  upsert?: Prisma.QuotationUpsertWithWhereUniqueWithoutValidadaPorInput | Prisma.QuotationUpsertWithWhereUniqueWithoutValidadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyValidadaPorInputEnvelope
+  set?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  disconnect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  delete?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  update?: Prisma.QuotationUpdateWithWhereUniqueWithoutValidadaPorInput | Prisma.QuotationUpdateWithWhereUniqueWithoutValidadaPorInput[]
+  updateMany?: Prisma.QuotationUpdateManyWithWhereWithoutValidadaPorInput | Prisma.QuotationUpdateManyWithWhereWithoutValidadaPorInput[]
+  deleteMany?: Prisma.QuotationScalarWhereInput | Prisma.QuotationScalarWhereInput[]
+}
+
+export type QuotationUpdateManyWithoutAprobadaPorNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutAprobadaPorInput, Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput> | Prisma.QuotationCreateWithoutAprobadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput | Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput[]
+  upsert?: Prisma.QuotationUpsertWithWhereUniqueWithoutAprobadaPorInput | Prisma.QuotationUpsertWithWhereUniqueWithoutAprobadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyAprobadaPorInputEnvelope
+  set?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  disconnect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  delete?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  update?: Prisma.QuotationUpdateWithWhereUniqueWithoutAprobadaPorInput | Prisma.QuotationUpdateWithWhereUniqueWithoutAprobadaPorInput[]
+  updateMany?: Prisma.QuotationUpdateManyWithWhereWithoutAprobadaPorInput | Prisma.QuotationUpdateManyWithWhereWithoutAprobadaPorInput[]
+  deleteMany?: Prisma.QuotationScalarWhereInput | Prisma.QuotationScalarWhereInput[]
+}
+
 export type QuotationUncheckedUpdateManyWithoutCreatedByNestedInput = {
   create?: Prisma.XOR<Prisma.QuotationCreateWithoutCreatedByInput, Prisma.QuotationUncheckedCreateWithoutCreatedByInput> | Prisma.QuotationCreateWithoutCreatedByInput[] | Prisma.QuotationUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutCreatedByInput | Prisma.QuotationCreateOrConnectWithoutCreatedByInput[]
@@ -734,6 +882,34 @@ export type QuotationUncheckedUpdateManyWithoutCreatedByNestedInput = {
   connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
   update?: Prisma.QuotationUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.QuotationUpdateWithWhereUniqueWithoutCreatedByInput[]
   updateMany?: Prisma.QuotationUpdateManyWithWhereWithoutCreatedByInput | Prisma.QuotationUpdateManyWithWhereWithoutCreatedByInput[]
+  deleteMany?: Prisma.QuotationScalarWhereInput | Prisma.QuotationScalarWhereInput[]
+}
+
+export type QuotationUncheckedUpdateManyWithoutValidadaPorNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutValidadaPorInput, Prisma.QuotationUncheckedCreateWithoutValidadaPorInput> | Prisma.QuotationCreateWithoutValidadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutValidadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutValidadaPorInput | Prisma.QuotationCreateOrConnectWithoutValidadaPorInput[]
+  upsert?: Prisma.QuotationUpsertWithWhereUniqueWithoutValidadaPorInput | Prisma.QuotationUpsertWithWhereUniqueWithoutValidadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyValidadaPorInputEnvelope
+  set?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  disconnect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  delete?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  update?: Prisma.QuotationUpdateWithWhereUniqueWithoutValidadaPorInput | Prisma.QuotationUpdateWithWhereUniqueWithoutValidadaPorInput[]
+  updateMany?: Prisma.QuotationUpdateManyWithWhereWithoutValidadaPorInput | Prisma.QuotationUpdateManyWithWhereWithoutValidadaPorInput[]
+  deleteMany?: Prisma.QuotationScalarWhereInput | Prisma.QuotationScalarWhereInput[]
+}
+
+export type QuotationUncheckedUpdateManyWithoutAprobadaPorNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutAprobadaPorInput, Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput> | Prisma.QuotationCreateWithoutAprobadaPorInput[] | Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput[]
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput | Prisma.QuotationCreateOrConnectWithoutAprobadaPorInput[]
+  upsert?: Prisma.QuotationUpsertWithWhereUniqueWithoutAprobadaPorInput | Prisma.QuotationUpsertWithWhereUniqueWithoutAprobadaPorInput[]
+  createMany?: Prisma.QuotationCreateManyAprobadaPorInputEnvelope
+  set?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  disconnect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  delete?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  connect?: Prisma.QuotationWhereUniqueInput | Prisma.QuotationWhereUniqueInput[]
+  update?: Prisma.QuotationUpdateWithWhereUniqueWithoutAprobadaPorInput | Prisma.QuotationUpdateWithWhereUniqueWithoutAprobadaPorInput[]
+  updateMany?: Prisma.QuotationUpdateManyWithWhereWithoutAprobadaPorInput | Prisma.QuotationUpdateManyWithWhereWithoutAprobadaPorInput[]
   deleteMany?: Prisma.QuotationScalarWhereInput | Prisma.QuotationScalarWhereInput[]
 }
 
@@ -893,6 +1069,8 @@ export type QuotationCreateWithoutCreatedByInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -901,6 +1079,8 @@ export type QuotationCreateWithoutCreatedByInput = {
   attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
   ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
@@ -919,6 +1099,10 @@ export type QuotationUncheckedCreateWithoutCreatedByInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -936,6 +1120,138 @@ export type QuotationCreateOrConnectWithoutCreatedByInput = {
 
 export type QuotationCreateManyCreatedByInputEnvelope = {
   data: Prisma.QuotationCreateManyCreatedByInput | Prisma.QuotationCreateManyCreatedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type QuotationCreateWithoutValidadaPorInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
+  observations?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
+  event: Prisma.EventCreateNestedOneWithoutQuotationsInput
+  ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
+  selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
+}
+
+export type QuotationUncheckedCreateWithoutValidadaPorInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  eventId: string
+  allyId?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
+  observations?: string | null
+  createdById: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
+  selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
+}
+
+export type QuotationCreateOrConnectWithoutValidadaPorInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutValidadaPorInput, Prisma.QuotationUncheckedCreateWithoutValidadaPorInput>
+}
+
+export type QuotationCreateManyValidadaPorInputEnvelope = {
+  data: Prisma.QuotationCreateManyValidadaPorInput | Prisma.QuotationCreateManyValidadaPorInput[]
+  skipDuplicates?: boolean
+}
+
+export type QuotationCreateWithoutAprobadaPorInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
+  observations?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
+  event: Prisma.EventCreateNestedOneWithoutQuotationsInput
+  ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
+}
+
+export type QuotationUncheckedCreateWithoutAprobadaPorInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  eventId: string
+  allyId?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
+  observations?: string | null
+  createdById: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutQuotationInput
+  selectedForEvent?: Prisma.EventUncheckedCreateNestedOneWithoutSelectedQuotationInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedCreateNestedOneWithoutQuotationInput
+}
+
+export type QuotationCreateOrConnectWithoutAprobadaPorInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutAprobadaPorInput, Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput>
+}
+
+export type QuotationCreateManyAprobadaPorInputEnvelope = {
+  data: Prisma.QuotationCreateManyAprobadaPorInput | Prisma.QuotationCreateManyAprobadaPorInput[]
   skipDuplicates?: boolean
 }
 
@@ -972,11 +1288,47 @@ export type QuotationScalarWhereInput = {
   validityDays?: Prisma.IntNullableFilter<"Quotation"> | number | null
   status?: Prisma.StringFilter<"Quotation"> | string
   isDefinitive?: Prisma.BoolFilter<"Quotation"> | boolean
+  validadaPorId?: Prisma.UuidNullableFilter<"Quotation"> | string | null
+  validadaEn?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
+  aprobadaPorId?: Prisma.UuidNullableFilter<"Quotation"> | string | null
+  aprobadaEn?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
   observations?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdById?: Prisma.UuidFilter<"Quotation"> | string
   isActive?: Prisma.BoolFilter<"Quotation"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
+}
+
+export type QuotationUpsertWithWhereUniqueWithoutValidadaPorInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  update: Prisma.XOR<Prisma.QuotationUpdateWithoutValidadaPorInput, Prisma.QuotationUncheckedUpdateWithoutValidadaPorInput>
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutValidadaPorInput, Prisma.QuotationUncheckedCreateWithoutValidadaPorInput>
+}
+
+export type QuotationUpdateWithWhereUniqueWithoutValidadaPorInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  data: Prisma.XOR<Prisma.QuotationUpdateWithoutValidadaPorInput, Prisma.QuotationUncheckedUpdateWithoutValidadaPorInput>
+}
+
+export type QuotationUpdateManyWithWhereWithoutValidadaPorInput = {
+  where: Prisma.QuotationScalarWhereInput
+  data: Prisma.XOR<Prisma.QuotationUpdateManyMutationInput, Prisma.QuotationUncheckedUpdateManyWithoutValidadaPorInput>
+}
+
+export type QuotationUpsertWithWhereUniqueWithoutAprobadaPorInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  update: Prisma.XOR<Prisma.QuotationUpdateWithoutAprobadaPorInput, Prisma.QuotationUncheckedUpdateWithoutAprobadaPorInput>
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutAprobadaPorInput, Prisma.QuotationUncheckedCreateWithoutAprobadaPorInput>
+}
+
+export type QuotationUpdateWithWhereUniqueWithoutAprobadaPorInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  data: Prisma.XOR<Prisma.QuotationUpdateWithoutAprobadaPorInput, Prisma.QuotationUncheckedUpdateWithoutAprobadaPorInput>
+}
+
+export type QuotationUpdateManyWithWhereWithoutAprobadaPorInput = {
+  where: Prisma.QuotationScalarWhereInput
+  data: Prisma.XOR<Prisma.QuotationUpdateManyMutationInput, Prisma.QuotationUncheckedUpdateManyWithoutAprobadaPorInput>
 }
 
 export type QuotationCreateWithoutEventInput = {
@@ -991,6 +1343,8 @@ export type QuotationCreateWithoutEventInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -999,6 +1353,8 @@ export type QuotationCreateWithoutEventInput = {
   attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
   ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
@@ -1016,6 +1372,10 @@ export type QuotationUncheckedCreateWithoutEventInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1049,6 +1409,8 @@ export type QuotationCreateWithoutSelectedForEventInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -1058,6 +1420,8 @@ export type QuotationCreateWithoutSelectedForEventInput = {
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
 
@@ -1075,6 +1439,10 @@ export type QuotationUncheckedCreateWithoutSelectedForEventInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1129,6 +1497,8 @@ export type QuotationUpdateWithoutSelectedForEventInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1138,6 +1508,8 @@ export type QuotationUpdateWithoutSelectedForEventInput = {
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
 
@@ -1155,6 +1527,10 @@ export type QuotationUncheckedUpdateWithoutSelectedForEventInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1177,6 +1553,8 @@ export type QuotationCreateWithoutAttachmentsInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -1185,6 +1563,8 @@ export type QuotationCreateWithoutAttachmentsInput = {
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
   ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
@@ -1203,6 +1583,10 @@ export type QuotationUncheckedCreateWithoutAttachmentsInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1241,6 +1625,8 @@ export type QuotationUpdateWithoutAttachmentsInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1249,6 +1635,8 @@ export type QuotationUpdateWithoutAttachmentsInput = {
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
   ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
@@ -1267,6 +1655,10 @@ export type QuotationUncheckedUpdateWithoutAttachmentsInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1289,6 +1681,8 @@ export type QuotationCreateWithoutAllyInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -1297,6 +1691,8 @@ export type QuotationCreateWithoutAllyInput = {
   attachments?: Prisma.AttachmentCreateNestedManyWithoutQuotationInput
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
   ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
@@ -1314,6 +1710,10 @@ export type QuotationUncheckedCreateWithoutAllyInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1363,6 +1763,8 @@ export type QuotationCreateWithoutItemsInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -1371,6 +1773,8 @@ export type QuotationCreateWithoutItemsInput = {
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
   ofertaEconomica?: Prisma.OfertaEconomicaCreateNestedOneWithoutQuotationInput
 }
@@ -1389,6 +1793,10 @@ export type QuotationUncheckedCreateWithoutItemsInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1427,6 +1835,8 @@ export type QuotationUpdateWithoutItemsInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1435,6 +1845,8 @@ export type QuotationUpdateWithoutItemsInput = {
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
   ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
@@ -1453,6 +1865,10 @@ export type QuotationUncheckedUpdateWithoutItemsInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1475,6 +1891,8 @@ export type QuotationCreateWithoutOfertaEconomicaInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   isActive?: boolean
   createdAt?: Date | string
@@ -1484,6 +1902,8 @@ export type QuotationCreateWithoutOfertaEconomicaInput = {
   event: Prisma.EventCreateNestedOneWithoutQuotationsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationsInput
   createdBy: Prisma.UserCreateNestedOneWithoutQuotationsInput
+  validadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsValidatedInput
+  aprobadaPor?: Prisma.UserCreateNestedOneWithoutQuotationsApprovedInput
   selectedForEvent?: Prisma.EventCreateNestedOneWithoutSelectedQuotationInput
 }
 
@@ -1501,6 +1921,10 @@ export type QuotationUncheckedCreateWithoutOfertaEconomicaInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1539,6 +1963,8 @@ export type QuotationUpdateWithoutOfertaEconomicaInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1548,6 +1974,8 @@ export type QuotationUpdateWithoutOfertaEconomicaInput = {
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
 }
 
@@ -1565,6 +1993,10 @@ export type QuotationUncheckedUpdateWithoutOfertaEconomicaInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1589,7 +2021,59 @@ export type QuotationCreateManyCreatedByInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type QuotationCreateManyValidadaPorInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  eventId: string
+  allyId?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
+  observations?: string | null
+  createdById: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type QuotationCreateManyAprobadaPorInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  cliente?: string | null
+  eventId: string
+  allyId?: string | null
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  quotationDate?: Date | string | null
+  validityDays?: number | null
+  status?: string
+  isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaEn?: Date | string | null
+  observations?: string | null
+  createdById: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1607,6 +2091,8 @@ export type QuotationUpdateWithoutCreatedByInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1615,6 +2101,8 @@ export type QuotationUpdateWithoutCreatedByInput = {
   attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
   ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
@@ -1633,6 +2121,10 @@ export type QuotationUncheckedUpdateWithoutCreatedByInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1657,7 +2149,171 @@ export type QuotationUncheckedUpdateManyWithoutCreatedByInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type QuotationUpdateWithoutValidadaPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
+  event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
+  ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
+  selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
+}
+
+export type QuotationUncheckedUpdateWithoutValidadaPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
+  selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
+}
+
+export type QuotationUncheckedUpdateManyWithoutValidadaPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type QuotationUpdateWithoutAprobadaPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
+  event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
+  ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
+}
+
+export type QuotationUncheckedUpdateWithoutAprobadaPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutQuotationNestedInput
+  selectedForEvent?: Prisma.EventUncheckedUpdateOneWithoutSelectedQuotationNestedInput
+  ofertaEconomica?: Prisma.OfertaEconomicaUncheckedUpdateOneWithoutQuotationNestedInput
+}
+
+export type QuotationUncheckedUpdateManyWithoutAprobadaPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cliente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1676,6 +2332,10 @@ export type QuotationCreateManyEventInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1695,6 +2355,8 @@ export type QuotationUpdateWithoutEventInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1703,6 +2365,8 @@ export type QuotationUpdateWithoutEventInput = {
   attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
   ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
@@ -1720,6 +2384,10 @@ export type QuotationUncheckedUpdateWithoutEventInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1744,6 +2412,10 @@ export type QuotationUncheckedUpdateManyWithoutEventInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1764,6 +2436,10 @@ export type QuotationCreateManyAllyInput = {
   validityDays?: number | null
   status?: string
   isDefinitive?: boolean
+  validadaPorId?: string | null
+  validadaEn?: Date | string | null
+  aprobadaPorId?: string | null
+  aprobadaEn?: Date | string | null
   observations?: string | null
   createdById: string
   isActive?: boolean
@@ -1783,6 +2459,8 @@ export type QuotationUpdateWithoutAllyInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1791,6 +2469,8 @@ export type QuotationUpdateWithoutAllyInput = {
   attachments?: Prisma.AttachmentUpdateManyWithoutQuotationNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutQuotationsNestedInput
+  validadaPor?: Prisma.UserUpdateOneWithoutQuotationsValidatedNestedInput
+  aprobadaPor?: Prisma.UserUpdateOneWithoutQuotationsApprovedNestedInput
   selectedForEvent?: Prisma.EventUpdateOneWithoutSelectedQuotationNestedInput
   ofertaEconomica?: Prisma.OfertaEconomicaUpdateOneWithoutQuotationNestedInput
 }
@@ -1808,6 +2488,10 @@ export type QuotationUncheckedUpdateWithoutAllyInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1832,6 +2516,10 @@ export type QuotationUncheckedUpdateManyWithoutAllyInput = {
   validityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   isDefinitive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  validadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aprobadaPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1893,6 +2581,10 @@ export type QuotationSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   validityDays?: boolean
   status?: boolean
   isDefinitive?: boolean
+  validadaPorId?: boolean
+  validadaEn?: boolean
+  aprobadaPorId?: boolean
+  aprobadaEn?: boolean
   observations?: boolean
   createdById?: boolean
   isActive?: boolean
@@ -1903,6 +2595,8 @@ export type QuotationSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  validadaPor?: boolean | Prisma.Quotation$validadaPorArgs<ExtArgs>
+  aprobadaPor?: boolean | Prisma.Quotation$aprobadaPorArgs<ExtArgs>
   selectedForEvent?: boolean | Prisma.Quotation$selectedForEventArgs<ExtArgs>
   ofertaEconomica?: boolean | Prisma.Quotation$ofertaEconomicaArgs<ExtArgs>
   _count?: boolean | Prisma.QuotationCountOutputTypeDefaultArgs<ExtArgs>
@@ -1922,6 +2616,10 @@ export type QuotationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   validityDays?: boolean
   status?: boolean
   isDefinitive?: boolean
+  validadaPorId?: boolean
+  validadaEn?: boolean
+  aprobadaPorId?: boolean
+  aprobadaEn?: boolean
   observations?: boolean
   createdById?: boolean
   isActive?: boolean
@@ -1930,6 +2628,8 @@ export type QuotationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  validadaPor?: boolean | Prisma.Quotation$validadaPorArgs<ExtArgs>
+  aprobadaPor?: boolean | Prisma.Quotation$aprobadaPorArgs<ExtArgs>
 }, ExtArgs["result"]["quotation"]>
 
 export type QuotationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1946,6 +2646,10 @@ export type QuotationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   validityDays?: boolean
   status?: boolean
   isDefinitive?: boolean
+  validadaPorId?: boolean
+  validadaEn?: boolean
+  aprobadaPorId?: boolean
+  aprobadaEn?: boolean
   observations?: boolean
   createdById?: boolean
   isActive?: boolean
@@ -1954,6 +2658,8 @@ export type QuotationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  validadaPor?: boolean | Prisma.Quotation$validadaPorArgs<ExtArgs>
+  aprobadaPor?: boolean | Prisma.Quotation$aprobadaPorArgs<ExtArgs>
 }, ExtArgs["result"]["quotation"]>
 
 export type QuotationSelectScalar = {
@@ -1970,6 +2676,10 @@ export type QuotationSelectScalar = {
   validityDays?: boolean
   status?: boolean
   isDefinitive?: boolean
+  validadaPorId?: boolean
+  validadaEn?: boolean
+  aprobadaPorId?: boolean
+  aprobadaEn?: boolean
   observations?: boolean
   createdById?: boolean
   isActive?: boolean
@@ -1977,13 +2687,15 @@ export type QuotationSelectScalar = {
   updatedAt?: boolean
 }
 
-export type QuotationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "cliente" | "eventId" | "allyId" | "amount" | "currency" | "quotationDate" | "validityDays" | "status" | "isDefinitive" | "observations" | "createdById" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["quotation"]>
+export type QuotationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "cliente" | "eventId" | "allyId" | "amount" | "currency" | "quotationDate" | "validityDays" | "status" | "isDefinitive" | "validadaPorId" | "validadaEn" | "aprobadaPorId" | "aprobadaEn" | "observations" | "createdById" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["quotation"]>
 export type QuotationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | Prisma.Quotation$itemsArgs<ExtArgs>
   attachments?: boolean | Prisma.Quotation$attachmentsArgs<ExtArgs>
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  validadaPor?: boolean | Prisma.Quotation$validadaPorArgs<ExtArgs>
+  aprobadaPor?: boolean | Prisma.Quotation$aprobadaPorArgs<ExtArgs>
   selectedForEvent?: boolean | Prisma.Quotation$selectedForEventArgs<ExtArgs>
   ofertaEconomica?: boolean | Prisma.Quotation$ofertaEconomicaArgs<ExtArgs>
   _count?: boolean | Prisma.QuotationCountOutputTypeDefaultArgs<ExtArgs>
@@ -1992,11 +2704,15 @@ export type QuotationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  validadaPor?: boolean | Prisma.Quotation$validadaPorArgs<ExtArgs>
+  aprobadaPor?: boolean | Prisma.Quotation$aprobadaPorArgs<ExtArgs>
 }
 export type QuotationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   ally?: boolean | Prisma.Quotation$allyArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  validadaPor?: boolean | Prisma.Quotation$validadaPorArgs<ExtArgs>
+  aprobadaPor?: boolean | Prisma.Quotation$aprobadaPorArgs<ExtArgs>
 }
 
 export type $QuotationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2007,6 +2723,8 @@ export type $QuotationPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     event: Prisma.$EventPayload<ExtArgs>
     ally: Prisma.$AllyPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs>
+    validadaPor: Prisma.$UserPayload<ExtArgs> | null
+    aprobadaPor: Prisma.$UserPayload<ExtArgs> | null
     selectedForEvent: Prisma.$EventPayload<ExtArgs> | null
     ofertaEconomica: Prisma.$OfertaEconomicaPayload<ExtArgs> | null
   }
@@ -2024,6 +2742,10 @@ export type $QuotationPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     validityDays: number | null
     status: string
     isDefinitive: boolean
+    validadaPorId: string | null
+    validadaEn: Date | null
+    aprobadaPorId: string | null
+    aprobadaEn: Date | null
     observations: string | null
     createdById: string
     isActive: boolean
@@ -2428,6 +3150,8 @@ export interface Prisma__QuotationClient<T, Null = never, ExtArgs extends runtim
   event<T extends Prisma.EventDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDefaultArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ally<T extends Prisma.Quotation$allyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$allyArgs<ExtArgs>>): Prisma.Prisma__AllyClient<runtime.Types.Result.GetResult<Prisma.$AllyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  validadaPor<T extends Prisma.Quotation$validadaPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$validadaPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  aprobadaPor<T extends Prisma.Quotation$aprobadaPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$aprobadaPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   selectedForEvent<T extends Prisma.Quotation$selectedForEventArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$selectedForEventArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   ofertaEconomica<T extends Prisma.Quotation$ofertaEconomicaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$ofertaEconomicaArgs<ExtArgs>>): Prisma.Prisma__OfertaEconomicaClient<runtime.Types.Result.GetResult<Prisma.$OfertaEconomicaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -2472,6 +3196,10 @@ export interface QuotationFieldRefs {
   readonly validityDays: Prisma.FieldRef<"Quotation", 'Int'>
   readonly status: Prisma.FieldRef<"Quotation", 'String'>
   readonly isDefinitive: Prisma.FieldRef<"Quotation", 'Boolean'>
+  readonly validadaPorId: Prisma.FieldRef<"Quotation", 'String'>
+  readonly validadaEn: Prisma.FieldRef<"Quotation", 'DateTime'>
+  readonly aprobadaPorId: Prisma.FieldRef<"Quotation", 'String'>
+  readonly aprobadaEn: Prisma.FieldRef<"Quotation", 'DateTime'>
   readonly observations: Prisma.FieldRef<"Quotation", 'String'>
   readonly createdById: Prisma.FieldRef<"Quotation", 'String'>
   readonly isActive: Prisma.FieldRef<"Quotation", 'Boolean'>
@@ -2942,6 +3670,44 @@ export type Quotation$allyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.AllyInclude<ExtArgs> | null
   where?: Prisma.AllyWhereInput
+}
+
+/**
+ * Quotation.validadaPor
+ */
+export type Quotation$validadaPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * Quotation.aprobadaPor
+ */
+export type Quotation$aprobadaPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

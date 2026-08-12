@@ -23,6 +23,8 @@ import { OfertaEconomicaModule } from './modules/oferta-economica/oferta-economi
 import { AttachmentsModule } from './modules/attachments/attachments.module';
 import { BackupModule } from './modules/backup/backup.module';
 import { SupabaseModule } from './modules/supabase/supabase.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 
 @Module({
   imports: [
@@ -49,6 +51,8 @@ import { SupabaseModule } from './modules/supabase/supabase.module';
     OfertaEconomicaModule,
     AttachmentsModule,
     BackupModule,
+    NotificationsModule,
+    PaymentsModule,
   ],
   providers: [
     {

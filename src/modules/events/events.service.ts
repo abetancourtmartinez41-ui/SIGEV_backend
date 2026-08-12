@@ -7,7 +7,8 @@ import { EventWithRelations } from '../../database/types';
 import { CreateEventDto, UpdateEventDto, ChangeStatusDto } from './dto';
 import { EventStateMachine } from './state-machine';
 import { ItemsService } from '../items/items.service';
-import { EVENT_STATUS, ROLES } from '../../config/constants';
+import { NotificationsService } from '../notifications/notifications.service';
+import { EVENT_STATUS, ROLES, REQUIRED_QUOTATIONS_COUNT } from '../../config/constants';
 import { MODIFIABLE_FOLDERS } from '../attachments/attachments-folders';
 
 const eventInclude = {
@@ -27,6 +28,7 @@ export class EventsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly itemsService: ItemsService,
+    private readonly notificationsService: NotificationsService,
   ) {}
 
   private roleNames(roles: { name: string }[]): string[] {
@@ -141,7 +143,13 @@ export class EventsService {
 
     if (isSolicitante && dto.items?.length) {
       throw new ForbiddenException(
-        'El Solicitante no puede cargar valores económicos; los ítems los registra el Operador',
+        'El Solicitante no carga ítems al crear la orden; la asociación de ítems tarifados y no tarifados se realiza sobre la orden ya creada',
+      );
+    }
+
+    if (dto.schemaType === 'detalle' && dto.items?.length) {
+      throw new BadRequestException(
+        'El esquema Detalle no admite ítems al crear la orden; los asocia el Solicitante sobre la orden ya creada',
       );
     }
 
@@ -195,8 +203,22 @@ export class EventsService {
     });
   }
 
-  async findAll(user?: { allyId?: string | null; roles: { name: string }[] }): Promise<EventWithRelations[]> {
-    const where: Prisma.EventWhereInput = { deletedAt: null };
+  async findAll(
+    user?: { allyId?: string | null; roles: { name: string }[] },
+    options?: { includeDeleted?: boolean },
+  ): Promise<EventWithRelations[]> {
+    const where: Prisma.EventWhereInput = {};
+
+    if (options?.includeDeleted) {
+      const roles = user ? this.roleNames(user.roles) : [];
+      if (!roles.includes(ROLES.FUNCTIONAL_ADMIN)) {
+        throw new ForbiddenException(
+          'Solo el Admin. Funcional puede consultar órdenes anuladas',
+        );
+      }
+    } else {
+      where.deletedAt = null;
+    }
 
     if (user && this.isOperator(user)) {
       if (user.allyId) {
@@ -241,10 +263,16 @@ export class EventsService {
     }
 
     const isEditor = roles.some((role) =>
-      [ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.SUPERVISOR].includes(role as never),
+      [ROLES.FUNCTIONAL_ADMIN, ROLES.SUPERVISOR].includes(role as never),
     );
     const isAnalista = roles.includes(ROLES.ANALISTA);
     const isSolicitante = roles.includes(ROLES.SOLICITANTE);
+
+    if (this.isOperator(user)) {
+      throw new ForbiddenException(
+        'El Operador ya no gestiona ítems ni edita órdenes; la asociación de ítems tarifados y no tarifados corresponde al Solicitante',
+      );
+    }
 
     if (!isEditor && !isAnalista && !isSolicitante) {
       throw new ForbiddenException('Su perfil no puede editar eventos');
@@ -265,9 +293,9 @@ export class EventsService {
           'El Solicitante solo puede editar la orden en estado Abierto sin cotización aprobada o cuando está Devuelto',
         );
       }
-      if (dto.items?.length) {
+      if (event.createdById && event.createdById !== user.id) {
         throw new ForbiddenException(
-          'El Solicitante no puede modificar ítems económicos',
+          'El Solicitante solo puede gestionar ítems de las órdenes que creó',
         );
       }
     }
@@ -308,7 +336,7 @@ export class EventsService {
         },
       });
 
-      if (items && (isEditor || isAnalista)) {
+      if (items && (isEditor || isAnalista || isSolicitante)) {
         await tx.item.deleteMany({ where: { eventId: id } });
         if (items.length) {
           const eventContext = {
@@ -402,6 +430,15 @@ export class EventsService {
       this.assertExecutionSupportDocuments(event, dto.status);
     }
 
+    if (
+      dto.status === EVENT_STATUS.CERRADO &&
+      quotationsCount < REQUIRED_QUOTATIONS_COUNT
+    ) {
+      throw new BadRequestException(
+        `Para cerrar el evento se requieren al menos ${REQUIRED_QUOTATIONS_COUNT} cotizaciones registradas. Actualmente hay ${quotationsCount}.`,
+      );
+    }
+
     if (dto.status === EVENT_STATUS.CERRADO && !event.disbursementId) {
       throw new BadRequestException(
         'El evento debe tener un recurso disponible asignado antes de cerrar',
@@ -427,11 +464,30 @@ export class EventsService {
     if (dto.observation) data.observation = dto.observation;
     if (dto.authorizeException) data.authorizeException = true;
 
-    return this.prisma.event.update({
+    const updated = await this.prisma.event.update({
       where: { id },
       data,
       include: eventInclude,
     });
+
+    if (isRechazo || dto.status === EVENT_STATUS.DEVUELTO) {
+      const operatorIds = await this.notificationsService.findOperatorUserIdsForAlly(
+        event.generalAllyId,
+      );
+      const type = isRechazo ? 'EVENT_REJECTED' : 'EVENT_RETURNED';
+      const message =
+        (isRechazo
+          ? `La orden ${event.code} fue rechazada. `
+          : `La orden ${event.code} fue devuelta para ajustes. `) +
+        (dto.observation ? `Motivo: ${dto.observation}` : '');
+      await this.notificationsService.createMany([event.createdById, ...operatorIds], {
+        eventId: event.id,
+        type,
+        message,
+      });
+    }
+
+    return updated;
   }
 
   async remove(
@@ -447,6 +503,32 @@ export class EventsService {
     await this.prisma.event.update({
       where: { id },
       data: { deletedAt: new Date(), isActive: false },
+    });
+  }
+
+  async restore(
+    id: string,
+    user: { allyId?: string | null; roles: { name: string }[] },
+  ): Promise<EventWithRelations> {
+    const event = await this.prisma.event.findFirst({ where: { id } });
+    if (!event) throw new NotFoundException('Evento no encontrado');
+    if (!event.deletedAt) {
+      throw new BadRequestException(
+        'La orden no está anulada; no requiere restauración',
+      );
+    }
+    await this.assertUniqueCodeSuffix(
+      event.code,
+      this.normalizeSuffix(event.suffix ?? ''),
+      id,
+    );
+    await this.prisma.event.update({
+      where: { id },
+      data: { deletedAt: null, isActive: true },
+    });
+    return this.prisma.event.findUniqueOrThrow({
+      where: { id },
+      include: eventInclude,
     });
   }
 }

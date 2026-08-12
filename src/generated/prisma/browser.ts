@@ -83,6 +83,11 @@ export type OfertaEconomicaItem = Prisma.OfertaEconomicaItemModel
  */
 export type Disbursement = Prisma.DisbursementModel
 /**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
  * Model Tariff
  * 
  */
@@ -97,3 +102,8 @@ export type AuditLog = Prisma.AuditLogModel
  * 
  */
 export type Municipality = Prisma.MunicipalityModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel

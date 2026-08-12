@@ -289,6 +289,7 @@ export type DisbursementWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
   events?: Prisma.EventListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }
 
 export type DisbursementOrderByWithRelationInput = {
@@ -306,6 +307,7 @@ export type DisbursementOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   events?: Prisma.EventOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
 }
 
 export type DisbursementWhereUniqueInput = Prisma.AtLeast<{
@@ -326,6 +328,7 @@ export type DisbursementWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Disbursement"> | Date | string
   events?: Prisma.EventListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }, "id">
 
 export type DisbursementOrderByWithAggregationInput = {
@@ -383,6 +386,7 @@ export type DisbursementCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   events?: Prisma.EventCreateNestedManyWithoutDisbursementInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutDisbursementInput
 }
 
 export type DisbursementUncheckedCreateInput = {
@@ -400,6 +404,7 @@ export type DisbursementUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutDisbursementInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutDisbursementInput
 }
 
 export type DisbursementUpdateInput = {
@@ -417,6 +422,7 @@ export type DisbursementUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   events?: Prisma.EventUpdateManyWithoutDisbursementNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutDisbursementNestedInput
 }
 
 export type DisbursementUncheckedUpdateInput = {
@@ -434,6 +440,7 @@ export type DisbursementUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   events?: Prisma.EventUncheckedUpdateManyWithoutDisbursementNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutDisbursementNestedInput
 }
 
 export type DisbursementCreateManyInput = {
@@ -565,6 +572,22 @@ export type DisbursementUpdateOneWithoutEventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DisbursementUpdateToOneWithWhereWithoutEventsInput, Prisma.DisbursementUpdateWithoutEventsInput>, Prisma.DisbursementUncheckedUpdateWithoutEventsInput>
 }
 
+export type DisbursementCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.DisbursementCreateWithoutPaymentsInput, Prisma.DisbursementUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.DisbursementCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.DisbursementWhereUniqueInput
+}
+
+export type DisbursementUpdateOneWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.DisbursementCreateWithoutPaymentsInput, Prisma.DisbursementUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.DisbursementCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.DisbursementUpsertWithoutPaymentsInput
+  disconnect?: Prisma.DisbursementWhereInput | boolean
+  delete?: Prisma.DisbursementWhereInput | boolean
+  connect?: Prisma.DisbursementWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DisbursementUpdateToOneWithWhereWithoutPaymentsInput, Prisma.DisbursementUpdateWithoutPaymentsInput>, Prisma.DisbursementUncheckedUpdateWithoutPaymentsInput>
+}
+
 export type DisbursementCreateWithoutEventsInput = {
   id?: string
   code?: string | null
@@ -579,6 +602,7 @@ export type DisbursementCreateWithoutEventsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  payments?: Prisma.PaymentCreateNestedManyWithoutDisbursementInput
 }
 
 export type DisbursementUncheckedCreateWithoutEventsInput = {
@@ -595,6 +619,7 @@ export type DisbursementUncheckedCreateWithoutEventsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutDisbursementInput
 }
 
 export type DisbursementCreateOrConnectWithoutEventsInput = {
@@ -627,6 +652,7 @@ export type DisbursementUpdateWithoutEventsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payments?: Prisma.PaymentUpdateManyWithoutDisbursementNestedInput
 }
 
 export type DisbursementUncheckedUpdateWithoutEventsInput = {
@@ -643,6 +669,91 @@ export type DisbursementUncheckedUpdateWithoutEventsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutDisbursementNestedInput
+}
+
+export type DisbursementCreateWithoutPaymentsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  year: number
+  percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Date | string | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  status?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  events?: Prisma.EventCreateNestedManyWithoutDisbursementInput
+}
+
+export type DisbursementUncheckedCreateWithoutPaymentsInput = {
+  id?: string
+  code?: string | null
+  name: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  year: number
+  percentageParticipation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Date | string | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  status?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutDisbursementInput
+}
+
+export type DisbursementCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.DisbursementWhereUniqueInput
+  create: Prisma.XOR<Prisma.DisbursementCreateWithoutPaymentsInput, Prisma.DisbursementUncheckedCreateWithoutPaymentsInput>
+}
+
+export type DisbursementUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.DisbursementUpdateWithoutPaymentsInput, Prisma.DisbursementUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.DisbursementCreateWithoutPaymentsInput, Prisma.DisbursementUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.DisbursementWhereInput
+}
+
+export type DisbursementUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.DisbursementWhereInput
+  data: Prisma.XOR<Prisma.DisbursementUpdateWithoutPaymentsInput, Prisma.DisbursementUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type DisbursementUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  events?: Prisma.EventUpdateManyWithoutDisbursementNestedInput
+}
+
+export type DisbursementUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  percentageParticipation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  disbursementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  events?: Prisma.EventUncheckedUpdateManyWithoutDisbursementNestedInput
 }
 
 
@@ -652,10 +763,12 @@ export type DisbursementUncheckedUpdateWithoutEventsInput = {
 
 export type DisbursementCountOutputType = {
   events: number
+  payments: number
 }
 
 export type DisbursementCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | DisbursementCountOutputTypeCountEventsArgs
+  payments?: boolean | DisbursementCountOutputTypeCountPaymentsArgs
 }
 
 /**
@@ -675,6 +788,13 @@ export type DisbursementCountOutputTypeCountEventsArgs<ExtArgs extends runtime.T
   where?: Prisma.EventWhereInput
 }
 
+/**
+ * DisbursementCountOutputType without action
+ */
+export type DisbursementCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
 
 export type DisbursementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -691,6 +811,7 @@ export type DisbursementSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdAt?: boolean
   updatedAt?: boolean
   events?: boolean | Prisma.Disbursement$eventsArgs<ExtArgs>
+  payments?: boolean | Prisma.Disbursement$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.DisbursementCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["disbursement"]>
 
@@ -745,6 +866,7 @@ export type DisbursementSelectScalar = {
 export type DisbursementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "amount" | "year" | "percentageParticipation" | "disbursementDate" | "fechaInicio" | "fechaFin" | "status" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["disbursement"]>
 export type DisbursementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | Prisma.Disbursement$eventsArgs<ExtArgs>
+  payments?: boolean | Prisma.Disbursement$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.DisbursementCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DisbursementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -754,6 +876,7 @@ export type $DisbursementPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "Disbursement"
   objects: {
     events: Prisma.$EventPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1164,6 +1287,7 @@ readonly fields: DisbursementFieldRefs;
 export interface Prisma__DisbursementClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   events<T extends Prisma.Disbursement$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Disbursement$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.Disbursement$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Disbursement$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1620,6 +1744,30 @@ export type Disbursement$eventsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.EventScalarFieldEnum | Prisma.EventScalarFieldEnum[]
+}
+
+/**
+ * Disbursement.payments
+ */
+export type Disbursement$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
 }
 
 /**

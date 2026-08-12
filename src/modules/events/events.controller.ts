@@ -1,5 +1,5 @@
 import {
-  Controller, Get, Post, Body, Patch, Param, Delete, UseGuards,
+  Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -18,16 +18,19 @@ export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @Post()
-  @Roles(ROLES.SOLICITANTE, ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR)
-  @ApiOperation({ summary: 'Crear evento (postulación del Solicitante)' })
+  @Roles(ROLES.SOLICITANTE, ROLES.FUNCTIONAL_ADMIN)
+  @ApiOperation({ summary: 'Crear evento (postulación del Solicitante; el Operador no crea órdenes)' })
   create(@Body() dto: CreateEventDto, @CurrentUser() user: UserWithRoles) {
     return this.eventsService.create(dto, user);
   }
 
   @Get()
   @ApiOperation({ summary: 'Listar eventos (el Operador solo ve los de su Aliado)' })
-  findAll(@CurrentUser() user: UserWithRoles) {
-    return this.eventsService.findAll(user);
+  findAll(
+    @CurrentUser() user: UserWithRoles,
+    @Query('includeDeleted') includeDeleted?: string,
+  ) {
+    return this.eventsService.findAll(user, { includeDeleted: includeDeleted === 'true' });
   }
 
   @Get(':id')
@@ -39,7 +42,6 @@ export class EventsController {
   @Patch(':id')
   @Roles(
     ROLES.FUNCTIONAL_ADMIN,
-    ROLES.OPERATOR,
     ROLES.SUPERVISOR,
     ROLES.ANALISTA,
     ROLES.SOLICITANTE,
@@ -69,5 +71,12 @@ export class EventsController {
   @ApiOperation({ summary: 'Eliminar evento (solo Admin. Funcional)' })
   remove(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
     return this.eventsService.remove(id, user);
+  }
+
+  @Patch(':id/restore')
+  @Roles(ROLES.FUNCTIONAL_ADMIN)
+  @ApiOperation({ summary: 'Restaurar una orden anulada (solo Admin. Funcional)' })
+  restore(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
+    return this.eventsService.restore(id, user);
   }
 }

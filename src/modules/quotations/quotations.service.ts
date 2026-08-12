@@ -6,18 +6,22 @@ import { Prisma } from '../../generated/prisma/client';
 import { UserWithRoles } from '../../database/types';
 import {
   CreateQuotationDto, UpdateQuotationDto, ChangeQuotationStatusDto, CreateQuotationItemDto,
+  SelectQuotationDto,
 } from './dto';
 import { CalculationsService } from '../calculations/calculations.service';
 import { TariffsService } from '../tariffs/tariffs.service';
 import { ReportsService } from '../reports/reports.service';
 import { AttachmentsService } from '../attachments/attachments.service';
 import { OfertaEconomicaService } from '../oferta-economica/oferta-economica.service';
+import { NotificationsService } from '../notifications/notifications.service';
 import { ROLES, EVENT_STATUS } from '../../config/constants';
 
 const quotationInclude = {
   event: { include: { disbursement: true } },
   ally: true,
   createdBy: true,
+  validadaPor: true,
+  aprobadaPor: true,
   items: { where: { isActive: true }, orderBy: { createdAt: 'asc' as const } },
 } as const;
 
@@ -26,6 +30,7 @@ type QuotationWithRelations = Prisma.QuotationGetPayload<{ include: typeof quota
 export const QUOTATION_STATUS = {
   BORRADOR: 'Borrador',
   ENVIADA: 'Enviada',
+  VALIDADA: 'Validada',
   APROBADA: 'Aprobada',
   RECHAZADA: 'Rechazada',
 } as const;
@@ -39,6 +44,7 @@ export class QuotationsService {
     private readonly reportsService: ReportsService,
     private readonly attachmentsService: AttachmentsService,
     private readonly ofertaEconomicaService: OfertaEconomicaService,
+    private readonly notificationsService: NotificationsService,
   ) {}
 
   private roleNames(roles: { name: string }[]): string[] {
@@ -195,6 +201,17 @@ export class QuotationsService {
       return quotation;
     });
 
+    const approverIds = await this.notificationsService.findUserIdsByRoles([
+      ROLES.APPROVER,
+      ROLES.FUNCTIONAL_ADMIN,
+      ROLES.SUPERVISOR,
+    ]);
+    await this.notificationsService.createMany(approverIds, {
+      eventId: event.id,
+      type: 'QUOTATION_CREATED',
+      message: `Nueva cotización ${code} registrada para el evento ${event.name}. Pendiente de validación.`,
+    });
+
     return this.findOne(saved.id);
   }
 
@@ -326,12 +343,18 @@ export class QuotationsService {
       );
     }
 
+    if (isApproved) {
+      this.assertSecondApprover(quotation, user);
+    }
+
     const updated = await this.prisma.$transaction(async (tx) => {
       const quotationUpdate = await tx.quotation.update({
         where: { id },
         data: {
           status: dto.status,
           isDefinitive: isApproved ? true : quotation.isDefinitive,
+          aprobadaPorId: isApproved ? user.id : undefined,
+          aprobadaEn: isApproved ? new Date() : undefined,
           ...(dto.observation !== undefined ? { observations: dto.observation } : {}),
         },
         include: quotationInclude,
@@ -390,12 +413,85 @@ export class QuotationsService {
       });
 
       await this.ofertaEconomicaService.ensureFromQuotation(quotation, user);
+
+      await this.notifyApproved(quotation);
     }
 
     return updated;
   }
 
-  async select(id: string, user: UserWithRoles): Promise<QuotationWithRelations> {
+  private assertSecondApprover(
+    quotation: { validadaPorId: string | null },
+    user: { id: string },
+  ): void {
+    if (!quotation.validadaPorId) {
+      throw new BadRequestException(
+        'La cotización debe ser validada primero por un Aprobador distinto',
+      );
+    }
+    if (quotation.validadaPorId === user.id) {
+      throw new ForbiddenException(
+        'El Aprobador que validó la cotización no puede ejecutar la aprobación definitiva; se requiere un segundo Aprobador',
+      );
+    }
+  }
+
+  private async notifyApproved(quotation: QuotationWithRelations): Promise<void> {
+    const event = quotation.event;
+    const operatorIds = await this.notificationsService.findOperatorUserIdsForAlly(
+      event.generalAllyId,
+    );
+    await this.notificationsService.createMany([event.createdById, ...operatorIds], {
+      eventId: event.id,
+      type: 'QUOTATION_APPROVED',
+      message: `La cotización ${quotation.code} fue aprobada como definitiva; se generó la oferta económica del evento ${event.name}.`,
+    });
+  }
+
+  async validate(id: string, user: UserWithRoles): Promise<QuotationWithRelations> {
+    const quotation = await this.findOne(id);
+    const roles = this.roleNames(user.roles);
+    if (!roles.includes(ROLES.APPROVER)) {
+      throw new ForbiddenException('Solo el Aprobador puede validar cotizaciones');
+    }
+    this.assertAllyScope(quotation.event, user);
+    this.assertEventNotRejected(quotation.event);
+
+    if (quotation.isDefinitive || quotation.event.cotizacionSeleccionadaId) {
+      throw new BadRequestException(
+        'La cotización del evento ya fue aprobada de forma definitiva; no se puede validar otra',
+      );
+    }
+    if (quotation.validadaPorId) {
+      throw new BadRequestException('La cotización ya fue validada');
+    }
+    const otherValidated = await this.prisma.quotation.findFirst({
+      where: {
+        eventId: quotation.eventId,
+        id: { not: id },
+        status: QUOTATION_STATUS.VALIDADA,
+        isActive: true,
+      },
+      select: { id: true },
+    });
+    if (otherValidated) {
+      throw new BadRequestException(
+        'Ya existe una cotización en validación para este evento; valide únicamente la ganadora',
+      );
+    }
+
+    return this.prisma.quotation.update({
+      where: { id },
+      data: {
+        status: QUOTATION_STATUS.VALIDADA,
+        validadaPorId: user.id,
+        validadaEn: new Date(),
+      },
+      include: quotationInclude,
+    });
+  }
+
+  async select(id: string, dto: SelectQuotationDto, user: UserWithRoles): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
     this.assertAllyScope(quotation.event, user);
     this.assertEventNotRejected(quotation.event);
@@ -410,6 +506,7 @@ export class QuotationsService {
         'Ya existe una cotización aprobada para este evento; no se puede seleccionar otra',
       );
     }
+    this.assertSecondApprover(quotation, user);
     const comunicado = await this.prisma.attachment.findFirst({
       where: {
         eventId: quotation.eventId,
@@ -425,7 +522,12 @@ export class QuotationsService {
     const updated = await this.prisma.$transaction(async (tx) => {
       const updatedQuotation = await tx.quotation.update({
         where: { id },
-        data: { isDefinitive: true },
+        data: {
+          isDefinitive: true,
+          status: QUOTATION_STATUS.APROBADA,
+          aprobadaPorId: user.id,
+          aprobadaEn: new Date(),
+        },
         include: quotationInclude,
       });
       await tx.event.update({
@@ -441,7 +543,17 @@ export class QuotationsService {
       return updatedQuotation;
     });
 
-    await this.ofertaEconomicaService.ensureFromQuotation(quotation, user);
+    if (dto?.items?.length) {
+      await this.ofertaEconomicaService.ensureFromSelectedItems(
+        quotation,
+        dto.items.map((item) => item.quotationItemId),
+        user,
+      );
+    } else {
+      await this.ofertaEconomicaService.ensureFromQuotation(quotation, user);
+    }
+
+    await this.notifyApproved(quotation);
 
     return updated;
   }

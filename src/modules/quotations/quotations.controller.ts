@@ -4,7 +4,7 @@ import {
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { QuotationsService } from './quotations.service';
-import { CreateQuotationDto, UpdateQuotationDto, ChangeQuotationStatusDto } from './dto';
+import { CreateQuotationDto, UpdateQuotationDto, ChangeQuotationStatusDto, SelectQuotationDto } from './dto';
 import { CurrentUser, Roles } from '../../common/decorators';
 import { RolesGuard } from '../../common/guards';
 import { UserWithRoles } from '../../database/types';
@@ -54,11 +54,18 @@ export class QuotationsController {
     return this.quotationsService.changeStatus(id, dto, user);
   }
 
+  @Patch(':id/validate')
+  @Roles(ROLES.APPROVER)
+  @ApiOperation({ summary: 'Validar la cotización ganadora del evento (1er Aprobador): deja la cotización en "Validada"' })
+  validate(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
+    return this.quotationsService.validate(id, user);
+  }
+
   @Patch(':id/select')
   @Roles(ROLES.APPROVER)
-  @ApiOperation({ summary: 'Seleccionar la cotización ganadora del evento (solo Aprobador): genera la Oferta Económica definitiva y el PDF Presupuesto Final (Carpeta 4)' })
-  select(@Param('id') id: string, @CurrentUser() user: UserWithRoles) {
-    return this.quotationsService.select(id, user);
+  @ApiOperation({ summary: 'Seleccionar la cotización ganadora del evento (2do Aprobador, distinto del que validó): genera la Oferta Económica definitiva (puede componerse con ítems de varias cotizaciones) y el PDF Presupuesto Final (Carpeta 4)' })
+  select(@Param('id') id: string, @Body() dto: SelectQuotationDto, @CurrentUser() user: UserWithRoles) {
+    return this.quotationsService.select(id, dto, user);
   }
 
   @Delete(':id')

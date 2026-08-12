@@ -1,4 +1,6 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable, NotFoundException, ForbiddenException, BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '../../generated/prisma/client';
 import { UserWithRoles } from '../../database/types';
@@ -101,12 +103,66 @@ export class OfertaEconomicaService {
     return this.findOne(oferta.id);
   }
 
+  /**
+   * Construye (o reutiliza) la Oferta Económica definitiva a partir de ítems
+   * seleccionados que pueden provenir de distintas cotizaciones del evento.
+   */
+  async ensureFromSelectedItems(
+    quotation: QuotationForOferta,
+    selectedItemIds: string[],
+    user: UserWithRoles,
+  ): Promise<OfertaEconomicaWithRelations> {
+    const existing = await this.prisma.ofertaEconomica.findFirst({
+      where: { eventId: quotation.eventId, isActive: true },
+      include: ofertaEconomicaInclude,
+    });
+
+    const oferta = existing ?? (await this.buildFromQuotation(quotation, user, selectedItemIds));
+
+    await this.ensurePresupuestoFinalPdf(oferta, quotation, user);
+
+    return this.findOne(oferta.id);
+  }
+
   private async buildFromQuotation(
     quotation: QuotationForOferta,
     user: UserWithRoles,
+    selectedItemIds?: string[],
   ): Promise<OfertaEconomicaWithRelations> {
     const event = await this.resolveEvent(quotation.eventId);
     const rates = await this.calculationsService.getActiveRates();
+
+    let items = quotation.items;
+    if (selectedItemIds?.length) {
+      const fetched = await this.prisma.quotationItem.findMany({
+        where: {
+          id: { in: selectedItemIds },
+          isActive: true,
+          quotation: { eventId: quotation.eventId, isActive: true },
+        },
+        select: {
+          id: true,
+          description: true,
+          quantity: true,
+          unitPrice: true,
+          ivaRate: true,
+          consumptionTaxRate: true,
+          feeRate: true,
+          feeIvaRate: true,
+          allyId: true,
+          tariffId: true,
+          isTariffed: true,
+        },
+      });
+      const byId = new Map(fetched.map((item) => [item.id, item]));
+      const missing = selectedItemIds.filter((id) => !byId.has(id));
+      if (missing.length) {
+        throw new BadRequestException(
+          'Uno o más ítems seleccionados no pertenecen a cotizaciones activas de este evento',
+        );
+      }
+      items = fetched as QuotationForOferta['items'];
+    }
 
     const itemsData: Omit<Prisma.OfertaEconomicaItemUncheckedCreateInput, 'ofertaEconomicaId'>[] = [];
     let baseTotal = 0;
@@ -118,7 +174,7 @@ export class OfertaEconomicaService {
     let ivaFeeTotal = 0;
     let granTotal = 0;
 
-    for (const item of quotation.items) {
+    for (const item of items) {
       const calculated = this.calculationsService.calculateItem({
         name: item.description,
         quantity: item.quantity,

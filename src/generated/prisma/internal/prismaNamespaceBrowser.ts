@@ -64,9 +64,11 @@ export const ModelName = {
   OfertaEconomica: 'OfertaEconomica',
   OfertaEconomicaItem: 'OfertaEconomicaItem',
   Disbursement: 'Disbursement',
+  Payment: 'Payment',
   Tariff: 'Tariff',
   AuditLog: 'AuditLog',
-  Municipality: 'Municipality'
+  Municipality: 'Municipality',
+  Notification: 'Notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -258,6 +260,10 @@ export const QuotationScalarFieldEnum = {
   validityDays: 'validityDays',
   status: 'status',
   isDefinitive: 'isDefinitive',
+  validadaPorId: 'validadaPorId',
+  validadaEn: 'validadaEn',
+  aprobadaPorId: 'aprobadaPorId',
+  aprobadaEn: 'aprobadaEn',
   observations: 'observations',
   createdById: 'createdById',
   isActive: 'isActive',
@@ -367,6 +373,23 @@ export const DisbursementScalarFieldEnum = {
 export type DisbursementScalarFieldEnum = (typeof DisbursementScalarFieldEnum)[keyof typeof DisbursementScalarFieldEnum]
 
 
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  disbursementId: 'disbursementId',
+  amount: 'amount',
+  type: 'type',
+  status: 'status',
+  paymentDate: 'paymentDate',
+  description: 'description',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
 export const TariffScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -422,6 +445,20 @@ export const MunicipalityScalarFieldEnum = {
 } as const
 
 export type MunicipalityScalarFieldEnum = (typeof MunicipalityScalarFieldEnum)[keyof typeof MunicipalityScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventId: 'eventId',
+  type: 'type',
+  message: 'message',
+  read: 'read',
+  readAt: 'readAt',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {
