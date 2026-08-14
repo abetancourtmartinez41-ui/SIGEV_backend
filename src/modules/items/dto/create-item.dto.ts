@@ -12,6 +12,13 @@ export class CreateItemDto {
   eventId?: string;
 
   @ApiPropertyOptional({
+    description: 'ID del ítem existente. Si se envía y existe en el evento, se actualiza en lugar de crearlo',
+  })
+  @IsOptional()
+  @IsString()
+  id?: string;
+
+  @ApiPropertyOptional({
     description: 'Se completa automáticamente desde el tarifario si se envía tariffId',
   })
   @IsOptional()

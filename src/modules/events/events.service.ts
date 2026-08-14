@@ -12,7 +12,7 @@ import { EVENT_STATUS, ROLES } from '../../config/constants';
 import { MODIFIABLE_FOLDERS } from '../attachments/attachments-folders';
 
 const eventInclude = {
-  items: true,
+  items: { where: { isActive: true } },
   attachments: true,
   createdBy: true,
   disbursement: true,
@@ -265,12 +265,13 @@ export class EventsService {
     }
 
     if (isSolicitante) {
-      const puedeEditarAbiertoSinCotizacion =
-        event.status === EVENT_STATUS.ABIERTO &&
-        event.cotizacionSeleccionadaId === null;
-      if (!puedeEditarAbiertoSinCotizacion && event.status !== EVENT_STATUS.DEVUELTO) {
+      const estadoPermitido =
+        event.status === EVENT_STATUS.ABIERTO ||
+        event.status === EVENT_STATUS.EN_EJECUCION ||
+        event.status === EVENT_STATUS.DEVUELTO;
+      if (!estadoPermitido) {
         throw new ForbiddenException(
-          'El Solicitante solo puede editar la orden en estado Abierto sin cotización aprobada o cuando está Devuelto',
+          'El Solicitante solo puede editar la orden en estado Abierto, En ejecución o Devuelto',
         );
       }
       if (event.createdById && event.createdById !== user.id) {
@@ -282,7 +283,7 @@ export class EventsService {
 
     const { items, ...data } = dto as UpdateEventDto & { items?: CreateEventDto['items'] };
 
-    if (items && event.cotizacionSeleccionadaId) {
+    if (items && event.cotizacionSeleccionadaId && !isSolicitante) {
       throw new BadRequestException(
         'La cotización del evento ya fue aprobada; no se pueden añadir ni modificar ítems',
       );
@@ -317,21 +318,57 @@ export class EventsService {
       });
 
       if (items && (isEditor || isAnalista || isSolicitante)) {
-        await tx.item.deleteMany({ where: { eventId: id } });
-        if (items.length) {
-          const eventContext = {
-            id,
-            municipalityCategory: municipality.municipalityCategory ?? event.municipalityCategory,
-            startDate:
-              dto.startDate !== undefined
-                ? (dto.startDate ? new Date(dto.startDate) : null)
-                : event.startDate,
-          };
+        const eventContext = {
+          id,
+          municipalityCategory: municipality.municipalityCategory ?? event.municipalityCategory,
+          startDate:
+            dto.startDate !== undefined
+              ? (dto.startDate ? new Date(dto.startDate) : null)
+              : event.startDate,
+        };
+
+        const existingItems = await tx.item.findMany({
+          where: { eventId: id },
+          select: { id: true, paymentItems: { select: { id: true } } },
+        });
+        const existingIds = new Set(existingItems.map((existing) => existing.id));
+        const incomingIds = new Set(
+          items
+            .filter((itemDto) => itemDto.id && existingIds.has(itemDto.id))
+            .map((itemDto) => itemDto.id as string),
+        );
+
+        for (const itemDto of items) {
+          if (itemDto.id && existingIds.has(itemDto.id)) {
+            const updateData = await this.itemsService.buildItemData(itemDto, eventContext);
+            await tx.item.update({
+              where: { id: itemDto.id },
+              data: updateData,
+            });
+          }
+        }
+
+        const toCreate = items.filter(
+          (itemDto) => !itemDto.id || !existingIds.has(itemDto.id),
+        );
+        if (toCreate.length) {
           const itemData: Prisma.ItemUncheckedCreateInput[] = [];
-          for (const itemDto of items) {
+          for (const itemDto of toCreate) {
             itemData.push(await this.itemsService.buildItemData(itemDto, eventContext));
           }
           await tx.item.createMany({ data: itemData });
+        }
+
+        for (const existing of existingItems) {
+          if (incomingIds.has(existing.id)) continue;
+          if (existing.paymentItems.length > 0) {
+            await tx.item.update({
+              where: { id: existing.id },
+              data: { isActive: false },
+            });
+          } else {
+            await tx.item.delete({ where: { id: existing.id } });
+          }
         }
       }
 
