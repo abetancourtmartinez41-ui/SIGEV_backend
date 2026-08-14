@@ -232,6 +232,14 @@ export class QuotationsService {
       );
     }
 
+    const roles = this.roleNames(user.roles);
+    const isOperator = roles.includes(ROLES.OPERATOR) && !roles.includes(ROLES.FUNCTIONAL_ADMIN);
+    if (isOperator && quotation.createdById !== user.id) {
+      throw new ForbiddenException(
+        'Solo puede editar cotizaciones creadas por usted',
+      );
+    }
+
     const { items, ...data } = dto as UpdateQuotationDto & { items?: CreateQuotationItemDto[] };
 
     let amount = Number(quotation.amount);
