@@ -1,5 +1,7 @@
 export const FEE_RATE_DEFAULT = 0.0825;
 
+export const CLIENTE_OFERTA_DEFAULT = 'Dirección de sustitución de cultivos ilícitos';
+
 export const DOCUMENT_TYPES = ['CC', 'NIT', 'CE', 'PASSPORT'] as const;
 
 export const ROLES = {

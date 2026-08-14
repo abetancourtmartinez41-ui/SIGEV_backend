@@ -3,6 +3,7 @@ import { PrismaService } from '../../database/prisma.service';
 import * as ExcelJS from 'exceljs';
 import PDFDocument from 'pdfkit';
 import { Response } from 'express';
+import { CLIENTE_OFERTA_DEFAULT } from '../../config/constants';
 
 @Injectable()
 export class ReportsService {
@@ -439,7 +440,7 @@ export class ReportsService {
         ['Aliado estratégico', params.quotation.ally?.name || '—'],
       ],
       [
-        ['Cliente (solicitante)', params.event.name || '—'],
+        ['Cliente', CLIENTE_OFERTA_DEFAULT],
         ['Municipio', municipioLabel],
       ],
       [
