@@ -6,7 +6,6 @@ import { Prisma } from '../../generated/prisma/client';
 import { UserWithRoles } from '../../database/types';
 import * as bcrypt from 'bcryptjs';
 import { CreateUserDto, UpdateUserDto } from './dto';
-import { ROLES } from '../../config/constants';
 
 const userInclude = { roles: true, ally: true } as const;
 
@@ -19,14 +18,6 @@ export class UsersService {
     const ally = await this.prisma.ally.findUnique({ where: { id: allyId } });
     if (!ally) throw new BadRequestException('El aliado seleccionado no existe');
     return ally.id;
-  }
-
-  private assertOperatorHasAlly(allyId: string | undefined | null, roles?: string[]): void {
-    if (roles?.includes(ROLES.OPERATOR) && !allyId) {
-      throw new BadRequestException(
-        'El rol Operador requiere asignar un Aliado',
-      );
-    }
   }
 
   async create(dto: CreateUserDto): Promise<UserWithRoles> {
@@ -44,7 +35,6 @@ export class UsersService {
       );
     }
 
-    this.assertOperatorHasAlly(dto.allyId, dto.roles);
     const allyId = await this.resolveAlly(dto.allyId ?? undefined);
     const hashedPassword = await bcrypt.hash(dto.password, 10);
     const roles = dto.roles?.length
@@ -85,9 +75,7 @@ export class UsersService {
     const nextRoles = dto.roles?.length
       ? await this.prisma.role.findMany({ where: { name: { in: dto.roles } } })
       : undefined;
-    const effectiveRoles = dto.roles ?? current.roles.map((r) => r.name);
     const finalAllyId = dto.allyId !== undefined ? (dto.allyId || null) : current.allyId;
-    this.assertOperatorHasAlly(finalAllyId, effectiveRoles);
     const allyId = await this.resolveAlly(finalAllyId ?? undefined);
 
     const data: Prisma.UserUpdateInput = {};

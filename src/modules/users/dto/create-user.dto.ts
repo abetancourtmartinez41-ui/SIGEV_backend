@@ -35,7 +35,7 @@ export class CreateUserDto {
   @IsString({ each: true })
   roles?: string[];
 
-  @ApiPropertyOptional({ example: '3f3e8e...', description: 'Aliado asociado (requerido cuando el rol Operador está presente)' })
+  @ApiPropertyOptional({ example: '3f3e8e...', description: 'Aliado asociado (opcional)' })
   @IsOptional()
   @IsUUID()
   allyId?: string | null;
