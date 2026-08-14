@@ -14,7 +14,7 @@ export class OfertaEconomicaController {
   constructor(private readonly ofertaEconomicaService: OfertaEconomicaService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Listar ofertas económicas definitivas (el Operador solo ve las de su Aliado)' })
+  @ApiOperation({ summary: 'Listar ofertas económicas definitivas' })
   findAll(@CurrentUser() user: UserWithRoles) {
     return this.ofertaEconomicaService.findAll(user);
   }

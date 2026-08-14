@@ -1,5 +1,5 @@
 import {
-  Injectable, NotFoundException, ForbiddenException, BadRequestException,
+  Injectable, NotFoundException, BadRequestException,
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '../../generated/prisma/client';
@@ -7,7 +7,6 @@ import { UserWithRoles } from '../../database/types';
 import { CalculationsService } from '../calculations/calculations.service';
 import { ReportsService } from '../reports/reports.service';
 import { AttachmentsService } from '../attachments/attachments.service';
-import { ROLES } from '../../config/constants';
 
 const ofertaEconomicaInclude = {
   event: { include: { disbursement: true } },
@@ -55,25 +54,6 @@ export class OfertaEconomicaService {
     private readonly reportsService: ReportsService,
     private readonly attachmentsService: AttachmentsService,
   ) {}
-
-  private roleNames(roles: { name: string }[]): string[] {
-    return roles.map((role) => role.name);
-  }
-
-  private isOperator(user: { roles: { name: string }[] }): boolean {
-    return this.roleNames(user.roles).includes(ROLES.OPERATOR);
-  }
-
-  private assertAllyScope(
-    event: { generalAllyId: string | null },
-    user: { allyId?: string | null; roles: { name: string }[] },
-  ): void {
-    if (!this.isOperator(user)) return;
-    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
-    throw new ForbiddenException(
-      'La oferta económica definitiva pertenece a un evento de otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
-    );
-  }
 
   private async resolveEvent(id: string) {
     const event = await this.prisma.event.findFirst({ where: { id, deletedAt: null } });
@@ -337,13 +317,6 @@ export class OfertaEconomicaService {
 
   async findAll(user?: { allyId?: string | null; roles: { name: string }[] }): Promise<OfertaEconomicaWithRelations[]> {
     const where: Prisma.OfertaEconomicaWhereInput = { isActive: true };
-    if (user && this.isOperator(user)) {
-      if (user.allyId) {
-        where.event = { generalAllyId: user.allyId };
-      } else {
-        where.id = { in: [] };
-      }
-    }
     return this.prisma.ofertaEconomica.findMany({
       where,
       include: ofertaEconomicaInclude,
@@ -359,7 +332,6 @@ export class OfertaEconomicaService {
       where: { id: eventId, deletedAt: null },
     });
     if (!event) throw new NotFoundException('Evento no encontrado');
-    if (user) this.assertAllyScope(event, user);
     return this.prisma.ofertaEconomica.findFirst({
       where: { eventId, isActive: true },
       include: ofertaEconomicaInclude,

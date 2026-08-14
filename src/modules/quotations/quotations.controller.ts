@@ -25,7 +25,7 @@ export class QuotationsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar cotizaciones (el Operador solo ve las de su Aliado)' })
+  @ApiOperation({ summary: 'Listar cotizaciones' })
   findAll(@CurrentUser() user: UserWithRoles) {
     return this.quotationsService.findAll(user);
   }

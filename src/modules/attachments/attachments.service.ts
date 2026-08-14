@@ -186,18 +186,6 @@ export class AttachmentsService {
     );
   }
 
-  private assertAllyScope(
-    event: { generalAllyId: string | null },
-    user: { allyId?: string | null; roles: { name: string }[] },
-  ): void {
-    const roles = user.roles.map((role) => role.name);
-    if (!roles.includes(ROLES.OPERATOR)) return;
-    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
-    throw new ForbiddenException(
-      'Este evento pertenece a otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
-    );
-  }
-
   private async storeBuffer(params: {
     eventId: string;
     fileName: string;
@@ -240,10 +228,6 @@ export class AttachmentsService {
       params.category,
     );
     this.assertUserAllowed(event, { roles: params.uploadedByRoles }, params.category);
-    this.assertAllyScope(event, {
-      allyId: params.uploadedByAllyId,
-      roles: params.uploadedByRoles,
-    });
 
     if (params.quotationId) {
       const quotation = await this.prisma.quotation.findUnique({
@@ -313,10 +297,6 @@ export class AttachmentsService {
         'Su perfil no puede cargar soportes de pago',
       );
     }
-    this.assertAllyScope(event, {
-      allyId: params.uploadedByAllyId,
-      roles: params.uploadedByRoles,
-    });
 
     const storedPath = await this.storeBuffer({
       eventId: params.eventId,
@@ -364,7 +344,6 @@ export class AttachmentsService {
       attachment.category,
     );
     this.assertUserAllowed(event, user, attachment.category);
-    this.assertAllyScope(event, user);
 
     await this.removeObject(attachment.storedPath);
     await this.prisma.attachment.delete({ where: { id } });

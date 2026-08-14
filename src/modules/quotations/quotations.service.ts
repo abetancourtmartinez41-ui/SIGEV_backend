@@ -51,21 +51,6 @@ export class QuotationsService {
     return roles.map((role) => role.name);
   }
 
-  private isOperator(user: { roles: { name: string }[] }): boolean {
-    return this.roleNames(user.roles).includes(ROLES.OPERATOR);
-  }
-
-  private assertAllyScope(
-    event: { generalAllyId: string | null },
-    user: { allyId?: string | null; roles: { name: string }[] },
-  ): void {
-    if (!this.isOperator(user)) return;
-    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
-    throw new ForbiddenException(
-      'Esta cotización pertenece a un evento de otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
-    );
-  }
-
   private assertEventNotRejected(event: { status: string }): void {
     if (event.status === EVENT_STATUS.RECHAZADO) {
       throw new BadRequestException(
@@ -160,7 +145,6 @@ export class QuotationsService {
 
   async create(dto: CreateQuotationDto, user: UserWithRoles): Promise<QuotationWithRelations> {
     const event = await this.resolveEvent(dto.eventId);
-    this.assertAllyScope(event, user);
     this.assertEventNotRejected(event);
     if (event.cotizacionSeleccionadaId) {
       throw new BadRequestException(
@@ -217,13 +201,6 @@ export class QuotationsService {
 
   async findAll(user?: { allyId?: string | null; roles: { name: string }[] }): Promise<QuotationWithRelations[]> {
     const where: Prisma.QuotationWhereInput = { isActive: true };
-    if (user && this.isOperator(user)) {
-      if (user.allyId) {
-        where.event = { generalAllyId: user.allyId };
-      } else {
-        where.id = { in: [] };
-      }
-    }
     return this.prisma.quotation.findMany({
       where,
       include: quotationInclude,
@@ -247,7 +224,6 @@ export class QuotationsService {
   ): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
     const event = await this.resolveEvent(dto.eventId ?? quotation.eventId);
-    this.assertAllyScope(event, user);
     this.assertEventNotRejected(event);
 
     if (quotation.isDefinitive || event.cotizacionSeleccionadaId) {
@@ -315,7 +291,6 @@ export class QuotationsService {
   ): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
     const roles = this.roleNames(user.roles);
-    this.assertAllyScope(quotation.event, user);
     this.assertEventNotRejected(quotation.event);
 
     const allowedRoles = [ROLES.APPROVER];
@@ -454,7 +429,6 @@ export class QuotationsService {
     if (!roles.includes(ROLES.APPROVER)) {
       throw new ForbiddenException('Solo el Aprobador puede validar cotizaciones');
     }
-    this.assertAllyScope(quotation.event, user);
     this.assertEventNotRejected(quotation.event);
 
     if (quotation.isDefinitive || quotation.event.cotizacionSeleccionadaId) {
@@ -493,7 +467,6 @@ export class QuotationsService {
 
   async select(id: string, dto: SelectQuotationDto, user: UserWithRoles): Promise<QuotationWithRelations> {
     const quotation = await this.findOne(id);
-    this.assertAllyScope(quotation.event, user);
     this.assertEventNotRejected(quotation.event);
     if (!quotation.eventId) {
       throw new BadRequestException('La cotización debe estar asociada a un evento');

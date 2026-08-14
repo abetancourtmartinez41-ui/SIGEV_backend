@@ -25,7 +25,7 @@ export class EventsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar eventos (el Operador solo ve los de su Aliado)' })
+  @ApiOperation({ summary: 'Listar eventos (todos los usuarios autenticados; el Operador ve todas las órdenes)' })
   findAll(
     @CurrentUser() user: UserWithRoles,
     @Query('includeDeleted') includeDeleted?: string,

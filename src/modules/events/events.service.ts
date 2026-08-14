@@ -39,17 +39,6 @@ export class EventsService {
     return this.roleNames(user.roles).includes(ROLES.OPERATOR);
   }
 
-  private assertAllyScope(
-    event: { generalAllyId: string | null },
-    user: { allyId?: string | null; roles: { name: string }[] },
-  ): void {
-    if (!this.isOperator(user)) return;
-    if (event.generalAllyId && event.generalAllyId === user.allyId) return;
-    throw new ForbiddenException(
-      'Este evento pertenece a otro Aliado y su perfil solo gestiona eventos de su Aliado asignado',
-    );
-  }
-
   private normalizeSuffix(suffix?: string): string {
     return (suffix ?? '').trim().toUpperCase();
   }
@@ -220,14 +209,6 @@ export class EventsService {
       where.deletedAt = null;
     }
 
-    if (user && this.isOperator(user)) {
-      if (user.allyId) {
-        where.generalAllyId = user.allyId;
-      } else {
-        where.id = { in: [] };
-      }
-    }
-
     return this.prisma.event.findMany({
       where,
       include: eventInclude,
@@ -244,7 +225,6 @@ export class EventsService {
       include: eventInclude,
     });
     if (!event) throw new NotFoundException('Evento no encontrado');
-    if (user) this.assertAllyScope(event, user);
     return event;
   }
 

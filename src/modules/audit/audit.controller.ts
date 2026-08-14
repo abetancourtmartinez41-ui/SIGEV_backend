@@ -30,6 +30,14 @@ export class AuditController {
   }
 
   @Get(':entityType/:entityId')
+  @Roles(
+    ROLES.TECHNICAL_ADMIN,
+    ROLES.FUNCTIONAL_ADMIN,
+    ROLES.SUPERVISOR,
+    ROLES.APPROVER,
+    ROLES.AUDITOR,
+    ROLES.OPERATOR,
+  )
   @ApiOperation({ summary: 'Consultar trazabilidad de una entidad' })
   findByEntity(
     @Param('entityType') entityType: string,
