@@ -17,8 +17,8 @@ export class AlliesController {
   constructor(private readonly alliesService: AlliesService) {}
 
   @Post()
-  @Roles(ROLES.FUNCTIONAL_ADMIN)
-  @ApiOperation({ summary: 'Crear aliado (solo Admin. Funcional)' })
+  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.SOLICITANTE, ROLES.ANALISTA, ROLES.SUPERVISOR)
+  @ApiOperation({ summary: 'Crear aliado (Admin. Funcional y roles que gestionan órdenes)' })
   create(@Body() dto: CreateAllyDto) {
     return this.alliesService.create(dto);
   }

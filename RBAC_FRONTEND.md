@@ -32,7 +32,8 @@ Los `GET` de lectura están abiertos a **cualquier usuario autenticado** (evento
 | `/events/:id/status` | PATCH | `functional_admin`, `operator`, `supervisor`, `approver`, `analista` |
 | `/events/:id` | DELETE | `functional_admin` |
 | `/items` | POST/PATCH/DELETE | `functional_admin`, `operator` |
-| `/allies` | POST/PATCH/DELETE | `functional_admin` |
+| `/allies` | POST | `functional_admin`, `solicitante`, `analista`, `supervisor` |
+| `/allies` | PATCH/DELETE | `functional_admin` |
 | `/disbursements` | POST/PATCH/DELETE | `functional_admin` |
 | `/parameters/:key` | PATCH | `functional_admin` |
 | `/audit` | GET | `functional_admin`, `supervisor`, `approver`, `auditor` |
