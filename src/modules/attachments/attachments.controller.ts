@@ -106,6 +106,59 @@ export class AttachmentsController {
     });
   }
 
+  @Post('payment-support/:eventId')
+  @Roles(ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.SUPERVISOR)
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: memoryStorage(),
+      limits: { fileSize: 10485760 },
+      fileFilter: (_req, file, cb) => {
+        const ext = path.extname(file.originalname).toLowerCase();
+        if ((ALLOWED_EXTENSIONS as readonly string[]).includes(ext)) {
+          cb(null, true);
+        } else {
+          cb(
+            new BadRequestException(
+              `Extensión no permitida: ${ext || file.originalname}`,
+            ),
+            false,
+          );
+        }
+      },
+    }),
+  )
+  @ApiConsumes('multipart/form-data')
+  @ApiOperation({ summary: 'Subir soporte documental de un pago (obligatorio al reconocer un pago)' })
+  async uploadPaymentSupport(
+    @Param('eventId', ParseUUIDPipe) eventId: string,
+    @Req() req: { file: Express.Multer.File },
+    @CurrentUser() user: UserWithRoles,
+  ) {
+    const maxSize = this.configService.get<number>(
+      'upload.maxFileSize',
+      10485760,
+    );
+    const file = req.file;
+    if (!file) {
+      throw new BadRequestException('Debe adjuntar un archivo');
+    }
+    if (file.size > maxSize) {
+      throw new BadRequestException(
+        `El archivo supera el tamaño máximo permitido (${Math.round(maxSize / 1048576)} MB)`,
+      );
+    }
+    return this.attachmentsService.uploadPaymentSupport({
+      eventId,
+      originalName: file.originalname,
+      mimeType: file.mimetype || 'application/octet-stream',
+      fileSize: file.size,
+      buffer: file.buffer,
+      uploadedById: user.id,
+      uploadedByRoles: user.roles,
+      uploadedByAllyId: user.allyId,
+    });
+  }
+
   @Delete(':id')
   @Roles(
     ROLES.FUNCTIONAL_ADMIN,

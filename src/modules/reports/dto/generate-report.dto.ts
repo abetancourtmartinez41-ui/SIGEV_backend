@@ -9,11 +9,16 @@ export class GenerateReportDto {
 
   @ApiProperty({ example: 'offer' })
   @IsString()
-  @IsIn(['offer', 'matrix'])
+  @IsIn(['offer', 'matrix', 'payments', 'resource'])
   type: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   eventId?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  disbursementId?: string;
 }

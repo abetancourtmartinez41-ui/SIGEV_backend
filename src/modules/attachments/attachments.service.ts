@@ -9,7 +9,7 @@ import { randomUUID } from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
 import { Attachment } from '../../generated/prisma/client';
 import { EVENT_STATUS, ROLES } from '../../config/constants';
-import { STATIC_FOLDERS, MODIFIABLE_FOLDERS, MULTI_DOCUMENT_FOLDERS } from './attachments-folders';
+import { STATIC_FOLDERS, MODIFIABLE_FOLDERS, MULTI_DOCUMENT_FOLDERS, PAYMENT_SUPPORT_CATEGORY } from './attachments-folders';
 import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
@@ -279,6 +279,60 @@ export class AttachmentsService {
         category: params.category,
         eventId: params.eventId,
         quotationId: params.quotationId ?? null,
+        uploadedById: params.uploadedById,
+      },
+    });
+  }
+
+  async uploadPaymentSupport(params: {
+    eventId: string;
+    originalName: string;
+    mimeType: string;
+    fileSize: number;
+    buffer: Buffer;
+    uploadedById: string;
+    uploadedByRoles: { name: string }[];
+    uploadedByAllyId?: string | null;
+  }): Promise<Attachment> {
+    const event = await this.prisma.event.findFirst({
+      where: { id: params.eventId, deletedAt: null },
+      select: { id: true, status: true, generalAllyId: true },
+    });
+    if (!event) {
+      throw new NotFoundException('Evento no encontrado');
+    }
+
+    const roles = params.uploadedByRoles.map((role) => role.name);
+    const isEditor = roles.some((role) =>
+      [ROLES.FUNCTIONAL_ADMIN, ROLES.OPERATOR, ROLES.SUPERVISOR].includes(
+        role as never,
+      ),
+    );
+    if (!isEditor) {
+      throw new ForbiddenException(
+        'Su perfil no puede cargar soportes de pago',
+      );
+    }
+    this.assertAllyScope(event, {
+      allyId: params.uploadedByAllyId,
+      roles: params.uploadedByRoles,
+    });
+
+    const storedPath = await this.storeBuffer({
+      eventId: params.eventId,
+      fileName: params.originalName,
+      buffer: params.buffer,
+      contentType: params.mimeType || 'application/octet-stream',
+    });
+
+    return this.prisma.attachment.create({
+      data: {
+        originalName: params.originalName,
+        storedPath,
+        mimeType: params.mimeType.slice(0, 50),
+        fileSize: params.fileSize,
+        category: PAYMENT_SUPPORT_CATEGORY,
+        eventId: params.eventId,
         uploadedById: params.uploadedById,
       },
     });

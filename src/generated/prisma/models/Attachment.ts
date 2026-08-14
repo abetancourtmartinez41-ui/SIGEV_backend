@@ -43,6 +43,7 @@ export type AttachmentMinAggregateOutputType = {
   category: string | null
   eventId: string | null
   quotationId: string | null
+  paymentId: string | null
   uploadedById: string | null
   createdAt: Date | null
 }
@@ -56,6 +57,7 @@ export type AttachmentMaxAggregateOutputType = {
   category: string | null
   eventId: string | null
   quotationId: string | null
+  paymentId: string | null
   uploadedById: string | null
   createdAt: Date | null
 }
@@ -69,6 +71,7 @@ export type AttachmentCountAggregateOutputType = {
   category: number
   eventId: number
   quotationId: number
+  paymentId: number
   uploadedById: number
   createdAt: number
   _all: number
@@ -92,6 +95,7 @@ export type AttachmentMinAggregateInputType = {
   category?: true
   eventId?: true
   quotationId?: true
+  paymentId?: true
   uploadedById?: true
   createdAt?: true
 }
@@ -105,6 +109,7 @@ export type AttachmentMaxAggregateInputType = {
   category?: true
   eventId?: true
   quotationId?: true
+  paymentId?: true
   uploadedById?: true
   createdAt?: true
 }
@@ -118,6 +123,7 @@ export type AttachmentCountAggregateInputType = {
   category?: true
   eventId?: true
   quotationId?: true
+  paymentId?: true
   uploadedById?: true
   createdAt?: true
   _all?: true
@@ -218,6 +224,7 @@ export type AttachmentGroupByOutputType = {
   category: string | null
   eventId: string
   quotationId: string | null
+  paymentId: string | null
   uploadedById: string
   createdAt: Date
   _count: AttachmentCountAggregateOutputType | null
@@ -254,10 +261,12 @@ export type AttachmentWhereInput = {
   category?: Prisma.StringNullableFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidFilter<"Attachment"> | string
   quotationId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
+  paymentId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeFilter<"Attachment"> | Date | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   quotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
+  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   uploadedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -270,10 +279,12 @@ export type AttachmentOrderByWithRelationInput = {
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   eventId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentId?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   event?: Prisma.EventOrderByWithRelationInput
   quotation?: Prisma.QuotationOrderByWithRelationInput
+  payment?: Prisma.PaymentOrderByWithRelationInput
   uploadedBy?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -289,10 +300,12 @@ export type AttachmentWhereUniqueInput = Prisma.AtLeast<{
   category?: Prisma.StringNullableFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidFilter<"Attachment"> | string
   quotationId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
+  paymentId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeFilter<"Attachment"> | Date | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   quotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
+  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   uploadedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
@@ -305,6 +318,7 @@ export type AttachmentOrderByWithAggregationInput = {
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   eventId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentId?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AttachmentCountOrderByAggregateInput
@@ -326,6 +340,7 @@ export type AttachmentScalarWhereWithAggregatesInput = {
   category?: Prisma.StringNullableWithAggregatesFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidWithAggregatesFilter<"Attachment"> | string
   quotationId?: Prisma.UuidNullableWithAggregatesFilter<"Attachment"> | string | null
+  paymentId?: Prisma.UuidNullableWithAggregatesFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidWithAggregatesFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Attachment"> | Date | string
 }
@@ -340,6 +355,7 @@ export type AttachmentCreateInput = {
   createdAt?: Date | string
   event: Prisma.EventCreateNestedOneWithoutAttachmentsInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutAttachmentsInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutAttachmentsInput
   uploadedBy: Prisma.UserCreateNestedOneWithoutUploadedAttachmentsInput
 }
 
@@ -352,6 +368,7 @@ export type AttachmentUncheckedCreateInput = {
   category?: string | null
   eventId: string
   quotationId?: string | null
+  paymentId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -366,6 +383,7 @@ export type AttachmentUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   event?: Prisma.EventUpdateOneRequiredWithoutAttachmentsNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutAttachmentsNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutAttachmentsNestedInput
   uploadedBy?: Prisma.UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput
 }
 
@@ -378,6 +396,7 @@ export type AttachmentUncheckedUpdateInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -391,6 +410,7 @@ export type AttachmentCreateManyInput = {
   category?: string | null
   eventId: string
   quotationId?: string | null
+  paymentId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -414,6 +434,7 @@ export type AttachmentUncheckedUpdateManyInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -437,6 +458,7 @@ export type AttachmentCountOrderByAggregateInput = {
   category?: Prisma.SortOrder
   eventId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  paymentId?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -454,6 +476,7 @@ export type AttachmentMaxOrderByAggregateInput = {
   category?: Prisma.SortOrder
   eventId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  paymentId?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -467,6 +490,7 @@ export type AttachmentMinOrderByAggregateInput = {
   category?: Prisma.SortOrder
   eventId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  paymentId?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -601,6 +625,48 @@ export type AttachmentUncheckedUpdateManyWithoutQuotationNestedInput = {
   deleteMany?: Prisma.AttachmentScalarWhereInput | Prisma.AttachmentScalarWhereInput[]
 }
 
+export type AttachmentCreateNestedManyWithoutPaymentInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutPaymentInput, Prisma.AttachmentUncheckedCreateWithoutPaymentInput> | Prisma.AttachmentCreateWithoutPaymentInput[] | Prisma.AttachmentUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutPaymentInput | Prisma.AttachmentCreateOrConnectWithoutPaymentInput[]
+  createMany?: Prisma.AttachmentCreateManyPaymentInputEnvelope
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+}
+
+export type AttachmentUncheckedCreateNestedManyWithoutPaymentInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutPaymentInput, Prisma.AttachmentUncheckedCreateWithoutPaymentInput> | Prisma.AttachmentCreateWithoutPaymentInput[] | Prisma.AttachmentUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutPaymentInput | Prisma.AttachmentCreateOrConnectWithoutPaymentInput[]
+  createMany?: Prisma.AttachmentCreateManyPaymentInputEnvelope
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+}
+
+export type AttachmentUpdateManyWithoutPaymentNestedInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutPaymentInput, Prisma.AttachmentUncheckedCreateWithoutPaymentInput> | Prisma.AttachmentCreateWithoutPaymentInput[] | Prisma.AttachmentUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutPaymentInput | Prisma.AttachmentCreateOrConnectWithoutPaymentInput[]
+  upsert?: Prisma.AttachmentUpsertWithWhereUniqueWithoutPaymentInput | Prisma.AttachmentUpsertWithWhereUniqueWithoutPaymentInput[]
+  createMany?: Prisma.AttachmentCreateManyPaymentInputEnvelope
+  set?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  disconnect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  delete?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  update?: Prisma.AttachmentUpdateWithWhereUniqueWithoutPaymentInput | Prisma.AttachmentUpdateWithWhereUniqueWithoutPaymentInput[]
+  updateMany?: Prisma.AttachmentUpdateManyWithWhereWithoutPaymentInput | Prisma.AttachmentUpdateManyWithWhereWithoutPaymentInput[]
+  deleteMany?: Prisma.AttachmentScalarWhereInput | Prisma.AttachmentScalarWhereInput[]
+}
+
+export type AttachmentUncheckedUpdateManyWithoutPaymentNestedInput = {
+  create?: Prisma.XOR<Prisma.AttachmentCreateWithoutPaymentInput, Prisma.AttachmentUncheckedCreateWithoutPaymentInput> | Prisma.AttachmentCreateWithoutPaymentInput[] | Prisma.AttachmentUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.AttachmentCreateOrConnectWithoutPaymentInput | Prisma.AttachmentCreateOrConnectWithoutPaymentInput[]
+  upsert?: Prisma.AttachmentUpsertWithWhereUniqueWithoutPaymentInput | Prisma.AttachmentUpsertWithWhereUniqueWithoutPaymentInput[]
+  createMany?: Prisma.AttachmentCreateManyPaymentInputEnvelope
+  set?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  disconnect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  delete?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  connect?: Prisma.AttachmentWhereUniqueInput | Prisma.AttachmentWhereUniqueInput[]
+  update?: Prisma.AttachmentUpdateWithWhereUniqueWithoutPaymentInput | Prisma.AttachmentUpdateWithWhereUniqueWithoutPaymentInput[]
+  updateMany?: Prisma.AttachmentUpdateManyWithWhereWithoutPaymentInput | Prisma.AttachmentUpdateManyWithWhereWithoutPaymentInput[]
+  deleteMany?: Prisma.AttachmentScalarWhereInput | Prisma.AttachmentScalarWhereInput[]
+}
+
 export type AttachmentCreateWithoutUploadedByInput = {
   id?: string
   originalName: string
@@ -611,6 +677,7 @@ export type AttachmentCreateWithoutUploadedByInput = {
   createdAt?: Date | string
   event: Prisma.EventCreateNestedOneWithoutAttachmentsInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutAttachmentsInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutAttachmentsInput
 }
 
 export type AttachmentUncheckedCreateWithoutUploadedByInput = {
@@ -622,6 +689,7 @@ export type AttachmentUncheckedCreateWithoutUploadedByInput = {
   category?: string | null
   eventId: string
   quotationId?: string | null
+  paymentId?: string | null
   createdAt?: Date | string
 }
 
@@ -663,6 +731,7 @@ export type AttachmentScalarWhereInput = {
   category?: Prisma.StringNullableFilter<"Attachment"> | string | null
   eventId?: Prisma.UuidFilter<"Attachment"> | string
   quotationId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
+  paymentId?: Prisma.UuidNullableFilter<"Attachment"> | string | null
   uploadedById?: Prisma.UuidFilter<"Attachment"> | string
   createdAt?: Prisma.DateTimeFilter<"Attachment"> | Date | string
 }
@@ -676,6 +745,7 @@ export type AttachmentCreateWithoutEventInput = {
   category?: string | null
   createdAt?: Date | string
   quotation?: Prisma.QuotationCreateNestedOneWithoutAttachmentsInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutAttachmentsInput
   uploadedBy: Prisma.UserCreateNestedOneWithoutUploadedAttachmentsInput
 }
 
@@ -687,6 +757,7 @@ export type AttachmentUncheckedCreateWithoutEventInput = {
   fileSize: number
   category?: string | null
   quotationId?: string | null
+  paymentId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -726,6 +797,7 @@ export type AttachmentCreateWithoutQuotationInput = {
   category?: string | null
   createdAt?: Date | string
   event: Prisma.EventCreateNestedOneWithoutAttachmentsInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutAttachmentsInput
   uploadedBy: Prisma.UserCreateNestedOneWithoutUploadedAttachmentsInput
 }
 
@@ -737,6 +809,7 @@ export type AttachmentUncheckedCreateWithoutQuotationInput = {
   fileSize: number
   category?: string | null
   eventId: string
+  paymentId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -767,6 +840,58 @@ export type AttachmentUpdateManyWithWhereWithoutQuotationInput = {
   data: Prisma.XOR<Prisma.AttachmentUpdateManyMutationInput, Prisma.AttachmentUncheckedUpdateManyWithoutQuotationInput>
 }
 
+export type AttachmentCreateWithoutPaymentInput = {
+  id?: string
+  originalName: string
+  storedPath: string
+  mimeType: string
+  fileSize: number
+  category?: string | null
+  createdAt?: Date | string
+  event: Prisma.EventCreateNestedOneWithoutAttachmentsInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutAttachmentsInput
+  uploadedBy: Prisma.UserCreateNestedOneWithoutUploadedAttachmentsInput
+}
+
+export type AttachmentUncheckedCreateWithoutPaymentInput = {
+  id?: string
+  originalName: string
+  storedPath: string
+  mimeType: string
+  fileSize: number
+  category?: string | null
+  eventId: string
+  quotationId?: string | null
+  uploadedById: string
+  createdAt?: Date | string
+}
+
+export type AttachmentCreateOrConnectWithoutPaymentInput = {
+  where: Prisma.AttachmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttachmentCreateWithoutPaymentInput, Prisma.AttachmentUncheckedCreateWithoutPaymentInput>
+}
+
+export type AttachmentCreateManyPaymentInputEnvelope = {
+  data: Prisma.AttachmentCreateManyPaymentInput | Prisma.AttachmentCreateManyPaymentInput[]
+  skipDuplicates?: boolean
+}
+
+export type AttachmentUpsertWithWhereUniqueWithoutPaymentInput = {
+  where: Prisma.AttachmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.AttachmentUpdateWithoutPaymentInput, Prisma.AttachmentUncheckedUpdateWithoutPaymentInput>
+  create: Prisma.XOR<Prisma.AttachmentCreateWithoutPaymentInput, Prisma.AttachmentUncheckedCreateWithoutPaymentInput>
+}
+
+export type AttachmentUpdateWithWhereUniqueWithoutPaymentInput = {
+  where: Prisma.AttachmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.AttachmentUpdateWithoutPaymentInput, Prisma.AttachmentUncheckedUpdateWithoutPaymentInput>
+}
+
+export type AttachmentUpdateManyWithWhereWithoutPaymentInput = {
+  where: Prisma.AttachmentScalarWhereInput
+  data: Prisma.XOR<Prisma.AttachmentUpdateManyMutationInput, Prisma.AttachmentUncheckedUpdateManyWithoutPaymentInput>
+}
+
 export type AttachmentCreateManyUploadedByInput = {
   id?: string
   originalName: string
@@ -776,6 +901,7 @@ export type AttachmentCreateManyUploadedByInput = {
   category?: string | null
   eventId: string
   quotationId?: string | null
+  paymentId?: string | null
   createdAt?: Date | string
 }
 
@@ -789,6 +915,7 @@ export type AttachmentUpdateWithoutUploadedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   event?: Prisma.EventUpdateOneRequiredWithoutAttachmentsNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutAttachmentsNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutAttachmentsNestedInput
 }
 
 export type AttachmentUncheckedUpdateWithoutUploadedByInput = {
@@ -800,6 +927,7 @@ export type AttachmentUncheckedUpdateWithoutUploadedByInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -812,6 +940,7 @@ export type AttachmentUncheckedUpdateManyWithoutUploadedByInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -823,6 +952,7 @@ export type AttachmentCreateManyEventInput = {
   fileSize: number
   category?: string | null
   quotationId?: string | null
+  paymentId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -836,6 +966,7 @@ export type AttachmentUpdateWithoutEventInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneWithoutAttachmentsNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutAttachmentsNestedInput
   uploadedBy?: Prisma.UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput
 }
 
@@ -847,6 +978,7 @@ export type AttachmentUncheckedUpdateWithoutEventInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -859,6 +991,7 @@ export type AttachmentUncheckedUpdateManyWithoutEventInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -871,6 +1004,7 @@ export type AttachmentCreateManyQuotationInput = {
   fileSize: number
   category?: string | null
   eventId: string
+  paymentId?: string | null
   uploadedById: string
   createdAt?: Date | string
 }
@@ -884,6 +1018,7 @@ export type AttachmentUpdateWithoutQuotationInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   event?: Prisma.EventUpdateOneRequiredWithoutAttachmentsNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutAttachmentsNestedInput
   uploadedBy?: Prisma.UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput
 }
 
@@ -895,6 +1030,7 @@ export type AttachmentUncheckedUpdateWithoutQuotationInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -907,6 +1043,59 @@ export type AttachmentUncheckedUpdateManyWithoutQuotationInput = {
   fileSize?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AttachmentCreateManyPaymentInput = {
+  id?: string
+  originalName: string
+  storedPath: string
+  mimeType: string
+  fileSize: number
+  category?: string | null
+  eventId: string
+  quotationId?: string | null
+  uploadedById: string
+  createdAt?: Date | string
+}
+
+export type AttachmentUpdateWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedPath?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event?: Prisma.EventUpdateOneRequiredWithoutAttachmentsNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutAttachmentsNestedInput
+  uploadedBy?: Prisma.UserUpdateOneRequiredWithoutUploadedAttachmentsNestedInput
+}
+
+export type AttachmentUncheckedUpdateWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedPath?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AttachmentUncheckedUpdateManyWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedPath?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -922,10 +1111,12 @@ export type AttachmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   category?: boolean
   eventId?: boolean
   quotationId?: boolean
+  paymentId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
+  payment?: boolean | Prisma.Attachment$paymentArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attachment"]>
 
@@ -938,10 +1129,12 @@ export type AttachmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   category?: boolean
   eventId?: boolean
   quotationId?: boolean
+  paymentId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
+  payment?: boolean | Prisma.Attachment$paymentArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attachment"]>
 
@@ -954,10 +1147,12 @@ export type AttachmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   category?: boolean
   eventId?: boolean
   quotationId?: boolean
+  paymentId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
+  payment?: boolean | Prisma.Attachment$paymentArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attachment"]>
 
@@ -970,24 +1165,28 @@ export type AttachmentSelectScalar = {
   category?: boolean
   eventId?: boolean
   quotationId?: boolean
+  paymentId?: boolean
   uploadedById?: boolean
   createdAt?: boolean
 }
 
-export type AttachmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "originalName" | "storedPath" | "mimeType" | "fileSize" | "category" | "eventId" | "quotationId" | "uploadedById" | "createdAt", ExtArgs["result"]["attachment"]>
+export type AttachmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "originalName" | "storedPath" | "mimeType" | "fileSize" | "category" | "eventId" | "quotationId" | "paymentId" | "uploadedById" | "createdAt", ExtArgs["result"]["attachment"]>
 export type AttachmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
+  payment?: boolean | Prisma.Attachment$paymentArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type AttachmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
+  payment?: boolean | Prisma.Attachment$paymentArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type AttachmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.Attachment$quotationArgs<ExtArgs>
+  payment?: boolean | Prisma.Attachment$paymentArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
@@ -996,6 +1195,7 @@ export type $AttachmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     event: Prisma.$EventPayload<ExtArgs>
     quotation: Prisma.$QuotationPayload<ExtArgs> | null
+    payment: Prisma.$PaymentPayload<ExtArgs> | null
     uploadedBy: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1007,6 +1207,7 @@ export type $AttachmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     category: string | null
     eventId: string
     quotationId: string | null
+    paymentId: string | null
     uploadedById: string
     createdAt: Date
   }, ExtArgs["result"]["attachment"]>
@@ -1405,6 +1606,7 @@ export interface Prisma__AttachmentClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   event<T extends Prisma.EventDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDefaultArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   quotation<T extends Prisma.Attachment$quotationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attachment$quotationArgs<ExtArgs>>): Prisma.Prisma__QuotationClient<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  payment<T extends Prisma.Attachment$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attachment$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   uploadedBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1443,6 +1645,7 @@ export interface AttachmentFieldRefs {
   readonly category: Prisma.FieldRef<"Attachment", 'String'>
   readonly eventId: Prisma.FieldRef<"Attachment", 'String'>
   readonly quotationId: Prisma.FieldRef<"Attachment", 'String'>
+  readonly paymentId: Prisma.FieldRef<"Attachment", 'String'>
   readonly uploadedById: Prisma.FieldRef<"Attachment", 'String'>
   readonly createdAt: Prisma.FieldRef<"Attachment", 'DateTime'>
 }
@@ -1862,6 +2065,25 @@ export type Attachment$quotationArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   include?: Prisma.QuotationInclude<ExtArgs> | null
   where?: Prisma.QuotationWhereInput
+}
+
+/**
+ * Attachment.payment
+ */
+export type Attachment$paymentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
 }
 
 /**

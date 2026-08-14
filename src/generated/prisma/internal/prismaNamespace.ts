@@ -411,6 +411,7 @@ export const ModelName = {
   OfertaEconomicaItem: 'OfertaEconomicaItem',
   Disbursement: 'Disbursement',
   Payment: 'Payment',
+  PaymentItem: 'PaymentItem',
   Tariff: 'Tariff',
   AuditLog: 'AuditLog',
   Municipality: 'Municipality',
@@ -430,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "event" | "item" | "attachment" | "parameter" | "parameterVersion" | "ally" | "quotation" | "quotationItem" | "ofertaEconomica" | "ofertaEconomicaItem" | "disbursement" | "payment" | "tariff" | "auditLog" | "municipality" | "notification"
+    modelProps: "user" | "role" | "event" | "item" | "attachment" | "parameter" | "parameterVersion" | "ally" | "quotation" | "quotationItem" | "ofertaEconomica" | "ofertaEconomicaItem" | "disbursement" | "payment" | "paymentItem" | "tariff" | "auditLog" | "municipality" | "notification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1470,6 +1471,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PaymentItem: {
+      payload: Prisma.$PaymentItemPayload<ExtArgs>
+      fields: Prisma.PaymentItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PaymentItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PaymentItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>
+        }
+        findFirst: {
+          args: Prisma.PaymentItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PaymentItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>
+        }
+        findMany: {
+          args: Prisma.PaymentItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>[]
+        }
+        create: {
+          args: Prisma.PaymentItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>
+        }
+        createMany: {
+          args: Prisma.PaymentItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PaymentItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>[]
+        }
+        delete: {
+          args: Prisma.PaymentItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>
+        }
+        update: {
+          args: Prisma.PaymentItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.PaymentItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PaymentItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PaymentItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.PaymentItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentItemPayload>
+        }
+        aggregate: {
+          args: Prisma.PaymentItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePaymentItem>
+        }
+        groupBy: {
+          args: Prisma.PaymentItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PaymentItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PaymentItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PaymentItemCountAggregateOutputType> | number
+        }
+      }
+    }
     Tariff: {
       payload: Prisma.$TariffPayload<ExtArgs>
       fields: Prisma.TariffFieldRefs
@@ -1904,6 +1979,7 @@ export const AttachmentScalarFieldEnum = {
   category: 'category',
   eventId: 'eventId',
   quotationId: 'quotationId',
+  paymentId: 'paymentId',
   uploadedById: 'uploadedById',
   createdAt: 'createdAt'
 } as const
@@ -2096,9 +2172,9 @@ export const PaymentScalarFieldEnum = {
   eventId: 'eventId',
   disbursementId: 'disbursementId',
   amount: 'amount',
-  type: 'type',
+  method: 'method',
+  esAdicional: 'esAdicional',
   status: 'status',
-  paymentDate: 'paymentDate',
   description: 'description',
   createdById: 'createdById',
   createdAt: 'createdAt',
@@ -2106,6 +2182,17 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const PaymentItemScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  itemId: 'itemId',
+  amount: 'amount',
+  createdAt: 'createdAt'
+} as const
+
+export type PaymentItemScalarFieldEnum = (typeof PaymentItemScalarFieldEnum)[keyof typeof PaymentItemScalarFieldEnum]
 
 
 export const TariffScalarFieldEnum = {
@@ -2481,6 +2568,7 @@ export type GlobalOmitConfig = {
   ofertaEconomicaItem?: Prisma.OfertaEconomicaItemOmit
   disbursement?: Prisma.DisbursementOmit
   payment?: Prisma.PaymentOmit
+  paymentItem?: Prisma.PaymentItemOmit
   tariff?: Prisma.TariffOmit
   auditLog?: Prisma.AuditLogOmit
   municipality?: Prisma.MunicipalityOmit

@@ -1,2 +1,7 @@
-export { CreatePaymentDto, PAYMENT_TYPES, PAYMENT_STATUS } from './create-payment.dto';
+export {
+  CreatePaymentDto,
+  PaymentItemDto,
+  PAYMENT_STATUS,
+  PAYMENT_METHODS,
+} from './create-payment.dto';
 export { UpdatePaymentDto } from './update-payment.dto';

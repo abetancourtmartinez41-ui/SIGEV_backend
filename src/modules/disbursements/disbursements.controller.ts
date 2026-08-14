@@ -29,6 +29,12 @@ export class DisbursementsController {
     return this.disbursementsService.findAll(active);
   }
 
+  @Get(':id/summary')
+  @ApiOperation({ summary: 'Indicadores del recurso disponible (ejecución y participación)' })
+  summary(@Param('id') id: string) {
+    return this.disbursementsService.summary(id);
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obtener recurso disponible por ID' })
   findOne(@Param('id') id: string) {

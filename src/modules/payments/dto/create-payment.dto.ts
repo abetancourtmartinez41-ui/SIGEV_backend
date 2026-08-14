@@ -1,18 +1,32 @@
 import {
-  IsString, IsNumber, IsOptional, IsDate, Min, MinLength, IsIn,
+  IsString,
+  IsNumber,
+  IsOptional,
+  IsBoolean,
+  IsArray,
+  Min,
+  MinLength,
+  IsIn,
+  ValidateNested,
 } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-
-export const PAYMENT_TYPES = ['Anticipo', 'Parcial', 'Final'] as const;
 
 export const PAYMENT_STATUS = ['Registrado', 'Conciliado', 'Anulado'] as const;
 
-const toOptionalDate = ({ value }: { value: unknown }): unknown => {
-  if (value === '' || value === null || value === undefined) return undefined;
-  const date = new Date(value as string);
-  return Number.isNaN(date.getTime()) ? undefined : date;
-};
+export const PAYMENT_METHODS = ['por_item', 'prorrateo'] as const;
+
+export class PaymentItemDto {
+  @ApiProperty({ example: 'uuid-del-item' })
+  @IsString()
+  @MinLength(1)
+  itemId: string;
+
+  @ApiProperty({ example: 2500000, description: 'Monto a reconocer sobre el ítem' })
+  @IsNumber()
+  @Min(0.01)
+  amount: number;
+}
 
 export class CreatePaymentDto {
   @ApiProperty({ example: 'uuid-del-evento' })
@@ -30,15 +44,36 @@ export class CreatePaymentDto {
   @Min(0.01)
   amount: number;
 
-  @ApiProperty({ enum: PAYMENT_TYPES, example: 'Parcial' })
-  @IsIn(PAYMENT_TYPES)
-  type: string;
+  @ApiProperty({ enum: PAYMENT_METHODS, example: 'por_item' })
+  @IsIn(PAYMENT_METHODS)
+  method: string;
 
-  @ApiPropertyOptional({ type: String, format: 'date', example: '2026-08-20' })
+  @ApiPropertyOptional({
+    default: false,
+    description: 'Pago adicional registrado al cierre del evento',
+  })
   @IsOptional()
-  @IsDate()
-  @Transform(toOptionalDate)
-  paymentDate?: Date;
+  @IsBoolean()
+  esAdicional?: boolean;
+
+  @ApiPropertyOptional({
+    type: [PaymentItemDto],
+    description:
+      'Ítems cubiertos. Obligatorio en modalidad por_item; en prorrateo opcional (se reparten todos los ítems activos)',
+  })
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => PaymentItemDto)
+  items?: PaymentItemDto[];
+
+  @ApiProperty({
+    example: 'uuid-del-adjunto-soporte',
+    description: 'Soporte documental del pago (obligatorio)',
+  })
+  @IsString()
+  @MinLength(1)
+  attachmentId: string;
 
   @ApiPropertyOptional({ example: 'Primer desembolso por montaje' })
   @IsOptional()

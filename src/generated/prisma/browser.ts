@@ -88,6 +88,11 @@ export type Disbursement = Prisma.DisbursementModel
  */
 export type Payment = Prisma.PaymentModel
 /**
+ * Model PaymentItem
+ * 
+ */
+export type PaymentItem = Prisma.PaymentItemModel
+/**
  * Model Tariff
  * 
  */

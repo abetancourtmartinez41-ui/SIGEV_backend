@@ -1,3 +1,5 @@
+export const PAYMENT_SUPPORT_CATEGORY = 'Soporte de pago';
+
 export const ATTACHMENT_CATEGORIES = [
   'Formato de requerimiento',
   'Cotizaciones presentadas',

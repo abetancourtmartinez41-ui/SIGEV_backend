@@ -1,15 +1,11 @@
 import {
-  IsString, IsNumber, IsOptional, IsDate, Min, IsIn,
+  IsString, IsNumber, IsOptional, Min, IsIn, IsBoolean,
 } from 'class-validator';
-import { Transform } from 'class-transformer';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { PAYMENT_TYPES, PAYMENT_STATUS } from './create-payment.dto';
-
-const toOptionalDate = ({ value }: { value: unknown }): unknown => {
-  if (value === '' || value === null || value === undefined) return undefined;
-  const date = new Date(value as string);
-  return Number.isNaN(date.getTime()) ? undefined : date;
-};
+import {
+  PAYMENT_STATUS,
+  PAYMENT_METHODS,
+} from './create-payment.dto';
 
 export class UpdatePaymentDto {
   @ApiPropertyOptional({ example: 'uuid-del-recurso' })
@@ -23,21 +19,20 @@ export class UpdatePaymentDto {
   @Min(0.01)
   amount?: number;
 
-  @ApiPropertyOptional({ enum: PAYMENT_TYPES })
-  @IsOptional()
-  @IsIn(PAYMENT_TYPES)
-  type?: string;
-
   @ApiPropertyOptional({ enum: PAYMENT_STATUS })
   @IsOptional()
   @IsIn(PAYMENT_STATUS)
   status?: string;
 
-  @ApiPropertyOptional({ type: String, format: 'date' })
+  @ApiPropertyOptional({ enum: PAYMENT_METHODS })
   @IsOptional()
-  @IsDate()
-  @Transform(toOptionalDate)
-  paymentDate?: Date;
+  @IsIn(PAYMENT_METHODS)
+  method?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsBoolean()
+  esAdicional?: boolean;
 
   @ApiPropertyOptional()
   @IsOptional()

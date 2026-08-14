@@ -114,27 +114,31 @@ model Item {
   isActive            Boolean  @default(true)
   createdAt           DateTime @default(now()) @db.Timestamptz
   updatedAt           DateTime @updatedAt @db.Timestamptz
+  paymentItems        PaymentItem[]
 
   @@map("items")
 }
 
 model Attachment {
-  id           String   @id @default(uuid()) @db.Uuid
-  originalName String   @db.VarChar(255)
-  storedPath   String   @db.VarChar(255)
-  mimeType     String   @db.VarChar(50)
+  id           String    @id @default(uuid()) @db.Uuid
+  originalName String    @db.VarChar(255)
+  storedPath   String    @db.VarChar(255)
+  mimeType     String    @db.VarChar(50)
   fileSize     Int
-  category     String?  @db.VarChar(100)
-  eventId      String   @db.Uuid
-  event        Event    @relation(fields: [eventId], references: [id])
-  quotationId  String?  @db.Uuid
+  category     String?   @db.VarChar(100)
+  eventId      String    @db.Uuid
+  event        Event     @relation(fields: [eventId], references: [id])
+  quotationId  String?   @db.Uuid
   quotation    Quotation? @relation(fields: [quotationId], references: [id])
-  uploadedById String   @db.Uuid
-  uploadedBy   User     @relation("AttachmentUploadedBy", fields: [uploadedById], references: [id])
-  createdAt    DateTime @default(now()) @db.Timestamptz
+  paymentId    String?   @db.Uuid
+  payment      Payment?  @relation(fields: [paymentId], references: [id])
+  uploadedById String    @db.Uuid
+  uploadedBy   User      @relation("AttachmentUploadedBy", fields: [uploadedById], references: [id])
+  createdAt    DateTime  @default(now()) @db.Timestamptz
 
   @@map("attachments")
   @@index([quotationId])
+  @@index([paymentId])
 }
 
 model Parameter {
@@ -349,20 +353,37 @@ model Payment {
   eventId        String    @db.Uuid
   disbursementId String?   @db.Uuid
   amount         Decimal   @db.Decimal(15, 2)
-  type           String    @db.VarChar(20)
+  method         String?   @db.VarChar(20)
+  esAdicional    Boolean   @default(false)
   status         String    @default("Registrado") @db.VarChar(20)
-  paymentDate    DateTime? @db.Date
   description    String?   @db.Text
   createdById    String    @db.Uuid
   createdAt      DateTime  @default(now()) @db.Timestamptz
   updatedAt      DateTime  @updatedAt @db.Timestamptz
 
-  event        Event         @relation(fields: [eventId], references: [id])
-  disbursement Disbursement? @relation(fields: [disbursementId], references: [id])
-  createdBy    User          @relation("PaymentCreatedBy", fields: [createdById], references: [id])
+  event        Event          @relation(fields: [eventId], references: [id])
+  disbursement Disbursement?  @relation(fields: [disbursementId], references: [id])
+  createdBy    User           @relation("PaymentCreatedBy", fields: [createdById], references: [id])
+  paymentItems PaymentItem[]
+  attachments  Attachment[]
 
   @@map("payments")
   @@index([eventId])
+}
+
+model PaymentItem {
+  id        String   @id @default(uuid()) @db.Uuid
+  paymentId String   @db.Uuid
+  itemId    String   @db.Uuid
+  amount    Decimal  @db.Decimal(15, 2)
+  createdAt DateTime @default(now()) @db.Timestamptz
+
+  payment Payment @relation(fields: [paymentId], references: [id])
+  item    Item    @relation(fields: [itemId], references: [id])
+
+  @@map("payment_items")
+  @@index([paymentId])
+  @@index([itemId])
 }
 
 model Tariff {

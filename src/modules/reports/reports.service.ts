@@ -690,4 +690,646 @@ export class ReportsService {
     await workbook.xlsx.write(res);
     res.end();
   }
+
+  // ------------------------------------------------------------------------
+  // Reconocimiento de pagos por evento
+  // ------------------------------------------------------------------------
+
+  private round2(value: number): number {
+    return Math.round((value + Number.EPSILON) * 100) / 100;
+  }
+
+  private money(value: number, currency = 'COP'): string {
+    return `$ ${Number(value).toLocaleString('es-CO')} ${currency}`;
+  }
+
+  private dateCO(value: Date | string | null | undefined): string {
+    if (!value) return '—';
+    const date = typeof value === 'string' ? new Date(value) : value;
+    if (Number.isNaN(date.getTime())) return String(value);
+    return date.toLocaleDateString('es-CO', { timeZone: 'America/Bogota' });
+  }
+
+  private async loadEventPaymentData(eventId: string) {
+    const event = await this.prisma.event.findUnique({
+      where: { id: eventId },
+      include: {
+        items: { orderBy: { createdAt: 'asc' } },
+        ofertaEconomica: true,
+        payments: {
+          include: {
+            paymentItems: true,
+            createdBy: { select: { fullName: true } },
+            attachments: { select: { originalName: true } },
+          },
+          orderBy: { createdAt: 'asc' },
+        },
+      },
+    });
+    if (!event) throw new NotFoundException('Evento no encontrado');
+
+    const paidByItem = new Map<string, number>();
+    let totalPaid = 0;
+    for (const payment of event.payments) {
+      if (payment.status === 'Anulado') continue;
+      totalPaid += Number(payment.amount);
+      for (const pi of payment.paymentItems) {
+        const current = paidByItem.get(pi.itemId) ?? 0;
+        paidByItem.set(pi.itemId, current + Number(pi.amount));
+      }
+    }
+
+    return {
+      event: {
+        code: event.code,
+        suffix: event.suffix,
+        name: event.name,
+        status: event.status,
+        municipalityName: event.municipalityName,
+        startDate: event.startDate,
+      },
+      oferta: event.ofertaEconomica
+        ? {
+            code: event.ofertaEconomica.code,
+            name: event.ofertaEconomica.name,
+            currency: event.ofertaEconomica.currency,
+            total: Number(event.ofertaEconomica.total),
+          }
+        : null,
+      items: event.items.map((item) => {
+        const paid = paidByItem.get(item.id) ?? 0;
+        return {
+          id: item.id,
+          name: item.name,
+          totalValue: Number(item.totalValue),
+          paid: this.round2(paid),
+          pending: this.round2(Math.max(0, Number(item.totalValue) - paid)),
+        };
+      }),
+      payments: event.payments.map((p) => ({
+        id: p.id,
+        amount: Number(p.amount),
+        method: p.method,
+        esAdicional: p.esAdicional,
+        status: p.status,
+        createdByFullName: p.createdBy?.fullName ?? '',
+        itemsCount: p.paymentItems.length,
+        attachments: p.attachments.map((a) => a.originalName),
+      })),
+      totalPaid: this.round2(totalPaid),
+    };
+  }
+
+  private drawPdfTable(
+    doc: PDFDocument,
+    opts: {
+      columns: { header: string; width: number; align?: 'left' | 'right' | 'center' }[];
+      rows: (string | number)[][];
+      startY: number;
+      fontSize?: number;
+      footer?: (string | number)[] | null;
+    },
+  ): number {
+    const M = 45;
+    const CW = 612 - M * 2;
+    const SAFE_Y = 724;
+    const fontSize = opts.fontSize ?? 7.5;
+    let y = opts.startY;
+
+    const drawHeader = () => {
+      doc.rect(M, y, CW, 18).fill('#f3f4f6');
+      doc.fillColor('#111827').font('Helvetica-Bold').fontSize(fontSize);
+      let x = M;
+      opts.columns.forEach((col, index) => {
+        const isLast = index === opts.columns.length - 1;
+        doc.text(col.header, x + 3, y + 6, {
+          width: isLast ? col.width - 6 : col.width - 3,
+          align: col.align ?? 'left',
+        });
+        x += col.width;
+      });
+      doc.moveTo(M, y + 18).lineTo(M + CW, y + 18).lineWidth(0.7).stroke('#d1d5db');
+      y += 18;
+    };
+
+    drawHeader();
+
+    const rowHeight = (row: (string | number)[]) => {
+      const descWidth = opts.columns[0].width - 8;
+      const descHeight = doc.heightOfString(String(row[0]), { width: descWidth });
+      return Math.max(16, descHeight + 10);
+    };
+
+    const drawRow = (row: (string | number)[], shade = false, bold = false) => {
+      const h = rowHeight(row);
+      if (y + h > SAFE_Y) {
+        doc.addPage();
+        y = 40;
+        drawHeader();
+      }
+      const rowTop = y;
+      if (shade) doc.rect(M, rowTop, CW, h).fill('#fafafa');
+      doc.moveTo(M, rowTop + h).lineTo(M + CW, rowTop + h).lineWidth(0.5).stroke('#d1d5db');
+      doc.font(bold ? 'Helvetica-Bold' : 'Helvetica').fontSize(fontSize).fillColor('#111827');
+      doc.text(String(row[0]), M + 4, rowTop + 5, { width: opts.columns[0].width - 8 });
+      let x = M;
+      opts.columns.forEach((col, index) => {
+        if (index === 0) {
+          x += col.width;
+          return;
+        }
+        const isLast = index === opts.columns.length - 1;
+        doc.text(String(row[index]), x + 2, rowTop + 5, {
+          width: isLast ? col.width - 4 : col.width - 2,
+          align: col.align ?? 'left',
+        });
+        x += col.width;
+      });
+      y = rowTop + h;
+    };
+
+    opts.rows.forEach((row, index) => drawRow(row, index % 2 === 0));
+    if (opts.footer) drawRow(opts.footer, false, true);
+    return y;
+  }
+
+  async generatePaymentReconocimientoPdf(eventId: string, res: Response): Promise<void> {
+    const data = await this.loadEventPaymentData(eventId);
+    const doc = new PDFDocument({ margin: 45, size: 'LETTER', bufferPages: true });
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=reconocimiento-pagos-${data.event.code}.pdf`);
+    doc.pipe(res);
+
+    const PAGE_W = 612;
+    const M = 45;
+    const CW = PAGE_W - M * 2;
+    const INK = '#111827';
+    const MUTED = '#6b7280';
+    const SAFE_Y = 724;
+    const FOOTER_Y = 736;
+    const eventCode = data.event.code + (data.event.suffix ? `-${data.event.suffix}` : '');
+    const currency = data.oferta?.currency ?? 'COP';
+
+    const sectionTitle = (title: string) => {
+      if (doc.y + 34 > SAFE_Y) doc.addPage();
+      doc.moveDown(0.8);
+      doc.fillColor(INK).font('Helvetica-Bold').fontSize(11);
+      doc.text(title, M, doc.y);
+      doc.moveDown(0.25);
+      doc.moveTo(M, doc.y).lineTo(M + CW, doc.y).lineWidth(1).stroke('#d1d5db');
+      doc.moveDown(0.45);
+    };
+
+    const field = (key: string, value: string) => {
+      doc.fillColor(MUTED).font('Helvetica-Bold').fontSize(7.5);
+      doc.text(key.toUpperCase(), M, doc.y);
+      doc.fillColor(INK).font('Helvetica').fontSize(9);
+      const h = doc.heightOfString(value, { width: CW });
+      doc.text(value, M, doc.y + 10, { width: CW });
+      doc.y += h + 8;
+    };
+
+    doc.fillColor(MUTED).font('Helvetica').fontSize(7.5);
+    doc.text('SIGEV — Sistema Integrado de Gestión de Eventos', 0, 40, { width: PAGE_W, align: 'center' });
+    doc.fillColor(INK).font('Helvetica-Bold').fontSize(16);
+    doc.text('RECONOCIMIENTO DE PAGOS', M, 54);
+    doc.fillColor(MUTED).font('Helvetica').fontSize(8.5);
+    doc.text('Detalle de pagos, ítems cubiertos y soportes del evento', M, 76);
+    doc.fillColor(INK).font('Helvetica-Bold').fontSize(12);
+    doc.text(eventCode, M, 56, { width: CW - 8, align: 'right' });
+    doc.fillColor(MUTED).font('Helvetica').fontSize(8.5);
+    doc.text('Evento', M, 78, { width: CW - 8, align: 'right' });
+    doc.moveTo(M, 94).lineTo(M + CW, 94).lineWidth(1.2).stroke(INK);
+    doc.moveTo(M, 96.5).lineTo(M + CW, 96.5).lineWidth(0.5).stroke('#d1d5db');
+    doc.y = 112;
+
+    doc.font('Helvetica').fontSize(8.5).fillColor(MUTED);
+    doc.text(
+      `Generado el ${this.dateCO(new Date())}  ·  Documento informativo de la ejecución financiera del evento.`,
+      M, doc.y, { width: CW, align: 'center' },
+    );
+    doc.moveDown(0.6);
+
+    sectionTitle('Datos del evento');
+    field('Nombre', data.event.name);
+    field('Estado', data.event.status);
+    field('Municipio', data.event.municipalityName ?? '—');
+    field('Fecha de ejecución', this.dateCO(data.event.startDate));
+    field('Oferta económica', data.oferta ? `${data.oferta.code} — ${this.money(data.oferta.total, currency)}` : 'Sin oferta definitiva');
+
+    sectionTitle('Ítems del evento');
+    const itemRows = data.items.map((item) => {
+      const pct = item.totalValue > 0 ? (item.paid / item.totalValue) * 100 : 0;
+      return [
+        item.name,
+        this.money(item.totalValue, currency),
+        this.money(item.paid, currency),
+        this.money(item.pending, currency),
+        `${pct.toFixed(2)}%`,
+      ];
+    });
+    this.drawPdfTable(doc, {
+      columns: [
+        { header: 'Ítem', width: 250 },
+        { header: 'Valor', width: 92, align: 'right' },
+        { header: 'Pagado', width: 92, align: 'right' },
+        { header: 'Pendiente', width: 92, align: 'right' },
+        { header: '%', width: 46, align: 'right' },
+      ],
+      rows: itemRows,
+      startY: doc.y + 6,
+      footer: [
+        'TOTALES',
+        this.money(data.items.reduce((s, i) => s + i.totalValue, 0), currency),
+        this.money(data.totalPaid, currency),
+        this.money(data.items.reduce((s, i) => s + i.pending, 0), currency),
+        '',
+      ],
+    });
+
+    doc.y += 14;
+    sectionTitle('Pagos registrados');
+    const paymentRows = data.payments.map((p) => {
+      const itemsLabel =
+        p.method === 'prorrateo'
+          ? 'Todos los ítems'
+          : `${p.itemsCount} ítem${p.itemsCount !== 1 ? 's' : ''}`;
+      const adicional = p.esAdicional ? ' (adicional)' : '';
+      const modalidad = `${p.method === 'por_item' ? 'Por ítem' : p.method === 'prorrateo' ? 'Prorrateo' : '—'}${adicional}`;
+      return [
+        modalidad,
+        itemsLabel,
+        this.money(p.amount, currency),
+        p.status,
+        p.createdByFullName,
+      ];
+    });
+    this.drawPdfTable(doc, {
+      columns: [
+        { header: 'Modalidad', width: 96 },
+        { header: 'Ítems', width: 70 },
+        { header: 'Monto', width: 90, align: 'right' },
+        { header: 'Estado', width: 80 },
+        { header: 'Responsable', width: 90 },
+      ],
+      rows: paymentRows,
+      startY: doc.y + 6,
+      footer: [
+        'TOTALES',
+        '',
+        this.money(data.totalPaid, currency),
+        '',
+        '',
+      ],
+    });
+
+    const paymentsWithSupport = data.payments.filter((p) => p.attachments.length > 0);
+    if (paymentsWithSupport.length > 0) {
+      doc.y += 14;
+      sectionTitle('Soportes documentales');
+      doc.font('Helvetica').fontSize(8.5).fillColor(INK);
+      for (const p of paymentsWithSupport) {
+        doc.text(`• Pago ${this.money(p.amount, currency)}: ${p.attachments.join(', ')}`, M, doc.y, { width: CW });
+        doc.moveDown(0.4);
+      }
+    }
+
+    const range = doc.bufferedPageRange();
+    for (let i = range.start; i < range.start + range.count; i++) {
+      doc.switchToPage(i);
+      doc.moveTo(M, FOOTER_Y - 6).lineTo(M + CW, FOOTER_Y - 6).lineWidth(0.6).stroke('#d1d5db');
+      doc.fillColor(MUTED).font('Helvetica').fontSize(7);
+      doc.text('SIGEV — Sistema Integrado de Gestión de Eventos', M, FOOTER_Y, { width: CW / 2 });
+      doc.text(`Página ${i - range.start + 1} de ${range.count}`, M, FOOTER_Y, { width: CW - M, align: 'right' });
+    }
+
+    doc.end();
+  }
+
+  async generatePaymentReconocimientoExcel(eventId: string, res: Response): Promise<void> {
+    const data = await this.loadEventPaymentData(eventId);
+    const workbook = new ExcelJS.Workbook();
+    const currency = data.oferta?.currency ?? 'COP';
+
+    const wsItems = workbook.addWorksheet('Reconocimiento por evento');
+    wsItems.columns = [
+      { width: 45 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 12 },
+    ];
+    const money = (value: number) => Number(value);
+    const title = wsItems.addRow(['Reconocimiento de pagos del evento']);
+    wsItems.mergeCells(1, 1, 1, 5);
+    title.font = { bold: true, size: 14 };
+    const meta = wsItems.addRow([`${data.event.code}${data.event.suffix ? `-${data.event.suffix}` : ''} · ${data.event.name}`]);
+    wsItems.mergeCells(2, 1, 2, 5);
+    meta.font = { size: 10, color: { argb: 'FF6B7280' } };
+    wsItems.addRow([]);
+    wsItems.addRow(['Ítem', 'Valor', 'Pagado', 'Pendiente', '% Pagado']);
+    data.items.forEach((item) => {
+      const pct = item.totalValue > 0 ? (item.paid / item.totalValue) * 100 : 0;
+      wsItems.addRow([item.name, money(item.totalValue), money(item.paid), money(item.pending), Number(pct.toFixed(2))]);
+    });
+    wsItems.addRow([
+      'TOTALES',
+      money(data.items.reduce((s, i) => s + i.totalValue, 0)),
+      money(data.totalPaid),
+      money(data.items.reduce((s, i) => s + i.pending, 0)),
+      data.totalPaid > 0 ? Number(((data.totalPaid / Math.max(1, data.items.reduce((s, i) => s + i.totalValue, 0))) * 100).toFixed(2)) : 0,
+    ]);
+    const headerRowItems = 5;
+    for (let c = 2; c <= 4; c++) wsItems.getCell(headerRowItems, c).numFmt = '"$"#,##0.00';
+    for (let r = headerRowItems + 1; r <= wsItems.rowCount; r++) {
+      for (let c = 2; c <= 4; c++) wsItems.getCell(r, c).numFmt = '"$"#,##0.00';
+      wsItems.getCell(r, 5).numFmt = '0.00"%"';
+    }
+    wsItems.getRow(headerRowItems).font = { bold: true };
+    wsItems.getRow(wsItems.rowCount).font = { bold: true };
+
+    const wsPayments = workbook.addWorksheet('Pagos');
+    wsPayments.columns = [
+      { width: 16 }, { width: 18 }, { width: 16 }, { width: 14 }, { width: 18 }, { width: 40 },
+    ];
+    const titleP = wsPayments.addRow(['Pagos registrados del evento']);
+    wsPayments.mergeCells(1, 1, 1, 6);
+    titleP.font = { bold: true, size: 14 };
+    wsPayments.addRow([]);
+    wsPayments.addRow(['Modalidad', 'Ítems', 'Monto', 'Estado', 'Responsable', 'Soportes']);
+    data.payments.forEach((p) => {
+      const itemsLabel = p.method === 'prorrateo' ? 'Todos los ítems' : `${p.itemsCount} ítem${p.itemsCount !== 1 ? 's' : ''}`;
+      wsPayments.addRow([
+        p.method === 'por_item' ? 'Por ítem' : p.method === 'prorrateo' ? 'Prorrateo' : '—',
+        itemsLabel,
+        money(p.amount),
+        p.status,
+        p.createdByFullName,
+        p.attachments.join(', '),
+      ]);
+    });
+    wsPayments.addRow([
+      'TOTALES', '',
+      money(data.totalPaid),
+      '', '',
+    ]);
+    const headerRowP = 3;
+    for (let r = headerRowP + 1; r <= wsPayments.rowCount; r++) {
+      wsPayments.getCell(r, 3).numFmt = '"$"#,##0.00';
+    }
+    wsPayments.getRow(headerRowP).font = { bold: true };
+    wsPayments.getRow(wsPayments.rowCount).font = { bold: true };
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename=reconocimiento-pagos-${data.event.code}.xlsx`);
+    await workbook.xlsx.write(res);
+    res.end();
+  }
+
+  // ------------------------------------------------------------------------
+  // Ejecución por recurso disponible
+  // ------------------------------------------------------------------------
+
+  private async loadResourcePaymentData(disbursementId: string) {
+    const resource = await this.prisma.disbursement.findUnique({
+      where: { id: disbursementId },
+    });
+    if (!resource) throw new NotFoundException('Recurso disponible no encontrado');
+
+    const events = await this.prisma.event.findMany({
+      where: { disbursementId, deletedAt: null },
+      select: { id: true, code: true, suffix: true, name: true },
+      orderBy: { createdAt: 'asc' },
+    });
+    const ofertas = await this.prisma.ofertaEconomica.findMany({
+      where: { eventId: { in: events.map((e) => e.id) }, isActive: true },
+      select: { eventId: true, total: true },
+    });
+    const payments = await this.prisma.payment.findMany({
+      where: { disbursementId, status: { not: 'Anulado' } },
+      select: { eventId: true, amount: true },
+    });
+
+    const budgetByEvent = new Map(ofertas.map((o) => [o.eventId, Number(o.total)]));
+    const paidByEvent = new Map<string, number>();
+    let totalPaid = 0;
+    for (const payment of payments) {
+      totalPaid += Number(payment.amount);
+      paidByEvent.set(payment.eventId, (paidByEvent.get(payment.eventId) ?? 0) + Number(payment.amount));
+    }
+
+    const valorRef = Number(resource.amount);
+    const totalParticipation = events.reduce((sum, e) => sum + (budgetByEvent.get(e.id) ?? 0), 0);
+    const rows = events.map((e) => {
+      const monto = budgetByEvent.get(e.id) ?? 0;
+      const pagado = paidByEvent.get(e.id) ?? 0;
+      return {
+        id: e.id,
+        code: e.code,
+        suffix: e.suffix,
+        name: e.name,
+        monto: this.round2(monto),
+        pagado: this.round2(pagado),
+        pendiente: this.round2(Math.max(0, monto - pagado)),
+      };
+    });
+
+    return {
+      resource: {
+        code: resource.code,
+        name: resource.name,
+        amount: valorRef,
+        year: resource.year,
+        fechaInicio: resource.fechaInicio,
+        fechaFin: resource.fechaFin,
+      },
+      events: rows,
+      totalPaid: this.round2(totalPaid),
+      totalParticipation: this.round2(totalParticipation),
+      disponible: this.round2(Math.max(0, valorRef - totalPaid)),
+      pctEjecucion: valorRef > 0 ? this.round2((totalPaid / valorRef) * 100) : 0,
+      pctParticipacion: valorRef > 0 ? this.round2((totalParticipation / valorRef) * 100) : 0,
+    };
+  }
+
+  async generateResourcePaymentPdf(disbursementId: string, res: Response): Promise<void> {
+    const data = await this.loadResourcePaymentData(disbursementId);
+    const doc = new PDFDocument({ margin: 45, size: 'LETTER', bufferPages: true });
+    const slug = (data.resource.code ?? data.resource.name).replace(/[^a-zA-Z0-9_-]/g, '-');
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=ejecucion-recurso-${slug}.pdf`);
+    doc.pipe(res);
+
+    const PAGE_W = 612;
+    const M = 45;
+    const CW = PAGE_W - M * 2;
+    const INK = '#111827';
+    const MUTED = '#6b7280';
+    const SAFE_Y = 724;
+    const FOOTER_Y = 736;
+
+    const sectionTitle = (title: string) => {
+      if (doc.y + 34 > SAFE_Y) doc.addPage();
+      doc.moveDown(0.8);
+      doc.fillColor(INK).font('Helvetica-Bold').fontSize(11);
+      doc.text(title, M, doc.y);
+      doc.moveDown(0.25);
+      doc.moveTo(M, doc.y).lineTo(M + CW, doc.y).lineWidth(1).stroke('#d1d5db');
+      doc.moveDown(0.45);
+    };
+
+    const field = (key: string, value: string) => {
+      doc.fillColor(MUTED).font('Helvetica-Bold').fontSize(7.5);
+      doc.text(key.toUpperCase(), M, doc.y);
+      doc.fillColor(INK).font('Helvetica').fontSize(9);
+      const h = doc.heightOfString(value, { width: CW });
+      doc.text(value, M, doc.y + 10, { width: CW });
+      doc.y += h + 8;
+    };
+
+    doc.fillColor(MUTED).font('Helvetica').fontSize(7.5);
+    doc.text('SIGEV — Sistema Integrado de Gestión de Eventos', 0, 40, { width: PAGE_W, align: 'center' });
+    doc.fillColor(INK).font('Helvetica-Bold').fontSize(16);
+    doc.text('EJECUCIÓN DEL RECURSO DISPONIBLE', M, 54);
+    doc.fillColor(MUTED).font('Helvetica').fontSize(8.5);
+    doc.text('Indicadores de ejecución y participación sobre el Valor REF', M, 76);
+    doc.fillColor(INK).font('Helvetica-Bold').fontSize(12);
+    doc.text(data.resource.code ?? data.resource.name, M, 56, { width: CW - 8, align: 'right' });
+    doc.fillColor(MUTED).font('Helvetica').fontSize(8.5);
+    doc.text('Recurso disponible', M, 78, { width: CW - 8, align: 'right' });
+    doc.moveTo(M, 94).lineTo(M + CW, 94).lineWidth(1.2).stroke(INK);
+    doc.moveTo(M, 96.5).lineTo(M + CW, 96.5).lineWidth(0.5).stroke('#d1d5db');
+    doc.y = 112;
+
+    doc.font('Helvetica').fontSize(8.5).fillColor(MUTED);
+    doc.text(
+      `Generado el ${this.dateCO(new Date())}  ·  Vigencia ${this.dateCO(data.resource.fechaInicio)} a ${this.dateCO(data.resource.fechaFin)}`,
+      M, doc.y, { width: CW, align: 'center' },
+    );
+    doc.moveDown(0.6);
+
+    sectionTitle('Datos del recurso');
+    field('Nombre', data.resource.name);
+    field('Valor REF', this.money(data.resource.amount));
+
+    sectionTitle('Indicadores (límite 100%)');
+    const indicator = (label: string, value: string, pct: number, color: string) => {
+      const y0 = doc.y;
+      doc.roundedRect(M, y0, CW, 52, 4).lineWidth(0.7).stroke('#d1d5db');
+      doc.fillColor(MUTED).font('Helvetica-Bold').fontSize(7);
+      doc.text(label.toUpperCase(), M + 10, y0 + 10);
+      doc.fillColor(INK).font('Helvetica-Bold').fontSize(11);
+      doc.text(value, M + 10, y0 + 22);
+      doc.fillColor(color).font('Helvetica-Bold').fontSize(9);
+      doc.text(pct.toFixed(2) + '%', M + 10, y0 + 38);
+      doc.y = y0 + 62;
+    };
+    const half = CW / 2 - 5;
+    indicator('Valor REF', this.money(data.resource.amount), 0, INK);
+    doc.y = doc.y - 62;
+    doc.x = M + CW / 2 + 5;
+    indicator('Ejecutado', this.money(data.totalPaid), data.pctEjecucion, '#22c55e');
+    doc.x = M;
+    indicator('Disponible', this.money(data.disponible), 0, INK);
+    doc.y = doc.y - 62;
+    doc.x = M + CW / 2 + 5;
+    indicator('% Ejecución', `${data.pctEjecucion.toFixed(2)}%`, data.pctEjecucion, '#22c55e');
+    doc.x = M;
+    indicator('Participación de eventos', `${data.pctParticipacion.toFixed(2)}%`, data.pctParticipacion, '#6366f1');
+    doc.y = doc.y - 62;
+    doc.x = M + CW / 2 + 5;
+    indicator('Total eventos asociados', String(data.events.length), 0, INK);
+    doc.x = M;
+
+    doc.y += 10;
+    sectionTitle('Detalle por evento');
+    const rows = data.events.map((e) => {
+      const eventCode = e.code + (e.suffix ? `-${e.suffix}` : '');
+      return [
+        `${eventCode} · ${e.name}`,
+        this.money(e.monto),
+        this.money(e.pagado),
+        this.money(e.pendiente),
+      ];
+    });
+    this.drawPdfTable(doc, {
+      columns: [
+        { header: 'Evento', width: 250 },
+        { header: 'Monto', width: 78, align: 'right' },
+        { header: 'Pagado', width: 78, align: 'right' },
+        { header: 'Pendiente', width: 78, align: 'right' },
+      ],
+      rows,
+      startY: doc.y + 6,
+      footer: [
+        'TOTALES',
+        this.money(data.totalParticipation),
+        this.money(data.totalPaid),
+        this.money(data.events.reduce((s, e) => s + e.pendiente, 0)),
+      ],
+    });
+
+    const range = doc.bufferedPageRange();
+    for (let i = range.start; i < range.start + range.count; i++) {
+      doc.switchToPage(i);
+      doc.moveTo(M, FOOTER_Y - 6).lineTo(M + CW, FOOTER_Y - 6).lineWidth(0.6).stroke('#d1d5db');
+      doc.fillColor(MUTED).font('Helvetica').fontSize(7);
+      doc.text('SIGEV — Sistema Integrado de Gestión de Eventos', M, FOOTER_Y, { width: CW / 2 });
+      doc.text(`Página ${i - range.start + 1} de ${range.count}`, M, FOOTER_Y, { width: CW - M, align: 'right' });
+    }
+
+    doc.end();
+  }
+
+  async generateResourcePaymentExcel(disbursementId: string, res: Response): Promise<void> {
+    const data = await this.loadResourcePaymentData(disbursementId);
+    const workbook = new ExcelJS.Workbook();
+
+    const wsInd = workbook.addWorksheet('Indicadores');
+    wsInd.columns = [{ width: 30 }, { width: 18 }, { width: 16 }];
+    const title = wsInd.addRow(['Ejecución del recurso disponible']);
+    wsInd.mergeCells(1, 1, 1, 3);
+    title.font = { bold: true, size: 14 };
+    wsInd.addRow([]);
+    wsInd.addRow(['Indicador', 'Valor', 'Porcentaje']);
+    wsInd.addRow(['Valor REF', Number(data.resource.amount), '']);
+    wsInd.addRow(['Ejecutado', Number(data.totalPaid), Number(data.pctEjecucion.toFixed(2))]);
+    wsInd.addRow(['Disponible', Number(data.disponible), '']);
+    wsInd.addRow(['Participación de eventos', Number(data.totalParticipation), Number(data.pctParticipacion.toFixed(2))]);
+    const indHeader = 3;
+    for (let r = indHeader + 1; r <= wsInd.rowCount; r++) wsInd.getCell(r, 2).numFmt = '"$"#,##0.00';
+    for (let r = indHeader + 1; r <= wsInd.rowCount; r++) {
+      const pctCell = wsInd.getCell(r, 3);
+      if (typeof pctCell.value === 'number') pctCell.numFmt = '0.00"%"';
+    }
+    wsInd.getRow(indHeader).font = { bold: true };
+
+    const wsEvents = workbook.addWorksheet('Por evento');
+    wsEvents.columns = [
+      { width: 18 }, { width: 40 }, { width: 16 }, { width: 16 }, { width: 16 },
+    ];
+    const titleE = wsEvents.addRow(['Detalle por evento']);
+    wsEvents.mergeCells(1, 1, 1, 5);
+    titleE.font = { bold: true, size: 14 };
+    wsEvents.addRow([]);
+    wsEvents.addRow(['Evento', 'Nombre', 'Monto', 'Pagado', 'Pendiente']);
+    data.events.forEach((e) => {
+      const code = e.code + (e.suffix ? `-${e.suffix}` : '');
+      wsEvents.addRow([code, e.name, Number(e.monto), Number(e.pagado), Number(e.pendiente)]);
+    });
+    wsEvents.addRow([
+      'TOTALES', '',
+      Number(data.totalParticipation),
+      Number(data.totalPaid),
+      Number(data.events.reduce((s, e) => s + e.pendiente, 0)),
+    ]);
+    const evHeader = 3;
+    for (let r = evHeader + 1; r <= wsEvents.rowCount; r++) {
+      for (const c of [3, 4, 5]) wsEvents.getCell(r, c).numFmt = '"$"#,##0.00';
+    }
+    wsEvents.getRow(evHeader).font = { bold: true };
+    wsEvents.getRow(wsEvents.rowCount).font = { bold: true };
+
+    const slug = (data.resource.code ?? data.resource.name).replace(/[^a-zA-Z0-9_-]/g, '-');
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename=ejecucion-recurso-${slug}.xlsx`);
+    await workbook.xlsx.write(res);
+    res.end();
+  }
 }

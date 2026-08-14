@@ -65,6 +65,7 @@ export const ModelName = {
   OfertaEconomicaItem: 'OfertaEconomicaItem',
   Disbursement: 'Disbursement',
   Payment: 'Payment',
+  PaymentItem: 'PaymentItem',
   Tariff: 'Tariff',
   AuditLog: 'AuditLog',
   Municipality: 'Municipality',
@@ -186,6 +187,7 @@ export const AttachmentScalarFieldEnum = {
   category: 'category',
   eventId: 'eventId',
   quotationId: 'quotationId',
+  paymentId: 'paymentId',
   uploadedById: 'uploadedById',
   createdAt: 'createdAt'
 } as const
@@ -378,9 +380,9 @@ export const PaymentScalarFieldEnum = {
   eventId: 'eventId',
   disbursementId: 'disbursementId',
   amount: 'amount',
-  type: 'type',
+  method: 'method',
+  esAdicional: 'esAdicional',
   status: 'status',
-  paymentDate: 'paymentDate',
   description: 'description',
   createdById: 'createdById',
   createdAt: 'createdAt',
@@ -388,6 +390,17 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const PaymentItemScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  itemId: 'itemId',
+  amount: 'amount',
+  createdAt: 'createdAt'
+} as const
+
+export type PaymentItemScalarFieldEnum = (typeof PaymentItemScalarFieldEnum)[keyof typeof PaymentItemScalarFieldEnum]
 
 
 export const TariffScalarFieldEnum = {
