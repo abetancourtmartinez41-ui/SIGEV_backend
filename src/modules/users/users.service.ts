@@ -6,6 +6,7 @@ import { Prisma } from '../../generated/prisma/client';
 import { UserWithRoles } from '../../database/types';
 import * as bcrypt from 'bcryptjs';
 import { CreateUserDto, UpdateUserDto } from './dto';
+import { ROLES } from '../../config/constants';
 
 const userInclude = { roles: true, ally: true } as const;
 
@@ -21,6 +22,10 @@ export class UsersService {
   }
 
   async create(dto: CreateUserDto): Promise<UserWithRoles> {
+    if (dto.roles?.includes(ROLES.OPERATOR)) {
+      throw new BadRequestException('El rol Operador está reservado para el usuario Pubblica');
+    }
+
     const existing = await this.prisma.user.findFirst({
       where: {
         OR: [{ document: dto.document }, { email: dto.email }],
@@ -71,6 +76,18 @@ export class UsersService {
 
   async update(id: string, dto: UpdateUserDto): Promise<UserWithRoles> {
     const current = await this.findOne(id);
+
+    const isOperator = current.roles.some((role) => role.name === ROLES.OPERATOR);
+    if (isOperator) {
+      if (typeof dto.isActive === 'boolean') {
+        throw new BadRequestException('El estado del Operador (Pubblica) no puede modificarse');
+      }
+      if (dto.roles && (dto.roles.length !== 1 || dto.roles[0] !== ROLES.OPERATOR)) {
+        throw new BadRequestException('El rol del Operador (Pubblica) no puede modificarse');
+      }
+    } else if (dto.roles?.includes(ROLES.OPERATOR)) {
+      throw new BadRequestException('El rol Operador está reservado para el usuario Pubblica');
+    }
 
     const nextRoles = dto.roles?.length
       ? await this.prisma.role.findMany({ where: { name: { in: dto.roles } } })

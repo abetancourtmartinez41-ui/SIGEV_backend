@@ -78,6 +78,7 @@ export class SeedService implements OnApplicationBootstrap {
     try {
       await this.ensureRoles();
       await this.ensureAdminUser();
+      await this.ensureOperatorUser();
       await this.ensureParameters();
       await this.ensureMunicipalities();
       await this.ensureTariffs();
@@ -134,6 +135,57 @@ export class SeedService implements OnApplicationBootstrap {
         },
       });
       console.log(`[Seed] Roles asignados al Administrador: ${missingRoles.join(', ')}`);
+    }
+  }
+
+  private async ensureOperatorUser() {
+    let user = await this.prisma.user.findUnique({
+      where: { document: 'Pubblica' },
+      include: { roles: true },
+    });
+
+    if (!user) {
+      const hashedPassword = await bcrypt.hash('Pubblica123*', 10);
+      user = await this.prisma.user.create({
+        data: {
+          document: 'Pubblica',
+          fullName: 'Operador Pubblica',
+          email: 'pubblica@sigev.com',
+          password: hashedPassword,
+          isActive: true,
+        },
+        include: { roles: true },
+      });
+      console.log('[Seed] Usuario Operador (Pubblica) creado exitosamente');
+    } else {
+      console.log('[Seed] Usuario Operador (Pubblica) ya existe');
+    }
+
+    const operatorRole = ROLES.OPERATOR;
+    if (!user.roles.some((assigned) => assigned.name === operatorRole)) {
+      await this.prisma.user.update({
+        where: { id: user.id },
+        data: {
+          roles: { connect: { name: operatorRole } },
+        },
+      });
+      console.log(`[Seed] Rol Operador asignado al usuario Pubblica`);
+    }
+
+    const otherOperators = await this.prisma.user.findMany({
+      where: { id: { not: user.id }, roles: { some: { name: operatorRole } } },
+      select: { id: true },
+    });
+    for (const other of otherOperators) {
+      await this.prisma.user.update({
+        where: { id: other.id },
+        data: { roles: { disconnect: { name: operatorRole } } },
+      });
+    }
+    if (otherOperators.length) {
+      console.log(
+        `[Seed] Rol Operador retirado de ${otherOperators.length} usuario(s) no autorizado(s); solo existe un Operador (Pubblica)`,
+      );
     }
   }
 
