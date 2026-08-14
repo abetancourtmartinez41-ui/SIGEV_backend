@@ -8,7 +8,7 @@ import { CreateEventDto, UpdateEventDto, ChangeStatusDto } from './dto';
 import { EventStateMachine } from './state-machine';
 import { ItemsService } from '../items/items.service';
 import { NotificationsService } from '../notifications/notifications.service';
-import { EVENT_STATUS, ROLES, REQUIRED_QUOTATIONS_COUNT } from '../../config/constants';
+import { EVENT_STATUS, ROLES } from '../../config/constants';
 import { MODIFIABLE_FOLDERS } from '../attachments/attachments-folders';
 
 const eventInclude = {
@@ -430,12 +430,9 @@ export class EventsService {
       this.assertExecutionSupportDocuments(event, dto.status);
     }
 
-    if (
-      dto.status === EVENT_STATUS.CERRADO &&
-      quotationsCount < REQUIRED_QUOTATIONS_COUNT
-    ) {
+    if (dto.status === EVENT_STATUS.CERRADO && quotationsCount < 1) {
       throw new BadRequestException(
-        `Para cerrar el evento se requieren al menos ${REQUIRED_QUOTATIONS_COUNT} cotizaciones registradas. Actualmente hay ${quotationsCount}.`,
+        'Para cerrar el evento se requiere al menos una cotización registrada.',
       );
     }
 

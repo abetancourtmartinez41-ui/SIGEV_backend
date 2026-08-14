@@ -75,8 +75,6 @@ export const MUNICIPALITY_CATEGORY_TO_TARIFF_GROUP: Record<string, string> = {
 
 export const DEFAULT_VIGENCY_YEAR = 2026;
 
-export const REQUIRED_QUOTATIONS_COUNT = 3;
-
 export const COLOMBIA_CURRENCY = {
   locale: 'es-CO',
   currency: 'COP',

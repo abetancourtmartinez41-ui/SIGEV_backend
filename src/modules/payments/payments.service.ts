@@ -94,6 +94,49 @@ export class PaymentsService {
     return Number(agg._sum.amount ?? 0);
   }
 
+  private normalizeBudgetKey(value: string): string {
+    return value.trim().replace(/\s+/g, ' ').toLowerCase();
+  }
+
+  private async buildOfferBudgetByKey(
+    eventId: string,
+  ): Promise<Map<string, number>> {
+    const oferta = await this.prisma.ofertaEconomica.findFirst({
+      where: { eventId, isActive: true },
+      select: {
+        items: { select: { description: true, totalValue: true } },
+      },
+    });
+    const budget = new Map<string, number>();
+    for (const item of oferta?.items ?? []) {
+      const key = this.normalizeBudgetKey(item.description);
+      budget.set(key, (budget.get(key) ?? 0) + Number(item.totalValue));
+    }
+    return budget;
+  }
+
+  private resolveItemPending(
+    item: {
+      name: string;
+      description: string | null;
+      totalValue: number | string | Prisma.Decimal;
+    },
+    offerBudgetByKey: Map<string, number>,
+    paidItem: number,
+  ): number {
+    let budget: number | undefined;
+    for (const key of [item.name, item.description ?? '']) {
+      if (!key.trim()) continue;
+      const candidate = offerBudgetByKey.get(this.normalizeBudgetKey(key));
+      if (candidate !== undefined) {
+        budget = candidate;
+        break;
+      }
+    }
+    const itemBudget = budget ?? Number(item.totalValue);
+    return Math.max(0, itemBudget - paidItem);
+  }
+
   private assertPositiveAmount(amount: number): void {
     if (!Number.isFinite(amount) || amount <= 0) {
       throw new BadRequestException('El monto del pago debe ser mayor a cero');
@@ -158,14 +201,16 @@ export class PaymentsService {
         'El evento no cuenta con ítems activos para asociar al pago',
       );
     }
-    const byId = new Map(targetItems.map((item) => [item.id, item]));
-    if (requestedIds.some((id) => !byId.has(id))) {
-      throw new BadRequestException(
-        'Uno de los ítems no pertenece al evento o está inactivo',
-      );
-    }
+  const byId = new Map(targetItems.map((item) => [item.id, item]));
+  if (requestedIds.some((id) => !byId.has(id))) {
+    throw new BadRequestException(
+      'Uno de los ítems no pertenece al evento o está inactivo',
+    );
+  }
 
-    let allocations: Allocation[];
+  const offerBudgetByKey = await this.buildOfferBudgetByKey(eventId);
+
+  let allocations: Allocation[];
     if (dto.method === 'por_item') {
       allocations = [];
       let sum = 0;
@@ -174,7 +219,7 @@ export class PaymentsService {
         const itemAmount = Number(row.amount);
         this.assertPositiveAmount(itemAmount);
         const paidItem = await this.itemPaid(row.itemId);
-        const pending = Number(item.totalValue) - paidItem;
+        const pending = this.resolveItemPending(item, offerBudgetByKey, paidItem);
         if (itemAmount > pending + 0.001) {
           throw new BadRequestException(
             `El monto asignado al ítem "${item.name}" excede su saldo pendiente (${pending.toFixed(2)})`,
@@ -211,7 +256,7 @@ export class PaymentsService {
           );
         }
         const paidItem = await this.itemPaid(item.id);
-        const pending = Number(item.totalValue) - paidItem;
+        const pending = this.resolveItemPending(item, offerBudgetByKey, paidItem);
         if (itemAmount > pending + 0.001) {
           throw new BadRequestException(
             `La porción asignada al ítem "${item.name}" excede su saldo pendiente (${pending.toFixed(2)})`,
