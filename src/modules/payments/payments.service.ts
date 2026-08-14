@@ -86,57 +86,6 @@ export class PaymentsService {
     return Number(agg._sum.amount ?? 0);
   }
 
-  private async itemPaid(itemId: string): Promise<number> {
-    const agg = await this.prisma.paymentItem.aggregate({
-      where: { itemId, payment: { status: { not: 'Anulado' } } },
-      _sum: { amount: true },
-    });
-    return Number(agg._sum.amount ?? 0);
-  }
-
-  private normalizeBudgetKey(value: string): string {
-    return value.trim().replace(/\s+/g, ' ').toLowerCase();
-  }
-
-  private async buildOfferBudgetByKey(
-    eventId: string,
-  ): Promise<Map<string, number>> {
-    const oferta = await this.prisma.ofertaEconomica.findFirst({
-      where: { eventId, isActive: true },
-      select: {
-        items: { select: { description: true, totalValue: true } },
-      },
-    });
-    const budget = new Map<string, number>();
-    for (const item of oferta?.items ?? []) {
-      const key = this.normalizeBudgetKey(item.description);
-      budget.set(key, (budget.get(key) ?? 0) + Number(item.totalValue));
-    }
-    return budget;
-  }
-
-  private resolveItemPending(
-    item: {
-      name: string;
-      description: string | null;
-      totalValue: number | string | Prisma.Decimal;
-    },
-    offerBudgetByKey: Map<string, number>,
-    paidItem: number,
-  ): number {
-    let budget: number | undefined;
-    for (const key of [item.name, item.description ?? '']) {
-      if (!key.trim()) continue;
-      const candidate = offerBudgetByKey.get(this.normalizeBudgetKey(key));
-      if (candidate !== undefined) {
-        budget = candidate;
-        break;
-      }
-    }
-    const itemBudget = budget ?? Number(item.totalValue);
-    return Math.max(0, itemBudget - paidItem);
-  }
-
   private assertPositiveAmount(amount: number): void {
     if (!Number.isFinite(amount) || amount <= 0) {
       throw new BadRequestException('El monto del pago debe ser mayor a cero');
@@ -208,8 +157,6 @@ export class PaymentsService {
     );
   }
 
-  const offerBudgetByKey = await this.buildOfferBudgetByKey(eventId);
-
   let allocations: Allocation[];
     if (dto.method === 'por_item') {
       allocations = [];
@@ -218,13 +165,6 @@ export class PaymentsService {
         const item = byId.get(row.itemId)!;
         const itemAmount = Number(row.amount);
         this.assertPositiveAmount(itemAmount);
-        const paidItem = await this.itemPaid(row.itemId);
-        const pending = this.resolveItemPending(item, offerBudgetByKey, paidItem);
-        if (itemAmount > pending + 0.001) {
-          throw new BadRequestException(
-            `El monto asignado al ítem "${item.name}" excede su saldo pendiente (${pending.toFixed(2)})`,
-          );
-        }
         sum += itemAmount;
         allocations.push({
           itemId: row.itemId,
@@ -253,13 +193,6 @@ export class PaymentsService {
         if (itemAmount <= 0) {
           throw new BadRequestException(
             'El monto del pago es muy pequeño para prorratearlo entre todos los ítems',
-          );
-        }
-        const paidItem = await this.itemPaid(item.id);
-        const pending = this.resolveItemPending(item, offerBudgetByKey, paidItem);
-        if (itemAmount > pending + 0.001) {
-          throw new BadRequestException(
-            `La porción asignada al ítem "${item.name}" excede su saldo pendiente (${pending.toFixed(2)})`,
           );
         }
         acc += itemAmount;
@@ -343,14 +276,6 @@ export class PaymentsService {
           `La participación de los eventos asociados al recurso "${disbursement.name}" excede su Valor REF (${Number(disbursement.amount).toFixed(2)})`,
         );
       }
-    }
-
-    const paidEvent = await this.sumPaymentsBy({ eventId: event.id });
-    const saldoOferta = budgetEvent - paidEvent;
-    if (amount > saldoOferta + 0.001) {
-      throw new BadRequestException(
-        `El pago excede el saldo disponible de la oferta económica del evento (saldo: ${saldoOferta.toFixed(2)})`,
-      );
     }
 
     const saldoDisb = Number(disbursement.amount) - paidResource;
@@ -548,16 +473,6 @@ export class PaymentsService {
       );
     }
     const budgetEvent = Number(oferta.total);
-
-    const paidEventOthers =
-      (await this.sumPaymentsBy({ eventId: payment.eventId })) -
-      Number(payment.amount);
-    const saldoOferta = budgetEvent - paidEventOthers;
-    if (nextAmount > saldoOferta + 0.001) {
-      throw new BadRequestException(
-        `El pago excede el saldo disponible de la oferta económica del evento (saldo: ${saldoOferta.toFixed(2)})`,
-      );
-    }
 
     const disbursementId =
       dto.disbursementId !== undefined
