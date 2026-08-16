@@ -193,7 +193,7 @@ export class EventsService {
   }
 
   async findAll(
-    user?: { allyId?: string | null; roles: { name: string }[] },
+    user?: { id?: string; allyId?: string | null; roles: { name: string }[] },
     options?: { includeDeleted?: boolean },
   ): Promise<EventWithRelations[]> {
     const where: Prisma.EventWhereInput = {};
@@ -207,6 +207,10 @@ export class EventsService {
       }
     } else {
       where.deletedAt = null;
+    }
+
+    if (user && this.roleNames(user.roles).includes(ROLES.SOLICITANTE) && user.id) {
+      where.createdById = user.id;
     }
 
     return this.prisma.event.findMany({
