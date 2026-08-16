@@ -301,6 +301,9 @@ export class EventsService {
         where: { id },
         data: {
           ...municipality,
+          code: nextCode,
+          name: dto.name !== undefined ? dto.name : undefined,
+          description: dto.description !== undefined ? dto.description : undefined,
           schemaType: dto.schemaType !== undefined ? dto.schemaType : undefined,
           suffix: nextSuffix,
           disbursementId: dto.disbursementId ?? event.disbursementId,
