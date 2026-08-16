@@ -178,29 +178,56 @@ export class PaymentsService {
         );
       }
     } else {
-      const n = targetItems.length;
-      if (amount < n) {
-        throw new BadRequestException(
-          'El monto del pago es muy pequeño para prorratearlo entre todos los ítems',
-        );
-      }
-      const base = Math.floor((amount / n) * 100) / 100;
-      allocations = [];
-      let acc = 0;
-      for (let i = 0; i < n; i++) {
-        const item = targetItems[i];
-        const itemAmount = i === n - 1 ? this.round2(amount - acc) : base;
-        if (itemAmount <= 0) {
+      if (items && items.length > 0) {
+        allocations = [];
+        let sum = 0;
+        for (const row of items) {
+          const item = byId.get(row.itemId);
+          if (!item) continue;
+          const itemAmount = Number(row.amount);
+          this.assertPositiveAmount(itemAmount);
+          sum += itemAmount;
+          allocations.push({
+            itemId: row.itemId,
+            itemName: item.name,
+            amount: this.round2(itemAmount),
+          });
+        }
+        if (allocations.length === 0) {
+          throw new BadRequestException(
+            'Debe incluir al menos un ítem válido para el prorrateo',
+          );
+        }
+        if (Math.abs(sum - amount) > 0.01) {
+          throw new BadRequestException(
+            `La suma de los ítems (${sum.toFixed(2)}) debe coincidir con el monto del pago (${amount.toFixed(2)})`,
+          );
+        }
+      } else {
+        const n = targetItems.length;
+        if (amount < n) {
           throw new BadRequestException(
             'El monto del pago es muy pequeño para prorratearlo entre todos los ítems',
           );
         }
-        acc += itemAmount;
-        allocations.push({
-          itemId: item.id,
-          itemName: item.name,
-          amount: this.round2(itemAmount),
-        });
+        const base = Math.floor((amount / n) * 100) / 100;
+        allocations = [];
+        let acc = 0;
+        for (let i = 0; i < n; i++) {
+          const item = targetItems[i];
+          const itemAmount = i === n - 1 ? this.round2(amount - acc) : base;
+          if (itemAmount <= 0) {
+            throw new BadRequestException(
+              'El monto del pago es muy pequeño para prorratearlo entre todos los ítems',
+            );
+          }
+          acc += itemAmount;
+          allocations.push({
+            itemId: item.id,
+            itemName: item.name,
+            amount: this.round2(itemAmount),
+          });
+        }
       }
     }
 
