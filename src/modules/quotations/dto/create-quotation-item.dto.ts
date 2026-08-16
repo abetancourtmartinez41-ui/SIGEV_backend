@@ -6,6 +6,13 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateQuotationItemDto {
   @ApiPropertyOptional({
+    description: 'Ítem de la orden (requerimiento) que dio origen a este ítem de cotización',
+  })
+  @IsOptional()
+  @IsString()
+  itemId?: string;
+
+  @ApiPropertyOptional({
     description: 'Descripción del ítem. Se completa automáticamente desde el tarifario si se envía tariffId',
   })
   @IsOptional()

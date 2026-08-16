@@ -12,12 +12,22 @@ import { EVENT_STATUS, ROLES } from '../../config/constants';
 import { MODIFIABLE_FOLDERS } from '../attachments/attachments-folders';
 
 const eventInclude = {
-  items: { where: { isActive: true } },
+  items: {
+    where: { isActive: true },
+    include: { paymentItems: { select: { id: true } } },
+  },
   attachments: true,
   createdBy: true,
   disbursement: true,
   selectedQuotation: { include: { ally: true } },
-  quotations: { where: { isActive: true }, include: { ally: true }, orderBy: { createdAt: 'asc' as const } },
+  quotations: {
+    where: { isActive: true },
+    include: {
+      ally: true,
+      items: { where: { isActive: true }, select: { itemId: true } },
+    },
+    orderBy: { createdAt: 'asc' as const },
+  },
   ofertaEconomica: {
     include: { items: { orderBy: { createdAt: 'asc' as const } } },
   },
@@ -287,7 +297,9 @@ export class EventsService {
 
     const { items, ...data } = dto as UpdateEventDto & { items?: CreateEventDto['items'] };
 
-    if (items && event.cotizacionSeleccionadaId && !isSolicitante) {
+    const hasApprovedQuotation = !!event.cotizacionSeleccionadaId;
+
+    if (items && hasApprovedQuotation && !isSolicitante) {
       throw new BadRequestException(
         'La cotización del evento ya fue aprobada; no se pueden añadir ni modificar ítems',
       );
@@ -334,11 +346,59 @@ export class EventsService {
               : event.startDate,
         };
 
+        const quotationLockedItemIds = new Set<string>();
+        if (event.cotizacionSeleccionadaId) {
+          const approvedQuotationItems = await tx.quotationItem.findMany({
+            where: { quotationId: event.cotizacionSeleccionadaId, itemId: { not: null } },
+            select: { itemId: true },
+          });
+          for (const qi of approvedQuotationItems) {
+            if (qi.itemId) quotationLockedItemIds.add(qi.itemId);
+          }
+        }
+
         const existingItems = await tx.item.findMany({
           where: { eventId: id },
-          select: { id: true, paymentItems: { select: { id: true } } },
+          select: {
+            id: true,
+            name: true,
+            description: true,
+            unitMeasure: true,
+            quantity: true,
+            unitPrice: true,
+            tariffId: true,
+            isTariffed: true,
+            allyId: true,
+            paymentItems: { select: { id: true } },
+          },
         });
         const existingIds = new Set(existingItems.map((existing) => existing.id));
+
+        const isLocked = (existing: (typeof existingItems)[number]) =>
+          quotationLockedItemIds.has(existing.id) || existing.paymentItems.length > 0;
+
+        const sameValues = (
+          itemDto: NonNullable<CreateEventDto['items']>[number],
+          existing: (typeof existingItems)[number],
+        ): boolean => {
+          const incomingDescription = (itemDto.description ?? '').trim();
+          const currentDescription = (existing.description ?? '').trim();
+          const sameDescription =
+            incomingDescription === currentDescription ||
+            (currentDescription === '' && incomingDescription === (existing.name ?? '').trim());
+          return (
+            (itemDto.name ?? null) === existing.name &&
+            sameDescription &&
+            (itemDto.unitMeasure ?? null) === (existing.unitMeasure ?? null) &&
+            Number(itemDto.quantity) === existing.quantity &&
+            (itemDto.unitPrice === undefined ||
+              Number(itemDto.unitPrice) === Number(existing.unitPrice)) &&
+            (itemDto.tariffId ?? null) === (existing.tariffId ?? null) &&
+            (itemDto.isTariffed === undefined || itemDto.isTariffed === existing.isTariffed) &&
+            (itemDto.allyId ?? null) === (existing.allyId ?? null)
+          );
+        };
+
         const incomingIds = new Set(
           items
             .filter((itemDto) => itemDto.id && existingIds.has(itemDto.id))
@@ -346,7 +406,19 @@ export class EventsService {
         );
 
         for (const itemDto of items) {
+          if (!itemDto.id || !existingIds.has(itemDto.id)) continue;
+          const existing = existingItems.find((e) => e.id === itemDto.id);
+          if (existing && isLocked(existing) && !sameValues(itemDto, existing)) {
+            throw new BadRequestException(
+              'No se puede modificar el ítem porque ya fue pagado o está asociado a una cotización aprobada',
+            );
+          }
+        }
+
+        for (const itemDto of items) {
           if (itemDto.id && existingIds.has(itemDto.id)) {
+            const existing = existingItems.find((e) => e.id === itemDto.id);
+            if (existing && isLocked(existing)) continue;
             const updateData = await this.itemsService.buildItemData(itemDto, eventContext);
             await tx.item.update({
               where: { id: itemDto.id },
@@ -368,14 +440,12 @@ export class EventsService {
 
         for (const existing of existingItems) {
           if (incomingIds.has(existing.id)) continue;
-          if (existing.paymentItems.length > 0) {
-            await tx.item.update({
-              where: { id: existing.id },
-              data: { isActive: false },
-            });
-          } else {
-            await tx.item.delete({ where: { id: existing.id } });
+          if (isLocked(existing)) {
+            throw new BadRequestException(
+              'No se puede eliminar el ítem porque ya fue pagado o está asociado a una cotización aprobada',
+            );
           }
+          await tx.item.delete({ where: { id: existing.id } });
         }
       }
 

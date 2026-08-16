@@ -115,6 +115,7 @@ model Item {
   createdAt           DateTime @default(now()) @db.Timestamptz
   updatedAt           DateTime @updatedAt @db.Timestamptz
   paymentItems        PaymentItem[]
+  quotationItems      QuotationItem[]
 
   @@map("items")
 }
@@ -237,6 +238,7 @@ model Quotation {
 model QuotationItem {
   id                  String    @id @default(uuid()) @db.Uuid
   quotationId         String    @db.Uuid
+  itemId              String?   @db.Uuid
   description         String    @db.Text
   quantity            Int
   unitPrice           Decimal   @db.Decimal(15, 2)
@@ -253,6 +255,7 @@ model QuotationItem {
   tariffId            String?   @db.Uuid
   isTariffed          Boolean   @default(true)
   quotation           Quotation @relation(fields: [quotationId], references: [id])
+  item                Item?     @relation(fields: [itemId], references: [id])
   ally                Ally?     @relation(fields: [allyId], references: [id])
   tariff              Tariff?   @relation(fields: [tariffId], references: [id])
   ofertaEconomicaItems OfertaEconomicaItem[]

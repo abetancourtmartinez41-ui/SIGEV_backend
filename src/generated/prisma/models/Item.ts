@@ -407,6 +407,7 @@ export type ItemWhereInput = {
   tariff?: Prisma.XOR<Prisma.TariffNullableScalarRelationFilter, Prisma.TariffWhereInput> | null
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   paymentItems?: Prisma.PaymentItemListRelationFilter
+  quotationItems?: Prisma.QuotationItemListRelationFilter
 }
 
 export type ItemOrderByWithRelationInput = {
@@ -436,6 +437,7 @@ export type ItemOrderByWithRelationInput = {
   tariff?: Prisma.TariffOrderByWithRelationInput
   event?: Prisma.EventOrderByWithRelationInput
   paymentItems?: Prisma.PaymentItemOrderByRelationAggregateInput
+  quotationItems?: Prisma.QuotationItemOrderByRelationAggregateInput
 }
 
 export type ItemWhereUniqueInput = Prisma.AtLeast<{
@@ -468,6 +470,7 @@ export type ItemWhereUniqueInput = Prisma.AtLeast<{
   tariff?: Prisma.XOR<Prisma.TariffNullableScalarRelationFilter, Prisma.TariffWhereInput> | null
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   paymentItems?: Prisma.PaymentItemListRelationFilter
+  quotationItems?: Prisma.QuotationItemListRelationFilter
 }, "id">
 
 export type ItemOrderByWithAggregationInput = {
@@ -555,6 +558,7 @@ export type ItemCreateInput = {
   tariff?: Prisma.TariffCreateNestedOneWithoutItemsInput
   event: Prisma.EventCreateNestedOneWithoutItemsInput
   paymentItems?: Prisma.PaymentItemCreateNestedManyWithoutItemInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateInput = {
@@ -582,6 +586,7 @@ export type ItemUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   paymentItems?: Prisma.PaymentItemUncheckedCreateNestedManyWithoutItemInput
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemUpdateInput = {
@@ -609,6 +614,7 @@ export type ItemUpdateInput = {
   tariff?: Prisma.TariffUpdateOneWithoutItemsNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutItemsNestedInput
   paymentItems?: Prisma.PaymentItemUpdateManyWithoutItemNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateInput = {
@@ -636,6 +642,7 @@ export type ItemUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentItems?: Prisma.PaymentItemUncheckedUpdateManyWithoutItemNestedInput
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemCreateManyInput = {
@@ -832,6 +839,11 @@ export type ItemSumOrderByAggregateInput = {
   totalValue?: Prisma.SortOrder
 }
 
+export type ItemNullableScalarRelationFilter = {
+  is?: Prisma.ItemWhereInput | null
+  isNot?: Prisma.ItemWhereInput | null
+}
+
 export type ItemScalarRelationFilter = {
   is?: Prisma.ItemWhereInput
   isNot?: Prisma.ItemWhereInput
@@ -893,6 +905,22 @@ export type DecimalFieldUpdateOperationsInput = {
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type ItemCreateNestedOneWithoutQuotationItemsInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutQuotationItemsInput, Prisma.ItemUncheckedCreateWithoutQuotationItemsInput>
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutQuotationItemsInput
+  connect?: Prisma.ItemWhereUniqueInput
+}
+
+export type ItemUpdateOneWithoutQuotationItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutQuotationItemsInput, Prisma.ItemUncheckedCreateWithoutQuotationItemsInput>
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutQuotationItemsInput
+  upsert?: Prisma.ItemUpsertWithoutQuotationItemsInput
+  disconnect?: Prisma.ItemWhereInput | boolean
+  delete?: Prisma.ItemWhereInput | boolean
+  connect?: Prisma.ItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ItemUpdateToOneWithWhereWithoutQuotationItemsInput, Prisma.ItemUpdateWithoutQuotationItemsInput>, Prisma.ItemUncheckedUpdateWithoutQuotationItemsInput>
 }
 
 export type ItemCreateNestedOneWithoutPaymentItemsInput = {
@@ -975,6 +1003,7 @@ export type ItemCreateWithoutEventInput = {
   updatedAt?: Date | string
   tariff?: Prisma.TariffCreateNestedOneWithoutItemsInput
   paymentItems?: Prisma.PaymentItemCreateNestedManyWithoutItemInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateWithoutEventInput = {
@@ -1001,6 +1030,7 @@ export type ItemUncheckedCreateWithoutEventInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   paymentItems?: Prisma.PaymentItemUncheckedCreateNestedManyWithoutItemInput
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemCreateOrConnectWithoutEventInput = {
@@ -1058,6 +1088,130 @@ export type ItemScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Item"> | Date | string
 }
 
+export type ItemCreateWithoutQuotationItemsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  quantity: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  baseValue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: string | null
+  isTariffed?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tariff?: Prisma.TariffCreateNestedOneWithoutItemsInput
+  event: Prisma.EventCreateNestedOneWithoutItemsInput
+  paymentItems?: Prisma.PaymentItemCreateNestedManyWithoutItemInput
+}
+
+export type ItemUncheckedCreateWithoutQuotationItemsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  unitMeasure?: string | null
+  quantity: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  baseValue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: string | null
+  tariffId?: string | null
+  isTariffed?: boolean
+  eventId: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  paymentItems?: Prisma.PaymentItemUncheckedCreateNestedManyWithoutItemInput
+}
+
+export type ItemCreateOrConnectWithoutQuotationItemsInput = {
+  where: Prisma.ItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItemCreateWithoutQuotationItemsInput, Prisma.ItemUncheckedCreateWithoutQuotationItemsInput>
+}
+
+export type ItemUpsertWithoutQuotationItemsInput = {
+  update: Prisma.XOR<Prisma.ItemUpdateWithoutQuotationItemsInput, Prisma.ItemUncheckedUpdateWithoutQuotationItemsInput>
+  create: Prisma.XOR<Prisma.ItemCreateWithoutQuotationItemsInput, Prisma.ItemUncheckedCreateWithoutQuotationItemsInput>
+  where?: Prisma.ItemWhereInput
+}
+
+export type ItemUpdateToOneWithWhereWithoutQuotationItemsInput = {
+  where?: Prisma.ItemWhereInput
+  data: Prisma.XOR<Prisma.ItemUpdateWithoutQuotationItemsInput, Prisma.ItemUncheckedUpdateWithoutQuotationItemsInput>
+}
+
+export type ItemUpdateWithoutQuotationItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  baseValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isTariffed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tariff?: Prisma.TariffUpdateOneWithoutItemsNestedInput
+  event?: Prisma.EventUpdateOneRequiredWithoutItemsNestedInput
+  paymentItems?: Prisma.PaymentItemUpdateManyWithoutItemNestedInput
+}
+
+export type ItemUncheckedUpdateWithoutQuotationItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitMeasure?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  baseValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isTariffed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paymentItems?: Prisma.PaymentItemUncheckedUpdateManyWithoutItemNestedInput
+}
+
 export type ItemCreateWithoutPaymentItemsInput = {
   id?: string
   name: string
@@ -1082,6 +1236,7 @@ export type ItemCreateWithoutPaymentItemsInput = {
   updatedAt?: Date | string
   tariff?: Prisma.TariffCreateNestedOneWithoutItemsInput
   event: Prisma.EventCreateNestedOneWithoutItemsInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateWithoutPaymentItemsInput = {
@@ -1108,6 +1263,7 @@ export type ItemUncheckedCreateWithoutPaymentItemsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemCreateOrConnectWithoutPaymentItemsInput = {
@@ -1150,6 +1306,7 @@ export type ItemUpdateWithoutPaymentItemsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tariff?: Prisma.TariffUpdateOneWithoutItemsNestedInput
   event?: Prisma.EventUpdateOneRequiredWithoutItemsNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateWithoutPaymentItemsInput = {
@@ -1176,6 +1333,7 @@ export type ItemUncheckedUpdateWithoutPaymentItemsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemCreateWithoutTariffInput = {
@@ -1202,6 +1360,7 @@ export type ItemCreateWithoutTariffInput = {
   updatedAt?: Date | string
   event: Prisma.EventCreateNestedOneWithoutItemsInput
   paymentItems?: Prisma.PaymentItemCreateNestedManyWithoutItemInput
+  quotationItems?: Prisma.QuotationItemCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateWithoutTariffInput = {
@@ -1228,6 +1387,7 @@ export type ItemUncheckedCreateWithoutTariffInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   paymentItems?: Prisma.PaymentItemUncheckedCreateNestedManyWithoutItemInput
+  quotationItems?: Prisma.QuotationItemUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemCreateOrConnectWithoutTariffInput = {
@@ -1305,6 +1465,7 @@ export type ItemUpdateWithoutEventInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tariff?: Prisma.TariffUpdateOneWithoutItemsNestedInput
   paymentItems?: Prisma.PaymentItemUpdateManyWithoutItemNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateWithoutEventInput = {
@@ -1331,6 +1492,7 @@ export type ItemUncheckedUpdateWithoutEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentItems?: Prisma.PaymentItemUncheckedUpdateManyWithoutItemNestedInput
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateManyWithoutEventInput = {
@@ -1407,6 +1569,7 @@ export type ItemUpdateWithoutTariffInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   event?: Prisma.EventUpdateOneRequiredWithoutItemsNestedInput
   paymentItems?: Prisma.PaymentItemUpdateManyWithoutItemNestedInput
+  quotationItems?: Prisma.QuotationItemUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateWithoutTariffInput = {
@@ -1433,6 +1596,7 @@ export type ItemUncheckedUpdateWithoutTariffInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentItems?: Prisma.PaymentItemUncheckedUpdateManyWithoutItemNestedInput
+  quotationItems?: Prisma.QuotationItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateManyWithoutTariffInput = {
@@ -1467,10 +1631,12 @@ export type ItemUncheckedUpdateManyWithoutTariffInput = {
 
 export type ItemCountOutputType = {
   paymentItems: number
+  quotationItems: number
 }
 
 export type ItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   paymentItems?: boolean | ItemCountOutputTypeCountPaymentItemsArgs
+  quotationItems?: boolean | ItemCountOutputTypeCountQuotationItemsArgs
 }
 
 /**
@@ -1488,6 +1654,13 @@ export type ItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type ItemCountOutputTypeCountPaymentItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PaymentItemWhereInput
+}
+
+/**
+ * ItemCountOutputType without action
+ */
+export type ItemCountOutputTypeCountQuotationItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationItemWhereInput
 }
 
 
@@ -1518,6 +1691,7 @@ export type ItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   tariff?: boolean | Prisma.Item$tariffArgs<ExtArgs>
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   paymentItems?: boolean | Prisma.Item$paymentItemsArgs<ExtArgs>
+  quotationItems?: boolean | Prisma.Item$quotationItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
@@ -1608,6 +1782,7 @@ export type ItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   tariff?: boolean | Prisma.Item$tariffArgs<ExtArgs>
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   paymentItems?: boolean | Prisma.Item$paymentItemsArgs<ExtArgs>
+  quotationItems?: boolean | Prisma.Item$quotationItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1625,6 +1800,7 @@ export type $ItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     tariff: Prisma.$TariffPayload<ExtArgs> | null
     event: Prisma.$EventPayload<ExtArgs>
     paymentItems: Prisma.$PaymentItemPayload<ExtArgs>[]
+    quotationItems: Prisma.$QuotationItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2047,6 +2223,7 @@ export interface Prisma__ItemClient<T, Null = never, ExtArgs extends runtime.Typ
   tariff<T extends Prisma.Item$tariffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$tariffArgs<ExtArgs>>): Prisma.Prisma__TariffClient<runtime.Types.Result.GetResult<Prisma.$TariffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   event<T extends Prisma.EventDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDefaultArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   paymentItems<T extends Prisma.Item$paymentItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$paymentItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotationItems<T extends Prisma.Item$quotationItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$quotationItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2540,6 +2717,30 @@ export type Item$paymentItemsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.PaymentItemScalarFieldEnum | Prisma.PaymentItemScalarFieldEnum[]
+}
+
+/**
+ * Item.quotationItems
+ */
+export type Item$quotationItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuotationItem
+   */
+  select?: Prisma.QuotationItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QuotationItem
+   */
+  omit?: Prisma.QuotationItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationItemInclude<ExtArgs> | null
+  where?: Prisma.QuotationItemWhereInput
+  orderBy?: Prisma.QuotationItemOrderByWithRelationInput | Prisma.QuotationItemOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationItemScalarFieldEnum | Prisma.QuotationItemScalarFieldEnum[]
 }
 
 /**

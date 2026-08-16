@@ -113,6 +113,7 @@ export class QuotationsService {
     const rates = await this.calculationsService.getActiveRates();
     const baseValue = dto.quantity * resolved.unitPrice;
     return {
+      itemId: dto.itemId,
       description: resolved.description,
       quantity: dto.quantity,
       unitPrice: resolved.unitPrice,

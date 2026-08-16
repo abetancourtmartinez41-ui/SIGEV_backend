@@ -57,6 +57,7 @@ export type QuotationItemSumAggregateOutputType = {
 export type QuotationItemMinAggregateOutputType = {
   id: string | null
   quotationId: string | null
+  itemId: string | null
   description: string | null
   quantity: number | null
   unitPrice: runtime.Decimal | null
@@ -80,6 +81,7 @@ export type QuotationItemMinAggregateOutputType = {
 export type QuotationItemMaxAggregateOutputType = {
   id: string | null
   quotationId: string | null
+  itemId: string | null
   description: string | null
   quantity: number | null
   unitPrice: runtime.Decimal | null
@@ -103,6 +105,7 @@ export type QuotationItemMaxAggregateOutputType = {
 export type QuotationItemCountAggregateOutputType = {
   id: number
   quotationId: number
+  itemId: number
   description: number
   quantity: number
   unitPrice: number
@@ -156,6 +159,7 @@ export type QuotationItemSumAggregateInputType = {
 export type QuotationItemMinAggregateInputType = {
   id?: true
   quotationId?: true
+  itemId?: true
   description?: true
   quantity?: true
   unitPrice?: true
@@ -179,6 +183,7 @@ export type QuotationItemMinAggregateInputType = {
 export type QuotationItemMaxAggregateInputType = {
   id?: true
   quotationId?: true
+  itemId?: true
   description?: true
   quantity?: true
   unitPrice?: true
@@ -202,6 +207,7 @@ export type QuotationItemMaxAggregateInputType = {
 export type QuotationItemCountAggregateInputType = {
   id?: true
   quotationId?: true
+  itemId?: true
   description?: true
   quantity?: true
   unitPrice?: true
@@ -312,6 +318,7 @@ export type QuotationItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type QuotationItemGroupByOutputType = {
   id: string
   quotationId: string
+  itemId: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal
@@ -358,6 +365,7 @@ export type QuotationItemWhereInput = {
   NOT?: Prisma.QuotationItemWhereInput | Prisma.QuotationItemWhereInput[]
   id?: Prisma.UuidFilter<"QuotationItem"> | string
   quotationId?: Prisma.UuidFilter<"QuotationItem"> | string
+  itemId?: Prisma.UuidNullableFilter<"QuotationItem"> | string | null
   description?: Prisma.StringFilter<"QuotationItem"> | string
   quantity?: Prisma.IntFilter<"QuotationItem"> | number
   unitPrice?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -377,6 +385,7 @@ export type QuotationItemWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
   quotation?: Prisma.XOR<Prisma.QuotationScalarRelationFilter, Prisma.QuotationWhereInput>
+  item?: Prisma.XOR<Prisma.ItemNullableScalarRelationFilter, Prisma.ItemWhereInput> | null
   ally?: Prisma.XOR<Prisma.AllyNullableScalarRelationFilter, Prisma.AllyWhereInput> | null
   tariff?: Prisma.XOR<Prisma.TariffNullableScalarRelationFilter, Prisma.TariffWhereInput> | null
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemListRelationFilter
@@ -385,6 +394,7 @@ export type QuotationItemWhereInput = {
 export type QuotationItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
@@ -404,6 +414,7 @@ export type QuotationItemOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   quotation?: Prisma.QuotationOrderByWithRelationInput
+  item?: Prisma.ItemOrderByWithRelationInput
   ally?: Prisma.AllyOrderByWithRelationInput
   tariff?: Prisma.TariffOrderByWithRelationInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemOrderByRelationAggregateInput
@@ -415,6 +426,7 @@ export type QuotationItemWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.QuotationItemWhereInput[]
   NOT?: Prisma.QuotationItemWhereInput | Prisma.QuotationItemWhereInput[]
   quotationId?: Prisma.UuidFilter<"QuotationItem"> | string
+  itemId?: Prisma.UuidNullableFilter<"QuotationItem"> | string | null
   description?: Prisma.StringFilter<"QuotationItem"> | string
   quantity?: Prisma.IntFilter<"QuotationItem"> | number
   unitPrice?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -434,6 +446,7 @@ export type QuotationItemWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
   quotation?: Prisma.XOR<Prisma.QuotationScalarRelationFilter, Prisma.QuotationWhereInput>
+  item?: Prisma.XOR<Prisma.ItemNullableScalarRelationFilter, Prisma.ItemWhereInput> | null
   ally?: Prisma.XOR<Prisma.AllyNullableScalarRelationFilter, Prisma.AllyWhereInput> | null
   tariff?: Prisma.XOR<Prisma.TariffNullableScalarRelationFilter, Prisma.TariffWhereInput> | null
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemListRelationFilter
@@ -442,6 +455,7 @@ export type QuotationItemWhereUniqueInput = Prisma.AtLeast<{
 export type QuotationItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
@@ -473,6 +487,7 @@ export type QuotationItemScalarWhereWithAggregatesInput = {
   NOT?: Prisma.QuotationItemScalarWhereWithAggregatesInput | Prisma.QuotationItemScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"QuotationItem"> | string
   quotationId?: Prisma.UuidWithAggregatesFilter<"QuotationItem"> | string
+  itemId?: Prisma.UuidNullableWithAggregatesFilter<"QuotationItem"> | string | null
   description?: Prisma.StringWithAggregatesFilter<"QuotationItem"> | string
   quantity?: Prisma.IntWithAggregatesFilter<"QuotationItem"> | number
   unitPrice?: Prisma.DecimalWithAggregatesFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -512,6 +527,7 @@ export type QuotationItemCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutItemsInput
+  item?: Prisma.ItemCreateNestedOneWithoutQuotationItemsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationItemsInput
   tariff?: Prisma.TariffCreateNestedOneWithoutQuotationItemsInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutQuotationItemInput
@@ -520,6 +536,7 @@ export type QuotationItemCreateInput = {
 export type QuotationItemUncheckedCreateInput = {
   id?: string
   quotationId: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -560,6 +577,7 @@ export type QuotationItemUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutItemsNestedInput
+  item?: Prisma.ItemUpdateOneWithoutQuotationItemsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationItemsNestedInput
   tariff?: Prisma.TariffUpdateOneWithoutQuotationItemsNestedInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutQuotationItemNestedInput
@@ -568,6 +586,7 @@ export type QuotationItemUpdateInput = {
 export type QuotationItemUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -592,6 +611,7 @@ export type QuotationItemUncheckedUpdateInput = {
 export type QuotationItemCreateManyInput = {
   id?: string
   quotationId: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -635,6 +655,7 @@ export type QuotationItemUpdateManyMutationInput = {
 export type QuotationItemUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -668,6 +689,7 @@ export type QuotationItemOrderByRelationAggregateInput = {
 export type QuotationItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
   description?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
@@ -705,6 +727,7 @@ export type QuotationItemAvgOrderByAggregateInput = {
 export type QuotationItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
   description?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
@@ -728,6 +751,7 @@ export type QuotationItemMaxOrderByAggregateInput = {
 export type QuotationItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
   description?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
@@ -765,6 +789,48 @@ export type QuotationItemSumOrderByAggregateInput = {
 export type QuotationItemNullableScalarRelationFilter = {
   is?: Prisma.QuotationItemWhereInput | null
   isNot?: Prisma.QuotationItemWhereInput | null
+}
+
+export type QuotationItemCreateNestedManyWithoutItemInput = {
+  create?: Prisma.XOR<Prisma.QuotationItemCreateWithoutItemInput, Prisma.QuotationItemUncheckedCreateWithoutItemInput> | Prisma.QuotationItemCreateWithoutItemInput[] | Prisma.QuotationItemUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.QuotationItemCreateOrConnectWithoutItemInput | Prisma.QuotationItemCreateOrConnectWithoutItemInput[]
+  createMany?: Prisma.QuotationItemCreateManyItemInputEnvelope
+  connect?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+}
+
+export type QuotationItemUncheckedCreateNestedManyWithoutItemInput = {
+  create?: Prisma.XOR<Prisma.QuotationItemCreateWithoutItemInput, Prisma.QuotationItemUncheckedCreateWithoutItemInput> | Prisma.QuotationItemCreateWithoutItemInput[] | Prisma.QuotationItemUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.QuotationItemCreateOrConnectWithoutItemInput | Prisma.QuotationItemCreateOrConnectWithoutItemInput[]
+  createMany?: Prisma.QuotationItemCreateManyItemInputEnvelope
+  connect?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+}
+
+export type QuotationItemUpdateManyWithoutItemNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationItemCreateWithoutItemInput, Prisma.QuotationItemUncheckedCreateWithoutItemInput> | Prisma.QuotationItemCreateWithoutItemInput[] | Prisma.QuotationItemUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.QuotationItemCreateOrConnectWithoutItemInput | Prisma.QuotationItemCreateOrConnectWithoutItemInput[]
+  upsert?: Prisma.QuotationItemUpsertWithWhereUniqueWithoutItemInput | Prisma.QuotationItemUpsertWithWhereUniqueWithoutItemInput[]
+  createMany?: Prisma.QuotationItemCreateManyItemInputEnvelope
+  set?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  disconnect?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  delete?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  connect?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  update?: Prisma.QuotationItemUpdateWithWhereUniqueWithoutItemInput | Prisma.QuotationItemUpdateWithWhereUniqueWithoutItemInput[]
+  updateMany?: Prisma.QuotationItemUpdateManyWithWhereWithoutItemInput | Prisma.QuotationItemUpdateManyWithWhereWithoutItemInput[]
+  deleteMany?: Prisma.QuotationItemScalarWhereInput | Prisma.QuotationItemScalarWhereInput[]
+}
+
+export type QuotationItemUncheckedUpdateManyWithoutItemNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationItemCreateWithoutItemInput, Prisma.QuotationItemUncheckedCreateWithoutItemInput> | Prisma.QuotationItemCreateWithoutItemInput[] | Prisma.QuotationItemUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.QuotationItemCreateOrConnectWithoutItemInput | Prisma.QuotationItemCreateOrConnectWithoutItemInput[]
+  upsert?: Prisma.QuotationItemUpsertWithWhereUniqueWithoutItemInput | Prisma.QuotationItemUpsertWithWhereUniqueWithoutItemInput[]
+  createMany?: Prisma.QuotationItemCreateManyItemInputEnvelope
+  set?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  disconnect?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  delete?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  connect?: Prisma.QuotationItemWhereUniqueInput | Prisma.QuotationItemWhereUniqueInput[]
+  update?: Prisma.QuotationItemUpdateWithWhereUniqueWithoutItemInput | Prisma.QuotationItemUpdateWithWhereUniqueWithoutItemInput[]
+  updateMany?: Prisma.QuotationItemUpdateManyWithWhereWithoutItemInput | Prisma.QuotationItemUpdateManyWithWhereWithoutItemInput[]
+  deleteMany?: Prisma.QuotationItemScalarWhereInput | Prisma.QuotationItemScalarWhereInput[]
 }
 
 export type QuotationItemCreateNestedManyWithoutAllyInput = {
@@ -909,6 +975,107 @@ export type QuotationItemUncheckedUpdateManyWithoutTariffNestedInput = {
   deleteMany?: Prisma.QuotationItemScalarWhereInput | Prisma.QuotationItemScalarWhereInput[]
 }
 
+export type QuotationItemCreateWithoutItemInput = {
+  id?: string
+  description: string
+  quantity: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isTariffed?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutItemsInput
+  ally?: Prisma.AllyCreateNestedOneWithoutQuotationItemsInput
+  tariff?: Prisma.TariffCreateNestedOneWithoutQuotationItemsInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutQuotationItemInput
+}
+
+export type QuotationItemUncheckedCreateWithoutItemInput = {
+  id?: string
+  quotationId: string
+  description: string
+  quantity: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: string | null
+  tariffId?: string | null
+  isTariffed?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedCreateNestedManyWithoutQuotationItemInput
+}
+
+export type QuotationItemCreateOrConnectWithoutItemInput = {
+  where: Prisma.QuotationItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuotationItemCreateWithoutItemInput, Prisma.QuotationItemUncheckedCreateWithoutItemInput>
+}
+
+export type QuotationItemCreateManyItemInputEnvelope = {
+  data: Prisma.QuotationItemCreateManyItemInput | Prisma.QuotationItemCreateManyItemInput[]
+  skipDuplicates?: boolean
+}
+
+export type QuotationItemUpsertWithWhereUniqueWithoutItemInput = {
+  where: Prisma.QuotationItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.QuotationItemUpdateWithoutItemInput, Prisma.QuotationItemUncheckedUpdateWithoutItemInput>
+  create: Prisma.XOR<Prisma.QuotationItemCreateWithoutItemInput, Prisma.QuotationItemUncheckedCreateWithoutItemInput>
+}
+
+export type QuotationItemUpdateWithWhereUniqueWithoutItemInput = {
+  where: Prisma.QuotationItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.QuotationItemUpdateWithoutItemInput, Prisma.QuotationItemUncheckedUpdateWithoutItemInput>
+}
+
+export type QuotationItemUpdateManyWithWhereWithoutItemInput = {
+  where: Prisma.QuotationItemScalarWhereInput
+  data: Prisma.XOR<Prisma.QuotationItemUpdateManyMutationInput, Prisma.QuotationItemUncheckedUpdateManyWithoutItemInput>
+}
+
+export type QuotationItemScalarWhereInput = {
+  AND?: Prisma.QuotationItemScalarWhereInput | Prisma.QuotationItemScalarWhereInput[]
+  OR?: Prisma.QuotationItemScalarWhereInput[]
+  NOT?: Prisma.QuotationItemScalarWhereInput | Prisma.QuotationItemScalarWhereInput[]
+  id?: Prisma.UuidFilter<"QuotationItem"> | string
+  quotationId?: Prisma.UuidFilter<"QuotationItem"> | string
+  itemId?: Prisma.UuidNullableFilter<"QuotationItem"> | string | null
+  description?: Prisma.StringFilter<"QuotationItem"> | string
+  quantity?: Prisma.IntFilter<"QuotationItem"> | number
+  unitPrice?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: Prisma.UuidNullableFilter<"QuotationItem"> | string | null
+  tariffId?: Prisma.UuidNullableFilter<"QuotationItem"> | string | null
+  isTariffed?: Prisma.BoolFilter<"QuotationItem"> | boolean
+  isActive?: Prisma.BoolFilter<"QuotationItem"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
+}
+
 export type QuotationItemCreateWithoutAllyInput = {
   id?: string
   description: string
@@ -928,6 +1095,7 @@ export type QuotationItemCreateWithoutAllyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutItemsInput
+  item?: Prisma.ItemCreateNestedOneWithoutQuotationItemsInput
   tariff?: Prisma.TariffCreateNestedOneWithoutQuotationItemsInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutQuotationItemInput
 }
@@ -935,6 +1103,7 @@ export type QuotationItemCreateWithoutAllyInput = {
 export type QuotationItemUncheckedCreateWithoutAllyInput = {
   id?: string
   quotationId: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -981,32 +1150,6 @@ export type QuotationItemUpdateManyWithWhereWithoutAllyInput = {
   data: Prisma.XOR<Prisma.QuotationItemUpdateManyMutationInput, Prisma.QuotationItemUncheckedUpdateManyWithoutAllyInput>
 }
 
-export type QuotationItemScalarWhereInput = {
-  AND?: Prisma.QuotationItemScalarWhereInput | Prisma.QuotationItemScalarWhereInput[]
-  OR?: Prisma.QuotationItemScalarWhereInput[]
-  NOT?: Prisma.QuotationItemScalarWhereInput | Prisma.QuotationItemScalarWhereInput[]
-  id?: Prisma.UuidFilter<"QuotationItem"> | string
-  quotationId?: Prisma.UuidFilter<"QuotationItem"> | string
-  description?: Prisma.StringFilter<"QuotationItem"> | string
-  quantity?: Prisma.IntFilter<"QuotationItem"> | number
-  unitPrice?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  ivaRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  ivaValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  consumptionTaxRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  consumptionTaxValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  feeRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  feeValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  feeIvaRate?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  feeIvaValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  totalValue?: Prisma.DecimalFilter<"QuotationItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  allyId?: Prisma.UuidNullableFilter<"QuotationItem"> | string | null
-  tariffId?: Prisma.UuidNullableFilter<"QuotationItem"> | string | null
-  isTariffed?: Prisma.BoolFilter<"QuotationItem"> | boolean
-  isActive?: Prisma.BoolFilter<"QuotationItem"> | boolean
-  createdAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"QuotationItem"> | Date | string
-}
-
 export type QuotationItemCreateWithoutQuotationInput = {
   id?: string
   description: string
@@ -1025,6 +1168,7 @@ export type QuotationItemCreateWithoutQuotationInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  item?: Prisma.ItemCreateNestedOneWithoutQuotationItemsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationItemsInput
   tariff?: Prisma.TariffCreateNestedOneWithoutQuotationItemsInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutQuotationItemInput
@@ -1032,6 +1176,7 @@ export type QuotationItemCreateWithoutQuotationInput = {
 
 export type QuotationItemUncheckedCreateWithoutQuotationInput = {
   id?: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1098,6 +1243,7 @@ export type QuotationItemCreateWithoutOfertaEconomicaItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutItemsInput
+  item?: Prisma.ItemCreateNestedOneWithoutQuotationItemsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationItemsInput
   tariff?: Prisma.TariffCreateNestedOneWithoutQuotationItemsInput
 }
@@ -1105,6 +1251,7 @@ export type QuotationItemCreateWithoutOfertaEconomicaItemsInput = {
 export type QuotationItemUncheckedCreateWithoutOfertaEconomicaItemsInput = {
   id?: string
   quotationId: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1160,6 +1307,7 @@ export type QuotationItemUpdateWithoutOfertaEconomicaItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutItemsNestedInput
+  item?: Prisma.ItemUpdateOneWithoutQuotationItemsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationItemsNestedInput
   tariff?: Prisma.TariffUpdateOneWithoutQuotationItemsNestedInput
 }
@@ -1167,6 +1315,7 @@ export type QuotationItemUpdateWithoutOfertaEconomicaItemsInput = {
 export type QuotationItemUncheckedUpdateWithoutOfertaEconomicaItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1206,6 +1355,7 @@ export type QuotationItemCreateWithoutTariffInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutItemsInput
+  item?: Prisma.ItemCreateNestedOneWithoutQuotationItemsInput
   ally?: Prisma.AllyCreateNestedOneWithoutQuotationItemsInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemCreateNestedManyWithoutQuotationItemInput
 }
@@ -1213,6 +1363,7 @@ export type QuotationItemCreateWithoutTariffInput = {
 export type QuotationItemUncheckedCreateWithoutTariffInput = {
   id?: string
   quotationId: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1259,9 +1410,104 @@ export type QuotationItemUpdateManyWithWhereWithoutTariffInput = {
   data: Prisma.XOR<Prisma.QuotationItemUpdateManyMutationInput, Prisma.QuotationItemUncheckedUpdateManyWithoutTariffInput>
 }
 
+export type QuotationItemCreateManyItemInput = {
+  id?: string
+  quotationId: string
+  description: string
+  quantity: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: string | null
+  tariffId?: string | null
+  isTariffed?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type QuotationItemUpdateWithoutItemInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isTariffed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutItemsNestedInput
+  ally?: Prisma.AllyUpdateOneWithoutQuotationItemsNestedInput
+  tariff?: Prisma.TariffUpdateOneWithoutQuotationItemsNestedInput
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutQuotationItemNestedInput
+}
+
+export type QuotationItemUncheckedUpdateWithoutItemInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isTariffed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUncheckedUpdateManyWithoutQuotationItemNestedInput
+}
+
+export type QuotationItemUncheckedUpdateManyWithoutItemInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ivaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  consumptionTaxValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  feeIvaValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  allyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isTariffed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type QuotationItemCreateManyAllyInput = {
   id?: string
   quotationId: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1300,6 +1546,7 @@ export type QuotationItemUpdateWithoutAllyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutItemsNestedInput
+  item?: Prisma.ItemUpdateOneWithoutQuotationItemsNestedInput
   tariff?: Prisma.TariffUpdateOneWithoutQuotationItemsNestedInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutQuotationItemNestedInput
 }
@@ -1307,6 +1554,7 @@ export type QuotationItemUpdateWithoutAllyInput = {
 export type QuotationItemUncheckedUpdateWithoutAllyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1330,6 +1578,7 @@ export type QuotationItemUncheckedUpdateWithoutAllyInput = {
 export type QuotationItemUncheckedUpdateManyWithoutAllyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1351,6 +1600,7 @@ export type QuotationItemUncheckedUpdateManyWithoutAllyInput = {
 
 export type QuotationItemCreateManyQuotationInput = {
   id?: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1389,6 +1639,7 @@ export type QuotationItemUpdateWithoutQuotationInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  item?: Prisma.ItemUpdateOneWithoutQuotationItemsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationItemsNestedInput
   tariff?: Prisma.TariffUpdateOneWithoutQuotationItemsNestedInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutQuotationItemNestedInput
@@ -1396,6 +1647,7 @@ export type QuotationItemUpdateWithoutQuotationInput = {
 
 export type QuotationItemUncheckedUpdateWithoutQuotationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1419,6 +1671,7 @@ export type QuotationItemUncheckedUpdateWithoutQuotationInput = {
 
 export type QuotationItemUncheckedUpdateManyWithoutQuotationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1442,6 +1695,7 @@ export type QuotationItemUncheckedUpdateManyWithoutQuotationInput = {
 export type QuotationItemCreateManyTariffInput = {
   id?: string
   quotationId: string
+  itemId?: string | null
   description: string
   quantity: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1480,6 +1734,7 @@ export type QuotationItemUpdateWithoutTariffInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutItemsNestedInput
+  item?: Prisma.ItemUpdateOneWithoutQuotationItemsNestedInput
   ally?: Prisma.AllyUpdateOneWithoutQuotationItemsNestedInput
   ofertaEconomicaItems?: Prisma.OfertaEconomicaItemUpdateManyWithoutQuotationItemNestedInput
 }
@@ -1487,6 +1742,7 @@ export type QuotationItemUpdateWithoutTariffInput = {
 export type QuotationItemUncheckedUpdateWithoutTariffInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1510,6 +1766,7 @@ export type QuotationItemUncheckedUpdateWithoutTariffInput = {
 export type QuotationItemUncheckedUpdateManyWithoutTariffInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1563,6 +1820,7 @@ export type QuotationItemCountOutputTypeCountOfertaEconomicaItemsArgs<ExtArgs ex
 export type QuotationItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   quotationId?: boolean
+  itemId?: boolean
   description?: boolean
   quantity?: boolean
   unitPrice?: boolean
@@ -1582,6 +1840,7 @@ export type QuotationItemSelect<ExtArgs extends runtime.Types.Extensions.Interna
   createdAt?: boolean
   updatedAt?: boolean
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.QuotationItem$itemArgs<ExtArgs>
   ally?: boolean | Prisma.QuotationItem$allyArgs<ExtArgs>
   tariff?: boolean | Prisma.QuotationItem$tariffArgs<ExtArgs>
   ofertaEconomicaItems?: boolean | Prisma.QuotationItem$ofertaEconomicaItemsArgs<ExtArgs>
@@ -1591,6 +1850,7 @@ export type QuotationItemSelect<ExtArgs extends runtime.Types.Extensions.Interna
 export type QuotationItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   quotationId?: boolean
+  itemId?: boolean
   description?: boolean
   quantity?: boolean
   unitPrice?: boolean
@@ -1610,6 +1870,7 @@ export type QuotationItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.QuotationItem$itemArgs<ExtArgs>
   ally?: boolean | Prisma.QuotationItem$allyArgs<ExtArgs>
   tariff?: boolean | Prisma.QuotationItem$tariffArgs<ExtArgs>
 }, ExtArgs["result"]["quotationItem"]>
@@ -1617,6 +1878,7 @@ export type QuotationItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 export type QuotationItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   quotationId?: boolean
+  itemId?: boolean
   description?: boolean
   quantity?: boolean
   unitPrice?: boolean
@@ -1636,6 +1898,7 @@ export type QuotationItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.QuotationItem$itemArgs<ExtArgs>
   ally?: boolean | Prisma.QuotationItem$allyArgs<ExtArgs>
   tariff?: boolean | Prisma.QuotationItem$tariffArgs<ExtArgs>
 }, ExtArgs["result"]["quotationItem"]>
@@ -1643,6 +1906,7 @@ export type QuotationItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type QuotationItemSelectScalar = {
   id?: boolean
   quotationId?: boolean
+  itemId?: boolean
   description?: boolean
   quantity?: boolean
   unitPrice?: boolean
@@ -1663,9 +1927,10 @@ export type QuotationItemSelectScalar = {
   updatedAt?: boolean
 }
 
-export type QuotationItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quotationId" | "description" | "quantity" | "unitPrice" | "ivaRate" | "ivaValue" | "consumptionTaxRate" | "consumptionTaxValue" | "feeRate" | "feeValue" | "feeIvaRate" | "feeIvaValue" | "totalValue" | "allyId" | "tariffId" | "isTariffed" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["quotationItem"]>
+export type QuotationItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quotationId" | "itemId" | "description" | "quantity" | "unitPrice" | "ivaRate" | "ivaValue" | "consumptionTaxRate" | "consumptionTaxValue" | "feeRate" | "feeValue" | "feeIvaRate" | "feeIvaValue" | "totalValue" | "allyId" | "tariffId" | "isTariffed" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["quotationItem"]>
 export type QuotationItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.QuotationItem$itemArgs<ExtArgs>
   ally?: boolean | Prisma.QuotationItem$allyArgs<ExtArgs>
   tariff?: boolean | Prisma.QuotationItem$tariffArgs<ExtArgs>
   ofertaEconomicaItems?: boolean | Prisma.QuotationItem$ofertaEconomicaItemsArgs<ExtArgs>
@@ -1673,11 +1938,13 @@ export type QuotationItemInclude<ExtArgs extends runtime.Types.Extensions.Intern
 }
 export type QuotationItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.QuotationItem$itemArgs<ExtArgs>
   ally?: boolean | Prisma.QuotationItem$allyArgs<ExtArgs>
   tariff?: boolean | Prisma.QuotationItem$tariffArgs<ExtArgs>
 }
 export type QuotationItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.QuotationItem$itemArgs<ExtArgs>
   ally?: boolean | Prisma.QuotationItem$allyArgs<ExtArgs>
   tariff?: boolean | Prisma.QuotationItem$tariffArgs<ExtArgs>
 }
@@ -1686,6 +1953,7 @@ export type $QuotationItemPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "QuotationItem"
   objects: {
     quotation: Prisma.$QuotationPayload<ExtArgs>
+    item: Prisma.$ItemPayload<ExtArgs> | null
     ally: Prisma.$AllyPayload<ExtArgs> | null
     tariff: Prisma.$TariffPayload<ExtArgs> | null
     ofertaEconomicaItems: Prisma.$OfertaEconomicaItemPayload<ExtArgs>[]
@@ -1693,6 +1961,7 @@ export type $QuotationItemPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     quotationId: string
+    itemId: string | null
     description: string
     quantity: number
     unitPrice: runtime.Decimal
@@ -2106,6 +2375,7 @@ readonly fields: QuotationItemFieldRefs;
 export interface Prisma__QuotationItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   quotation<T extends Prisma.QuotationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationDefaultArgs<ExtArgs>>): Prisma.Prisma__QuotationClient<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  item<T extends Prisma.QuotationItem$itemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationItem$itemArgs<ExtArgs>>): Prisma.Prisma__ItemClient<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   ally<T extends Prisma.QuotationItem$allyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationItem$allyArgs<ExtArgs>>): Prisma.Prisma__AllyClient<runtime.Types.Result.GetResult<Prisma.$AllyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tariff<T extends Prisma.QuotationItem$tariffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationItem$tariffArgs<ExtArgs>>): Prisma.Prisma__TariffClient<runtime.Types.Result.GetResult<Prisma.$TariffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   ofertaEconomicaItems<T extends Prisma.QuotationItem$ofertaEconomicaItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationItem$ofertaEconomicaItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfertaEconomicaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2140,6 +2410,7 @@ export interface Prisma__QuotationItemClient<T, Null = never, ExtArgs extends ru
 export interface QuotationItemFieldRefs {
   readonly id: Prisma.FieldRef<"QuotationItem", 'String'>
   readonly quotationId: Prisma.FieldRef<"QuotationItem", 'String'>
+  readonly itemId: Prisma.FieldRef<"QuotationItem", 'String'>
   readonly description: Prisma.FieldRef<"QuotationItem", 'String'>
   readonly quantity: Prisma.FieldRef<"QuotationItem", 'Int'>
   readonly unitPrice: Prisma.FieldRef<"QuotationItem", 'Decimal'>
@@ -2556,6 +2827,25 @@ export type QuotationItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many QuotationItems to delete.
    */
   limit?: number
+}
+
+/**
+ * QuotationItem.item
+ */
+export type QuotationItem$itemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Item
+   */
+  select?: Prisma.ItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Item
+   */
+  omit?: Prisma.ItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItemInclude<ExtArgs> | null
+  where?: Prisma.ItemWhereInput
 }
 
 /**
