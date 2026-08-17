@@ -87,4 +87,14 @@ export class NotificationsService {
     if (!notification) throw new NotFoundException('Notificación no encontrada');
     await this.prisma.notification.delete({ where: { id } });
   }
+
+  async notifyOperatorsForEvent(
+    eventId: string,
+    type: string,
+    message: string,
+  ): Promise<void> {
+    const operatorIds = await this.findUserIdsByRoles([ROLES.OPERATOR]);
+    if (!operatorIds.length) return;
+    await this.createMany(operatorIds, { eventId, type, message });
+  }
 }

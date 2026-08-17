@@ -1,12 +1,29 @@
 import {
-  Controller, Get, Patch, Param, Delete, UseGuards,
+  Controller, Get, Patch, Post, Param, Delete, Body, UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
+import { IsString, IsNotEmpty, MaxLength } from 'class-validator';
 import { NotificationsService } from './notifications.service';
 import { CurrentUser } from '../../common/decorators';
 import { RolesGuard } from '../../common/guards';
 import { UserWithRoles } from '../../database/types';
+
+export class CreateNotificationDto {
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(50)
+  type: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(500)
+  message: string;
+
+  @IsString()
+  @IsNotEmpty()
+  eventId: string;
+}
 
 @ApiTags('Notificaciones')
 @ApiBearerAuth()
@@ -14,6 +31,17 @@ import { UserWithRoles } from '../../database/types';
 @Controller('notifications')
 export class NotificationsController {
   constructor(private readonly notificationsService: NotificationsService) {}
+
+  @Post()
+  @ApiOperation({ summary: 'Crear notificación para los operadores de la orden' })
+  async create(@Body() dto: CreateNotificationDto) {
+    await this.notificationsService.notifyOperatorsForEvent(
+      dto.eventId,
+      dto.type,
+      dto.message,
+    );
+    return { ok: true };
+  }
 
   @Get()
   @ApiOperation({ summary: 'Listar notificaciones del usuario autenticado' })
