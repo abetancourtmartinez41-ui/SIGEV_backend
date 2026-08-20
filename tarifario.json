@@ -1,1053 +1,1052 @@
 {
-  "metadata": {
-  },
+  "metadata": {},
   "categorias": [
     {
-      "nombre": "REFRIGERIOS Y COMIDAS",
+      "nombre": "Alimentación",
       "items": [
         {
           "id": 1,
           "producto_servicio": "REFRIGERIO NO PERECEDERO",
           "descripcion_tecnica": "Refrigerio empacado no perecedero. Compuesto por: (2) productos de paquete entre 35-70 g (papas, galletas o similares), (1) bebida tipo jugo o gaseosa en presentación mínima 200 ml, (1) fruta de cosecha entera o partida. Empaque sostenible (sin plásticos de un solo uso según Ley 2232/2022). Incluye transporte y distribución en el sitio del evento.",
-          "tiempo": null,
-          "unidad": "REFRIGERIO UNIDAD",
+          "tiempo": "N/A",
+          "unidad": "REFRIGERIO / UNIDAD",
           "cat_especial_1": 21500,
           "cat_2_3_4": 28700,
           "cat_5_6": 35200,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 2,
           "producto_servicio": "REFRIGERIO TIPO A",
-          "descripcion_tecnica": "Refrigerio Tipo A. Compuesto por: (1) producto de panadería mínimo 150 g o sándwich (pan, proteína, queso, vegetales), (1) bebida en empaque duro mínimo 200 ml (no bolsa plástica), (1) fruta fresca mínimo 150 g. Empaque sostenible (sin plásticos de un solo uso según Ley 2232/2022). Incluye transporte y distribución en sitio.",
-          "tiempo": null,
-          "unidad": "REFRIGERIO UNIDAD",
+          "descripcion_tecnica": "Refrigerio Tipo A. Compuesto por: (1) producto de panadería mínimo 150 g o sándwich (pan + proteína + queso + vegetales), (1) bebida en empaque duro mínimo 200 ml (no bolsa plástica), (1) fruta fresca mínimo 150 g. Empaque sostenible (sin plásticos de un solo uso según Ley 2232/2022). Incluye transporte y distribución en sitio.",
+          "tiempo": "N/A",
+          "unidad": "REFRIGERIO / UNIDAD",
           "cat_especial_1": 32000,
-          "cat_2_3_4": 38179,
+          "cat_2_3_4": 39179,
           "cat_5_6": 48000,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 3,
           "producto_servicio": "REFRIGERIO TIPO B",
-          "descripcion_tecnica": "Refrigerio Tipo B. Compuesto por: (1) producto de panadería mínimo 200 g o sándwich (pan, proteína, queso, vegetales), (1) bebida jugo o gaseosa mínimo 200 ml, (1) fruta fresca 150 g, (1) postre o snack entre 35-70 g. Servido en loza o empaque sostenible. Incluye transporte y distribución en sitio.",
-          "tiempo": null,
-          "unidad": "REFRIGERIO UNIDAD",
+          "descripcion_tecnica": "Refrigerio Tipo B. Compuesto por: (1) producto de panadería mínimo 200 g o sándwich (pan + proteína + queso + vegetales), (1) bebida jugo o gaseosa mínimo 200 ml, (1) fruta fresca 150 g, (1) postre o snack entre 35-70 g. Servido en loza o empaque sostenible. Incluye transporte y distribución en sitio.",
+          "tiempo": "N/A",
+          "unidad": "REFRIGERIO / UNIDAD",
           "cat_especial_1": 32500,
-          "cat_2_3_4": 38678,
+          "cat_2_3_4": 39678,
           "cat_5_6": 48650,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 4,
           "producto_servicio": "REFRIGERIO PARA PROTOCOLO",
-          "descripcion_tecnica": "Refrigerio de Protocolo. Compuesto por: (1) producto gourmet mínimo 200 g (muffin, sándwich pan árabe, baguette con jamón 70 g, queso 60 g, vegetales, almojábana), (1) jugo natural, (1) brocheta de frutas, pasteles o postres. Servido en menaje de loza nacional o importada. Incluye transporte y distribución en sitio.",
-          "tiempo": null,
-          "unidad": "REFRIGERIO UNIDAD",
+          "descripcion_tecnica": "Refrigerio de Protocolo. Compuesto por: (1) producto gourmet mínimo 200 g (muffin, sándwich pan árabe/baguette con jamón 70 g + queso 60 g + vegetales), almojábana, (1) jugo natural, (1) brocheta de frutas, pasteles o postres. Servido en menaje de loza nacional o importada. Incluye transporte y distribución en sitio.",
+          "tiempo": "N/A",
+          "unidad": "REFRIGERIO / UNIDAD",
           "cat_especial_1": 38000,
           "cat_2_3_4": 47222,
           "cat_5_6": 58828,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 5,
           "producto_servicio": "REFRIGERIO EMPACADO",
-          "descripcion_tecnica": "Refrigerio Empacado (Sólido, Bebida, Fruta). Compuesto por: (1) bebida tipo jugo 200 ml, yogurt 200 g o kumis, (1) sólido tipo dedito de queso, empanada o pastel 70-100 g, (1) fruta de temporada entera o porcionada 150 g. Empaque kraft u otro sostenible (sin plásticos de un solo uso). Incluye transporte.",
-          "tiempo": null,
+          "descripcion_tecnica": "Refrigerio Empacado (Sólido + Bebida + Fruta). Compuesto por: (1) bebida tipo jugo 200 ml, yogurt 200 g o kumis, (1) sólido tipo dedito de queso, empanada o pastel 70-100 g, (1) fruta de temporada entera o porcionada 150 g. Empaque kraft u otro sostenible (sin plásticos de un solo uso). Incluye transporte.",
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 27000,
           "cat_2_3_4": 38760,
           "cat_5_6": 52114,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 6,
           "producto_servicio": "REFRIGERIO TIPO A",
-          "descripcion_tecnica": "Refrigerio Tipo A (Proteína Pan Artesanal). Compuesto por: (1) sándwich en pan artesanal con proteína (cerdo/pollo/res) 100 g, vegetales, queso mozzarella y aderezos, (1) gaseosa 250 ml o jugo natural, (1) fruta de mano, papas o snack. Empaque sostenible. Incluye transporte.",
-          "tiempo": null,
+          "descripcion_tecnica": "Refrigerio Tipo A (Proteína + Pan Artesanal). Compuesto por: (1) sándwich en pan artesanal con proteína (cerdo/pollo/res) 100 g, vegetales, queso mozzarella y aderezos; (1) gaseosa 250 ml o jugo natural; (1) fruta de mano; papas o snack. Empaque sostenible. Incluye transporte.",
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 27000,
           "cat_2_3_4": 39288,
           "cat_5_6": 54865,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 7,
           "producto_servicio": "REFRIGERIO TIPO B",
-          "descripcion_tecnica": "Refrigerio Tipo B. Compuesto por pan o tortilla con jamón y queso mozzarella, vegetales y bebida. Empaque sostenible. Incluye transporte.",
-          "tiempo": null,
+          "descripcion_tecnica": "Refrigerio Tipo B (Pan/Tortilla + Proteína). Compuesto por: (1) pan o tortilla con jamón y queso mozzarella, vegetales y aderezos; (1) gaseosa 250 ml o jugo Empaque kraft Incluye",
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 24000,
           "cat_2_3_4": 34454,
           "cat_5_6": 47264,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 8,
           "producto_servicio": "DESAYUNO CONTINENTAL",
           "descripcion_tecnica": "Desayuno Continental. Compuesto por: (1) carbohidrato 120 g (pan, arepa o croissant), (1) bebida caliente 12 oz (café/chocolate/aromática), mantequilla 10 g, mermelada 15 g, (1) porción de fruta 150 g. Servido en menaje de loza. Incluye transporte, personal de servicio y menaje (plato base, plato fuerte, plato de sopa, vaso de jugo, copa de agua, cubiertos completos).",
-          "tiempo": null,
-          "unidad": "DESAYUNO UNIDAD",
+          "tiempo": "N/A",
+          "unidad": "DESAYUNO / UNIDAD",
           "cat_especial_1": 40000,
           "cat_2_3_4": 48991,
           "cat_5_6": 60917,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 9,
           "producto_servicio": "DESAYUNO AMERICANO",
           "descripcion_tecnica": "Desayuno Americano. Compuesto por: (1) carbohidrato 150 g, (1) bebida caliente 12 oz, (1) proteína 200 g (huevos al gusto, embutidos o similar), mantequilla 10 g, mermelada 15 g, (1) fruta 150 g. Servido en menaje de loza. Incluye transporte, personal de servicio y menaje completo.",
-          "tiempo": null,
-          "unidad": "DESAYUNO UNIDAD",
+          "tiempo": "N/A",
+          "unidad": "DESAYUNO / UNIDAD",
           "cat_especial_1": 42500,
-          "cat_2_3_4": 52681,
+          "cat_2_3_4": 52691,
           "cat_5_6": 64184,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 10,
           "producto_servicio": "DESAYUNO BUFFET",
-          "descripcion_tecnica": "Desayuno Buffet. Compuesto por carbohidratos variados 120 g, cereales, variedad de quesos y jamones, panes, huevos al gusto, (1) proteína 200 g, (1) bebida caliente 20 oz, mantequilla 10 g, mermelada 15 g, variedad de frutas 150 g por porción. Servido en mesa buffet con menaje de loza. Incluye transporte y personal de servicio.",
-          "tiempo": null,
-          "unidad": "DESAYUNO UNIDAD",
+          "descripcion_tecnica": "Desayuno Buffet. Compuesto por: carbohidratos variados 120 g, cereales, variedad de quesos y jamones, panes, huevos al gusto, (1) proteína 200 g, (1) bebida caliente 20 oz, mantequilla 10 g, mermelada 15 g, variedad de frutas 150 g por porción. Servido en mesa buffet con menaje de loza. Incluye transporte y personal de servicio.",
+          "tiempo": "N/A",
+          "unidad": "DESAYUNO / UNIDAD",
           "cat_especial_1": 50000,
           "cat_2_3_4": 61889,
           "cat_5_6": 75570,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 11,
           "producto_servicio": "DESAYUNO TÍPICO",
-          "descripcion_tecnica": "Desayuno Típico Regional. Compuesto por: (1) plato típico (caldo de costilla de res, tamal, changua o equivalente regional), (1) carbohidrato 120 g, (1) bebida caliente 20 oz. Servido en menaje de loza. Incluye transporte, personal de servicio.",
-          "tiempo": null,
-          "unidad": "DESAYUNO UNIDAD",
+          "descripcion_tecnica": "Desayuno Típico Regional. Compuesto por: (1) plato típico (caldo de costilla de res, tamal, changua o equivalente regional), (1) carbohidrato 120 g, (1) bebida caliente 20 oz. Servido en menaje de loza. Incluye transporte y personal de servicio.",
+          "tiempo": "N/A",
+          "unidad": "DESAYUNO / UNIDAD",
           "cat_especial_1": 46000,
           "cat_2_3_4": 56777,
           "cat_5_6": 69394,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 12,
           "producto_servicio": "DESAYUNO EMPACADO",
           "descripcion_tecnica": "Desayuno Empacado. Compuesto por: (1) jugo 200 ml, (1) plato de frutas o huevos al gusto, panes variados, mantequilla y/o mermelada, (1) té, café con leche o chocolate. Empaque adecuado ambientalmente sostenible. Incluye transporte.",
-          "tiempo": null,
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 28000,
           "cat_2_3_4": 34627,
           "cat_5_6": 42560,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 13,
           "producto_servicio": "DESAYUNO SERVIDO A LA MESA",
           "descripcion_tecnica": "Desayuno Servido a la Mesa. Compuesto por: (1) jugo 200 ml, (1) plato de frutas o huevos al gusto, panes variados, mantequilla y/o mermelada, (1) té, café con leche o chocolate. Servido a la mesa con menaje de loza. Incluye transporte y personal de servicio.",
-          "tiempo": null,
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 36000,
           "cat_2_3_4": 44585,
-          "cat_5_6": 54546,
-          "observaciones": null
+          "cat_5_6": 54646,
+          "observaciones": ""
         },
         {
           "id": 14,
           "producto_servicio": "ALMUERZO (EMPACADO)",
-          "descripcion_tecnica": "Almuerzo Empacado. Compuesto por: (1) sopa o fruta de entrada, (1) proteína 250 g (res/cerdo/pollo/pescado), (1) cereal 150 g, (1) carbohidrato/tubérculo 150 g, (1) ensalada o verdura 150 g, (1) jugo de caja 200 ml. Empaque ambientalmente sostenible (sin plásticos de un solo uso). Incluye transporte.",
-          "tiempo": null,
-          "unidad": "ALMUERZO UNIDAD",
+          "descripcion_tecnica": "Almuerzo Empacado. Compuesto por: (1) sopa o fruta de entrada, (1) proteína 250 g (res/cerdo/pollo/pescado), (1) cereal 150 g, (1) carbohidrato tubérculo 150 g, (1) ensalada o verdura 150 g, (1) jugo de caja 200 ml. Empaque ambientalmente sostenible (sin plásticos de un solo uso). Incluye transporte.",
+          "tiempo": "N/A",
+          "unidad": "ALMUERZO / UNIDAD",
           "cat_especial_1": 40000,
           "cat_2_3_4": 49224,
           "cat_5_6": 61370,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 15,
           "producto_servicio": "ALMUERZO O CENA EJECUTIVO",
           "descripcion_tecnica": "Almuerzo o Cena Ejecutivo Servido. Compuesto por: (1) entrada (sopa/crema/fruta), (1) corte de carnes/aves/pescados 200 g, (2) porciones de carbohidrato 150 g c/u, (1) regulador (ensalada/verdura) 150 g, (1) bebida 250 ml o jugo natural, (1) postre 70-100 g. Servido a la mesa o en buffet con menaje completo. Incluye transporte y personal de servicio.",
-          "tiempo": null,
-          "unidad": "ALMUERZO O CENA UNIDAD",
+          "tiempo": "N/A",
+          "unidad": "ALMUERZO O CENA / UNIDAD",
           "cat_especial_1": 55000,
           "cat_2_3_4": 67222,
           "cat_5_6": 82500,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 16,
           "producto_servicio": "ALMUERZO O CENA BUFFET",
-          "descripcion_tecnica": "Almuerzo o Cena Buffet. Compuesto por: mínimo (3) opciones de proteína 250 g c/u, (3) opciones de carbohidratos 150 g c/u, (3) reguladores 150 g c/u, (2) bebidas 250 ml c/u, (3) opciones postre. Servido en buffet con menaje de loza completo. Incluye transporte y personal de servicio.",
-          "tiempo": null,
-          "unidad": "ALMUERZO O CENA UNIDAD",
+          "descripcion_tecnica": "Almuerzo o Cena Buffet. Compuesto por: mínimo (5) opciones de proteína 250 g c/u, (5) opciones de carbohidratos 150 g c/u, (5) reguladores 150 g c/u, (2) bebidas 250 ml c/u, (5) opciones de postre. Servido en mesa buffet con menaje de loza completo. Incluye transporte y personal de servicio.",
+          "tiempo": "N/A",
+          "unidad": "ALMUERZO O CENA / UNIDAD",
           "cat_especial_1": 57000,
           "cat_2_3_4": 70264,
           "cat_5_6": 86038,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 17,
           "producto_servicio": "ALMUERZO TIPO A SERVIDO A LA MESA",
-          "descripcion_tecnica": "Almuerzo Tipo A Servido a la Mesa. Compuesto por: (1) sopa de entrada porción adulto, (1) plato fuerte (proteína, cereal, tubérculo, regulador) porción adulto, (1) bebida 250 ml. Menú a convenir según región y tradiciones. Servido con menaje de loza. Incluye transporte y personal de servicio.",
-          "tiempo": null,
+          "descripcion_tecnica": "Almuerzo Tipo A Servido a la Mesa. Compuesto por: (1) sopa de entrada porción adulto, (1) plato fuerte (proteína + cereal + tubérculo + regulador) porción adulto, (1) bebida 250 ml. Menú a convenir según región y tradiciones. Servido con menaje de loza. Incluye transporte y personal de servicio.",
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 48500,
           "cat_2_3_4": 59727,
           "cat_5_6": 73289,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 18,
           "producto_servicio": "ALMUERZO TIPO B",
-          "descripcion_tecnica": "Almuerzo Tipo B Empacado. Compuesto por: (1) proteína 200 g, (2) carbohidratos (cereal, tubérculo), (1) ensalada o regulador, (1) gaseosa 250 ml o jugo natural, (1) mini postre. Empaque sostenible (kraft u otro). Incluye transporte.",
-          "tiempo": null,
+          "descripcion_tecnica": "Almuerzo Tipo B Empacado. Compuesto por: (1) proteína 200 g, (2) carbohidratos (cereal + tubérculo), (1) ensalada o regulador, (1) gaseosa 250 ml o jugo natural, (1) mini postre. Empaque sostenible (kraft u otro). Incluye transporte.",
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 40000,
           "cat_2_3_4": 49189,
           "cat_5_6": 60541,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 19,
-          "producto_servicio": "ALMUERZO TIPO C",
+          "producto_servicio": "ALMUERZOS TIPO C",
           "descripcion_tecnica": "Almuerzo Tipo C Empacado. Compuesto por: (1) proteína 150 g, (2) carbohidratos, (1) fruta de mano, (1) bebida 250 ml, (1) chocolatina pequeña. Empacado en bolsa Kraft. Incluye transporte.",
-          "tiempo": null,
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 37500,
           "cat_2_3_4": 46286,
           "cat_5_6": 56522,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 20,
           "producto_servicio": "ALMUERZO EMPACADO",
-          "descripcion_tecnica": "Almuerzo Empacado (Sopa + Plato Fuerte). Compuesto por: (1) sopa de entrada porción adulto, (1) plato fuerte (proteína, cereal, tubérculo) porción adulto, (1) bebida. Empaque ambientalmente sostenible. Menú a convenir según región. Incluye transporte.",
-          "tiempo": null,
+          "descripcion_tecnica": "Almuerzo Empacado (Sopa + Plato Fuerte). Compuesto por: (1) sopa de entrada porción adulto, (1) plato fuerte (proteína + cereal + tubérculo) porción adulto, (1) bebida. Empaque ambientalmente sostenible. Menú a convenir según región. Incluye transporte.",
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 34000,
           "cat_2_3_4": 42268,
           "cat_5_6": 52022,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 21,
           "producto_servicio": "CENA EMPACADA",
-          "descripcion_tecnica": "Cena Empacada. Compuesto por: (1) plato fuerte (proteína, cereal, tubérculo) porción adulto, (1) bebida 250 ml. Menú a convenir según región. Empaque adecuado ambientalmente sostenible. Incluye transporte.",
-          "tiempo": null,
+          "descripcion_tecnica": "Cena Empacada. Compuesto por: (1) plato fuerte (proteína + cereal + tubérculo) porción adulto, (1) bebida 250 ml. Menú a convenir según región. Empaque adecuado ambientalmente sostenible. Incluye transporte.",
+          "tiempo": "N/A",
           "unidad": "UNIDAD",
           "cat_especial_1": 38500,
           "cat_2_3_4": 47412,
           "cat_5_6": 57750,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 22,
           "producto_servicio": "CENA SERVIDA A LA MESA",
-          "descripcion_tecnica": "Cena Servida a la Mesa. Compuesto por: (1) entrada (sopa/crema), (1) plato fuerte (proteína, carbohidrato, ensalada), (1) postre, (1) bebida. Servido con menaje de loza. Incluye transporte y personal de servicio.",
-          "tiempo": null,
-          "unidad": "PERSONA/DÍA",
+          "descripcion_tecnica": "Estación de café para protocolo (VIP). Dotada con mínimo (4) de los siguientes productos a elección: tabla de quesos importados, galletas de soda individuales, galletas danesas, almojábanas frescas, achiras, nueces variadas (marañón, almendra, maní, pistacho), pan baguette, pan de arándanos, corazones y tortas. Bebidas: café, capuchino, chocolate, aromáticas variadas y agua servida en pocillo de porcelana o vaso de cristal. Incluye mesa con spandex o mantel. Valor por persona por día. Incluye transporte, personal de atención y menaje de loza.",
+          "tiempo": "N/A",
+          "unidad": "PERSONA / DÍA",
           "cat_especial_1": 48500,
           "cat_2_3_4": 59692,
-          "cat_5_6": 73154,
-          "observaciones": null
+          "cat_5_6": 73194,
+          "observaciones": ""
         },
         {
           "id": 23,
           "producto_servicio": "ESTACIÓN DE CAFÉ VIP",
-          "descripcion_tecnica": "Estación de café para protocolo (VIP). Dotada con mínimo (4) de los siguientes productos a elección: tabla de quesos importados, galletas de soda individuales, galletas danesas, almojábanas frescas, achiras, nueces variadas (marañón, almendra, maní, pistacho), pan baguette, pan de arándanos, corazones y tortas. Bebidas: café, capuchino, chocolate, aromáticas variadas y agua servida en pocillo de porcelana o vaso de cristal. Incluye mesa con spandex o mantel. Valor por persona por día. Incluye transporte, personal de atención y menaje de loza.",
+          "descripcion_tecnica": "Estación de Café Simple (Tipo C). Dotada con: café, tinto, aromática, té en vaso biodegradable de 4 oz; agua en vaso biodegradable de 10 oz. Sin acompañamiento sólido. Incluye mesa con mantel. Valor por persona por día. Incluye transporte y distribución en sitio del evento.",
           "tiempo": "1 DÍA",
-          "unidad": "PERSONA/DÍA",
+          "unidad": "PERSONA / DÍA",
           "cat_especial_1": 32000,
           "cat_2_3_4": 39596,
           "cat_5_6": 49131,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 24,
           "producto_servicio": "ESTACIÓN DE CAFÉ SIMPLE",
-          "descripcion_tecnica": "Estación de Café Simple (Tipo C). Dotada con café, tinto, aromática, té en vaso biodegradable de 4 oz, agua en vaso biodegradable de 10 oz. Sin acompañamiento sólido. Incluye mesa con mantel. Valor por persona por día. Incluye transporte y distribución en sitio del evento.",
+          "descripcion_tecnica": "Estación de Café Break (Tipo B). Dotada con: café, tinto, aromática, té en vaso biodegradable de 4 oz; agua en vaso biodegradable de 10 oz; acompañado de galletas y colaciones. Incluye mesa con mantel. Valor por persona por día. Incluye transporte y personal de servicio.",
           "tiempo": "1 DÍA",
-          "unidad": "PERSONA/DÍA",
+          "unidad": "PERSONA / DÍA",
           "cat_especial_1": 15500,
           "cat_2_3_4": 19330,
           "cat_5_6": 24230,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 25,
           "producto_servicio": "ESTACIÓN DE CAFÉ BREAK",
-          "descripcion_tecnica": "Estación de Café Break (Tipo B). Dotada con café, tinto, aromática, té en vaso biodegradable de 4 oz, agua en vaso biodegradable de 10 oz acompañado de galletas y ablaciones. Incluye mesa con mantel. Valor por persona por día. Incluye transporte y personal de servicio.",
+          "descripcion_tecnica": "Estación de Café y Agua para grupo de hasta 30 personas. Cantidades ilimitadas durante el día: café, aromáticas variadas, agua natural, crema de leche, azúcar, edulcorante, mezcladores, vasos biodegradables de 4 oz. Incluye mesa, equipo dispensador y personal de atención. Valor por estación por día.",
           "tiempo": "1 DÍA",
-          "unidad": "ESTACIÓN/DÍA",
+          "unidad": "ESTACIÓN / DÍA",
           "cat_especial_1": 21000,
           "cat_2_3_4": 26293,
           "cat_5_6": 32780,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 26,
           "producto_servicio": "ESTACIÓN DE CAFÉ Y AGUA (30 PAX)",
-          "descripcion_tecnica": "Estación de Café y Agua para grupo de hasta 30 personas. Cantidades limitadas durante el día: café, aromáticas variadas, agua natural, crema de leche, azúcar, edulcorante, mezcladores, vasos biodegradables de 4 oz. Incluye mesa, equipo dispensador y personal de atención. Valor por estación por día.",
+          "descripcion_tecnica": "Estación de Café y Agua para grupo de hasta 50 personas. Cantidades ilimitadas durante el día: café, aromáticas variadas, agua natural, crema de leche, azúcar, edulcorante, mezcladores, vasos biodegradables de 4 oz. Incluye mesa, equipo dispensador y personal de atención. Valor por estación por día.",
           "tiempo": "1 DÍA",
-          "unidad": "ESTACIÓN/DÍA",
+          "unidad": "ESTACIÓN / DÍA",
           "cat_especial_1": 350000,
-          "cat_2_3_4": 431050,
+          "cat_2_3_4": 431059,
           "cat_5_6": 528665,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 27,
           "producto_servicio": "ESTACIÓN DE CAFÉ Y AGUA (50 PAX)",
-          "descripcion_tecnica": "Estación de Café y Agua para grupo de hasta 50 personas. Cantidades limitadas durante el día: café, aromáticas variadas, agua natural, crema de leche, azúcar, edulcorante, mezcladores, vasos biodegradables de 4 oz. Incluye mesa, equipo dispensador y personal de atención. Valor por estación por día.",
+          "descripcion_tecnica": "Estación de Café y Agua para grupo de hasta 100 personas. Cantidades ilimitadas durante el día: café, aromáticas variadas, agua natural, crema de leche, azúcar, edulcorante, mezcladores, vasos biodegradables de 4 oz. Incluye mesa, equipo dispensador y personal de atención. Valor por estación por día.",
           "tiempo": "1 DÍA",
-          "unidad": "ESTACIÓN/DÍA",
+          "unidad": "ESTACIÓN / DÍA",
           "cat_especial_1": 525000,
           "cat_2_3_4": 646122,
           "cat_5_6": 792721,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 28,
           "producto_servicio": "ESTACIÓN DE CAFÉ Y AGUA (100 PAX)",
-          "descripcion_tecnica": "Estación de Café y Agua para grupo de hasta 100 personas. Cantidades limitadas durante el día: café, aromáticas variadas, agua natural, crema de leche, azúcar, edulcorante, mezcladores, vasos biodegradables de 4 oz. Incluye mesa, equipo dispensador y personal de atención. Valor por estación por día.",
+          "descripcion_tecnica": "Agua natural en bolsa plástica de 360 ml. Con Registro Sanitario INVIMA vigente. Temperatura ambiente. Precio por unidad.",
           "tiempo": "1 DÍA",
-          "unidad": "ESTACIÓN/DÍA",
+          "unidad": "BOLSA / UNIDAD",
           "cat_especial_1": 1100000,
           "cat_2_3_4": 1353232,
           "cat_5_6": 1660784,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 29,
-          "producto_servicio": "AGUA EN BOLSA 300 ML",
-          "descripcion_tecnica": "Agua natural en bolsa plástica de 300 ml. Con Registro Sanitario INVIMA vigente. Temperatura ambiente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOLSA UNIDAD",
+          "producto_servicio": "AGUA EN BOLSA 360 ML",
+          "descripcion_tecnica": "Agua natural en bolsa plástica de 600 ml. Con Registro Sanitario INVIMA vigente. Temperatura ambiente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BOLSA / UNIDAD",
           "cat_especial_1": 1100,
           "cat_2_3_4": 1283,
           "cat_5_6": 1467,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 30,
           "producto_servicio": "AGUA EN BOLSA 600 ML",
-          "descripcion_tecnica": "Agua natural en bolsa plástica de 600 ml. Con Registro Sanitario INVIMA vigente. Temperatura ambiente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOLSA UNIDAD",
+          "descripcion_tecnica": "Agua natural sin gas en botella plástica no retornable de 300 ml. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BOTELLA / UNIDAD",
           "cat_especial_1": 2200,
           "cat_2_3_4": 2567,
           "cat_5_6": 3667,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 31,
           "producto_servicio": "AGUA NATURAL BOTELLA 300 ML",
-          "descripcion_tecnica": "Agua natural sin gas en botella plástica no retornable de 300 ml. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOTELLA UNIDAD",
+          "descripcion_tecnica": "Agua natural sin gas en botella plástica no retornable de 600 ml. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BOTELLA / UNIDAD",
           "cat_especial_1": 3200,
           "cat_2_3_4": 3733,
           "cat_5_6": 4267,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 32,
           "producto_servicio": "AGUA NATURAL BOTELLA 600 ML",
-          "descripcion_tecnica": "Agua natural sin gas en botella plástica no retornable de 600 ml. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOTELLA UNIDAD",
+          "descripcion_tecnica": "Gaseosa en botella plástica de 250 ml. Marca reconocida. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BOTELLA / UNIDAD",
           "cat_especial_1": 4300,
           "cat_2_3_4": 5017,
           "cat_5_6": 6450,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 33,
           "producto_servicio": "GASEOSA BOTELLA 250 ML",
-          "descripcion_tecnica": "Gaseosa en botella plástica de 250 ml. Marca reconocida. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOTELLA UNIDAD",
+          "descripcion_tecnica": "Gaseosa en botella plástica de 400 ml. Marca reconocida. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BOTELLA / UNIDAD",
           "cat_especial_1": 3300,
           "cat_2_3_4": 3850,
           "cat_5_6": 5133,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 34,
           "producto_servicio": "GASEOSA BOTELLA 400 ML",
-          "descripcion_tecnica": "Gaseosa en botella plástica de 400 ml. Marca reconocida. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOTELLA UNIDAD",
+          "descripcion_tecnica": "Gaseosa en botella plástica de 600 ml. Marca reconocida. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BOTELLA / UNIDAD",
           "cat_especial_1": 4900,
           "cat_2_3_4": 5717,
           "cat_5_6": 7259,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 35,
           "producto_servicio": "GASEOSA BOTELLA 600 ML",
-          "descripcion_tecnica": "Gaseosa en botella plástica de 600 ml. Marca reconocida. Sellada de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOTELLA UNIDAD",
+          "descripcion_tecnica": "Jugo natural en vaso de 12 onzas. Preparado en el lugar o en planta autorizada. Con Registro Sanitario INVIMA vigente. Precio por vaso.",
+          "tiempo": "N/A",
+          "unidad": "VASO / UNIDAD",
           "cat_especial_1": 7000,
-          "cat_2_3_4": 8165,
+          "cat_2_3_4": 8795,
           "cat_5_6": 10769,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 36,
           "producto_servicio": "JUGO NATURAL EN VASO 12 OZ",
-          "descripcion_tecnica": "Jugo natural en vaso de 12 onzas. Preparado en el lugar o en planta autorizada. Con Registro Sanitario INVIMA vigente. Precio por vaso.",
-          "tiempo": null,
-          "unidad": "VASO UNIDAD",
+          "descripcion_tecnica": "Jugo de caja de 200 ml. Marca reconocida. Sellado de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "CAJA / UNIDAD",
           "cat_especial_1": 6500,
           "cat_2_3_4": 7583,
           "cat_5_6": 9389,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 37,
           "producto_servicio": "JUGO DE CAJA 200 ML",
-          "descripcion_tecnica": "Jugo de caja de 200 ml. Marca reconocida. Sellado de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "CAJA UNIDAD",
+          "descripcion_tecnica": "Jugo en botella plástica de 300 ml. Marca reconocida. Sellado de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BOTELLA / UNIDAD",
           "cat_especial_1": 2800,
           "cat_2_3_4": 3267,
           "cat_5_6": 4480,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 38,
           "producto_servicio": "JUGO BOTELLA PLÁSTICA 300 ML",
-          "descripcion_tecnica": "Jugo en botella plástica de 300 ml. Marca reconocida. Sellado de fábrica. Con Registro Sanitario INVIMA vigente. Precio por unidad.",
-          "tiempo": null,
-          "unidad": "BOTELLA UNIDAD",
+          "descripcion_tecnica": "Menaje para comidas principales. Puesto completo por persona: (1) plato base, (1) plato fuerte, (1) plato de sopa o consomé, (1) vaso de jugo, (1) copa de agua, tenedor fuerte, cuchillo fuerte, tenedor o cuchara de entrada, plato postre, cuchara o tenedor de postre, cuchillo de untar. Material cerámica y/o porcelana. Valor por puesto por día. Incluye transporte, instalación y desinstalación.",
+          "tiempo": "N/A",
+          "unidad": "PUESTO X PERSONA / DÍA",
           "cat_especial_1": 6500,
           "cat_2_3_4": 7583,
           "cat_5_6": 9389,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 39,
           "producto_servicio": "MENAJE COMIDAS PRINCIPALES",
-          "descripcion_tecnica": "Menaje para comidas principales. Puesto completo por persona: (1) plato base, (1) plato fuerte, (1) plato de sopa o consomé, (1) vaso de jugo, (1) copa de agua, tenedor fuerte, cuchillo fuerte, tenedor o cuchara de entrada, plato postre, cuchara o tenedor postre, cuchillo de untar. Material cerámica y/o porcelana. Valor por puesto por día. Incluye transporte, instalación y desinstalación.",
+          "descripcion_tecnica": "Menaje completo para comidas principales con servilletas de tela e individuales. Incluye: plato base, plato fuerte, plato de sopa, vaso de jugo, copa de agua, cubiertos completos (tenedor fuerte, cuchillo, tenedor de entrada, plato de postre, cuchara de postre, cuchillo de untar). Material porcelana. Servilleta de tela e individual por persona. Incluye transporte, instalación y desinstalación.",
           "tiempo": "1 DÍA",
-          "unidad": "PUESTO X PERSONA DÍA",
+          "unidad": "PUESTO X PERSONA / DÍA",
           "cat_especial_1": 13500,
           "cat_2_3_4": 16463,
           "cat_5_6": 20415,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 40,
           "producto_servicio": "MENAJE COMIDAS CON SERVILLETAS Y MANTEL",
-          "descripcion_tecnica": "Menaje completo para comidas principales con servilletas de tela e individuales. Incluye: plato base, plato fuerte, plato de sopa, vaso de jugo, copa de agua, cubiertos completos (tenedor fuerte, cuchillo, tenedor de entrada, plato de postre, cuchara de postre, cuchillo de untar). Material porcelana. Servilleta de tela e individual por persona. Incluye transporte, instalación y desinstalación.",
+          "descripcion_tecnica": "Menaje para refrigerios. Puesto básico por persona: (1) plato de refrigerio, (1) vaso, cubiertos básicos (tenedor y cuchara). Material cerámica o loza. Valor por puesto por día. Incluye transporte, instalación y desinstalación.",
           "tiempo": "1 DÍA",
-          "unidad": "PUESTO X PERSONA DÍA",
+          "unidad": "PUESTO X PERSONA / DÍA",
           "cat_especial_1": 15000,
           "cat_2_3_4": 18113,
           "cat_5_6": 22358,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 41,
           "producto_servicio": "MENAJE REFRIGERIOS",
-          "descripcion_tecnica": "Menaje para refrigerios. Puesto básico por persona: (1) plato refrigerio, (1) vaso, cubiertos básicos (tenedor y cuchara). Material cerámica o loza. Valor por puesto por día. Incluye transporte, instalación y desinstalación.",
+          "descripcion_tecnica": "Mantel en tela para mesa. Medidas según el tipo de mesa (redonda o rectangular), con caída mínima de 70 cm en todos los lados. Color blanco o según requerimiento del evento. Valor por mesa por día. Incluye transporte, instalación y desinstalación.",
           "tiempo": "1 DÍA",
-          "unidad": "PUESTO X PERSONA DÍA",
+          "unidad": "PUESTO X MESA / DÍA",
           "cat_especial_1": 11500,
           "cat_2_3_4": 13800,
           "cat_5_6": 17250,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 42,
           "producto_servicio": "MANTELES PARA MESA",
-          "descripcion_tecnica": "Mantel en tela para mesa. Medidas según el tipo de mesa (redonda o rectangular), con caída mínima de 70 cm en todos los lados. Color blanco o según requerimiento del evento. Valor por mesa por día. Incluye transporte, instalación y desinstalación.",
+          "descripcion_tecnica": "Servilleta de tela para eventos. Una servilleta por persona por puesto. Color blanco o según requerimiento del evento. Incluye transporte, instalación y desmontaje.",
           "tiempo": "1 DÍA",
-          "unidad": "PUESTO X MESA DÍA",
+          "unidad": "PUESTO X PERSONA / DÍA",
           "cat_especial_1": 38000,
           "cat_2_3_4": 46918,
           "cat_5_6": 57000,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 43,
           "producto_servicio": "SERVILLETAS DE TELA",
-          "descripcion_tecnica": "Servilleta de tela para eventos. Una servilleta por persona por puesto. Color blanco o según requerimiento del evento. Incluye transporte, instalación y desmontaje.",
+          "descripcion_tecnica": "Individual de tela para puesto de mesa. Uno por persona. Color blanco o según requerimiento del evento. Incluye transporte, instalación y desmontaje.",
           "tiempo": "1 DÍA",
-          "unidad": "PUESTO X PERSONA DÍA",
+          "unidad": "PUESTO X PERSONA / DÍA",
           "cat_especial_1": 4500,
-          "cat_2_3_4": 5300,
+          "cat_2_3_4": 5000,
           "cat_5_6": 7000,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 44,
           "producto_servicio": "INDIVIDUAL DE TELA",
-          "descripcion_tecnica": "Individual de tela para puesto de mesa. Uno por persona. Color blanco o según requerimiento del evento. Incluye transporte, instalación y desmontaje.",
+          "descripcion_tecnica": "Puesto por persona. Incluye instalación.",
           "tiempo": "1 DÍA",
-          "unidad": "PUESTO X PERSONA DÍA",
+          "unidad": "PUESTO X PERSONA",
           "cat_especial_1": 7000,
-          "cat_2_3_4": 8547,
+          "cat_2_3_4": 8647,
           "cat_5_6": 10706,
-          "observaciones": null
+          "observaciones": ""
         }
       ]
     },
     {
-      "nombre": "ALOJAMIENTO Y ESPACIOS",
+      "nombre": "Alojamiento y Espacios",
       "items": [
         {
           "id": 1,
           "producto_servicio": "AUDITORIO PRINCIPAL 25 PAX",
-          "descripcion_tecnica": "Auditorio principal para hasta 25 personas en disposición frente a frente, sala, auditorio o mesa redonda (según requerimiento). Incluye mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas en sitio, iluminación adecuada y acceso para personas con movilidad reducida. Precio por auditorio por día.",
+          "descripcion_tecnica": "Auditorio principal para hasta 25 personas en disposición frente a frente, sala, auditorio o mesa redonda (según requerimiento). Incluye: mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas en sitio, iluminación adecuada y acceso para personas con movilidad reducida. Precio por auditorio por día.",
           "tiempo": "1 DÍA",
-          "unidad": "AUDITORIO/DÍA",
+          "unidad": "AUDITORIO / DÍA",
           "cat_especial_1": 1400000,
           "cat_2_3_4": 1138229,
           "cat_5_6": 924375,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 2,
           "producto_servicio": "AUDITORIO PRINCIPAL 50 PAX",
-          "descripcion_tecnica": "Auditorio principal para hasta 50 personas. Incluye mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por auditorio por día.",
+          "descripcion_tecnica": "Auditorio principal para hasta 50 personas. Incluye: mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por auditorio por día.",
           "tiempo": "1 DÍA",
-          "unidad": "AUDITORIO/DÍA",
+          "unidad": "AUDITORIO / DÍA",
           "cat_especial_1": 1980000,
           "cat_2_3_4": 1610832,
           "cat_5_6": 1307025,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 3,
           "producto_servicio": "AUDITORIO PRINCIPAL 100 PAX",
-          "descripcion_tecnica": "Auditorio principal para hasta 100 personas. Incluye mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por auditorio por día.",
+          "descripcion_tecnica": "Auditorio principal para hasta 100 personas. Incluye: mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por auditorio por día.",
           "tiempo": "1 DÍA",
-          "unidad": "AUDITORIO/DÍA",
+          "unidad": "AUDITORIO / DÍA",
           "cat_especial_1": 3700000,
           "cat_2_3_4": 3009248,
           "cat_5_6": 2442404,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 4,
           "producto_servicio": "AUDITORIO PRINCIPAL 200 PAX",
-          "descripcion_tecnica": "Auditorio principal para hasta 200 personas. Incluye mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por auditorio por día.",
+          "descripcion_tecnica": "Auditorio principal para hasta 200 personas. Incluye: mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por auditorio por día.",
           "tiempo": "1 DÍA",
-          "unidad": "AUDITORIO/DÍA",
+          "unidad": "AUDITORIO / DÍA",
           "cat_especial_1": 5500000,
           "cat_2_3_4": 4473020,
           "cat_5_6": 3630962,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 5,
           "producto_servicio": "AUDITORIO PRINCIPAL 500 PAX",
           "descripcion_tecnica": "Auditorio principal para hasta 500 personas. Incluye: mobiliario de sala (sillas y mesas según configuración), ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por auditorio por día.",
           "tiempo": "1 DÍA",
-          "unidad": "AUDITORIO/DÍA",
-          "cat_especial_1": 9000000,
+          "unidad": "AUDITORIO / DÍA",
+          "cat_especial_1": 9900000,
           "cat_2_3_4": 8052454,
           "cat_5_6": 6535888,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 6,
           "producto_servicio": "AUDITORIO PRINCIPAL 1000 PAX",
-          "descripcion_tecnica": "Auditorio principal para hasta 1.000 personas. Incluye mobiliario de sala (sillas y mesas según configuración), sistema de ventilación o aire acondicionado, conexiones eléctricas suficientes, iluminación adecuada y acceso certificado para personas con movilidad reducida. Precio por auditorio por día.",
+          "descripcion_tecnica": "Auditorio principal para hasta 1.000 personas. Incluye: mobiliario de sala (sillas y mesas según configuración), sistema de ventilación o aire acondicionado, conexiones eléctricas suficientes, iluminación adecuada y acceso certificado para personas con movilidad reducida. Precio por auditorio por día.",
           "tiempo": "1 DÍA",
-          "unidad": "AUDITORIO/DÍA",
+          "unidad": "AUDITORIO / DÍA",
           "cat_especial_1": 20500000,
           "cat_2_3_4": 16638113,
-          "cat_5_6": 13502735,
-          "observaciones": null
+          "cat_5_6": 13592735,
+          "observaciones": ""
         },
         {
           "id": 7,
-          "producto_servicio": "SALON ALTERNO 15 PAX (SALA VIP)",
-          "descripcion_tecnica": "Salón alterno (Sala VIP) para hasta 15 personas. En configuración sala de juntas o sala VIP. Incluye ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
+          "producto_servicio": "SALÓN ALTERNO 15 PAX (SALA VIP)",
+          "descripcion_tecnica": "Salón alterno (Sala VIP) para hasta 15 personas. En configuración sala de juntas o sala VIP. Incluye: ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 890000,
           "cat_2_3_4": 723754,
           "cat_5_6": 587677,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 8,
-          "producto_servicio": "SALON ALTERNO 25 PAX",
-          "descripcion_tecnica": "Salón alterno para hasta 25 personas. Para grupos de trabajo, comisiones o subgrupos. Incluye ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
+          "producto_servicio": "SALÓN ALTERNO 25 PAX",
+          "descripcion_tecnica": "Salón alterno para hasta 25 personas. Para grupos de trabajo, comisiones o subgrupos. Incluye: ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 1270000,
           "cat_2_3_4": 1032921,
           "cat_5_6": 838928,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 9,
-          "producto_servicio": "SALON ALTERNO 50 PAX",
-          "descripcion_tecnica": "Salón alterno para hasta 50 personas. Para grupos de trabajo, comisiones o sesiones paralelas. Incluye ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
+          "producto_servicio": "SALÓN ALTERNO 50 PAX",
+          "descripcion_tecnica": "Salón alterno para hasta 50 personas. Para grupos de trabajo, comisiones o sesiones paralelas. Incluye: ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 1820000,
           "cat_2_3_4": 1480218,
           "cat_5_6": 1201452,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 10,
-          "producto_servicio": "HOTEL SALON ALTERNO VIP (15 PAX)",
-          "descripcion_tecnica": "Salón VIP en hotel para hasta 15 personas. En configuración sala de juntas. En hotel de mínimo 3 estrellas. Incluye ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
+          "producto_servicio": "HOTEL SALÓN ALTERNO VIP (15 PAX)",
+          "descripcion_tecnica": "Salón VIP en hotel para hasta 15 personas. En configuración sala de juntas. En hotel de mínimo 3 estrellas. Incluye: ventilación o aire acondicionado, conexiones eléctricas, iluminación y acceso para personas con movilidad reducida. Precio por salón por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 1090000,
           "cat_2_3_4": 886885,
           "cat_5_6": 719879,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 11,
           "producto_servicio": "SALA LOUNGE 4 PERSONAS",
-          "descripcion_tecnica": "Sala lounge o sala de reunión VIP para hasta 4 personas. Para reuniones de alto nivel o confidenciales. Incluye mobiliario tipo lounge (sofás, mesa de centro), ventilación, iluminación y privacidad. Precio por sala por día.",
+          "descripcion_tecnica": "Sala lounge o sala de reunión VIP para hasta 4 personas. Para reuniones de alto nivel o confidenciales. Incluye: mobiliario tipo lounge (sofás, mesa de centro), ventilación, iluminación y privacidad. Precio por sala por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALA/DÍA",
+          "unidad": "SALA / DÍA",
           "cat_especial_1": 950000,
           "cat_2_3_4": 772084,
           "cat_5_6": 626725,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 12,
           "producto_servicio": "SALA LOUNGE 6 PERSONAS",
-          "descripcion_tecnica": "Sala lounge o sala de reunión VIP para hasta 6 personas. Incluye mobiliario tipo lounge (sofás, mesa de centro), ventilación, iluminación y privacidad. Precio por sala por día.",
+          "descripcion_tecnica": "Sala lounge o sala de reunión VIP para hasta 6 personas. Incluye: mobiliario tipo lounge (sofás, mesa de centro), ventilación, iluminación y privacidad. Precio por sala por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALA/DÍA",
+          "unidad": "SALA / DÍA",
           "cat_especial_1": 1220000,
           "cat_2_3_4": 991983,
           "cat_5_6": 805652,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 13,
           "producto_servicio": "SALA LOUNGE 8 PERSONAS",
-          "descripcion_tecnica": "Sala lounge o sala de reunión VIP para hasta 8 personas. Incluye mobiliario tipo lounge (sofás, mesa de centro), ventilación, iluminación y privacidad. Precio por sala por día.",
+          "descripcion_tecnica": "Sala lounge o sala de reunión VIP para hasta 8 personas. Incluye: mobiliario tipo lounge (sofás, mesa de centro), ventilación, iluminación y privacidad. Precio por sala por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALA/DÍA",
+          "unidad": "SALA / DÍA",
           "cat_especial_1": 1670000,
           "cat_2_3_4": 1358758,
           "cat_5_6": 1102526,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 14,
-          "producto_servicio": "MULTISALON TIPO 1 CON DOTACIÓN",
-          "descripcion_tecnica": "Multisalón Tipo 1 con dotación. Incluye: (1) salón principal con capacidad mínima de 100 personas, mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación: sistema de sonido básico, sillas, mesas, mantelería, (1) PC portátil, (1) video beam, (1) pantalla de proyección y tableros en cada salón. Precio por conjunto por día.",
+          "producto_servicio": "MULTISALÓN TIPO 1 CON DOTACIÓN",
+          "descripcion_tecnica": "Multisalón Tipo 1 con dotación. Incluye: (1) salón principal con capacidad mínima de 100 personas + mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación: sistema de sonido básico, sillas, mesas, mantelería, (1) PC portátil, (1) video beam, (1) pantalla de proyección y tableros en cada salón. Precio por conjunto por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 1600000,
           "cat_2_3_4": 1558091,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 15,
-          "producto_servicio": "MULTISALON TIPO 2 CON DOTACIÓN",
-          "descripcion_tecnica": "Multisalón Tipo 2 con dotación. Incluye: (1) salón principal con capacidad mínima de 200 personas, mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación audiovisual completa: sistema de sonido, sillas, mesas, mantelería, PC, video beam, pantalla y tableros. Precio por conjunto por día.",
+          "producto_servicio": "MULTISALÓN TIPO 2 CON DOTACIÓN",
+          "descripcion_tecnica": "Multisalón Tipo 2 con dotación. Incluye: (1) salón principal con capacidad mínima de 200 personas + mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación audiovisual completa: sistema de sonido, sillas, mesas, mantelería, PC, video beam, pantalla y tableros. Precio por conjunto por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 3200000,
           "cat_2_3_4": 2324914,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 16,
-          "producto_servicio": "MULTISALON TIPO 3 CON DOTACIÓN",
-          "descripcion_tecnica": "Multisalón Tipo 3 con dotación. Incluye: (1) salón principal con capacidad mínima de 300 personas, mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación audiovisual completa. Precio por conjunto por día.",
+          "producto_servicio": "MULTISALÓN TIPO 3 CON DOTACIÓN",
+          "descripcion_tecnica": "Multisalón Tipo 3 con dotación. Incluye: (1) salón principal con capacidad mínima de 300 personas + mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación audiovisual completa. Precio por conjunto por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 3850000,
           "cat_2_3_4": 3334206,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 17,
-          "producto_servicio": "MULTISALON TIPO 4 CON DOTACIÓN",
-          "descripcion_tecnica": "Multisalón Tipo 4 con dotación. Incluye: (1) salón principal con capacidad mínima de 500 personas, mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación audiovisual completa (sonido, iluminación, video beam, pantalla, mesas, sillas). Precio por conjunto por día.",
+          "producto_servicio": "MULTISALÓN TIPO 4 CON DOTACIÓN",
+          "descripcion_tecnica": "Multisalón Tipo 4 con dotación. Incluye: (1) salón principal con capacidad mínima de 500 personas + mínimo 3 salones auxiliares con capacidad entre 10 y 50 personas c/u. Dotación audiovisual completa (sonido, iluminación, video beam, pantalla, mesas, sillas). Precio por conjunto por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SALON/DÍA",
+          "unidad": "SALÓN / DÍA",
           "cat_especial_1": 5850000,
           "cat_2_3_4": null,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 18,
           "producto_servicio": "ALOJAMIENTO ACOMODACIÓN SENCILLA",
-          "descripcion_tecnica": "Alojamiento en habitación sencilla (para una persona). Una noche. En hotel de mínimo 2 estrellas o equivalente. Incluye desayuno según disponibilidad del hotel (especificar al solicitar). Precio referencial por persona por noche.",
+          "descripcion_tecnica": "Alojamiento en habitación sencilla (para una persona). Una noche. En hotel de mínimo 3 estrellas o equivalente. Incluye desayuno según disponibilidad del hotel (especificar al solicitar). Precio referencial por persona por noche.",
           "tiempo": "NOCHE",
-          "unidad": "NOCHE PERSONA",
+          "unidad": "NOCHE / PERSONA",
           "cat_especial_1": 125000,
           "cat_2_3_4": 143952,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 19,
           "producto_servicio": "ALOJAMIENTO ACOMODACIÓN DOBLE",
           "descripcion_tecnica": "Alojamiento en habitación doble (para dos personas en camas separadas o doble). Una noche. En hotel de mínimo 3 estrellas o equivalente. Precio por habitación por noche.",
           "tiempo": "NOCHE",
-          "unidad": "NOCHE HABITACIÓN",
+          "unidad": "NOCHE / HABITACIÓN",
           "cat_especial_1": 180000,
           "cat_2_3_4": 219587,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 20,
           "producto_servicio": "ALOJAMIENTO ACOMODACIÓN TRIPLE",
           "descripcion_tecnica": "Alojamiento en habitación triple (para tres personas). Una noche. En hotel de mínimo 3 estrellas o equivalente. Precio por habitación por noche.",
           "tiempo": "NOCHE",
-          "unidad": "NOCHE HABITACIÓN",
+          "unidad": "NOCHE / HABITACIÓN",
           "cat_especial_1": 235000,
-          "cat_2_3_4": 280216,
+          "cat_2_3_4": 289216,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 21,
           "producto_servicio": "ALOJAMIENTO ACOMODACIÓN CUÁDRUPLE",
           "descripcion_tecnica": "Alojamiento en habitación cuádruple (para cuatro personas). Una noche. En hotel o equivalente. Precio por habitación por noche.",
           "tiempo": "NOCHE",
-          "unidad": "NOCHE HABITACIÓN",
+          "unidad": "NOCHE / HABITACIÓN",
           "cat_especial_1": 350000,
           "cat_2_3_4": 364608,
           "cat_5_6": null,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 22,
-          "producto_servicio": "ALQUILER BODEGA 50 M²-SEMANA",
-          "descripcion_tecnica": "Alquiler de bodega de 50 m² por semana. Incluye acceso controlado durante el período, vigilancia básica (guarda) y energía eléctrica básica para iluminación. Para almacenamiento de materiales, equipos o insumos del evento. Precio por semana.",
+          "producto_servicio": "ALQUILER BODEGA 50 M² — SEMANA",
+          "descripcion_tecnica": "Alquiler de bodega de 50 m² por semana. Incluye: acceso controlado durante el período, vigilancia básica (guarda) y energía eléctrica básica para iluminación. Para almacenamiento de materiales, equipos o insumos del evento. Precio por semana.",
           "tiempo": "SEMANA",
-          "unidad": "UNIDAD SEMANA",
+          "unidad": "UNIDAD / SEMANA",
           "cat_especial_1": 2000000,
           "cat_2_3_4": 1622954,
           "cat_5_6": 1325640,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 23,
-          "producto_servicio": "ALQUILER BODEGA 50 M²-MES",
-          "descripcion_tecnica": "Alquiler de bodega de 50 m² por mes. Incluye acceso controlado durante el período, vigilancia básica y energía eléctrica básica para iluminación. Para almacenamiento de materiales o equipos del proceso o contrato. Precio por mes.",
+          "producto_servicio": "ALQUILER BODEGA 50 M² — MES",
+          "descripcion_tecnica": "Alquiler de bodega de 50 m² por mes. Incluye: acceso controlado durante el período, vigilancia básica y energía eléctrica básica para iluminación. Para almacenamiento de materiales o equipos del proceso o contrato. Precio por mes.",
           "tiempo": "MES",
-          "unidad": "UNIDAD MES",
+          "unidad": "UNIDAD / MES",
           "cat_especial_1": 4800000,
           "cat_2_3_4": 3920443,
           "cat_5_6": 3200421,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 24,
-          "producto_servicio": "ALQUILER BODEGA 100 M²-SEMANA",
-          "descripcion_tecnica": "Alquiler de bodega de 100 m² por semana. Incluye acceso controlado, vigilancia básica y energía eléctrica básica para iluminación. Para almacenamiento de materiales, equipos o insumos del evento. Precio por semana.",
+          "producto_servicio": "ALQUILER BODEGA 100 M² — SEMANA",
+          "descripcion_tecnica": "Alquiler de bodega de 100 m² por semana. Incluye: acceso controlado, vigilancia básica y energía eléctrica básica para iluminación. Para almacenamiento de materiales, equipos o insumos del evento. Precio por semana.",
           "tiempo": "SEMANA",
-          "unidad": "UNIDAD SEMANA",
+          "unidad": "UNIDAD / SEMANA",
           "cat_especial_1": 3990000,
           "cat_2_3_4": 3238357,
           "cat_5_6": 2645297,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 25,
-          "producto_servicio": "ALQUILER BODEGA 100 M²-MES",
-          "descripcion_tecnica": "Alquiler de bodega de 100 m² por mes. Incluye acceso controlado durante el período, vigilancia básica y energía eléctrica básica para iluminación. Para almacenamiento de materiales o equipos del proceso. Precio por mes.",
+          "producto_servicio": "ALQUILER BODEGA 100 M² — MES",
+          "descripcion_tecnica": "Alquiler de bodega de 100 m² por mes. Incluye: acceso controlado durante el período, vigilancia básica y energía eléctrica básica para iluminación. Para almacenamiento de materiales o equipos del proceso. Precio por mes.",
           "tiempo": "MES",
-          "unidad": "UNIDAD MES",
+          "unidad": "UNIDAD / MES",
           "cat_especial_1": 7800000,
           "cat_2_3_4": 6370000,
           "cat_5_6": 5199789,
-          "observaciones": "*Info. no disponible, sujeta a condiciones territoriales, climáticas, de seguridad, etc. Requiere coordinación de la DSCI con las comunidades, previo acuerdos de instalación y servicios o actividades a ejecutar."
+          "observaciones": ""
         }
       ]
     },
     {
-      "nombre": "EQUIPOS AUDIOVISUALES",
+      "nombre": "Equipos Audiovisuales",
       "items": [
         {
           "id": 1,
           "producto_servicio": "SONIDO PROFESIONAL CONFERENCIA (20-50 PAX)",
           "descripcion_tecnica": "Sistema de sonido profesional para conferencia o reunión de 20 a 50 personas. Compuesto por: cabinas autopotenciadas tipo Bose L1 o equivalente, consola de mezcla mínimo 16 canales, micrófonos de mano e inalámbricos, retornos de escena, cableado completo. Apto para espacios cerrados. Incluye transporte, montaje, operación técnica y desmontaje. Valor por kit por día.",
           "tiempo": "DÍA",
-          "unidad": "KIT/DÍA",
+          "unidad": "KIT / DÍA",
           "cat_especial_1": 1200000,
           "cat_2_3_4": 1265471,
           "cat_5_6": 1359329,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 2,
-          "producto_servicio": "SONIDO PROFESIONAL ASAMBLEA (51-200 PAX)",
-          "descripcion_tecnica": "Sistema de sonido profesional para asamblea o plenaria de 51 a 200 personas. Compuesto por: cabinas autopotenciadas, consola de mezcla mínima 16 canales, micrófonos de mano e inalámbricos, retornos de escena, cableado completo. Apto para espacios cerrados de mediana capacidad. Incluye transporte, montaje, operación técnica y desmontaje. Valor por kit por día.",
+          "producto_servicio": "SONIDO PROFESIONAL ASAMBLEA (51- 200 PAX)",
+          "descripcion_tecnica": "Sistema de sonido profesional para asamblea o plenaria de 51 a 200 personas. Compuesto por: cabinas autopotenciadas, consola de mezcla mínimo 16 canales, micrófonos de mano e inalámbricos, retornos de escena, cableado completo. Apto para espacios cerrados de mediana capacidad. Incluye transporte, montaje, operación técnica y desmontaje. Valor por kit por día.",
           "tiempo": "DÍA",
-          "unidad": "KIT/DÍA",
+          "unidad": "KIT / DÍA",
           "cat_especial_1": 2700000,
           "cat_2_3_4": 2847388,
           "cat_5_6": 3058523,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 3,
           "producto_servicio": "SONIDO EVENTO MASIVO (201-500 PAX)",
           "descripcion_tecnica": "Sistema de sonido para evento masivo de 201 a 500 personas. Compuesto por: cabinas array de alta potencia (a cada lado del escenario), 2 bajos dobles, 2 retornos de escena, consola digital mínimo 32 canales, snake de audio, micrófonos de mano e inalámbricos. Incluye transporte, montaje, técnico de sonido y desmontaje. Valor por kit por día.",
           "tiempo": "DÍA",
-          "unidad": "KIT/DÍA",
+          "unidad": "KIT / DÍA",
           "cat_especial_1": 5800000,
           "cat_2_3_4": 6124878,
           "cat_5_6": 6588525,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 4,
           "producto_servicio": "SONIDO ARRAY (501-2000 PAX)",
-          "descripcion_tecnica": "Sistema de sonido array para evento masivo de 501 a 2.000 personas. Compuesto por mínimo 6 cabinas array (a cada lado del escenario), 4 bajos dobles, 4 retornos de escena, consola digital mínimo 32 canales, scaffold o motores de cuelgue, micrófonos. Incluye transporte, montaje, técnico de sonido y desmontaje. Valor por kit por día.",
+          "descripcion_tecnica": "Sistema de sonido array para evento masivo de 501 a 2.000 personas. Compuesto por: mínimo 6 cabinas array (a cada lado del escenario), 4 bajos dobles, 4 retornos de escena, consola digital mínimo 32 canales, scaffold o motores de cuelgue, micrófonos. Incluye transporte, montaje, técnico de sonido y desmontaje. Valor por kit por día.",
           "tiempo": "DÍA",
-          "unidad": "KIT/DÍA",
+          "unidad": "KIT / DÍA",
           "cat_especial_1": 10500000,
           "cat_2_3_4": 11016529,
           "cat_5_6": 11876951,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 5,
           "producto_servicio": "CONSOLA AUDIO 32 CANALES",
           "descripcion_tecnica": "Consola de audio profesional de 32 canales para eventos de mediana complejidad. Incluye transporte, montaje y desmontaje. Valor por consola por día.",
           "tiempo": "DÍA",
-          "unidad": "CONSOLA/DÍA",
+          "unidad": "CONSOLA / DÍA",
           "cat_especial_1": 900000,
           "cat_2_3_4": 949008,
           "cat_5_6": 1019542,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 6,
           "producto_servicio": "CONSOLA AUDIO 48 CANALES",
           "descripcion_tecnica": "Consola de audio profesional de 48 canales para eventos de alta complejidad o gran formato. Incluye transporte, montaje y desmontaje. Valor por consola por día.",
           "tiempo": "DÍA",
-          "unidad": "CONSOLA/DÍA",
+          "unidad": "CONSOLA / DÍA",
           "cat_especial_1": 1350000,
           "cat_2_3_4": 1423645,
           "cat_5_6": 1529049,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 7,
           "producto_servicio": "DISTRIBUIDOR AUDIO 12 CANALES",
           "descripcion_tecnica": "Distribuidor de señal de audio de 12 canales para distribución de audio a múltiples puntos de salida. Incluye transporte, montaje y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "DISTRIBUIDOR/DÍA",
+          "unidad": "DISTRIBUIDO R / DÍA",
           "cat_especial_1": 430000,
           "cat_2_3_4": 453813,
           "cat_5_6": 487242,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 8,
           "producto_servicio": "MICRÓFONO INALÁMBRICO",
           "descripcion_tecnica": "Micrófono inalámbrico (de mano o solapa). Frecuencia UHF. Batería recargable incluida. Receptor inalámbrico. Para presentadores, panelistas o conferencistas. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "MICRÓFONO/DÍA",
+          "unidad": "MICRÓFONO / DÍA",
           "cat_especial_1": 195000,
-          "cat_2_3_4": 205966,
+          "cat_2_3_4": 205986,
           "cat_5_6": 221092,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 9,
           "producto_servicio": "MICRÓFONO SOLAPA",
           "descripcion_tecnica": "Micrófono de solapa inalámbrico (lavalier). Sistema UHF. Para presentadores o conferencistas. Receptor inalámbrico. Batería incluida. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "MICRÓFONO/DÍA",
+          "unidad": "MICRÓFONO / DÍA",
           "cat_especial_1": 260000,
           "cat_2_3_4": 274169,
           "cat_5_6": 294314,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 10,
           "producto_servicio": "MICRÓFONO CUELLO DE GANSO",
           "descripcion_tecnica": "Micrófono de mesa cuello de ganso (cuello de cisne). Para mesas directivas, paneles o debates. Cableado incluido. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "MICRÓFONO/DÍA",
+          "unidad": "MICRÓFONO / DÍA",
           "cat_especial_1": 160000,
           "cat_2_3_4": 168711,
           "cat_5_6": 181547,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 11,
           "producto_servicio": "MICRÓFONO DE CABEZA DE BOOM",
           "descripcion_tecnica": "Micrófono de cabeza tipo boom para presentadores o actores en escena. Sistema inalámbrico. Batería incluida. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "MICRÓFONO/DÍA",
+          "unidad": "MICRÓFONO / DÍA",
           "cat_especial_1": 240000,
           "cat_2_3_4": 252872,
           "cat_5_6": 271557,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 12,
           "producto_servicio": "BASE DE PISO PARA MICRÓFONO",
           "descripcion_tecnica": "Base de piso metálica regulable en altura para micrófono. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "BASE/DÍA",
+          "unidad": "BASE / DÍA",
           "cat_especial_1": 39000,
           "cat_2_3_4": 41294,
           "cat_5_6": 44506,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 13,
           "producto_servicio": "BASE DE MESA PARA MICRÓFONO",
           "descripcion_tecnica": "Base de mesa tipo cuello de cisne para micrófono de conferencia. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "BASE/DÍA",
+          "unidad": "BASE / DÍA",
           "cat_especial_1": 30000,
           "cat_2_3_4": 31846,
           "cat_5_6": 34154,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 14,
           "producto_servicio": "MEGÁFONO",
           "descripcion_tecnica": "Megáfono amplificador portátil. Para uso en exteriores o espacios sin sistema de sonido central. Batería recargable. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "MEGÁFONO/DÍA",
+          "unidad": "MEGÁFONO / DÍA",
           "cat_especial_1": 250000,
-          "cat_2_3_4": 258852,
+          "cat_2_3_4": 258652,
           "cat_5_6": 271403,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 15,
           "producto_servicio": "VIDEO BEAM 3500 LÚMENES",
-          "descripcion_tecnica": "Video beam de 3.500 lúmenes. Con base para piso o para colgar. Conexión HDMI y VGA. Resolución mínima XGA (1024x768). Para proyección en espacios con control de luz moderado. Incluye cableado HDMI/VGA. Incluye transporte, montaje y desmontaje. Valor por unidad por día.",
+          "descripcion_tecnica": "Video beam de 3.500 lúmenes. Con base para piso o para colgar. Conexión HDMI y VGA. Resolución mínima XGA (1.024x768). Para proyección en espacios con control de luz moderado. Incluye cableado HDMI/VGA. Incluye transporte, montaje y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "VIDEO BEAM/DÍA",
+          "unidad": "VIDEO BEAM / DÍA",
           "cat_especial_1": 580000,
           "cat_2_3_4": 611628,
           "cat_5_6": 657066,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 16,
           "producto_servicio": "VIDEO BEAM 4000 LÚMENES",
           "descripcion_tecnica": "Video beam de 4.000 lúmenes. Con base para piso o para colgar. Conexión HDMI, VGA y HDMI. Resolución mínima WXGA (1.280x800). Para proyección en espacios semiabiertos o con iluminación moderada. Incluye cableado completo. Incluye transporte, montaje y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "VIDEO BEAM/DÍA",
+          "unidad": "VIDEO BEAM / DÍA",
           "cat_especial_1": 1260000,
           "cat_2_3_4": 1330507,
           "cat_5_6": 1431232,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 17,
           "producto_servicio": "VIDEO BEAM 5000 LÚMENES O MÁS",
           "descripcion_tecnica": "Video beam de 5.000 lúmenes o superior. Con base para piso o para colgar. Conexión HDMI, VGA. Resolución Full HD o superior. Para proyección en espacios grandes o con alta iluminación ambiental. Incluye cableado completo. Incluye transporte, montaje y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "VIDEO BEAM/DÍA",
+          "unidad": "VIDEO BEAM / DÍA",
           "cat_especial_1": 1800000,
           "cat_2_3_4": 1900617,
           "cat_5_6": 2044753,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 18,
           "producto_servicio": "PANTALLA LED 32\" A 42\"",
           "descripcion_tecnica": "Pantalla LED de 32\" a 42\". Para visualización complementaria en eventos o salas de trabajo. Con base o soporte. Conexión HDMI. Incluye transporte, instalación y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "PANTALLA/DÍA",
-          "cat_especial_1": 480000,
+          "unidad": "PANTALLA / DÍA",
+          "cat_especial_1": 460000,
           "cat_2_3_4": 485174,
           "cat_5_6": 521333,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 19,
           "producto_servicio": "PANTALLA DE GRAN FORMATO",
           "descripcion_tecnica": "Pantalla de gran formato para proyección en auditorios grandes. Tela de alta ganancia para proyección frontal o retro. Incluye estructura y accesorios de montaje. Incluye transporte, instalación y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "PANTALLA/DÍA",
+          "unidad": "PANTALLA / DÍA",
           "cat_especial_1": 600000,
           "cat_2_3_4": 633002,
-          "cat_5_6": 679755,
-          "observaciones": null
+          "cat_5_6": 679756,
+          "observaciones": ""
         },
         {
           "id": 20,
           "producto_servicio": "PANTALLAS DE RELEVO",
           "descripcion_tecnica": "Pantallas de relevo (laterales o auxiliares) para auditorios con dificultad de visibilidad. Permiten proyectar el contenido principal en puntos alternativos del espacio. Incluye soporte y conexión. Incluye transporte, instalación y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "PANTALLA/DÍA",
+          "unidad": "PANTALLA / DÍA",
           "cat_especial_1": 445000,
           "cat_2_3_4": 469365,
           "cat_5_6": 504303,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 21,
           "producto_servicio": "TELEVISORES DE RETORNO",
           "descripcion_tecnica": "Televisor de retorno para escenario o mesa directiva. Permite que el presentador o panel visualice el contenido proyectado. Conexión HDMI. Incluye soporte o base. Incluye transporte, instalación y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "TV/DÍA",
+          "unidad": "TV / DÍA",
           "cat_especial_1": 450000,
           "cat_2_3_4": 474796,
           "cat_5_6": 509694,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 22,
-          "producto_servicio": "TELÓN DE PROTECCIÓN - TALLA 1",
+          "producto_servicio": "TELÓN DE PROTECCIÓN — TALLA 1",
           "descripcion_tecnica": "Telón de protección/proyección estándar tamaño pequeño.",
           "tiempo": "DÍA",
-          "unidad": "TELON",
+          "unidad": "TELÓN",
           "cat_especial_1": 435000,
           "cat_2_3_4": 458811,
           "cat_5_6": 493153,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 23,
-          "producto_servicio": "TELÓN DE PROTECCIÓN - TALLA 2",
+          "producto_servicio": "TELÓN DE PROTECCIÓN — TALLA 2",
           "descripcion_tecnica": "Telón de protección/proyección mediano.",
           "tiempo": "DÍA",
-          "unidad": "TELON",
+          "unidad": "TELÓN",
           "cat_especial_1": 504000,
           "cat_2_3_4": 531541,
           "cat_5_6": 571016,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 24,
-          "producto_servicio": "TELÓN DE PROTECCIÓN - TALLA 3",
+          "producto_servicio": "TELÓN DE PROTECCIÓN — TALLA 3",
           "descripcion_tecnica": "Telón de protección/proyección grande.",
           "tiempo": "DÍA",
-          "unidad": "TELON",
+          "unidad": "TELÓN",
           "cat_especial_1": 565000,
           "cat_2_3_4": 595751,
           "cat_5_6": 639813,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 25,
-          "producto_servicio": "TELÓN DE PROTECCIÓN - TALLA 4",
+          "producto_servicio": "TELÓN DE PROTECCIÓN — TALLA 4",
           "descripcion_tecnica": "Telón de protección/proyección extra-grande.",
           "tiempo": "DÍA",
-          "unidad": "TELON",
+          "unidad": "TELÓN",
           "cat_especial_1": 637000,
           "cat_2_3_4": 671879,
           "cat_5_6": 721903,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 26,
@@ -1057,8 +1056,8 @@
           "unidad": "KIT",
           "cat_especial_1": 1840000,
           "cat_2_3_4": 1943062,
-          "cat_5_6": 2088555,
-          "observaciones": null
+          "cat_5_6": 2090555,
+          "observaciones": ""
         },
         {
           "id": 27,
@@ -1069,7 +1068,7 @@
           "cat_especial_1": 2760000,
           "cat_2_3_4": 2914783,
           "cat_5_6": 3135510,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 28,
@@ -1080,128 +1079,128 @@
           "cat_especial_1": 3680000,
           "cat_2_3_4": 3886124,
           "cat_5_6": 4180652,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 29,
           "producto_servicio": "GRABACIÓN VIDEO HASTA 60 MIN",
           "descripcion_tecnica": "Servicio de grabación de video hasta 60 minutos de duración. Incluye: camarógrafo profesional, cámara de video de calidad óptima (HD o superior) y accesorios (trípode, iluminación básica, micrófono). Entrega del archivo digital en formato acordado. Incluye transporte. Valor por servicio por día.",
           "tiempo": "DÍA",
-          "unidad": "GRABACIÓN/DÍA",
+          "unidad": "GRABACIÓN / DÍA",
           "cat_especial_1": 2150000,
           "cat_2_3_4": 2270668,
           "cat_5_6": 2442723,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 30,
           "producto_servicio": "GRABACIÓN VIDEO FULL HD HASTA 60 MIN",
-          "descripcion_tecnica": "Servicio de grabación de video Full HD hasta 60 minutos. Incluye camarógrafo profesional, cámara Full HD (1.920x1080) y accesorios. Entrega del archivo digital en formato HD. Incluye transporte. Valor por servicio por día.",
+          "descripcion_tecnica": "Servicio de grabación de video Full HD hasta 60 minutos. Incluye: camarógrafo profesional, cámara Full HD (1.920x1.080) y accesorios. Entrega del archivo digital en formato HD. Incluye transporte. Valor por servicio por día.",
           "tiempo": "DÍA",
-          "unidad": "GRABACIÓN/DÍA",
+          "unidad": "GRABACIÓN / DÍA",
           "cat_especial_1": 2050000,
           "cat_2_3_4": 2164906,
-          "cat_5_6": 2326796,
-          "observaciones": null
+          "cat_5_6": 2328796,
+          "observaciones": ""
         },
         {
           "id": 31,
           "producto_servicio": "GRABACIÓN AUDIO 60 MIN (ZOOM H4 PRO)",
-          "descripcion_tecnica": "Servicio de grabación de audio profesional hasta 60 minutos. Con grabadora Zoom H4n Pro o equivalente (calidad 24 bit/96kHz). Incluye transporte. Valor por servicio por día.",
+          "descripcion_tecnica": "Servicio de grabación de audio profesional hasta 60 minutos. Con grabadora Zoom H4n Pro o equivalente (calidad 24 bit / 96kHz). Incluye transporte. Valor por servicio por día.",
           "tiempo": "DÍA",
-          "unidad": "GRABACIÓN/DÍA",
+          "unidad": "GRABACIÓN / DÍA",
           "cat_especial_1": 795000,
           "cat_2_3_4": 838580,
           "cat_5_6": 900511,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 32,
           "producto_servicio": "FOTOGRAFÍA PROFESIONAL CON EQUIPO",
           "descripcion_tecnica": "Fotógrafo profesional con equipo completo. Incluye: fotógrafo con cámara réflex o mirrorless profesional, flash externo, lentes intercambiables y accesorios. Entrega de galería fotográfica digital en alta resolución. Incluye transporte. Valor por persona por día.",
           "tiempo": "DÍA",
-          "unidad": "PERSONA DÍA",
+          "unidad": "PERSONA / DÍA",
           "cat_especial_1": 1115000,
           "cat_2_3_4": 1175593,
           "cat_5_6": 1262810,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 33,
-          "producto_servicio": "TRANSMISIÓN POR INTERNET (POR DIA)",
-          "descripcion_tecnica": "Servicio de transmisión streaming del evento por Internet. Incluye codificador de video profesional, conexión a plataforma de streaming (YouTube, Zoom, Teams u otra según requerimiento), técnico operador, monitoreo en tiempo real. Requiere conexión a internet de mínimo 20 Mbps de subida (no incluida en este ítem). Incluye transporte y operación técnica. Valor por transmisión por día.",
+          "producto_servicio": "TRANSMISIÓN POR INTERNET (POR DÍA)",
+          "descripcion_tecnica": "Servicio de transmisión streaming del evento por internet. Incluye: codificador de video profesional, conexión a plataforma de streaming (YouTube, Zoom, Teams u otra según requerimiento), técnico operador, monitoreo en tiempo real. Requiere conexión a internet de mínimo 20 Mbps de subida (no incluida en este ítem). Incluye transporte y operación técnica. Valor por transmisión por día.",
           "tiempo": "DÍA",
-          "unidad": "TRANSMISIÓN DÍA",
+          "unidad": "TRANSMISIÓN / DÍA",
           "cat_especial_1": 5250000,
           "cat_2_3_4": 5508024,
           "cat_5_6": 5938216,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 34,
-          "producto_servicio": "SOFTWARE/PLATAFORMA VIDEOCONFERENCIAS",
+          "producto_servicio": "SOFTWARE / PLATAFORMA VIDEOCONFERENCIAS",
           "descripcion_tecnica": "Licencia o alquiler de plataforma de videoconferencias (Zoom, Microsoft Teams, Google Meet u otra). Incluye: configuración de sala virtual, enlace de acceso para participantes, soporte técnico durante el evento y grabación en la nube si aplica. Valor por plataforma por día de uso.",
           "tiempo": "DÍA",
-          "unidad": "PLATAFORMA DÍA",
+          "unidad": "PLATAFORMA / DÍA",
           "cat_especial_1": 1270000,
           "cat_2_3_4": 1341142,
           "cat_5_6": 1443036,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 35,
           "producto_servicio": "INGENIERO DE SONIDO",
           "descripcion_tecnica": "Ingeniero de sonido certificado. Personal técnico especializado en operación, configuración y mezcla de sistemas de sonido profesional para eventos. Experiencia mínima de 2 años en eventos de mediana y alta complejidad. Incluye transporte. Valor por persona por día.",
           "tiempo": "DÍA",
-          "unidad": "PERSONA DÍA",
+          "unidad": "PERSONA / DÍA",
           "cat_especial_1": 628000,
           "cat_2_3_4": 662010,
           "cat_5_6": 710938,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 36,
           "producto_servicio": "INGENIERO DE LUCES",
           "descripcion_tecnica": "Ingeniero de luces certificado. Personal técnico especializado en operación, programación y control de sistemas de iluminación profesional para eventos. Experiencia mínima de 2 años en eventos de mediana y alta complejidad. Incluye transporte. Valor por persona por día.",
           "tiempo": "DÍA",
-          "unidad": "PERSONA DÍA",
+          "unidad": "PERSONA / DÍA",
           "cat_especial_1": 628000,
           "cat_2_3_4": 661921,
           "cat_5_6": 710969,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 37,
           "producto_servicio": "COMPUTADOR PORTÁTIL",
           "descripcion_tecnica": "Computador portátil para eventos. Especificaciones mínimas: procesador Intel Core i5 o AMD PRO equivalente, RAM mínima 4 GB DDR4, disco duro 250 GB (SSD preferible), sistema operativo Windows 10 Pro o superior, Office 2019 o superior, antivirus actualizado, Acrobat Reader, mouse y cargador. Resolución de pantalla mínima 1.366x768. Conectividad WiFi y puertos USB (mínimo 2) y HDMI. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "PC PORTÁTIL DÍA",
+          "unidad": "PC PORTÁTIL / DÍA",
           "cat_especial_1": 480000,
-          "cat_2_3_4": 505710,
+          "cat_2_3_4": 506710,
           "cat_5_6": 545205,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 38,
           "producto_servicio": "COMPUTADOR DE ESCRITORIO",
           "descripcion_tecnica": "Computador de escritorio para eventos. Especificaciones mínimas: procesador Intel Core i5 o AMD PRO equivalente, RAM mínima 4 GB DDR4, disco duro 250 GB, monitor panel plano de 14\"-15\", teclado, mouse, Windows 10 Pro o superior, Office 2019 o superior, antivirus actualizado. Incluye transporte. Valor por equipo por día.",
           "tiempo": "DÍA",
-          "unidad": "PC ESCRITORIO/DÍA",
+          "unidad": "PC ESCRITORIO / DÍA",
           "cat_especial_1": 360000,
           "cat_2_3_4": 380122,
           "cat_5_6": 408991,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 39,
           "producto_servicio": "IMPRESORA MULTIFUNCIONAL",
           "descripcion_tecnica": "Impresora multifuncional (imprime, escanea y copia). Incluye: una (1) resma de papel tamaño carta, tóner nuevo instalado y el equipo entregado en estado operativo. Capacidad mínima: 500 copias o impresiones. Incluye transporte, instalación y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "IMPRESORA DÍA",
+          "unidad": "IMPRESORA / DÍA",
           "cat_especial_1": 490000,
           "cat_2_3_4": 517731,
-          "cat_5_6": 556789,
-          "observaciones": null
+          "cat_5_6": 556769,
+          "observaciones": ""
         },
         {
           "id": 40,
@@ -1212,40 +1211,40 @@
           "cat_especial_1": 325000,
           "cat_2_3_4": 340106,
           "cat_5_6": 362077,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 41,
           "producto_servicio": "INTERNET DEDICADO (20 MEGAS CANAL DEDICADO)",
           "descripcion_tecnica": "Canal de internet dedicado simétrico de 20 Mbps (subida y descarga). Con reúso 1:1, 99% de disponibilidad y ruta alterna. Incluye router, instalación, desinstalación, configuración y monitoreo técnico. Se debe entregar funcional y probado el día previo al evento. Incluye transporte. Valor por canal por día.",
           "tiempo": "DÍA",
-          "unidad": "UNIDAD DÍA",
+          "unidad": "UNIDAD / DÍA",
           "cat_especial_1": 850000,
           "cat_2_3_4": 891848,
           "cat_5_6": 961481,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 42,
-          "producto_servicio": "MÓDEM INTERNET PORTÁTIL",
-          "descripcion_tecnica": "Módem WiFi portátil 4G LTE. Capacidad para hasta 5 dispositivos simultáneos. Incluye SIM card con datos. Incluye transporte. Valor por unidad por día.",
+          "producto_servicio": "MODEM INTERNET PORTÁTIL",
+          "descripcion_tecnica": "Modem WiFi portátil 4G LTE. Capacidad para hasta 5 dispositivos simultáneos. Incluye SIM card con datos. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "MÓDEM/DÍA",
+          "unidad": "MODEM / DÍA",
           "cat_especial_1": 240000,
           "cat_2_3_4": 252849,
           "cat_5_6": 271663,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 43,
-          "producto_servicio": "MÓDEM INTERNET PORTÁTIL 3-8 MBPS",
-          "descripcion_tecnica": "Módem WiFi portátil de alta velocidad 3-8 Mbps. Mayor capacidad de descarga para eventos con múltiples usuarios. Incluye SIM card con datos. Incluye transporte. Valor por unidad por día.",
+          "producto_servicio": "MODEM INTERNET PORTÁTIL 3-8 MBPS",
+          "descripcion_tecnica": "Modem WiFi portátil de alta velocidad 3-8 Mbps. Mayor capacidad de descarga para eventos con múltiples usuarios. Incluye SIM card con datos. Incluye transporte. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "MÓDEM/DÍA",
+          "unidad": "MODEM / DÍA",
           "cat_especial_1": 509000,
           "cat_2_3_4": 536997,
           "cat_5_6": 576469,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 44,
@@ -1256,18 +1255,18 @@
           "cat_especial_1": 2840000,
           "cat_2_3_4": 2999077,
           "cat_5_6": 3226002,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 45,
-          "producto_servicio": "MAC 2000 WASH-ILUMINACIÓN TV",
+          "producto_servicio": "MAC 2000 WASH — ILUMINACIÓN TV",
           "descripcion_tecnica": "Equipo de iluminación MAC 2000 Wash para televisión y eventos.",
           "tiempo": "DÍA",
           "unidad": "KIT",
           "cat_especial_1": 855000,
-          "cat_2_3_4": 901766,
+          "cat_2_3_4": 901786,
           "cat_5_6": 968297,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 46,
@@ -1276,9 +1275,9 @@
           "tiempo": "DÍA",
           "unidad": "KIT",
           "cat_especial_1": 450000,
-          "cat_2_3_4": 474706,
+          "cat_2_3_4": 474796,
           "cat_5_6": 509694,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 47,
@@ -1289,672 +1288,672 @@
           "cat_especial_1": 450000,
           "cat_2_3_4": 474796,
           "cat_5_6": 509694,
-          "observaciones": null
+          "observaciones": ""
         }
       ]
     },
     {
-      "nombre": "MOBILIARIO Y LOGÍSTICA",
+      "nombre": "Mobiliario y Logística",
       "items": [
         {
           "id": 1,
           "producto_servicio": "TARIMA 3x3 (9 m²)",
           "descripcion_tecnica": "Tarima modular de 3x3 m (9 m²). Estructura metálica tubular certificada, piso en madera o tablón antideslizante, escalera lateral o rampa de acceso. Altura estándar entre 0,60 m y 1,20 m (especificar al solicitar). Incluye transporte, montaje técnico y desmontaje. Valor por tarima por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 1580000,
           "cat_2_3_4": 1666759,
           "cat_5_6": 1789742,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 2,
           "producto_servicio": "TARIMA 3x3 CON CARPA",
-          "descripcion_tecnica": "Tarima modular de 3x3 m (9 m²) con carpa superior del área. Carpa con cubierta impermeable y estructura adecuada. Incluye tarima completa + carpa, transporte, montaje y desmontaje. Valor por conjunto por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "descripcion_tecnica": "Tarima modular de 3x3 m (9 m²) con carpa superior del área. Carpa con cubierta impermeable y estructura adecuada. Incluye tarima completa + carpa + transporte, montaje y desmontaje. Valor por conjunto por día.",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 2280000,
           "cat_2_3_4": 2407850,
-          "cat_5_6": 2580016,
-          "observaciones": null
+          "cat_5_6": 2590016,
+          "observaciones": ""
         },
         {
           "id": 3,
           "producto_servicio": "TARIMA 4x4 (16 m²)",
           "descripcion_tecnica": "Tarima modular de 4x4 m (16 m²). Estructura metálica tubular certificada, piso antideslizante, escalera o rampa de acceso. Incluye transporte, montaje técnico y desmontaje. Valor por tarima por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 2720000,
           "cat_2_3_4": 2872459,
           "cat_5_6": 3089885,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 4,
           "producto_servicio": "TARIMA 4x4 CON CARPA",
-          "descripcion_tecnica": "Tarima modular de 4x4 m (16 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable, transporte, montaje y desmontaje. Valor por conjunto por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "descripcion_tecnica": "Tarima modular de 4x4 m (16 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable + transporte, montaje y desmontaje. Valor por conjunto por día.",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 3260000,
           "cat_2_3_4": 3442651,
           "cat_5_6": 3703400,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 5,
           "producto_servicio": "TARIMA 5x5 (25 m²)",
           "descripcion_tecnica": "Tarima modular de 5x5 m (25 m²). Estructura metálica tubular certificada, piso antideslizante, escalera o rampa de acceso. Incluye transporte, montaje técnico y desmontaje. Valor por tarima por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 3570000,
           "cat_2_3_4": 3769728,
           "cat_5_6": 4055313,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 6,
           "producto_servicio": "TARIMA 5x5 CON CARPA",
-          "descripcion_tecnica": "Tarima modular de 5x5 m (25 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable, transporte, montaje y desmontaje. Valor por conjunto por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "descripcion_tecnica": "Tarima modular de 5x5 m (25 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable + transporte, montaje y desmontaje. Valor por conjunto por día.",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 4130000,
           "cat_2_3_4": 4361381,
           "cat_5_6": 4691865,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 7,
           "producto_servicio": "TARIMA 6x6 (36 m²)",
           "descripcion_tecnica": "Tarima modular de 6x6 m (36 m²). Estructura metálica tubular certificada, piso antideslizante, escalera o rampa de acceso. Incluye transporte, montaje técnico y desmontaje. Valor por tarima por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 4130000,
-          "cat_2_3_4": 4361461,
-          "cat_5_6": 4691083,
-          "observaciones": null
+          "cat_2_3_4": 4361481,
+          "cat_5_6": 4691983,
+          "observaciones": ""
         },
         {
           "id": 8,
           "producto_servicio": "TARIMA 6x6 CON CARPA",
-          "descripcion_tecnica": "Tarima modular de 6x6 m (36 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable, transporte, montaje y desmontaje. Valor por conjunto por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "descripcion_tecnica": "Tarima modular de 6x6 m (36 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable + transporte, montaje y desmontaje. Valor por conjunto por día.",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 5060000,
           "cat_2_3_4": 5343350,
           "cat_5_6": 5748016,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 9,
           "producto_servicio": "TARIMA 8x8 (64 m²)",
           "descripcion_tecnica": "Tarima modular de 8x8 m (64 m²). Estructura metálica tubular certificada, piso antideslizante, escalera o rampa de acceso. Incluye transporte, montaje técnico y desmontaje. Valor por tarima por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 5180000,
           "cat_2_3_4": 5434962,
           "cat_5_6": 5859370,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 10,
           "producto_servicio": "TARIMA 8x8 CON CARPA",
-          "descripcion_tecnica": "Tarima modular de 8x8 m (64 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable, transporte, montaje y desmontaje. Valor por conjunto por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "descripcion_tecnica": "Tarima modular de 8x8 m (64 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable + transporte, montaje y desmontaje. Valor por conjunto por día.",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 6440000,
           "cat_2_3_4": 6756646,
           "cat_5_6": 7284528,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 11,
           "producto_servicio": "TARIMA 12x6 (72 m²)",
           "descripcion_tecnica": "Tarima modular de 12x6 m (72 m²). Estructura metálica tubular certificada, piso antideslizante, escalera o rampa de acceso. Incluye transporte, montaje técnico y desmontaje. Valor por tarima por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 5970000,
           "cat_2_3_4": 6263923,
           "cat_5_6": 6753095,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 12,
           "producto_servicio": "TARIMA 12x6 CON CARPA",
-          "descripcion_tecnica": "Tarima modular de 12x6 m (72 m²) con carpa superior del área. Incluye tarima completa, carpa impermeable, transporte, montaje y desmontaje. Valor por conjunto por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "descripcion_tecnica": "Tarima modular de 12x6 m (72 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable + transporte, montaje y desmontaje. Valor por conjunto por día.",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 6975000,
           "cat_2_3_4": 7318102,
-          "cat_5_6": 7800078,
-          "observaciones": null
+          "cat_5_6": 7890078,
+          "observaciones": ""
         },
         {
           "id": 13,
           "producto_servicio": "TARIMA 12x12 (144 m²)",
           "descripcion_tecnica": "Tarima modular de 12x12 m (144 m²). Estructura metálica tubular certificada, piso antideslizante, escalera o rampa de acceso. Incluye transporte, montaje técnico y desmontaje. Valor por tarima por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 8950000,
           "cat_2_3_4": 9397857,
           "cat_5_6": 10068803,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 14,
           "producto_servicio": "TARIMA 12x12 CON CARPA",
-          "descripcion_tecnica": "Tarima modular de 12x12 m (144 m²) con carpa superior del área. Incluye tarima completa, carpa impermeable, transporte, montaje y desmontaje. Valor por conjunto por día.",
-          "tiempo": "DÍA",
-          "unidad": "TARIMA/DÍA",
+          "descripcion_tecnica": "Tarima modular de 12x12 m (144 m²) con carpa superior del área. Incluye tarima completa + carpa impermeable + transporte, montaje y desmontaje. Valor por conjunto por día.",
+          "tiempo": "DIA",
+          "unidad": "TARIMA / DÍA",
           "cat_especial_1": 13260000,
           "cat_2_3_4": 13934444,
           "cat_5_6": 14833562,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 15,
           "producto_servicio": "CARPA 5x5 ESTILO PIRÁMIDE",
           "descripcion_tecnica": "Carpa tipo pirámide de 5x5 m. Techo en lona impermeable y resistente al viento. Estructura metálica. Área cubierta: 25 m². Incluye transporte, montaje e instalación y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 2140000,
           "cat_2_3_4": 2317699,
           "cat_5_6": 2489474,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 16,
           "producto_servicio": "CARPA 6x6 ESTILO PIRÁMIDE",
           "descripcion_tecnica": "Carpa tipo pirámide de 6x6 m. Techo en lona impermeable y resistente al viento. Estructura metálica. Área cubierta: 36 m². Incluye transporte, montaje e instalación y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 2530000,
           "cat_2_3_4": 2668608,
           "cat_5_6": 2866206,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 17,
           "producto_servicio": "CARPA HANGAR 12x6 m",
           "descripcion_tecnica": "Carpa tipo hangar modular de 12x6 m. Techo circular. Área cubierta: 72 m². Paredes laterales opcionales. Capacidad aproximada: 60-80 personas. Incluye transporte, montaje técnico certificado y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 7920000,
           "cat_2_3_4": 8309452,
           "cat_5_6": 8958681,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 18,
           "producto_servicio": "CARPA HANGAR 12x12 m",
           "descripcion_tecnica": "Carpa tipo hangar modular de 12x12 m. Techo circular. Área cubierta: 144 m². Paredes laterales opcionales. Capacidad aproximada: 80-160 personas. Incluye transporte, montaje técnico certificado y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 14100000,
           "cat_2_3_4": 14805221,
           "cat_5_6": 15862362,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 19,
           "producto_servicio": "CARPA HANGAR 12x18 m",
           "descripcion_tecnica": "Carpa tipo hangar modular de 12x18 m. Área cubierta: 216 m². Paredes laterales opcionales. Capacidad aproximada: 160-240 personas. Incluye transporte, montaje técnico certificado y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 3770000,
           "cat_2_3_4": 3955590,
           "cat_5_6": 4264383,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 20,
           "producto_servicio": "CARPA HANGAR 12x30 m",
-          "descripcion_tecnica": "Carpa tipo hangar modular de 12x30 m. Techo circular. Área cubierta: 360 m². Capacidad aproximada: 380-400 personas. Incluye transporte, montaje técnico certificado y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "descripcion_tecnica": "Carpa tipo hangar modular de 12x30 m. Techo circular. Área cubierta: 360 m². Capacidad aproximada: 380-460 personas. Incluye transporte, montaje técnico certificado y desmontaje. Valor por carpa por día.",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 32700000,
           "cat_2_3_4": 34362961,
           "cat_5_6": 36579797,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 21,
           "producto_servicio": "CARPA HANGAR 12x42 m",
           "descripcion_tecnica": "Carpa tipo hangar modular de 12x42 m. Techo circular. Área cubierta: 504 m². Capacidad aproximada: 540-640 personas. Incluye transporte, montaje técnico certificado y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 45100000,
           "cat_2_3_4": 47060711,
           "cat_5_6": 50198030,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 22,
           "producto_servicio": "CARPA 2x2 m",
           "descripcion_tecnica": "Carpa pequeña de 2x2 m. Con paredes laterales opcionales. Área cubierta: 4 m². Para puntos de hidratación, registro u otros usos. Incluye transporte, instalación y desmontaje. Valor por carpa por día.",
-          "tiempo": "DÍA",
-          "unidad": "CARPA/DÍA",
+          "tiempo": "DIA",
+          "unidad": "CARPA / DÍA",
           "cat_especial_1": 148000,
           "cat_2_3_4": 156899,
           "cat_5_6": 170481,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 23,
           "producto_servicio": "SILLA PLÁSTICA SIN APOYA BRAZO",
           "descripcion_tecnica": "Silla plástica estándar sin apoyabrazos. Color blanco o según disponibilidad. Capacidad de carga mínima 120 kg. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SILLA DÍA",
+          "unidad": "SILLA / DÍA",
           "cat_especial_1": 10000,
           "cat_2_3_4": 12273,
           "cat_5_6": 12273,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 24,
           "producto_servicio": "SILLA PLÁSTICA CON APOYA BRAZO",
           "descripcion_tecnica": "Silla plástica con apoyabrazos. Color blanco o según disponibilidad. Capacidad de carga mínima 120 kg. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SILLA/DÍA",
+          "unidad": "SILLA / DÍA",
           "cat_especial_1": 11500,
           "cat_2_3_4": 12880,
           "cat_5_6": 13340,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 25,
           "producto_servicio": "SILLA DE MALLA CON APOYA BRAZO",
           "descripcion_tecnica": "Silla ergonómica de malla con apoyabrazos. Respaldo en malla transpirable. Ajuste de altura. Para uso en mesas de trabajo o paneles. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SILLA DÍA",
+          "unidad": "SILLA / DÍA",
           "cat_especial_1": 18000,
           "cat_2_3_4": 18462,
           "cat_5_6": 18923,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 26,
           "producto_servicio": "SILLA TIPO BAR CON ESPALDAR",
           "descripcion_tecnica": "Silla alta tipo bar con espaldar. En polipropileno o similar. Con descansapiés y acabado cromado. Para eventos tipo cóctel, barras de atención o zonas lounge. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SILLA/DÍA",
+          "unidad": "SILLA / DÍA",
           "cat_especial_1": 50000,
           "cat_2_3_4": 50917,
           "cat_5_6": 61009,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 27,
           "producto_servicio": "SILLA MALINCHE",
           "descripcion_tecnica": "Silla Malinche para eventos tipo cóctel o protocolo. Estructura metálica con acabado cromado o pintado. Para mesas redondas o cuadradas. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SILLA DÍA",
+          "unidad": "SILLA / DÍA",
           "cat_especial_1": 28000,
           "cat_2_3_4": 37800,
           "cat_5_6": 48067,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 28,
           "producto_servicio": "SILLA CIAN",
-          "descripcion_tecnica": "Silla tipo CIAN para eventos. Estructura en polipropileno o similar, apilable. Colores variados. Para uso en salones y zonas de evento. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
+          "descripcion_tecnica": "Silla tipo Cian para eventos. Estructura en polipropileno o similar, apilable. Colores variados. Para uso en salones y zonas de evento. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SILLA DÍA",
+          "unidad": "SILLA / DÍA",
           "cat_especial_1": 31000,
           "cat_2_3_4": 31925,
           "cat_5_6": 42104,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 29,
           "producto_servicio": "SILLA TIFFANY",
           "descripcion_tecnica": "Silla Tiffany transparente o en colores para eventos especiales y protocolo. Material acrílico o policarbonato de alta resistencia. Para eventos corporativos, ceremonias o decoración especial. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "SILLA/DÍA",
+          "unidad": "SILLA / DÍA",
           "cat_especial_1": 37500,
-          "cat_2_3_4": 36007,
+          "cat_2_3_4": 38007,
           "cat_5_6": 47635,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 30,
           "producto_servicio": "MESA PLÁSTICA REDONDA",
           "descripcion_tecnica": "Mesa plástica redonda estándar. Color blanco. Para uso en comedores, reuniones o zonas de café. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "MESA/DÍA",
+          "unidad": "MESA / DÍA",
           "cat_especial_1": 33000,
           "cat_2_3_4": 35138,
           "cat_5_6": 39507,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 31,
           "producto_servicio": "MESA EVENTO REDONDA 1.50 m",
           "descripcion_tecnica": "Mesa para eventos redonda de 1,50 m de diámetro. En madera o plástico reforzado. Para banquetes, almuerzos o actividades grupales. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "MESA/DÍA",
+          "unidad": "MESA / DÍA",
           "cat_especial_1": 62000,
           "cat_2_3_4": 65701,
           "cat_5_6": 70328,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 32,
           "producto_servicio": "MESA COCTELERA",
           "descripcion_tecnica": "Mesa coctelera alta para eventos tipo cóctel o zonas de pie. Tapa redonda en madera o acero. Estructura metálica. Para zonas lounge o de networking. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "MESA DÍA",
+          "unidad": "MESA / DÍA",
           "cat_especial_1": 113500,
           "cat_2_3_4": 119959,
           "cat_5_6": 128726,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 33,
           "producto_servicio": "MESÓN RECTANGULAR 1.80 m",
           "descripcion_tecnica": "Mesón rectangular (tablón) de 1,80 m x 0,80 m. En madera o similar. Para mesas de trabajo, registro, buffet o uso general. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "MESA DÍA",
+          "unidad": "MESA / DÍA",
           "cat_especial_1": 82000,
           "cat_2_3_4": 86824,
           "cat_5_6": 93255,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 34,
           "producto_servicio": "MESÓN RECTANGULAR 2.00 m",
           "descripcion_tecnica": "Mesón rectangular (tablón) de 2,00 m. En madera o similar. Para mesas de trabajo, registro, buffet o uso general. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "MESA/DÍA",
+          "unidad": "MESA / DÍA",
           "cat_especial_1": 95000,
           "cat_2_3_4": 100407,
           "cat_5_6": 107358,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 35,
           "producto_servicio": "PUFF DE CUERO",
           "descripcion_tecnica": "Puff de cuero o cuerina para zonas lounge. Color negro, blanco, gris o a convenir. Para zonas de descanso o networking. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "PUFF/DÍA",
+          "unidad": "PUFF / DÍA",
           "cat_especial_1": 94500,
           "cat_2_3_4": 99732,
           "cat_5_6": 106926,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 36,
-          "producto_servicio": "PUFF RÚSTICO/VINTAGE",
+          "producto_servicio": "PUFF RÚSTICO / VINTAGE",
           "descripcion_tecnica": "Puff rústico o vintage para zonas lounge. En tela, cuero sintético o materiales naturales. Color a convenir. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "1 DÍA",
-          "unidad": "PUFF/DÍA",
+          "unidad": "PUFF / DÍA",
           "cat_especial_1": 98000,
           "cat_2_3_4": 103521,
           "cat_5_6": 111343,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 37,
           "producto_servicio": "ATRIL",
           "descripcion_tecnica": "Atril para presentaciones. En madera, acrílico o metal. Regulable en altura e inclinación. Permite sostener papeles, libros o computadores portátiles. Incluye transporte, instalación y desinstalación. Valor por unidad por evento.",
           "tiempo": "EVENTO",
-          "unidad": "ATRIL EVENTO",
+          "unidad": "ATRIL / EVENTO",
           "cat_especial_1": 227000,
           "cat_2_3_4": 239488,
           "cat_5_6": 256936,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 38,
           "producto_servicio": "SEPARADORES DE FILA",
-          "descripcion_tecnica": "Separadores de fila (tipo poste cromado con cordón). Poste metálico con base pesada en fundición. Cordón forrado en cordobán o terciopelo (longitud 1,5 m). Colores disponibles: negro, azul, rojo. Para organización de filas en accesos o zonas de registro. Incluye transporte, instalación y desinstalación. Valor por unidad por evento.",
+          "descripcion_tecnica": "Separadores de fila (tipo poste cromado con cordón). Poste metálico con base pesada en fundición. Cordón forrado en cordobán o terciopelo (longitud 1 m). Colores disponibles: negro, azul, rojo. Para organización de filas en accesos o zonas de registro. Incluye transporte, instalación y desinstalación. Valor por unidad por evento.",
           "tiempo": "EVENTO",
-          "unidad": "SEPARADOR/EVENTO",
+          "unidad": "SEPARADOR / EVENTO",
           "cat_especial_1": 36000,
           "cat_2_3_4": 38308,
           "cat_5_6": 41077,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 39,
           "producto_servicio": "PORTA PENDONES (TIPO ARAÑA)",
           "descripcion_tecnica": "Porta pendón tipo araña de una cara (160x60 cm). Estructura metálica enrollable. Para publicidad o señalización en el evento. Incluye transporte, instalación y desinstalación. Valor por unidad por evento.",
           "tiempo": "EVENTO",
-          "unidad": "UNIDAD EVENTO",
+          "unidad": "UNIDAD / EVENTO",
           "cat_especial_1": 355000,
           "cat_2_3_4": 374334,
           "cat_5_6": 402306,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 40,
           "producto_servicio": "TABLERO ACRÍLICO",
           "descripcion_tecnica": "Tablero acrílico con soporte. Incluye mínimo 3 marcadores borrables de diferentes colores y borrador. Para uso en talleres, capacitaciones o mesas de trabajo. Incluye transporte, instalación y desinstalación. Valor por unidad por evento.",
           "tiempo": "EVENTO",
-          "unidad": "TABLERO/EVENTO",
+          "unidad": "TABLERO / EVENTO",
           "cat_especial_1": 108000,
           "cat_2_3_4": 113974,
           "cat_5_6": 122247,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 41,
           "producto_servicio": "PAPELÓGRAFO",
           "descripcion_tecnica": "Papelógrafo (rollo de papel y marcadores). Incluye estructura de soporte, papel continuo y mínimo 3 marcadores de colores diferentes. Para uso en talleres, capacitaciones y mesas de trabajo. Incluye transporte, instalación y desinstalación. Valor por unidad por evento.",
           "tiempo": "EVENTO",
-          "unidad": "PAPELÓGRAFO/EVENTO",
+          "unidad": "PAPELÓGRAF O / EVENTO",
           "cat_especial_1": 108000,
           "cat_2_3_4": 113974,
           "cat_5_6": 122247,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 42,
           "producto_servicio": "ESCENOGRAFÍA",
           "descripcion_tecnica": "Escenografía básica para evento. Diseño, fabricación, instalación y desmontaje de escenografía según requerimientos del evento. Materiales, dimensiones y diseño a convenir con la entidad previo al evento. El contratista debe presentar propuesta de diseño para aprobación. Valor por día de uso.",
           "tiempo": "DÍA",
-          "unidad": "ESCENOGRAFÍA/DÍA",
+          "unidad": "ESCENOGRAF ÍA / DÍA",
           "cat_especial_1": 4120000,
           "cat_2_3_4": 4322872,
           "cat_5_6": 4660531,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 43,
           "producto_servicio": "GRADERÍA TARIMA 50 PERSONAS",
           "descripcion_tecnica": "Gradería estructural para tarima con capacidad para 50 personas. Estructura metálica certificada con escalones antideslizantes y barandas de seguridad. Incluye transporte, montaje técnico y desmontaje. Valor por módulo por día.",
           "tiempo": "DÍA",
-          "unidad": "GRADERÍA DÍA",
+          "unidad": "GRADERÍA / DÍA",
           "cat_especial_1": 2275000,
           "cat_2_3_4": 2402587,
           "cat_5_6": 2584330,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 44,
           "producto_servicio": "GRADERÍA TARIMA 70 PERSONAS",
           "descripcion_tecnica": "Gradería estructural para tarima con capacidad para 70 personas. Estructura metálica certificada con escalones antideslizantes y barandas de seguridad. Incluye transporte, montaje técnico y desmontaje. Valor por módulo por día.",
           "tiempo": "DÍA",
-          "unidad": "GRADERÍA DÍA",
+          "unidad": "GRADERÍA / DÍA",
           "cat_especial_1": 3330000,
-          "cat_2_3_4": 3518429,
+          "cat_2_3_4": 3516429,
           "cat_5_6": 3782755,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 45,
           "producto_servicio": "GRADERÍA TARIMA 100 PERSONAS",
           "descripcion_tecnica": "Gradería estructural para tarima con capacidad para 100 personas. Estructura metálica certificada con escalones antideslizantes y barandas de seguridad. Incluye transporte, montaje técnico y desmontaje. Valor por módulo por día.",
           "tiempo": "DÍA",
-          "unidad": "GRADERÍA/DÍA",
-          "cat_especial_1": 4700000,
-          "cat_2_3_4": 5025888,
+          "unidad": "GRADERÍA / DÍA",
+          "cat_especial_1": 4790000,
+          "cat_2_3_4": 5025868,
           "cat_5_6": 5418061,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 46,
           "producto_servicio": "SEÑALIZACIÓN",
-          "descripcion_tecnica": "Juego completo de señalización para eventos. Incluye señales de entrada, salida, salida de emergencia, punto de encuentro, PMU, punto de información, baños, zonas de bienestar, señales de tránsito y señales personalizadas del evento. Material: tela reflectiva ignífuga o lona. Incluye transporte, instalación y desmontaje. Valor por juego por día.",
+          "descripcion_tecnica": "Juego completo de señalización para eventos. Incluye señales de: entrada, salida, salida de emergencia, punto de encuentro, PMU, punto de información, baños, zonas de bienestar, señales de tránsito y señales personalizadas del evento. Material: tela reflectiva ignífuga o lona. Incluye transporte, instalación y desmontaje. Valor por juego por día.",
           "tiempo": "DÍA",
-          "unidad": "JUEGO/DÍA",
+          "unidad": "JUEGO / DÍA",
           "cat_especial_1": 265000,
           "cat_2_3_4": 279213,
           "cat_5_6": 299844,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 47,
           "producto_servicio": "VALLAS",
           "descripcion_tecnica": "Valla de seguridad metálica o plástica para delimitación de áreas o control de acceso. Estructura en tubo galvanizado certificado, con soportes giratorios o base en fundición. Altura estándar 1,10 m. Incluye transporte, instalación y desinstalación. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "VALLA/DÍA",
+          "unidad": "VALLA / DÍA",
           "cat_especial_1": 50000,
           "cat_2_3_4": 52367,
-          "cat_5_6": 56500,
-          "observaciones": null
+          "cat_5_6": 56509,
+          "observaciones": ""
         },
         {
           "id": 48,
           "producto_servicio": "BANDERA DE COLOMBIA CON ASTA",
           "descripcion_tecnica": "Bandera de Colombia en tela de satín de 2,0 m x 1,5 m, con asta metálica o de madera y base estable. Incluye transporte, instalación y desmontaje. Valor por conjunto por evento.",
           "tiempo": "EVENTO",
-          "unidad": "BANDERA EVENTO",
+          "unidad": "BANDERA / EVENTO",
           "cat_especial_1": 529500,
           "cat_2_3_4": 559166,
           "cat_5_6": 601419,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 49,
           "producto_servicio": "PLANTA ELÉCTRICA 30 KW",
-          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 30 KVA/30 KW. Turno de 10-12 horas. Incluye combustible suficiente para el turno, cableado de distribución hasta los puntos de consumo, operario técnico, extintores y cerramientos con vallas según normatividad vigente. Incluye transporte. Valor por planta por jornada.",
+          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 30 KVA/30 KW. Turno de 10-12 horas. Incluye: combustible suficiente para el turno, cableado de distribución hasta los puntos de consumo, operario técnico, extintores y cerramientos con vallas según normatividad vigente. Incluye transporte. Valor por planta por jornada.",
           "tiempo": "JORNADA",
-          "unidad": "PLANTA JORNADA",
+          "unidad": "PLANTA / JORNADA",
           "cat_especial_1": 1380000,
           "cat_2_3_4": 1697982,
           "cat_5_6": 2084404,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 50,
           "producto_servicio": "PLANTA ELÉCTRICA 50 KW",
-          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 50 KVA/50 KW. Turno de 10-12 horas. Incluye combustible para el turno, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta por jornada.",
+          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 50 KVA/50 KW. Turno de 10-12 horas. Incluye: combustible para el turno, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta por jornada.",
           "tiempo": "JORNADA",
-          "unidad": "PLANTA JORNADA",
+          "unidad": "PLANTA / JORNADA",
           "cat_especial_1": 1980000,
           "cat_2_3_4": 2436443,
           "cat_5_6": 2990631,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 51,
           "producto_servicio": "PLANTA ELÉCTRICA 70 KW",
-          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 70 KVA/70 KW. Turno de 10-12 horas. Incluye combustible para el turno, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta por jornada.",
+          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 70 KVA/70 KW. Turno de 10-12 horas. Incluye: combustible para el turno, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta por jornada.",
           "tiempo": "JORNADA",
-          "unidad": "PLANTA/JORNADA",
+          "unidad": "PLANTA / JORNADA",
           "cat_especial_1": 2295000,
           "cat_2_3_4": 2827250,
           "cat_5_6": 3475737,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 52,
-          "producto_servicio": "PLANTA ELÉCTRICA 75 KW-MEDIA JORNADA",
+          "producto_servicio": "PLANTA ELÉCTRICA 75 KW — MEDIA JORNADA",
           "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 75 KVA/75 KW por media jornada (hasta 6 horas continuas). Incluye: combustible para las 6 horas, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta.",
           "tiempo": "6 HORAS",
-          "unidad": "PLANTA/6 HORAS",
+          "unidad": "PLANTA / 6 HORAS",
           "cat_especial_1": 3200000,
           "cat_2_3_4": 3916980,
           "cat_5_6": 4826165,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 53,
-          "producto_servicio": "PLANTA ELÉCTRICA 75 KW-JORNADA COMPLETA",
+          "producto_servicio": "PLANTA ELÉCTRICA 75 KW — JORNADA COMPLETA",
           "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 75 KVA/75 KW por jornada completa (hasta 10 horas continuas). Incluye: combustible para las 10 horas, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta.",
           "tiempo": "10 HORAS",
-          "unidad": "PLANTA/10 HORAS",
+          "unidad": "PLANTA / 10 HORAS",
           "cat_especial_1": 4100000,
           "cat_2_3_4": 5018538,
           "cat_5_6": 6183672,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 54,
           "producto_servicio": "PLANTA ELÉCTRICA 120 KW",
-          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 120 KVA/120 KW. Turno de 10-12 horas. Incluye combustible para el turno, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta por jornada.",
+          "descripcion_tecnica": "Alquiler de planta eléctrica insonorizada de 120 KVA/120 KW. Turno de 10-12 horas. Incluye: combustible para el turno, cableado de distribución, operario técnico, extintores y cerramientos. Incluye transporte. Valor por planta por jornada.",
           "tiempo": "JORNADA",
-          "unidad": "PLANTA/JORNADA",
+          "unidad": "PLANTA / JORNADA",
           "cat_especial_1": 4320000,
           "cat_2_3_4": 5287279,
           "cat_5_6": 6515326,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 55,
           "producto_servicio": "ACOMETIDA ELÉCTRICA",
-          "descripcion_tecnica": "Kit de acometida eléctrica para eventos. Incluye: extensiones en cable encauchetado de calibre adecuado (3x14 o 3x12), tomas dobles de 110 V, parcial hasta 20 m, regletas y demás elementos requeridos para distribución de energía en el evento. Instalación y desmontaje incluidos. NOTA: Se cobra una sola vez por evento independiente del número de días de uso. Incluye transporte.",
+          "descripcion_tecnica": "Kit de acometida eléctrica para eventos. Incluye: extensiones en cable encauchetado de calibre adecuado (3x14 o 3x12), tomas dobles de 110 W, parcial hasta 20 m, regletas y demás elementos requeridos para distribución de energía en el evento. Instalación y desmontaje incluidos. NOTA: Se cobra una sola vez por evento independiente del número de días de uso. Incluye transporte.",
           "tiempo": "EVENTO",
-          "unidad": "KIT EVENTO",
+          "unidad": "KIT / EVENTO",
           "cat_especial_1": 130000,
           "cat_2_3_4": 160057,
           "cat_5_6": 196199,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 56,
           "producto_servicio": "BAÑO PORTÁTIL",
-          "descripcion_tecnica": "Baño portátil en polietileno de alta resistencia. Con sanitario, orinal y/o lavamanos con dispensador de jabón. Incluye papel higiénico, jabón líquido, mantenimiento durante el evento y servicio de bombeo al finalizar. Cumple normatividad de saneamiento básico vigente. Incluye transporte, montaje y desmontaje. Valor por unidad por día.",
+          "descripcion_tecnica": "Baño portátil en polietileno de alta resistencia. Con sanitario, orinal y/o lavamanos con dispensador de jabón. Incluye: papel higiénico, jabón líquido, mantenimiento durante el evento y servicio de bombeo al finalizar. Cumple normatividad de saneamiento básico vigente. Incluye transporte, montaje y desmontaje. Valor por unidad por día.",
           "tiempo": "DÍA",
-          "unidad": "BAÑO/DÍA",
+          "unidad": "BAÑO / DÍA",
           "cat_especial_1": 765000,
           "cat_2_3_4": 949006,
           "cat_5_6": 1002976,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 57,
-          "producto_servicio": "ALCOHOL GLICERINADO-LITRO",
+          "producto_servicio": "ALCOHOL GLICERINADO — LITRO",
           "descripcion_tecnica": "Alcohol glicerinado al 70% en presentación de 1 litro. Con atomizador o tapa dispensadora. Registro INVIMA vigente. Precio por litro.",
           "tiempo": "EVENTO",
-          "unidad": "LITRO UNIDAD",
+          "unidad": "LITRO / UNIDAD",
           "cat_especial_1": 32500,
-          "cat_2_3_4": 38900,
+          "cat_2_3_4": 36999,
           "cat_5_6": 45445,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 58,
-          "producto_servicio": "ALCOHOL GLICERINADO-GALÓN",
+          "producto_servicio": "ALCOHOL GLICERINADO — GALÓN",
           "descripcion_tecnica": "Alcohol glicerinado al 70% en presentación de galón (3,785 litros). Con tapa dispensadora. Registro INVIMA vigente. Precio por galón.",
           "tiempo": "EVENTO",
-          "unidad": "GALÓN UNIDAD",
+          "unidad": "GALÓN / UNIDAD",
           "cat_especial_1": 23700,
           "cat_2_3_4": 27466,
           "cat_5_6": 33759,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 59,
-          "producto_servicio": "JABÓN LÍQUIDO-LITRO",
+          "producto_servicio": "JABÓN LÍQUIDO — LITRO",
           "descripcion_tecnica": "Jabón líquido antibacterial en presentación de 1 litro. Con tapa dispensadora o atomizador. Registro INVIMA vigente. Para uso en puntos de lavado de manos del evento. Precio por litro.",
           "tiempo": "EVENTO",
-          "unidad": "LITRO UNIDAD",
+          "unidad": "LITRO / UNIDAD",
           "cat_especial_1": 26500,
           "cat_2_3_4": 29306,
           "cat_5_6": 35195,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 60,
-          "producto_servicio": "JABÓN LÍQUIDO-GALÓN",
+          "producto_servicio": "JABÓN LÍQUIDO — GALÓN",
           "descripcion_tecnica": "Jabón líquido antibacterial en presentación de galón (3,785 litros). Registro INVIMA vigente. Para carga de dispensadores en baños y puntos de lavado. Precio por galón.",
           "tiempo": "EVENTO",
-          "unidad": "GALÓN UNIDAD",
+          "unidad": "GALÓN / UNIDAD",
           "cat_especial_1": 52500,
           "cat_2_3_4": 59270,
           "cat_5_6": 71842,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 61,
@@ -1965,7 +1964,7 @@
           "cat_especial_1": 29200,
           "cat_2_3_4": 32827,
           "cat_5_6": 39943,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 62,
@@ -1976,7 +1975,7 @@
           "cat_especial_1": 44000,
           "cat_2_3_4": 50050,
           "cat_5_6": 61875,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 63,
@@ -1987,78 +1986,869 @@
           "cat_especial_1": 25400,
           "cat_2_3_4": 29311,
           "cat_5_6": 35891,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 64,
-          "producto_servicio": "POLISOMBRA METRO LINEAL",
+          "producto_servicio": "POLISOMBRA — METRO LINEAL",
           "descripcion_tecnica": "Polisombra por metro lineal para delimitación de áreas, perímetros o zonas de restricción en eventos al aire libre. Ancho estándar entre 1,5 m y 2 m. Incluye suministro. Precio por metro lineal.",
           "tiempo": "EVENTO",
           "unidad": "METRO LINEAL",
           "cat_especial_1": 25900,
           "cat_2_3_4": 29849,
           "cat_5_6": 36508,
-          "observaciones": null
+          "observaciones": ""
         }
       ]
     },
     {
-      "nombre": "PERSONAL Y SEGURIDAD",
+      "nombre": "Personal y Seguridad",
       "items": [
         {
           "id": 1,
           "producto_servicio": "COORDINADOR DE EVENTOS",
-          "descripcion_tecnica": "Coordinador General de Eventos. Turno de hasta 12 horas. Perfil: persona con experiencia mínima de 2 años en coordinación de eventos, alto nivel de iniciativa, capacidad para liderar grupos y coordinar simultáneamente todas las actividades relacionadas con el evento (activaciones, ferias, eventos corporativos, académicos, lanzamientos, cócteles y similares). Se desempeña como apoyo directo del Productor. Entrega informe final con registro fotográfico del evento. Incluye transporte, dos (2) alimentaciones principales, uniforme corporativo y seguridad social o póliza de responsabilidad.",
+          "descripcion_tecnica": "Coordinador General de Eventos. Turno de hasta 12 horas. Perfil: persona con experiencia mínima de 2 años en coordinación de eventos; alto nivel de iniciativa, capacidad para liderar grupos y coordinar simultáneamente todas las actividades relacionadas con el evento (activaciones, ferias, eventos corporativos, académicos, lanzamientos, cócteles y similares). Se desempeña como apoyo directo del Productor. Entrega informe final con registro fotográfico del evento. Incluye: transporte, dos (2) alimentaciones principales, uniforme corporativo y seguridad social o póliza de responsabilidad.",
           "tiempo": "TURNO 12 HORAS",
-          "unidad": "PERSONA TURNO 12 HORAS",
+          "unidad": "PERSONA / TURNO 12 HORAS",
           "cat_especial_1": 335000,
           "cat_2_3_4": 355406,
           "cat_5_6": 386449,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 2,
           "producto_servicio": "PRODUCTOR DE EVENTOS",
           "descripcion_tecnica": "Productor de Eventos. Turno de hasta 12 horas. Perfil: profesional con experiencia mínima de 3 años en producción y dirección técnica de eventos de mediana y alta complejidad. Responsable de preproducción, producción y postproducción del evento (sonido, iluminación, estructuras, tarimas, logística general). Incluye: transporte, dos (2) alimentaciones principales, uniforme corporativo y seguridad social o póliza.",
           "tiempo": "DÍA EVENTO",
-          "unidad": "PERSONA DÍA EVENTO",
+          "unidad": "PERSONA / DÍA EVENTO",
           "cat_especial_1": 555000,
           "cat_2_3_4": 585286,
           "cat_5_6": 628953,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 3,
           "producto_servicio": "ASISTENTE OPERATIVO DE EVENTOS",
           "descripcion_tecnica": "Asistente Operativo de Eventos. Turno de hasta 8 horas. Perfil: persona con experiencia en apoyo logístico en terreno durante la ejecución de eventos. Funciones: apoyo en coordinación logística y operativa en sitio, montaje, desmontaje y actividades de soporte. Incluye: transporte, una (1) alimentación principal, uniforme corporativo y seguridad social o póliza.",
           "tiempo": "TURNO 8 HORAS",
-          "unidad": "PERSONA TURNO 8 HORAS",
+          "unidad": "PERSONA / TURNO 8 HORAS",
           "cat_especial_1": 262000,
           "cat_2_3_4": 278133,
           "cat_5_6": 302655,
-          "observaciones": null
+          "observaciones": ""
         },
         {
           "id": 4,
-          "producto_servicio": "PERSONAL DE APOYO LOGISTICO",
+          "producto_servicio": "PERSONAL DE APOYO LOGÍSTICO",
           "descripcion_tecnica": "Personal de Apoyo Logístico y Protocolo. Turno de hasta 8 horas. Perfil: persona con disposición de servicio, presentación personal óptima y conocimientos básicos de protocolo y etiqueta. Funciones: recepción, registro y orientación de asistentes, apoyo en actividades generales del evento, montaje y desmontaje de elementos. Aplica para personal de protocolo, montaje y apoyo general. Incluye: transporte, dos (2) alimentaciones principales, uniforme corporativo y seguridad social o póliza. Valor por persona por turno.",
           "tiempo": "TURNO 8 HORAS",
-          "unidad": "PERSONA TURNO 8 HORAS",
+          "unidad": "PERSONA / TURNO 8 HORAS",
           "cat_especial_1": 195000,
-          "cat_2_3_4": 206502,
+          "cat_2_3_4": 206592,
           "cat_5_6": 224218,
           "observaciones": "Aplica para personal de protocolo, montaje y apoyo general. Valor por persona por turno."
         },
         {
           "id": 5,
           "producto_servicio": "MESERO",
-          "descripcion_tecnica": "Mesero(a) para Eventos. Turno de hasta 8 horas. Perfil: persona con experiencia en atención de eventos, debe acreditar certificación en manipulación de alimentos (vigente), óptima presentación personal, actitud de servicio y conocimientos básicos en cocina y protocolo. Funciones: atención en mesas, buffet y estaciones de alimentos. Incluye: transporte, una (1) alimentación principal, uniforme corporativo y seguridad social o póliza. Valor por persona por turno.",
+          "descripcion_tecnica": "Mesero(a) para Eventos. Turno de hasta 8 horas. Perfil: persona con experiencia en atención de eventos; debe acreditar certificación en manipulación de alimentos (vigente), óptima presentación personal, actitud de servicio y conocimientos básicos en cocina y protocolo. Funciones: atención en mesas, buffet y estaciones de alimentos. Incluye: transporte, una (1) alimentación principal, uniforme corporativo y seguridad social o póliza. Valor por persona por turno.",
           "tiempo": "TURNO 8 HORAS",
-          "unidad": "PERSONA TURNO 8 HORAS",
+          "unidad": "PERSONA / TURNO 8 HORAS",
           "cat_especial_1": 245000,
-          "cat_2_3_4": 260506,
+          "cat_2_3_4": 260508,
           "cat_5_6": 282781,
-          "observaciones": "Valor por persona por turno"
+          "observaciones": "Valor por persona. Aplica para atención en mesas, buffet y estaciones de alimentos."
+        },
+        {
+          "id": 6,
+          "producto_servicio": "PERSONAL DE ASEO",
+          "descripcion_tecnica": "Personal de Aseo. Turno de hasta 10 horas. Perfil: persona con experiencia en labores de limpieza y aseo en eventos o instalaciones. Funciones: limpieza y aseo permanente del sitio del evento durante y después de la actividad (baños, pasillos, salones, áreas comunes). Incluye: transporte, una (1) alimentación principal, uniforme corporativo, materiales de trabajo (escoba, trapera, limpiones, jabones, bolsas de basura). Para brigadas de aseo, cotizar el número de operarios requeridos por separado.",
+          "tiempo": "TURNO 10 HORAS",
+          "unidad": "PERSONA / TURNO 10 HORAS",
+          "cat_especial_1": 200000,
+          "cat_2_3_4": 211975,
+          "cat_5_6": 230318,
+          "observaciones": "Valor por persona. Para brigadas, cotizar el número de operarios requeridos."
+        },
+        {
+          "id": 7,
+          "producto_servicio": "GUARDA DE SEGURIDAD",
+          "descripcion_tecnica": "Guarda de Seguridad para Eventos. Turno de hasta 8 horas (diurno o nocturno — especificar al solicitar). Perfil: guarda capacitado y certificado para vigilancia en eventos. Empresa de seguridad registrada y vigilada por la Superintendencia de Vigilancia y Seguridad Privada (Supervigilancia). Incluye: uniforme corporativo, seguridad social o póliza de responsabilidad y transporte. Valor por persona por turno.",
+          "tiempo": "TURNO 8 HORAS",
+          "unidad": "PERSONA / TURNO 8 HORAS",
+          "cat_especial_1": 300000,
+          "cat_2_3_4": 316655,
+          "cat_5_6": 339810,
+          "observaciones": "Especificar turno diurno o nocturno al solicitar. Valor por persona."
+        },
+        {
+          "id": 8,
+          "producto_servicio": "BRIGADISTA CONTRA INCENDIO",
+          "descripcion_tecnica": "Brigadista Contra Incendio. Turno de hasta 8 horas. Perfil: personal certificado en brigadas contra incendio o en salud por una entidad especializada reconocida; experiencia mínima de 5 años en el cargo. Requerido según el plan de emergencias del evento (Ley 1523/2012, Decreto 1072/2015 y normatividad IDIGER vigente). Incluye: uniforme corporativo, seguridad social o póliza y transporte. Valor por persona por turno.",
+          "tiempo": "TURNO 8 HORAS",
+          "unidad": "PERSONA / TURNO 8 HORAS",
+          "cat_especial_1": 257000,
+          "cat_2_3_4": 271110,
+          "cat_5_6": 291015,
+          "observaciones": "Requerido según plan de emergencias del evento. Valor por persona por turno."
+        },
+        {
+          "id": 9,
+          "producto_servicio": "JEFE DE EMERGENCIAS",
+          "descripcion_tecnica": "Jefe de Brigada de Emergencias. Turno de hasta 8 horas. Perfil mínimo: (a) experiencia mínima de 3 años como Coordinador General de Logística o en mínimo 25 eventos de alta complejidad en el mismo cargo; (b) capacitación básica en primeros auxilios, evacuación y prevención/control de incendios; (c) formación en SISO; (d) experiencia en ejecución de planes de emergencia; (e) certificación en Sistema de Comando de Incidentes (SCI nivel básico); (f) acreditación de asistencia a Curso de Primer Respondiente en salud y zona de impacto; (g) capacitación en módulos de brigadas contra incendio; (h) capacitación en primeros auxilios y traslado de pacientes; (i) conocimiento de legislación vigente en gestión de emergencias. Incluye: uniforme, seguridad social o póliza y transporte.",
+          "tiempo": "TURNO 8 HORAS",
+          "unidad": "PERSONA / TURNO 8 HORAS",
+          "cat_especial_1": 480000,
+          "cat_2_3_4": 506317,
+          "cat_5_6": 544331,
+          "observaciones": "Perfil completo definido en el documento técnico del proceso. Valor por persona."
+        },
+        {
+          "id": 10,
+          "producto_servicio": "SERVICIO DE PRIMEROS AUXILIOS",
+          "descripcion_tecnica": "Servicio de Primeros Auxilios Certificado (APH). Turno de hasta 8 horas. Modalidad brigada de 3 a 4 personas móviles o fijas. Cada brigada móvil debe contar con: (1) camilla plegable, (1) botiquín portátil, (1) silla de ruedas, equipo de protección personal (EPP) para cada integrante y linterna. Valor por brigada completa (3-4 personas) por turno de 8 horas. Personal debe acreditar formación APH (Atención Pre-Hospitalaria).",
+          "tiempo": "TURNO 8 HORAS",
+          "unidad": "BRIGADA (3-4 PERSONAS) / TURNO 8 HORAS",
+          "cat_especial_1": 309000,
+          "cat_2_3_4": 325735,
+          "cat_5_6": 350193,
+          "observaciones": "Valor por brigada (3-4 personas) por turno de 8 horas."
+        },
+        {
+          "id": 11,
+          "producto_servicio": "PUESTO DE SALUD",
+          "descripcion_tecnica": "Puesto Médico Dotado para Eventos. Turno de hasta 8 horas. Compuesto por: (1) médico general y (1) enfermero(a) profesional. Área física mínima de 16 m², con iluminación adecuada, suministro de agua, camilla de atención, equipo médico y de primeros auxilios completo (tensiómetro, desfibrilador AED, oxímetro, glucómetro, botiquín avanzado). Incluye personal médico, dotación médica completa y seguridad social. Valor por puesto completo por turno de 8 horas.",
+          "tiempo": "TURNO 8 HORAS",
+          "unidad": "PUESTO / TURNO 8 HORAS",
+          "cat_especial_1": 1450000,
+          "cat_2_3_4": 1521503,
+          "cat_5_6": 1640102,
+          "observaciones": "Valor por puesto completo (médico + enfermera + dotación) por turno de 8 horas."
+        },
+        {
+          "id": 12,
+          "producto_servicio": "SERVICIO AMBULANCIA BÁSICA",
+          "descripcion_tecnica": "Servicio de Ambulancia Básica de Soporte Vital. Turno de hasta 8 horas. Vehículo y tripulación que cumplen con la Resolución 1043/2006 del Ministerio de la Protección Social y sus modificaciones. Incluye: (1) conductor habilitado, (1) APH tecnólogo en atención prehospitalaria y (1) médico general. NOTA: El valor en columna CAT. ESPECIAL corresponde al costo por hora adicional. El servicio mínimo de 1 a 4 horas tiene un valor de $592.834 (Cat. Especial). Especificar turno requerido al solicitar.",
+          "tiempo": "TURNO 8 HORAS",
+          "unidad": "HORA ADICIONAL / AMBULANCIA",
+          "cat_especial_1": 210000,
+          "cat_2_3_4": 221476,
+          "cat_5_6": 237856,
+          "observaciones": "Valor por hora adicional. Turno mínimo (1-4 hrs): $592.834 Cat. Especial."
+        },
+        {
+          "id": 13,
+          "producto_servicio": "SEGURO MÉDICO",
+          "descripcion_tecnica": "Póliza de Seguro Médico Colectivo. Cobertura para participantes del evento durante su desarrollo. Valor referencial por póliza colectiva. El alcance de la cobertura deberá especificarse según el número de participantes, duración y riesgos del evento. Precio por póliza por evento.",
+          "tiempo": "EVENTO",
+          "unidad": "PÓLIZA / EVENTO",
+          "cat_especial_1": 154000,
+          "cat_2_3_4": 162342,
+          "cat_5_6": 174533,
+          "observaciones": ""
+        },
+        {
+          "id": 14,
+          "producto_servicio": "PUNTOS DE REGISTRO MANUAL",
+          "descripcion_tecnica": "Punto de Registro Manual con Personal. Incluye: (1) personal de apoyo para registro, (1) mesa, (1) silla, esferos, listas de asistencia impresas y distribución de escarapelas. Capacidad de atención: hasta 100 participantes por punto por día. Para eventos con más participantes, cotizar puntos adicionales. Valor por punto por evento (día).",
+          "tiempo": "EVENTO",
+          "unidad": "PUNTO / EVENTO",
+          "cat_especial_1": 302000,
+          "cat_2_3_4": 318669,
+          "cat_5_6": 342501,
+          "observaciones": "Capacidad hasta 100 pax por punto. Para eventos mayores, cotizar puntos adicionales."
+        },
+        {
+          "id": 15,
+          "producto_servicio": "PUNTOS DE REGISTRO SISTEMATIZADO",
+          "descripcion_tecnica": "Punto de Registro Sistematizado con Software. Incluye: (1) software de registro y control de asistencia, (1) computador portátil, (1) impresora de escarapelas, (1) lector de código de barras o QR, (1) personal operador del sistema; base de datos con estadísticas diarias (ingresos, salidas, asistencia). Capacidad: hasta 150 participantes por punto por día. Incluye impresión de escarapelas en sitio. Para más participantes, cotizar puntos adicionales. Valor por punto por evento (día).",
+          "tiempo": "EVENTO",
+          "unidad": "PUNTO / EVENTO",
+          "cat_especial_1": 602000,
+          "cat_2_3_4": 636041,
+          "cat_5_6": 684188,
+          "observaciones": "Capacidad hasta 150 pax por punto. Incluye escarapelas. Para más pax, cotizar adicionales."
+        },
+        {
+          "id": 16,
+          "producto_servicio": "LLAMADAS DE CONFIRMACIÓN ASISTENCIA",
+          "descripcion_tecnica": "Servicio de Llamadas de Confirmación de Asistencia. Paquete de hasta 100 llamadas telefónicas con mínimo 3 intentos por persona. Incluye: reporte detallado de gestión (confirmados, no confirmados, sin respuesta) y entrega de grabación digital como soporte de la gestión telefónica. Para volúmenes superiores a 100 llamadas, cotizar paquetes adicionales. Valor por paquete de hasta 100 llamadas.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE / 100 LLAMADAS",
+          "cat_especial_1": 6900,
+          "cat_2_3_4": 7590,
+          "cat_5_6": 8280,
+          "observaciones": "Paquete hasta 100 llamadas. Para más volumen, cotizar paquetes adicionales."
+        },
+        {
+          "id": 17,
+          "producto_servicio": "ENVÍO MASIVO CORREOS ELECTRÓNICOS",
+          "descripcion_tecnica": "Envío Masivo de Correos Electrónicos. Paquete de hasta 500 envíos. Incluye: diseño de plantilla HTML personalizada, administración y ejecución de la campaña en plataforma (MailChimp, Active Campaign o similar), métricas detalladas (tasa de apertura, clics, rebotes, conversión). Para volúmenes de 500 a 1.000 envíos o más, cotizar paquetes adicionales. Valor por paquete de hasta 500 envíos.",
+          "tiempo": "N/A",
+          "unidad": "ENVÍO / PAQUETE 500",
+          "cat_especial_1": 65000,
+          "cat_2_3_4": 73125,
+          "cat_5_6": 73125,
+          "observaciones": "Paquete hasta 500 envíos. Para 500- 1000+ envíos, cotizar paquete adicional."
+        },
+        {
+          "id": 18,
+          "producto_servicio": "ENVÍO CORREO FÍSICO — NACIONAL",
+          "descripcion_tecnica": "Envío de Documento por Correo Físico a Nivel Nacional. Servicio de recolección, transporte y entrega puerta a puerta de documentos. Peso: mínimo 0,1 kg — máximo 2 kg. Dimensiones máximas: 23 cm ancho x 33 cm largo x 0,5 cm alto. Incluye sistema de información para trazabilidad del envío. Valor por envío.",
+          "tiempo": "N/A",
+          "unidad": "ENVÍO / UNIDAD",
+          "cat_especial_1": 34000,
+          "cat_2_3_4": 35925,
+          "cat_5_6": 39132,
+          "observaciones": ""
+        },
+        {
+          "id": 19,
+          "producto_servicio": "ENVÍO CORREO FÍSICO — BOGOTÁ/LOCAL",
+          "descripcion_tecnica": "Envío de Documento por Correo Físico Local (Bogotá / Municipio del evento). Servicio de empaque, recolección, transporte y entrega puerta a puerta de documentos en área local o metropolitana. Peso: mínimo 0,1 kg — máximo 2 kg. Incluye sistema de información para trazabilidad del envío. Valor por envío.",
+          "tiempo": "N/A",
+          "unidad": "ENVÍO / UNIDAD",
+          "cat_especial_1": 69500,
+          "cat_2_3_4": 73361,
+          "cat_5_6": 78509,
+          "observaciones": ""
+        },
+        {
+          "id": 20,
+          "producto_servicio": "MEMORIAS — TRANSCRIBIR (POR HOJA)",
+          "descripcion_tecnica": "Transcripción de Memorias del Evento. Servicio de digitación y transcripción de contenidos a partir de audio, video o notas manuscritas. Valor por hoja transcrita (tamaño carta, interlineado 1,5). El volumen total de hojas a transcribir se define por la entidad según el evento.",
+          "tiempo": "N/A",
+          "unidad": "HOJA TRANSCRITA",
+          "cat_especial_1": 28000,
+          "cat_2_3_4": 29591,
+          "cat_5_6": 31818,
+          "observaciones": ""
+        },
+        {
+          "id": 21,
+          "producto_servicio": "MEMORIAS — EDITAR (POR HOJA)",
+          "descripcion_tecnica": "Edición de Memorias del Evento. Servicio de edición de texto (corrección de coherencia, cohesión, estructura y presentación) de memorias ya redactadas o transcritas. Valor por hoja editada (tamaño carta).",
+          "tiempo": "N/A",
+          "unidad": "HOJA EDITADA",
+          "cat_especial_1": 28000,
+          "cat_2_3_4": 29514,
+          "cat_5_6": 31784,
+          "observaciones": ""
+        },
+        {
+          "id": 22,
+          "producto_servicio": "MEMORIAS — REDACTAR (POR HOJA)",
+          "descripcion_tecnica": "Redacción de Memorias del Evento. Servicio de redacción técnica de memorias a partir de insumos del evento (relatorías, presentaciones, notas). Valor por hoja redactada (tamaño carta).",
+          "tiempo": "N/A",
+          "unidad": "HOJA REDACTADA",
+          "cat_especial_1": 38000,
+          "cat_2_3_4": 40148,
+          "cat_5_6": 43170,
+          "observaciones": ""
+        },
+        {
+          "id": 23,
+          "producto_servicio": "MEMORIAS — CORRECCIÓN DE ESTILO (POR HOJA)",
+          "descripcion_tecnica": "Corrección de Estilo de Memorias del Evento. Servicio de corrección ortotipográfica, gramatical y de estilo de memorias o documentos del evento. Valor por hoja corregida (tamaño carta).",
+          "tiempo": "N/A",
+          "unidad": "HOJA CORREGIDA",
+          "cat_especial_1": 22000,
+          "cat_2_3_4": 23232,
+          "cat_5_6": 25015,
+          "observaciones": ""
+        },
+        {
+          "id": 24,
+          "producto_servicio": "ACTUALIZACIÓN DE DATOS",
+          "descripcion_tecnica": "Actualización de bases de datos para eventos (paquete).",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE",
+          "cat_especial_1": 126000,
+          "cat_2_3_4": 1303300,
+          "cat_5_6": 147000,
+          "observaciones": ""
+        },
+        {
+          "id": 25,
+          "producto_servicio": "CONSOLIDACIÓN Y CONFIRMACIÓN",
+          "descripcion_tecnica": "Servicio de consolidación y confirmación de asistentes.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE",
+          "cat_especial_1": 77000,
+          "cat_2_3_4": 83417,
+          "cat_5_6": 89833,
+          "observaciones": ""
+        }
+      ]
+    },
+    {
+      "nombre": "Papelería e Insumos",
+      "items": [
+        {
+          "id": 1,
+          "producto_servicio": "BLOCK PAPEL BOND (MEDIA CARTA x50 HOJAS)",
+          "descripcion_tecnica": "Block de papel Bond 75 g/m², tamaño media carta (14x21,5 cm), por 50 hojas. Presentación blanco, rayado o cuadriculado (especificar al solicitar). Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "UNIDAD",
+          "cat_especial_1": 14000,
+          "cat_2_3_4": 16121,
+          "cat_5_6": 19515,
+          "observaciones": ""
+        },
+        {
+          "id": 2,
+          "producto_servicio": "BLOCK PAPEL BOND (CARTA x35 HOJAS)",
+          "descripcion_tecnica": "Block de papel Bond 75 g/m², tamaño carta (21,5x28 cm), por 35 hojas. Presentación blanco, rayado o cuadriculado. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "UNIDAD",
+          "cat_especial_1": 15500,
+          "cat_2_3_4": 18083,
+          "cat_5_6": 21097,
+          "observaciones": ""
+        },
+        {
+          "id": 3,
+          "producto_servicio": "BLOCK PAPEL IRIS (CARTA x40 HOJAS)",
+          "descripcion_tecnica": "Block de papel Iris (colores), tamaño carta (21,5x28 cm), por 40 hojas. Colores surtidos. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "UNIDAD",
+          "cat_especial_1": 36000,
+          "cat_2_3_4": 47392,
+          "cat_5_6": 51038,
+          "observaciones": ""
+        },
+        {
+          "id": 4,
+          "producto_servicio": "CUADERNO 50 HOJAS",
+          "descripcion_tecnica": "Cuaderno cuadriculado de 50 hojas. Tamaño media carta o carta (especificar). Sin diseño en la portada. Pasta blanda. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "UNIDAD",
+          "cat_especial_1": 17000,
+          "cat_2_3_4": 19147,
+          "cat_5_6": 21921,
+          "observaciones": ""
+        },
+        {
+          "id": 5,
+          "producto_servicio": "CARTULINA (PLIEGO 100x70 cm)",
+          "descripcion_tecnica": "Cartulina pliego de 100x70 cm. Gramaje entre 150- 165 g/m². Variedad de colores. Precio por docena (12 unidades).",
+          "tiempo": "N/A",
+          "unidad": "DOCENA",
+          "cat_especial_1": 27000,
+          "cat_2_3_4": 35507,
+          "cat_5_6": 45271,
+          "observaciones": ""
+        },
+        {
+          "id": 6,
+          "producto_servicio": "OCTAVOS DE CARTULINA (PAQUETE x12)",
+          "descripcion_tecnica": "Cartulina octavo (tamaño 12,5x17,5 cm). Variedad de colores surtidos. Precio por paquete de 12 unidades.",
+          "tiempo": "N/A",
+          "unidad": "DOCENA / PAQUETE x12",
+          "cat_especial_1": 24000,
+          "cat_2_3_4": 33882,
+          "cat_5_6": 43765,
+          "observaciones": ""
+        },
+        {
+          "id": 7,
+          "producto_servicio": "FICHAS BIBLIOGRÁFICAS (PAQUETE x100)",
+          "descripcion_tecnica": "Fichas bibliográficas de 10x15 cm. En cartulina. Variedad de colores surtidos. Precio por paquete de 100 unidades.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x100",
+          "cat_especial_1": 15000,
+          "cat_2_3_4": 19968,
+          "cat_5_6": 30682,
+          "observaciones": ""
+        },
+        {
+          "id": 8,
+          "producto_servicio": "NOTAS ADHESIVAS POST-IT (PAQUETE x100)",
+          "descripcion_tecnica": "Notas adhesivas Post-it de 76x76 mm. Colores surtidos. Por 100 hojas por bloque. Precio por paquete (1 bloque).",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE",
+          "cat_especial_1": 21000,
+          "cat_2_3_4": 31756,
+          "cat_5_6": 43024,
+          "observaciones": ""
+        },
+        {
+          "id": 9,
+          "producto_servicio": "PAPEL BOND (PLIEGO 100x70 cm) — DOCENA",
+          "descripcion_tecnica": "Papel Bond en pliego de 100x70 cm. Gramaje estándar para papelógrafo. Precio por docena (12 pliegos).",
+          "tiempo": "N/A",
+          "unidad": "DOCENA",
+          "cat_especial_1": 22000,
+          "cat_2_3_4": 27317,
+          "cat_5_6": 33183,
+          "observaciones": ""
+        },
+        {
+          "id": 10,
+          "producto_servicio": "PAPEL KIMBERLY (PAQUETE x50 HOJAS)",
+          "descripcion_tecnica": "Papel Kimberly blanco tamaño carta (21,5x28 cm), 90 g/m². Paquete por 50 hojas. Para impresiones de alta calidad o documentos especiales. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x50 HOJAS",
+          "cat_especial_1": 47000,
+          "cat_2_3_4": 59341,
+          "cat_5_6": 74570,
+          "observaciones": ""
+        },
+        {
+          "id": 11,
+          "producto_servicio": "PAPEL PERIÓDICO",
+          "descripcion_tecnica": "Papel periódico en paquete (pliegos o resma). Especificar cantidad al solicitar. Para actividades de taller o manualidades. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE",
+          "cat_especial_1": 22000,
+          "cat_2_3_4": 27101,
+          "cat_5_6": 32841,
+          "observaciones": ""
+        },
+        {
+          "id": 12,
+          "producto_servicio": "RESMA PAPEL CARTA",
+          "descripcion_tecnica": "Resma de papel bond tamaño carta (21,5x28 cm), 75 g/m², por 500 hojas. Marca reconocida. Para impresiones y fotocopiado. Precio por resma.",
+          "tiempo": "N/A",
+          "unidad": "RESMA",
+          "cat_especial_1": 25500,
+          "cat_2_3_4": 29457,
+          "cat_5_6": 32710,
+          "observaciones": ""
+        },
+        {
+          "id": 13,
+          "producto_servicio": "RESMA PAPEL OFICIO",
+          "descripcion_tecnica": "Resma de papel bond tamaño oficio (21,5x33 cm), 75 g/m², por 500 hojas. Marca reconocida. Precio por resma.",
+          "tiempo": "N/A",
+          "unidad": "RESMA",
+          "cat_especial_1": 29000,
+          "cat_2_3_4": 30785,
+          "cat_5_6": 35246,
+          "observaciones": ""
+        },
+        {
+          "id": 14,
+          "producto_servicio": "ESFEROS NEGRO/AZUL (PAQUETE x12)",
+          "descripcion_tecnica": "Esferos de tinta negra o azul, resistentes, buena calidad. Paquete por 12 unidades (especificar color). Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 24500,
+          "cat_2_3_4": 25210,
+          "cat_5_6": 25920,
+          "observaciones": ""
+        },
+        {
+          "id": 15,
+          "producto_servicio": "ESFEROS NEGRO/AZUL (CAJA x50)",
+          "descripcion_tecnica": "Esferos de tinta negra o azul, resistentes, buena calidad. Caja por 50 unidades (especificar color). Precio por caja.",
+          "tiempo": "N/A",
+          "unidad": "CAJA x50",
+          "cat_especial_1": 98000,
+          "cat_2_3_4": 104125,
+          "cat_5_6": 112000,
+          "observaciones": ""
+        },
+        {
+          "id": 16,
+          "producto_servicio": "LÁPIZ No. 2 (CAJA x24 UNIDADES)",
+          "descripcion_tecnica": "Lápiz No. 2 de punta fina con borrador incluido. Caja por 24 unidades. Madera de fuente sostenible. Precio por caja.",
+          "tiempo": "N/A",
+          "unidad": "CAJA x24",
+          "cat_especial_1": 58000,
+          "cat_2_3_4": 60275,
+          "cat_5_6": 63686,
+          "observaciones": ""
+        },
+        {
+          "id": 17,
+          "producto_servicio": "MARCADORES BORRABLES (PAQUETE x12)",
+          "descripcion_tecnica": "Marcadores borrables para tablero acrílico o tablero blanco. Variedad de colores. Paquete por 12 unidades. Tinta a base de agua o alcohol (sin componentes tóxicos). Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 39000,
+          "cat_2_3_4": 41721,
+          "cat_5_6": 45349,
+          "observaciones": ""
+        },
+        {
+          "id": 18,
+          "producto_servicio": "MARCADORES DELGADOS / PLUMONES (PAQUETE x12)",
+          "descripcion_tecnica": "Marcadores delgados o plumones. Variedad de colores surtidos. Paquete por 12 unidades. Para escritura en papel o cartulina. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 19500,
+          "cat_2_3_4": 15057,
+          "cat_5_6": 15797,
+          "observaciones": ""
+        },
+        {
+          "id": 19,
+          "producto_servicio": "MARCADORES PERMANENTES (PAQUETE x12)",
+          "descripcion_tecnica": "Marcadores permanentes. Variedad de colores (negro, rojo, azul, verde, entre otros). Paquete por 12 unidades. Tinta permanente resistente al agua. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 13000,
+          "cat_2_3_4": 13494,
+          "cat_5_6": 14316,
+          "observaciones": ""
+        },
+        {
+          "id": 20,
+          "producto_servicio": "BORRADORES DE NATA (PAQUETE)",
+          "descripcion_tecnica": "Borradores de nata (tipo nata o de lápiz). Paquete por 12 unidades. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 12000,
+          "cat_2_3_4": 12500,
+          "cat_5_6": 13000,
+          "observaciones": ""
+        },
+        {
+          "id": 21,
+          "producto_servicio": "TIJERAS PUNTA ROMA (PAQUETE)",
+          "descripcion_tecnica": "Tijeras punta roma para talleres y actividades de grupo. Paquete por 12 unidades. Tamaño estándar (14-16 cm). Para uso seguro en grupos con menores o en talleres. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 17000,
+          "cat_2_3_4": 17459,
+          "cat_5_6": 17919,
+          "observaciones": ""
+        },
+        {
+          "id": 22,
+          "producto_servicio": "PEGANTE EN BARRA (PAQUETE)",
+          "descripcion_tecnica": "Pegante en barra (stick adhesivo). Mínimo 21 g por barra. No tóxico. Paquete por 12 unidades. Para manualidades y papelería. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 20000,
+          "cat_2_3_4": 20455,
+          "cat_5_6": 21364,
+          "observaciones": ""
+        },
+        {
+          "id": 23,
+          "producto_servicio": "TAJALÁPIZ (PAQUETE)",
+          "descripcion_tecnica": "Tajalápiz (sacapuntas) manual. Paquete por 12 unidades. Para lápices estándar No. 2. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x12",
+          "cat_especial_1": 13500,
+          "cat_2_3_4": 13829,
+          "cat_5_6": 14488,
+          "observaciones": ""
+        },
+        {
+          "id": 24,
+          "producto_servicio": "CINTA ADHESIVA PEQUEÑA 12mm x33m (PAQUETE x3)",
+          "descripcion_tecnica": "Cinta adhesiva transparente pequeña de 12 mm de ancho x 33 m de largo. Paquete por 3 unidades. Para documentos y papelería. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x3",
+          "cat_especial_1": 14000,
+          "cat_2_3_4": 14894,
+          "cat_5_6": 15787,
+          "observaciones": ""
+        },
+        {
+          "id": 25,
+          "producto_servicio": "CINTA ADHESIVA GRANDE 55mm x33m",
+          "descripcion_tecnica": "Cinta adhesiva transparente grande de 55 mm de ancho x 33 m de largo. Para empaque o sellado. Precio por docena (12 rollos).",
+          "tiempo": "N/A",
+          "unidad": "DOCENA",
+          "cat_especial_1": 60000,
+          "cat_2_3_4": 63256,
+          "cat_5_6": 67907,
+          "observaciones": ""
+        },
+        {
+          "id": 26,
+          "producto_servicio": "CINTA DE ENMASCARAR MEDIANA 18mm x40m (PAQUETE x3)",
+          "descripcion_tecnica": "Cinta de enmascarar mediana de 18 mm de ancho x 40 m de largo. Para montaje, señalización y actividades del evento. Paquete por 3 rollos. Precio por paquete.",
+          "tiempo": "N/A",
+          "unidad": "PAQUETE x3",
+          "cat_especial_1": 36000,
+          "cat_2_3_4": 37800,
+          "cat_5_6": 39600,
+          "observaciones": ""
+        },
+        {
+          "id": 27,
+          "producto_servicio": "CINTA DE ENMASCARAR GRANDE",
+          "descripcion_tecnica": "Cinta de enmascarar grande (ancho 48-50 mm x longitud mínima 30 m). Para uso en montaje y decoración. Precio por rollo.",
+          "tiempo": "N/A",
+          "unidad": "ROLLO / UNIDAD",
+          "cat_especial_1": 31000,
+          "cat_2_3_4": 32388,
+          "cat_5_6": 33776,
+          "observaciones": ""
+        },
+        {
+          "id": 28,
+          "producto_servicio": "CAJA DE CRAYONES (CAJA x12)",
+          "descripcion_tecnica": "Crayones variedad de colores. Caja por 12 unidades. Para actividades creativas o lúdicas del evento. Madera de fuente sostenible. Precio por caja.",
+          "tiempo": "N/A",
+          "unidad": "CAJA x12",
+          "cat_especial_1": 21500,
+          "cat_2_3_4": 22765,
+          "cat_5_6": 24029,
+          "observaciones": ""
+        },
+        {
+          "id": 29,
+          "producto_servicio": "IMPRESIONES B/N PAPEL CARTA",
+          "descripcion_tecnica": "Impresión en blanco y negro en papel bond tamaño carta estándar (75 g/m²). Precio por hoja impresa.",
+          "tiempo": "N/A",
+          "unidad": "UNIDAD / HOJA",
+          "cat_especial_1": 2000,
+          "cat_2_3_4": 3000,
+          "cat_5_6": 5000,
+          "observaciones": ""
+        },
+        {
+          "id": 30,
+          "producto_servicio": "IMPRESIÓN EN PLOTER — TALLA 1",
+          "descripcion_tecnica": "Impresión en plotter Talla 1 (pequeño, hasta 50x70 cm). En lona, bond o fotográfico según requerimiento. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "IMPRESIÓN / UNIDAD",
+          "cat_especial_1": 6500,
+          "cat_2_3_4": 6500,
+          "cat_5_6": 11375,
+          "observaciones": ""
+        },
+        {
+          "id": 31,
+          "producto_servicio": "IMPRESIÓN EN PLOTER — TALLA 2",
+          "descripcion_tecnica": "Impresión en plotter Talla 2 (mediano, 70x100 cm). En lona, bond o fotográfico según requerimiento. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "IMPRESIÓN / UNIDAD",
+          "cat_especial_1": 10500,
+          "cat_2_3_4": 17850,
+          "cat_5_6": 24850,
+          "observaciones": ""
+        },
+        {
+          "id": 32,
+          "producto_servicio": "IMPRESIÓN EN PLOTER — TALLA 3",
+          "descripcion_tecnica": "Impresión en plotter Talla 3 (grande, 100x140 cm). En lona, bond o fotográfico según requerimiento. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "IMPRESIÓN / UNIDAD",
+          "cat_especial_1": 16000,
+          "cat_2_3_4": 16390,
+          "cat_5_6": 17171,
+          "observaciones": ""
+        },
+        {
+          "id": 33,
+          "producto_servicio": "IMPRESIÓN EN PLOTER — TALLA 4",
+          "descripcion_tecnica": "Impresión en plotter Talla 4 (extra-grande, superior a 140 cm en el lado menor). En lona, bond o fotográfico según requerimiento. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "IMPRESIÓN / UNIDAD",
+          "cat_especial_1": 21000,
+          "cat_2_3_4": 22050,
+          "cat_5_6": 22575,
+          "observaciones": ""
+        },
+        {
+          "id": 34,
+          "producto_servicio": "IMPRESIÓN FOTOGRAFÍAS O IMÁGENES",
+          "descripcion_tecnica": "Impresión fotográfica de alta calidad (mínimo 300 DPI). Tamaño a especificar al solicitar. En papel fotográfico brillante o mate. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "IMPRESIÓN / UNIDAD",
+          "cat_especial_1": 103000,
+          "cat_2_3_4": 108365,
+          "cat_5_6": 116948,
+          "observaciones": ""
+        },
+        {
+          "id": 35,
+          "producto_servicio": "IMPRESIÓN PANCARTA / BANNER",
+          "descripcion_tecnica": "Impresión de banner o pancarta en lona banner 720 DPI, full color. Con ojáleles metálicos reforzados y termosellado. Dimensiones a especificar por la entidad. Incluye estructura de araña o barrilla según requerimiento. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "BANNER / UNIDAD",
+          "cat_especial_1": 107000,
+          "cat_2_3_4": 112075,
+          "cat_5_6": 120957,
+          "observaciones": ""
+        },
+        {
+          "id": 36,
+          "producto_servicio": "IMPRESIÓN CERTIFICADO DE ASISTENCIA",
+          "descripcion_tecnica": "Impresión de certificado de asistencia en papel bond tamaño carta (mínimo 90 g/m²). Full color. Diseño suministrado por la entidad. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "CERTIFICADO / UNIDAD",
+          "cat_especial_1": 21000,
+          "cat_2_3_4": 21457,
+          "cat_5_6": 22370,
+          "observaciones": ""
+        },
+        {
+          "id": 37,
+          "producto_servicio": "IMPRESIÓN TARJETAS DE INVITACIÓN",
+          "descripcion_tecnica": "Impresión de tarjeta de invitación. Tamaño a definir por la entidad. En propalcote o similar. Full color. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "TARJETA / UNIDAD",
+          "cat_especial_1": 16500,
+          "cat_2_3_4": 26125,
+          "cat_5_6": 26583,
+          "observaciones": ""
+        },
+        {
+          "id": 38,
+          "producto_servicio": "IMPRESIÓN ESCARAPELA / ADHESIVO",
+          "descripcion_tecnica": "Impresión de escarapela o adhesivo de identificación. Tamaño estándar (10x7 cm o similar). Full color. Con o sin troquelado. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "ESCARAPELA / UNIDAD",
+          "cat_especial_1": 16500,
+          "cat_2_3_4": 16958,
+          "cat_5_6": 17417,
+          "observaciones": ""
+        },
+        {
+          "id": 39,
+          "producto_servicio": "PORTA CARNÉ PLÁSTICO CON CINTA",
+          "descripcion_tecnica": "Porta carné plástico horizontal o vertical con cinta porta carné (cuerda o cinta). Para escarapelas o carné de identificación. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "PORTA CARNÉ / UNIDAD",
+          "cat_especial_1": 12500,
+          "cat_2_3_4": 12963,
+          "cat_5_6": 12963,
+          "observaciones": ""
+        },
+        {
+          "id": 40,
+          "producto_servicio": "PORTAESCARAPELA PLÁSTICA CON CORDÓN",
+          "descripcion_tecnica": "Portaescarapela plástica con cordón (cuerda) para escarapelas o credenciales de evento. Con ventana transparente y clip. Precio por unidad.",
+          "tiempo": "N/A",
+          "unidad": "PORTAESCAR APELA / UNIDAD",
+          "cat_especial_1": 12000,
+          "cat_2_3_4": 12000,
+          "cat_5_6": 12462,
+          "observaciones": ""
+        },
+        {
+          "id": 41,
+          "producto_servicio": "INDIVIDUAL DE TELA",
+          "descripcion_tecnica": "Individual de tela para puestos de mesa. Uno por persona. Color blanco o según requerimiento. Incluye instalación. Precio por puesto por día.",
+          "tiempo": "1 DÍA",
+          "unidad": "PUESTO / DÍA",
+          "cat_especial_1": 7300,
+          "cat_2_3_4": 7521,
+          "cat_5_6": 7742,
+          "observaciones": ""
+        }
+      ]
+    },
+    {
+      "nombre": "Transporte",
+      "items": [
+        {
+          "id": 1,
+          "producto_servicio": "TRANSPORTE AUTOMÓVIL / CAMIONETA — HORA",
+          "descripcion_tecnica": "Vehículo automóvil tipo sedán o camioneta doble cabina para transporte de personal. Capacidad: hasta 5 pasajeros. Incluye conductor con licencia vigente y SOAT al día. Precio por hora de servicio. Para desplazamientos dentro del perímetro urbano del municipio del evento.",
+          "tiempo": "HORA",
+          "unidad": "HORA TRANSPORTE",
+          "cat_especial_1": 171500,
+          "cat_2_3_4": 193385,
+          "cat_5_6": 221693,
+          "observaciones": ""
+        },
+        {
+          "id": 2,
+          "producto_servicio": "TRANSPORTE AUTOMÓVIL / CAMIONETA — DÍA",
+          "descripcion_tecnica": "Vehículo automóvil tipo sedán o camioneta doble cabina para transporte de personal. Capacidad: hasta 5 pasajeros. Incluye conductor con licencia vigente y SOAT al día. Precio por día completo (hasta 10 horas de servicio). Para desplazamientos dentro del perímetro urbano del municipio del evento.",
+          "tiempo": "DÍA",
+          "unidad": "DÍA TRANSPORTE",
+          "cat_especial_1": 1990000,
+          "cat_2_3_4": 2251581,
+          "cat_5_6": 2583688,
+          "observaciones": ""
+        },
+        {
+          "id": 3,
+          "producto_servicio": "VEHÍCULO TIPO 1 — POR HORA",
+          "descripcion_tecnica": "Vehículo de pasajeros Tipo 1: sedán o hatchback con capacidad hasta 5 pasajeros. Incluye conductor con licencia de conducción vigente categoría B1, SOAT, revisión técnico-mecánica al día y seguro obligatorio. Precio por hora de servicio.",
+          "tiempo": "HORA",
+          "unidad": "HORA TRANSPORTE",
+          "cat_especial_1": 272000,
+          "cat_2_3_4": 307062,
+          "cat_5_6": 352219,
+          "observaciones": ""
+        },
+        {
+          "id": 4,
+          "producto_servicio": "VEHÍCULO TIPO 1 — TODO EL DÍA",
+          "descripcion_tecnica": "Vehículo de pasajeros Tipo 1: sedán o hatchback con capacidad hasta 5 pasajeros. Incluye conductor con licencia de conducción vigente categoría B1, SOAT, revisión técnico-mecánica al día y seguro obligatorio. Precio por día completo (hasta 10 horas de servicio).",
+          "tiempo": "DÍA",
+          "unidad": "DÍA TRANSPORTE",
+          "cat_especial_1": 1635000,
+          "cat_2_3_4": 1850362,
+          "cat_5_6": 2122680,
+          "observaciones": ""
+        },
+        {
+          "id": 5,
+          "producto_servicio": "VEHÍCULO TIPO 2 — POR HORA",
+          "descripcion_tecnica": "Vehículo de pasajeros Tipo 2: SUV, van o microbús con capacidad hasta 12 pasajeros. Incluye conductor con licencia de conducción categoría B1 o C1 vigente, SOAT, revisión técnico-mecánica al día y seguro obligatorio. Precio por hora de servicio.",
+          "tiempo": "HORA",
+          "unidad": "HORA TRANSPORTE",
+          "cat_especial_1": 307000,
+          "cat_2_3_4": 346692,
+          "cat_5_6": 397598,
+          "observaciones": ""
+        },
+        {
+          "id": 6,
+          "producto_servicio": "VEHÍCULO TIPO 2 — TODO EL DÍA",
+          "descripcion_tecnica": "Vehículo de pasajeros Tipo 2: SUV, van o microbús con capacidad hasta 12 pasajeros. Incluye conductor con licencia de conducción vigente, SOAT, revisión técnico-mecánica al día y seguro obligatorio. Precio por día completo (hasta 10 horas de servicio).",
+          "tiempo": "DÍA",
+          "unidad": "DÍA TRANSPORTE",
+          "cat_especial_1": 3003000,
+          "cat_2_3_4": 3375603,
+          "cat_5_6": 3881715,
+          "observaciones": ""
+        },
+        {
+          "id": 7,
+          "producto_servicio": "VEHÍCULO TIPO 3 — POR HORA",
+          "descripcion_tecnica": "Vehículo de pasajeros Tipo 3: bus o buseta con capacidad hasta 30 pasajeros. Incluye conductor con licencia de conducción categoría C2 vigente, SOAT, revisión técnico-mecánica al día, póliza de responsabilidad civil extracontractual y seguro obligatorio. Precio por hora de servicio.",
+          "tiempo": "HORA",
+          "unidad": "HORA TRANSPORTE",
+          "cat_especial_1": 680000,
+          "cat_2_3_4": 768808,
+          "cat_5_6": 882927,
+          "observaciones": ""
+        },
+        {
+          "id": 8,
+          "producto_servicio": "VEHÍCULO TIPO 3 — TODO EL DÍA",
+          "descripcion_tecnica": "Vehículo de pasajeros Tipo 3: bus o buseta con capacidad hasta 30 pasajeros. Incluye conductor con licencia de conducción categoría C2 vigente, SOAT, revisión técnico-mecánica al día, póliza de responsabilidad civil extracontractual y seguro obligatorio. Precio por día completo (hasta 10 horas de servicio).",
+          "tiempo": "DÍA",
+          "unidad": "DÍA TRANSPORTE",
+          "cat_especial_1": 3865000,
+          "cat_2_3_4": 4344226,
+          "cat_5_6": 4996464,
+          "observaciones": ""
+        },
+        {
+          "id": 9,
+          "producto_servicio": "MONITOR DE BUS — POR TURNO",
+          "descripcion_tecnica": "Monitor o acompañante de bus para transporte de pasajeros en vehículos de más de 10 personas. Turno de hasta 8 horas. Funciones: apoyo al conductor, orientación a pasajeros, verificación de listas de asistencia. No requiere licencia de conducción. Incluye transporte al punto de inicio. Valor por persona por turno.",
+          "tiempo": "TURNO 8 HORAS",
+          "unidad": "PERSONA / TURNO 8 HORAS",
+          "cat_especial_1": 308000,
+          "cat_2_3_4": 371161,
+          "cat_5_6": 448709,
+          "observaciones": ""
+        },
+        {
+          "id": 10,
+          "producto_servicio": "VALOR MONITOR BUS — POR HORA",
+          "descripcion_tecnica": "Monitor o acompañante de bus para transporte de pasajeros. Valor por hora de servicio. Precio por persona por hora.",
+          "tiempo": "HORA",
+          "unidad": "PERSONA / HORA",
+          "cat_especial_1": 50700,
+          "cat_2_3_4": 57759,
+          "cat_5_6": 66744,
+          "observaciones": ""
         }
       ]
     }
