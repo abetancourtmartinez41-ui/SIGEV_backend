@@ -136,6 +136,8 @@ export const EventScalarFieldEnum = {
   divipolaCode: 'divipolaCode',
   municipalityName: 'municipalityName',
   municipalityCategory: 'municipalityCategory',
+  programa: 'programa',
+  instanciaParticipacion: 'instanciaParticipacion',
   generalAllyId: 'generalAllyId',
   disbursementId: 'disbursementId',
   createdById: 'createdById',

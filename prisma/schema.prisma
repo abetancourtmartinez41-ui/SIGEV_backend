@@ -66,6 +66,8 @@ model Event {
   divipolaCode         String?      @db.VarChar(10)
   municipalityName     String?      @db.VarChar(100)
   municipalityCategory String?      @db.VarChar(50)
+  programa              String?      @db.VarChar(50)
+  instanciaParticipacion String?     @db.VarChar(200)
   generalAllyId        String?      @db.Uuid
   disbursementId       String?      @db.Uuid
   disbursement         Disbursement? @relation("DisbursementEvents", fields: [disbursementId], references: [id])

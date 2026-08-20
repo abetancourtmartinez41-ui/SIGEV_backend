@@ -100,4 +100,14 @@ export class CreateEventDto {
   @ValidateNested({ each: true })
   @Type(() => CreateItemDto)
   items?: CreateItemDto[];
+
+  @ApiPropertyOptional({ description: 'Programa al que pertenece el evento', enum: ['RENHACEMOS', 'PNIS', 'OTROS'] })
+  @IsOptional()
+  @IsString()
+  programa?: string;
+
+  @ApiPropertyOptional({ description: 'Instancia de participación según el programa' })
+  @IsOptional()
+  @IsString()
+  instanciaParticipacion?: string;
 }

@@ -63,6 +63,8 @@ export type EventMinAggregateOutputType = {
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
+  programa: string | null
+  instanciaParticipacion: string | null
   generalAllyId: string | null
   disbursementId: string | null
   createdById: string | null
@@ -96,6 +98,8 @@ export type EventMaxAggregateOutputType = {
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
+  programa: string | null
+  instanciaParticipacion: string | null
   generalAllyId: string | null
   disbursementId: string | null
   createdById: string | null
@@ -129,6 +133,8 @@ export type EventCountAggregateOutputType = {
   divipolaCode: number
   municipalityName: number
   municipalityCategory: number
+  programa: number
+  instanciaParticipacion: number
   generalAllyId: number
   disbursementId: number
   createdById: number
@@ -178,6 +184,8 @@ export type EventMinAggregateInputType = {
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
+  programa?: true
+  instanciaParticipacion?: true
   generalAllyId?: true
   disbursementId?: true
   createdById?: true
@@ -211,6 +219,8 @@ export type EventMaxAggregateInputType = {
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
+  programa?: true
+  instanciaParticipacion?: true
   generalAllyId?: true
   disbursementId?: true
   createdById?: true
@@ -244,6 +254,8 @@ export type EventCountAggregateInputType = {
   divipolaCode?: true
   municipalityName?: true
   municipalityCategory?: true
+  programa?: true
+  instanciaParticipacion?: true
   generalAllyId?: true
   disbursementId?: true
   createdById?: true
@@ -364,6 +376,8 @@ export type EventGroupByOutputType = {
   divipolaCode: string | null
   municipalityName: string | null
   municipalityCategory: string | null
+  programa: string | null
+  instanciaParticipacion: string | null
   generalAllyId: string | null
   disbursementId: string | null
   createdById: string
@@ -420,6 +434,8 @@ export type EventWhereInput = {
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
+  programa?: Prisma.StringNullableFilter<"Event"> | string | null
+  instanciaParticipacion?: Prisma.StringNullableFilter<"Event"> | string | null
   generalAllyId?: Prisma.UuidNullableFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableFilter<"Event"> | string | null
   createdById?: Prisma.UuidFilter<"Event"> | string
@@ -462,6 +478,8 @@ export type EventOrderByWithRelationInput = {
   divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityName?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrderInput | Prisma.SortOrder
+  programa?: Prisma.SortOrderInput | Prisma.SortOrder
+  instanciaParticipacion?: Prisma.SortOrderInput | Prisma.SortOrder
   generalAllyId?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
@@ -509,6 +527,8 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
+  programa?: Prisma.StringNullableFilter<"Event"> | string | null
+  instanciaParticipacion?: Prisma.StringNullableFilter<"Event"> | string | null
   generalAllyId?: Prisma.UuidNullableFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableFilter<"Event"> | string | null
   createdById?: Prisma.UuidFilter<"Event"> | string
@@ -550,6 +570,8 @@ export type EventOrderByWithAggregationInput = {
   divipolaCode?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityName?: Prisma.SortOrderInput | Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrderInput | Prisma.SortOrder
+  programa?: Prisma.SortOrderInput | Prisma.SortOrder
+  instanciaParticipacion?: Prisma.SortOrderInput | Prisma.SortOrder
   generalAllyId?: Prisma.SortOrderInput | Prisma.SortOrder
   disbursementId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
@@ -591,6 +613,8 @@ export type EventScalarWhereWithAggregatesInput = {
   divipolaCode?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  programa?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  instanciaParticipacion?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   generalAllyId?: Prisma.UuidNullableWithAggregatesFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableWithAggregatesFilter<"Event"> | string | null
   createdById?: Prisma.UuidWithAggregatesFilter<"Event"> | string
@@ -624,6 +648,8 @@ export type EventCreateInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -663,6 +689,8 @@ export type EventUncheckedCreateInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -702,6 +730,8 @@ export type EventUpdateInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -741,6 +771,8 @@ export type EventUncheckedUpdateInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -780,6 +812,8 @@ export type EventCreateManyInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -813,6 +847,8 @@ export type EventUpdateManyMutationInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -843,6 +879,8 @@ export type EventUncheckedUpdateManyInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -891,6 +929,8 @@ export type EventCountOrderByAggregateInput = {
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
+  programa?: Prisma.SortOrder
+  instanciaParticipacion?: Prisma.SortOrder
   generalAllyId?: Prisma.SortOrder
   disbursementId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
@@ -931,6 +971,8 @@ export type EventMaxOrderByAggregateInput = {
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
+  programa?: Prisma.SortOrder
+  instanciaParticipacion?: Prisma.SortOrder
   generalAllyId?: Prisma.SortOrder
   disbursementId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
@@ -964,6 +1006,8 @@ export type EventMinOrderByAggregateInput = {
   divipolaCode?: Prisma.SortOrder
   municipalityName?: Prisma.SortOrder
   municipalityCategory?: Prisma.SortOrder
+  programa?: Prisma.SortOrder
+  instanciaParticipacion?: Prisma.SortOrder
   generalAllyId?: Prisma.SortOrder
   disbursementId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
@@ -1234,6 +1278,8 @@ export type EventCreateWithoutCreatedByInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -1272,6 +1318,8 @@ export type EventUncheckedCreateWithoutCreatedByInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   cotizacionSeleccionadaId?: string | null
@@ -1339,6 +1387,8 @@ export type EventScalarWhereInput = {
   divipolaCode?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityName?: Prisma.StringNullableFilter<"Event"> | string | null
   municipalityCategory?: Prisma.StringNullableFilter<"Event"> | string | null
+  programa?: Prisma.StringNullableFilter<"Event"> | string | null
+  instanciaParticipacion?: Prisma.StringNullableFilter<"Event"> | string | null
   generalAllyId?: Prisma.UuidNullableFilter<"Event"> | string | null
   disbursementId?: Prisma.UuidNullableFilter<"Event"> | string | null
   createdById?: Prisma.UuidFilter<"Event"> | string
@@ -1372,6 +1422,8 @@ export type EventCreateWithoutItemsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -1410,6 +1462,8 @@ export type EventUncheckedCreateWithoutItemsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -1464,6 +1518,8 @@ export type EventUpdateWithoutItemsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1502,6 +1558,8 @@ export type EventUncheckedUpdateWithoutItemsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1540,6 +1598,8 @@ export type EventCreateWithoutAttachmentsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -1578,6 +1638,8 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -1632,6 +1694,8 @@ export type EventUpdateWithoutAttachmentsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1670,6 +1734,8 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1708,6 +1774,8 @@ export type EventCreateWithoutQuotationsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -1746,6 +1814,8 @@ export type EventUncheckedCreateWithoutQuotationsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -1789,6 +1859,8 @@ export type EventCreateWithoutSelectedQuotationInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -1827,6 +1899,8 @@ export type EventUncheckedCreateWithoutSelectedQuotationInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -1881,6 +1955,8 @@ export type EventUpdateWithoutQuotationsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1919,6 +1995,8 @@ export type EventUncheckedUpdateWithoutQuotationsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1968,6 +2046,8 @@ export type EventUpdateWithoutSelectedQuotationInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2006,6 +2086,8 @@ export type EventUncheckedUpdateWithoutSelectedQuotationInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2044,6 +2126,8 @@ export type EventCreateWithoutOfertaEconomicaInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -2082,6 +2166,8 @@ export type EventUncheckedCreateWithoutOfertaEconomicaInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -2136,6 +2222,8 @@ export type EventUpdateWithoutOfertaEconomicaInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2174,6 +2262,8 @@ export type EventUncheckedUpdateWithoutOfertaEconomicaInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2212,6 +2302,8 @@ export type EventCreateWithoutDisbursementInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -2250,6 +2342,8 @@ export type EventUncheckedCreateWithoutDisbursementInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   createdById: string
   cotizacionSeleccionadaId?: string | null
@@ -2314,6 +2408,8 @@ export type EventCreateWithoutPaymentsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -2352,6 +2448,8 @@ export type EventUncheckedCreateWithoutPaymentsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -2406,6 +2504,8 @@ export type EventUpdateWithoutPaymentsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2444,6 +2544,8 @@ export type EventUncheckedUpdateWithoutPaymentsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2482,6 +2584,8 @@ export type EventCreateWithoutNotificationsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   deletedAt?: Date | string | null
   isActive?: boolean
@@ -2520,6 +2624,8 @@ export type EventUncheckedCreateWithoutNotificationsInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   createdById: string
@@ -2574,6 +2680,8 @@ export type EventUpdateWithoutNotificationsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2612,6 +2720,8 @@ export type EventUncheckedUpdateWithoutNotificationsInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2650,6 +2760,8 @@ export type EventCreateManyCreatedByInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   disbursementId?: string | null
   cotizacionSeleccionadaId?: string | null
@@ -2682,6 +2794,8 @@ export type EventUpdateWithoutCreatedByInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2720,6 +2834,8 @@ export type EventUncheckedUpdateWithoutCreatedByInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2758,6 +2874,8 @@ export type EventUncheckedUpdateManyWithoutCreatedByInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disbursementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2790,6 +2908,8 @@ export type EventCreateManyDisbursementInput = {
   divipolaCode?: string | null
   municipalityName?: string | null
   municipalityCategory?: string | null
+  programa?: string | null
+  instanciaParticipacion?: string | null
   generalAllyId?: string | null
   createdById: string
   cotizacionSeleccionadaId?: string | null
@@ -2822,6 +2942,8 @@ export type EventUpdateWithoutDisbursementInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2860,6 +2982,8 @@ export type EventUncheckedUpdateWithoutDisbursementInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2898,6 +3022,8 @@ export type EventUncheckedUpdateManyWithoutDisbursementInput = {
   divipolaCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   municipalityCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instanciaParticipacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generalAllyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   cotizacionSeleccionadaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2997,6 +3123,8 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
+  programa?: boolean
+  instanciaParticipacion?: boolean
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
@@ -3040,6 +3168,8 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
+  programa?: boolean
+  instanciaParticipacion?: boolean
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
@@ -3076,6 +3206,8 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
+  programa?: boolean
+  instanciaParticipacion?: boolean
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
@@ -3112,6 +3244,8 @@ export type EventSelectScalar = {
   divipolaCode?: boolean
   municipalityName?: boolean
   municipalityCategory?: boolean
+  programa?: boolean
+  instanciaParticipacion?: boolean
   generalAllyId?: boolean
   disbursementId?: boolean
   createdById?: boolean
@@ -3122,7 +3256,7 @@ export type EventSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "schemaType" | "name" | "description" | "status" | "observation" | "authorizeException" | "devolucionLegalizacion" | "devueltoDesde" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "latitude" | "longitude" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "generalAllyId" | "disbursementId" | "createdById" | "cotizacionSeleccionadaId" | "deletedAt" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "suffix" | "schemaType" | "name" | "description" | "status" | "observation" | "authorizeException" | "devolucionLegalizacion" | "devueltoDesde" | "startDate" | "endDate" | "dependency" | "hamlet" | "attendees" | "days" | "latitude" | "longitude" | "divipolaCode" | "municipalityName" | "municipalityCategory" | "programa" | "instanciaParticipacion" | "generalAllyId" | "disbursementId" | "createdById" | "cotizacionSeleccionadaId" | "deletedAt" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disbursement?: boolean | Prisma.Event$disbursementArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -3182,6 +3316,8 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     divipolaCode: string | null
     municipalityName: string | null
     municipalityCategory: string | null
+    programa: string | null
+    instanciaParticipacion: string | null
     generalAllyId: string | null
     disbursementId: string | null
     createdById: string
@@ -3644,6 +3780,8 @@ export interface EventFieldRefs {
   readonly divipolaCode: Prisma.FieldRef<"Event", 'String'>
   readonly municipalityName: Prisma.FieldRef<"Event", 'String'>
   readonly municipalityCategory: Prisma.FieldRef<"Event", 'String'>
+  readonly programa: Prisma.FieldRef<"Event", 'String'>
+  readonly instanciaParticipacion: Prisma.FieldRef<"Event", 'String'>
   readonly generalAllyId: Prisma.FieldRef<"Event", 'String'>
   readonly disbursementId: Prisma.FieldRef<"Event", 'String'>
   readonly createdById: Prisma.FieldRef<"Event", 'String'>

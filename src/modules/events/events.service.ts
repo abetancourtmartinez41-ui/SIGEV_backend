@@ -179,6 +179,8 @@ export class EventsService {
           disbursementId: dto.disbursementId || null,
           createdById: user.id,
           status: initialStatus,
+          programa: dto.programa ?? null,
+          instanciaParticipacion: dto.instanciaParticipacion ?? null,
         },
       });
 
@@ -333,6 +335,8 @@ export class EventsService {
           days: dto.days,
           latitude: dto.latitude !== undefined ? dto.latitude : undefined,
           longitude: dto.longitude !== undefined ? dto.longitude : undefined,
+          programa: dto.programa !== undefined ? (dto.programa || null) : undefined,
+          instanciaParticipacion: dto.instanciaParticipacion !== undefined ? (dto.instanciaParticipacion || null) : undefined,
         },
       });
 
